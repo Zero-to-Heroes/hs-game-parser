@@ -1,0 +1,1 @@
+Parse Hearthstone games to extract meaningful data (metadata, matchup, amazing plays...)
