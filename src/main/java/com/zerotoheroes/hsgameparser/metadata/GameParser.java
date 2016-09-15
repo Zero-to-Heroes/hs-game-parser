@@ -1,13 +1,23 @@
 package com.zerotoheroes.hsgameparser.metadata;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.zerotoheroes.hsgameentities.enums.GameTag;
+import com.zerotoheroes.hsgameentities.enums.PlayState;
 import com.zerotoheroes.hsgameentities.replaydata.GameData;
+import com.zerotoheroes.hsgameentities.replaydata.GameHelper;
 import com.zerotoheroes.hsgameentities.replaydata.HearthstoneReplay;
 import com.zerotoheroes.hsgameentities.replaydata.entities.FullEntity;
 import com.zerotoheroes.hsgameentities.replaydata.entities.PlayerEntity;
+import com.zerotoheroes.hsgameentities.replaydata.gameactions.TagChange;
 import com.zerotoheroes.hsgameparser.db.Card;
 import com.zerotoheroes.hsgameparser.db.CardsList;
 
@@ -21,19 +31,20 @@ public class GameParser {
 	public GameParser() throws Exception {
 		if (cardsList == null) {
 			cardsList = CardsList.create();
-			log.info("Created cards list with " + cardsList.getCards().size() + " cards");
+			log.debug("Created cards list with " + cardsList.getCards().size() + " cards");
 		}
 	}
 
 	public GameMetaData getMetaData(HearthstoneReplay replay) {
-		log.info("retrieving metadata for " + replay);
+		log.debug("retrieving metadata for " + replay);
 
 		GameMetaData meta = new GameMetaData();
 
-		List<GameData> data = replay.getGames().get(0).getData();
-		List<PlayerEntity> players = data.stream().filter(d -> (d instanceof PlayerEntity)).map(p -> (PlayerEntity) p)
-				.collect(Collectors.toList());
+		GameHelper helper = new GameHelper();
+		helper.setGame(replay.getGames().get(0));
 
+		// Filter player data
+		List<PlayerEntity> players = helper.getPlayers();
 		PlayerEntity player1 = players.stream().filter(p -> p.getPlayerId() == 1).findFirst().get();
 		PlayerEntity player2 = players.stream().filter(p -> p.getPlayerId() == 2).findFirst().get();
 
@@ -42,9 +53,78 @@ public class GameParser {
 		meta.setOpponentName(player2.getName());
 		meta.setOpponentClass(getPlayerClass(replay, player2));
 
-		log.info("retrieved meta " + meta);
+		// Find out the last turn number
+		List<TagChange> turnChanges = helper.getFlatData().stream().filter(d -> (d instanceof TagChange))
+				.map(p -> (TagChange) p).filter(t -> t.getEntity() == 1 && t.getName() == GameTag.TURN.getIntValue())
+				.collect(Collectors.toList());
+		TagChange lastTurn = turnChanges.get(turnChanges.size() - 1);
+		int numberOfTurns = (int) Math.ceil(lastTurn.getValue() / 2.0);
+		meta.setNumberOfTurns(numberOfTurns);
+
+		// Game duration
+		List<GameData> timestampedData = helper.getFlatData().stream()
+				.filter(d -> !StringUtils.isEmpty(d.getTimestamp())).collect(Collectors.toList());
+		Collections.sort(timestampedData, (o1, o2) -> o1.getTimestamp().compareTo(o2.getTimestamp()));
+
+		// Get the first and last moments
+		Date first = parseDate(timestampedData.get(0).getTimestamp());
+		Date last = parseDate(timestampedData.get(timestampedData.size() - 1).getTimestamp());
+		meta.setDurationInSeconds((int) ((last.getTime() - first.getTime()) / 1000));
+
+		// Win status
+		// Get the main player. The first one being the "current player" is us
+		// The data will be ordered enough for us, as the tag is part of an
+		// Action block
+		List<TagChange> tagChanges = helper.filterGameData(TagChange.class);
+		int ourEntityId = tagChanges.stream()
+				.filter(t -> t.getName() == GameTag.CURRENT_PLAYER.getIntValue() && t.getValue() == 1).findFirst().get()
+				.getEntity();
+		// Now find the tag change that tells us if we won
+		Optional<TagChange> winner = tagChanges.stream().filter(
+				t -> t.getName() == GameTag.PLAYSTATE.getIntValue() && t.getValue() == PlayState.WON.getIntValue())
+				.findFirst();
+
+		String winStatus = "unknown";
+		if (winner.isPresent()) {
+			if (ourEntityId == winner.get().getEntity()) {
+				winStatus = "won";
+			}
+			else {
+				winStatus = "lost";
+			}
+		}
+		// No winner means a tie or a disconnect
+		else {
+			Optional<TagChange> tied = tagChanges.stream().filter(
+					t -> t.getName() == GameTag.PLAYSTATE.getIntValue() && t.getValue() == PlayState.TIED.getIntValue())
+					.findFirst();
+			if (tied.isPresent()) {
+				winStatus = "tied";
+			}
+		}
+		meta.setWinStatus(winStatus);
+
+		log.debug("retrieved meta " + meta);
 
 		return meta;
+	}
+
+	private Date parseDate(String timestamp) {
+		Date result = null;
+		// Try various formats
+		try {
+			result = new SimpleDateFormat("HH:mm:ss").parse(timestamp);
+		}
+		catch (ParseException e) {
+			try {
+				result = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXX").parse(timestamp);
+			}
+			catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		return result;
 	}
 
 	private String getPlayerClass(HearthstoneReplay replay, PlayerEntity player) {

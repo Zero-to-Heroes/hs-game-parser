@@ -1,4 +1,4 @@
-package com.zerotoheroes.hsgameparser;
+package com.zerotoheroes.hsgameparser.amazingplays;
 
 public interface GameHighlightListener {
     void notify(GameHighlight gameHighlight);

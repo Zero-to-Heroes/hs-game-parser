@@ -1,7 +1,11 @@
-package com.zerotoheroes.hsgameparser;
+package com.zerotoheroes.hsgameparser.amazingplays.rules;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.zerotoheroes.hsgameparser.amazingplays.CompositeGameEvents;
+import com.zerotoheroes.hsgameparser.amazingplays.GameEvents;
+import com.zerotoheroes.hsgameparser.amazingplays.GameHighlightListener;
 
 public class RuleFactory {
 

@@ -6,4 +6,8 @@ import lombok.Data;
 public class GameMetaData {
 	private String playerName, opponentName;
 	private String playerClass, opponentClass;
+
+	private int numberOfTurns;
+	private int durationInSeconds;
+	private String winStatus;
 }

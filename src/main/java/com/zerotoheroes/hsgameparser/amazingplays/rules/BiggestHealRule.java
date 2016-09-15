@@ -1,4 +1,7 @@
-package com.zerotoheroes.hsgameparser;
+package com.zerotoheroes.hsgameparser.amazingplays.rules;
+
+import com.zerotoheroes.hsgameparser.amazingplays.GameHighlight;
+import com.zerotoheroes.hsgameparser.amazingplays.GameHighlightListener;
 
 public class BiggestHealRule extends AbstractGameEventsAdapter {
     private int currentTurn;
