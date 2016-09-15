@@ -49,7 +49,7 @@
 		<dependency>
 			<groupId>com.zerotoheroes</groupId>
 			<artifactId>hs-game-entities</artifactId>
-			<version>1.0.2</version>
+			<version>1.0.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.zerotoheroes</groupId>
@@ -109,7 +109,7 @@
 	<!-- mvn release:clean release:prepare mvn release:perform -->
 	<build>
 		<plugins>
-			<plugin>
+			<plugin> 
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>

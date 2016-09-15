@@ -75,11 +75,14 @@ public class GameParser {
 		// Get the main player. The first one being the "current player" is us
 		// The data will be ordered enough for us, as the tag is part of an
 		// Action block
-		List<TagChange> tagChanges = helper.filterGameData(TagChange.class);
-		int ourEntityId = tagChanges.stream()
-				.filter(t -> t.getName() == GameTag.CURRENT_PLAYER.getIntValue() && t.getValue() == 1).findFirst().get()
-				.getEntity();
+		PlayerEntity player = helper.getMainPlayer();
+		int ourEntityId = player.getId();
+		// int ourEntityId = tagChanges.stream()
+		// .filter(t -> t.getName() == GameTag.CURRENT_PLAYER.getIntValue() &&
+		// t.getValue() == 1).findFirst().get()
+		// .getEntity();
 		// Now find the tag change that tells us if we won
+		List<TagChange> tagChanges = helper.filterGameData(TagChange.class);
 		Optional<TagChange> winner = tagChanges.stream().filter(
 				t -> t.getName() == GameTag.PLAYSTATE.getIntValue() && t.getValue() == PlayState.WON.getIntValue())
 				.findFirst();
