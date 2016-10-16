@@ -43,16 +43,6 @@ public class GameParser {
 		GameHelper helper = new GameHelper();
 		helper.setGame(replay.getGames().get(0));
 
-		// Filter player data
-		List<PlayerEntity> players = helper.getPlayers();
-		PlayerEntity player1 = players.stream().filter(p -> p.getPlayerId() == 1).findFirst().get();
-		PlayerEntity player2 = players.stream().filter(p -> p.getPlayerId() == 2).findFirst().get();
-
-		meta.setPlayerName(player1.getName());
-		meta.setPlayerClass(getPlayerClass(replay, player1));
-		meta.setOpponentName(player2.getName());
-		meta.setOpponentClass(getPlayerClass(replay, player2));
-
 		// Find out the last turn number
 		List<TagChange> turnChanges = helper.getFlatData().stream().filter(d -> (d instanceof TagChange))
 				.map(p -> (TagChange) p).filter(t -> t.getEntity() == 1 && t.getName() == GameTag.TURN.getIntValue())
@@ -77,10 +67,6 @@ public class GameParser {
 		// Action block
 		PlayerEntity player = helper.getMainPlayer();
 		int ourEntityId = player.getId();
-		// int ourEntityId = tagChanges.stream()
-		// .filter(t -> t.getName() == GameTag.CURRENT_PLAYER.getIntValue() &&
-		// t.getValue() == 1).findFirst().get()
-		// .getEntity();
 		// Now find the tag change that tells us if we won
 		List<TagChange> tagChanges = helper.filterGameData(TagChange.class);
 		Optional<TagChange> winner = tagChanges.stream().filter(
@@ -106,6 +92,16 @@ public class GameParser {
 			}
 		}
 		meta.setWinStatus(winStatus);
+		
+		// Filter player data
+		List<PlayerEntity> players = helper.getPlayers();
+		PlayerEntity player1 = players.stream().filter(p -> p.getId() == ourEntityId).findFirst().get();
+		PlayerEntity player2 = players.stream().filter(p -> p.getId() != ourEntityId).findFirst().get();
+
+		meta.setPlayerName(player1.getName());
+		meta.setPlayerClass(getPlayerClass(replay, player1));
+		meta.setOpponentName(player2.getName());
+		meta.setOpponentClass(getPlayerClass(replay, player2));
 
 		log.debug("retrieved meta " + meta);
 
