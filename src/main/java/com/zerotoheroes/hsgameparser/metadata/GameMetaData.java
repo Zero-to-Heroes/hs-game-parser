@@ -9,6 +9,6 @@ public class GameMetaData {
 
 	private int numberOfTurns;
 	private int durationInSeconds;
-	private String winStatus;
+	private String result;
 	private String playCoin;
 }

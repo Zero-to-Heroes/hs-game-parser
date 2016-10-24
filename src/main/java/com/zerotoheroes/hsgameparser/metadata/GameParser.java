@@ -91,13 +91,13 @@ public class GameParser {
 				winStatus = "tied";
 			}
 		}
-		meta.setWinStatus(winStatus);
-		
+		meta.setResult(winStatus);
+
 		// Filter player data
 		List<PlayerEntity> players = helper.getPlayers();
 		PlayerEntity player1 = players.stream().filter(p -> p.getId() == ourEntityId).findFirst().get();
 		PlayerEntity player2 = players.stream().filter(p -> p.getId() != ourEntityId).findFirst().get();
-		
+
 		meta.setPlayerName(player1.getName());
 		meta.setPlayerClass(getPlayerClass(replay, player1));
 		meta.setOpponentName(player2.getName());
@@ -105,13 +105,13 @@ public class GameParser {
 
 		// Find if we're on the coin or on the play
 		// The first player to draw 4 cards is on the coin
-		TagChange drawFourCardsTag = tagChanges.stream().filter(
-				t -> t.getName() == GameTag.NUM_CARDS_DRAWN_THIS_TURN.getIntValue() && t.getValue() == 4)
+		TagChange drawFourCardsTag = tagChanges.stream()
+				.filter(t -> t.getName() == GameTag.NUM_CARDS_DRAWN_THIS_TURN.getIntValue() && t.getValue() == 4)
 				.findFirst().get();
 		int coinPlayerId = drawFourCardsTag.getEntity();
-		System.out.println("coin player id " + coinPlayerId +  " our " + ourEntityId);
+		System.out.println("coin player id " + coinPlayerId + " our " + ourEntityId);
 		meta.setPlayCoin(coinPlayerId == ourEntityId ? "coin" : "play");
-		
+
 		log.debug("retrieved meta " + meta);
 
 		return meta;
