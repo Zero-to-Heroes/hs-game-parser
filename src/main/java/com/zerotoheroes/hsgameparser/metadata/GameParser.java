@@ -57,9 +57,11 @@ public class GameParser {
 		Collections.sort(timestampedData, (o1, o2) -> o1.getTimestamp().compareTo(o2.getTimestamp()));
 
 		// Get the first and last moments
-		Date first = parseDate(timestampedData.get(0).getTimestamp());
-		Date last = parseDate(timestampedData.get(timestampedData.size() - 1).getTimestamp());
-		meta.setDurationInSeconds((int) ((last.getTime() - first.getTime()) / 1000));
+		if (timestampedData != null && timestampedData.size() > 0) {
+			Date first = parseDate(timestampedData.get(0).getTimestamp());
+			Date last = parseDate(timestampedData.get(timestampedData.size() - 1).getTimestamp());
+			meta.setDurationInSeconds((int) ((last.getTime() - first.getTime()) / 1000));
+		}
 
 		// Win status
 		// Get the main player. The first one being the "current player" is us
@@ -109,7 +111,8 @@ public class GameParser {
 				.filter(t -> t.getName() == GameTag.NUM_CARDS_DRAWN_THIS_TURN.getIntValue() && t.getValue() == 4)
 				.findFirst().get();
 		int coinPlayerId = drawFourCardsTag.getEntity();
-		System.out.println("coin player id " + coinPlayerId + " our " + ourEntityId);
+		// System.out.println("coin player id " + coinPlayerId + " our " +
+		// ourEntityId);
 		meta.setPlayCoin(coinPlayerId == ourEntityId ? "coin" : "play");
 
 		log.debug("retrieved meta " + meta);
