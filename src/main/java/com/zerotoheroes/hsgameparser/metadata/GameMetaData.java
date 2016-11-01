@@ -11,4 +11,5 @@ public class GameMetaData {
 	private int durationInSeconds;
 	private String result;
 	private String playCoin;
+	private String skillLevel;
 }
