@@ -22,6 +22,9 @@ public class TestGetMetadata {
 	@Test
 	public void testMetadata() throws Exception {
 
+		// More checks on win/loss
+		checkMeta("old.xml", 12, 476, "lost", "coin");
+
 		checkMeta("from log file.xml", 9, 687, "won", "play");
 
 		// Also test with hsreplay.net files
