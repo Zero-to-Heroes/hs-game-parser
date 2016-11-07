@@ -14,4 +14,5 @@ public class Card {
 	private String name;
 	private String playerClass;
 	private String type;
+	private String rarity;
 }

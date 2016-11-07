@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.json.simple.parser.JSONParser;
 
@@ -31,5 +32,11 @@ public class CardsList {
 				TypeFactory.defaultInstance().constructCollectionType(List.class, Card.class));
 
 		return instance;
+	}
+
+	public Card find(String cardId) {
+		Optional<Card> optional = cards.stream().filter(c -> c.getId().equals(cardId)).findFirst();
+		if (optional.isPresent()) { return optional.get(); }
+		return null;
 	}
 }
