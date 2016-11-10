@@ -21,9 +21,11 @@ import com.zerotoheroes.hsgameentities.replaydata.gameactions.TagChange;
 import com.zerotoheroes.hsgameparser.db.Card;
 import com.zerotoheroes.hsgameparser.db.CardsList;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Getter
 public class GameParser {
 
 	private static CardsList cardsList;
