@@ -16,4 +16,6 @@ public class Card {
 	private String type;
 	private String rarity;
 	private String set;
+	private boolean collectible;
+
 }
