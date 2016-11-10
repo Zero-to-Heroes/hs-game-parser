@@ -15,4 +15,5 @@ public class Card {
 	private String playerClass;
 	private String type;
 	private String rarity;
+	private String set;
 }
