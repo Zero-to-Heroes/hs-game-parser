@@ -37,13 +37,21 @@ public class GameParser {
 		}
 	}
 
-	public GameMetaData getMetaData(HearthstoneReplay replay) {
+	public GameMetaData getMetaData(HearthstoneReplay replay) throws InvalidGameReplayException {
 		log.debug("retrieving metadata for " + replay);
 
 		GameMetaData meta = new GameMetaData();
 
 		GameHelper helper = new GameHelper();
 		helper.setGame(replay.getGames().get(0));
+
+		// Find out the first turn number - if it's not 1, no point in parsing
+		// the metadata
+		TagChange firstTurn = helper.getFlatData().stream().filter(d -> (d instanceof TagChange))
+				.map(p -> (TagChange) p).filter(t -> t.getEntity() == 1 && t.getName() == GameTag.TURN.getIntValue())
+				.findFirst().get();
+		if (firstTurn == null || firstTurn
+				.getValue() != 1) { throw new InvalidGameReplayException("first registered turn is " + firstTurn); }
 
 		// Find out the last turn number
 		List<TagChange> turnChanges = helper.getFlatData().stream().filter(d -> (d instanceof TagChange))
