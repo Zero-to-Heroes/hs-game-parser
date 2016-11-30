@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.zerotoheroes</groupId>
 	<artifactId>hs-game-parser</artifactId>
-	<version>1.0.13-SNAPSHOT</version>
+	<version>1.0.13</version>
 	<packaging>jar</packaging>
 
 	<name>${project.groupId}:${project.artifactId}</name>
@@ -30,7 +30,7 @@
 		<connection>scm:git:git://github.com/Zero-to-Heroes/hs-game-parser.git</connection>
 		<developerConnection>scm:git:https://github.com/Zero-to-Heroes/hs-game-parser.git</developerConnection>
 		<url>https://github.com/Zero-to-Heroes/hs-game-parser/tree/master</url>
-		<tag>hs-game-parser-1.0.0</tag>
+		<tag>hs-game-parser-1.0.13</tag>
 	</scm>
 
 	<distributionManagement>
