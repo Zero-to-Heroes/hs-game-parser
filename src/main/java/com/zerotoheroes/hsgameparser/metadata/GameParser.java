@@ -49,7 +49,7 @@ public class GameParser {
 		// the metadata
 		TagChange firstTurn = helper.getFlatData().stream().filter(d -> (d instanceof TagChange))
 				.map(p -> (TagChange) p).filter(t -> t.getEntity() == 1 && t.getName() == GameTag.TURN.getIntValue())
-				.findFirst().get();
+				.findFirst().orElse(null);
 		if (firstTurn == null || firstTurn
 				.getValue() != 1) { throw new InvalidGameReplayException("first registered turn is " + firstTurn); }
 

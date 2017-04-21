@@ -1,0 +1,3243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<HSReplay build="15590" version="1.0">
+	<Game ts="12:09:51.3344305" type="0">
+		<GameEntity id="1">
+			<Tag tag="49" value="1" />
+			<Tag tag="53" value="1" />
+			<Tag tag="202" value="1" />
+		</GameEntity>
+		<Player accountHi="144115198130930503" accountLo="32311514"
+			name="Daedin" playerID="1" id="2">
+			<Tag tag="27" value="80" />
+			<Tag tag="28" value="10" />
+			<Tag tag="29" value="4" />
+			<Tag tag="30" value="1" />
+			<Tag tag="31" value="1" />
+			<Tag tag="49" value="1" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="2" />
+			<Tag tag="176" value="10" />
+			<Tag tag="202" value="2" />
+		</Player>
+		<Player accountHi="144115198130930503" accountLo="58666900"
+			name="Regulus" playerID="2" id="3">
+			<Tag tag="27" value="82" />
+			<Tag tag="28" value="10" />
+			<Tag tag="29" value="4" />
+			<Tag tag="30" value="2" />
+			<Tag tag="31" value="2" />
+			<Tag tag="49" value="1" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="3" />
+			<Tag tag="176" value="10" />
+			<Tag tag="202" value="2" />
+		</Player>
+		<FullEntity id="4" ts="12:09:51.3379310">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="4" />
+		</FullEntity>
+		<FullEntity id="5" ts="12:09:51.3379310">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="5" />
+		</FullEntity>
+		<FullEntity id="6" ts="12:09:51.3384307">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="6" />
+		</FullEntity>
+		<FullEntity id="7" ts="12:09:51.3384307">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="7" />
+		</FullEntity>
+		<FullEntity id="8" ts="12:09:51.3384307">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="8" />
+		</FullEntity>
+		<FullEntity id="9" ts="12:09:51.3384307">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="9" />
+		</FullEntity>
+		<FullEntity id="10" ts="12:09:51.3384307">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="10" />
+		</FullEntity>
+		<FullEntity id="11" ts="12:09:51.3384307">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="11" />
+		</FullEntity>
+		<FullEntity id="12" ts="12:09:51.3384307">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="12" />
+		</FullEntity>
+		<FullEntity id="13" ts="12:09:51.3389308">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="13" />
+		</FullEntity>
+		<FullEntity id="14" ts="12:09:51.3389308">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="14" />
+		</FullEntity>
+		<FullEntity id="15" ts="12:09:51.3389308">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="15" />
+		</FullEntity>
+		<FullEntity id="16" ts="12:09:51.3389308">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="16" />
+		</FullEntity>
+		<FullEntity id="17" ts="12:09:51.3389308">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="17" />
+		</FullEntity>
+		<FullEntity id="18" ts="12:09:51.3389308">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="18" />
+		</FullEntity>
+		<FullEntity id="19" ts="12:09:51.3389308">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="19" />
+		</FullEntity>
+		<FullEntity id="20" ts="12:09:51.3389308">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="20" />
+		</FullEntity>
+		<FullEntity id="21" ts="12:09:51.3394309">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="21" />
+		</FullEntity>
+		<FullEntity id="22" ts="12:09:51.3394309">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="22" />
+		</FullEntity>
+		<FullEntity id="23" ts="12:09:51.3394309">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="23" />
+		</FullEntity>
+		<FullEntity id="24" ts="12:09:51.3394309">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="24" />
+		</FullEntity>
+		<FullEntity id="25" ts="12:09:51.3394309">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="25" />
+		</FullEntity>
+		<FullEntity id="26" ts="12:09:51.3394309">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="26" />
+		</FullEntity>
+		<FullEntity id="27" ts="12:09:51.3394309">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="27" />
+		</FullEntity>
+		<FullEntity id="28" ts="12:09:51.3394309">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="28" />
+		</FullEntity>
+		<FullEntity id="29" ts="12:09:51.3394309">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="29" />
+		</FullEntity>
+		<FullEntity id="30" ts="12:09:51.3399306">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="30" />
+		</FullEntity>
+		<FullEntity id="31" ts="12:09:51.3399306">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="31" />
+		</FullEntity>
+		<FullEntity id="32" ts="12:09:51.3399306">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="32" />
+		</FullEntity>
+		<FullEntity id="33" ts="12:09:51.3399306">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="33" />
+		</FullEntity>
+		<FullEntity id="34" ts="12:09:51.3399306">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="34" />
+		</FullEntity>
+		<FullEntity id="35" ts="12:09:51.3399306">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="35" />
+		</FullEntity>
+		<FullEntity id="36" ts="12:09:51.3399306">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="36" />
+		</FullEntity>
+		<FullEntity id="37" ts="12:09:51.3399306">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="37" />
+		</FullEntity>
+		<FullEntity id="38" ts="12:09:51.3404307">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="38" />
+		</FullEntity>
+		<FullEntity id="39" ts="12:09:51.3404307">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="39" />
+		</FullEntity>
+		<FullEntity id="40" ts="12:09:51.3404307">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="40" />
+		</FullEntity>
+		<FullEntity id="41" ts="12:09:51.3404307">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="41" />
+		</FullEntity>
+		<FullEntity id="42" ts="12:09:51.3404307">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="42" />
+		</FullEntity>
+		<FullEntity id="43" ts="12:09:51.3404307">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="43" />
+		</FullEntity>
+		<FullEntity id="44" ts="12:09:51.3404307">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="44" />
+		</FullEntity>
+		<FullEntity id="45" ts="12:09:51.3404307">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="45" />
+		</FullEntity>
+		<FullEntity id="46" ts="12:09:51.3409311">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="46" />
+		</FullEntity>
+		<FullEntity id="47" ts="12:09:51.3409311">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="47" />
+		</FullEntity>
+		<FullEntity id="48" ts="12:09:51.3409311">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="48" />
+		</FullEntity>
+		<FullEntity id="49" ts="12:09:51.3409311">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="49" />
+		</FullEntity>
+		<FullEntity id="50" ts="12:09:51.3409311">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="50" />
+		</FullEntity>
+		<FullEntity id="51" ts="12:09:51.3409311">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="51" />
+		</FullEntity>
+		<FullEntity id="52" ts="12:09:51.3409311">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="52" />
+		</FullEntity>
+		<FullEntity id="53" ts="12:09:51.3414255">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="53" />
+		</FullEntity>
+		<FullEntity id="54" ts="12:09:51.3414255">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="54" />
+		</FullEntity>
+		<FullEntity id="55" ts="12:09:51.3414255">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="55" />
+		</FullEntity>
+		<FullEntity id="56" ts="12:09:51.3414255">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="56" />
+		</FullEntity>
+		<FullEntity id="57" ts="12:09:51.3414255">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="57" />
+		</FullEntity>
+		<FullEntity id="58" ts="12:09:51.3414255">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="58" />
+		</FullEntity>
+		<FullEntity id="59" ts="12:09:51.3414255">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="59" />
+		</FullEntity>
+		<FullEntity id="60" ts="12:09:51.3414255">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="60" />
+		</FullEntity>
+		<FullEntity id="61" ts="12:09:51.3419270">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="61" />
+		</FullEntity>
+		<FullEntity id="62" ts="12:09:51.3419270">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="62" />
+		</FullEntity>
+		<FullEntity id="63" ts="12:09:51.3419270">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="63" />
+		</FullEntity>
+		<FullEntity id="64" ts="12:09:51.3419270">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="64" />
+		</FullEntity>
+		<FullEntity id="65" ts="12:09:51.3419270">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="65" />
+		</FullEntity>
+		<FullEntity id="66" ts="12:09:51.3419270">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="66" />
+		</FullEntity>
+		<FullEntity id="67" ts="12:09:51.3419270">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="67" />
+		</FullEntity>
+		<FullEntity id="68" ts="12:09:51.3424264">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="68" />
+		</FullEntity>
+		<FullEntity id="69" ts="12:09:51.3424264">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="69" />
+		</FullEntity>
+		<FullEntity id="70" ts="12:09:51.3424264">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="70" />
+		</FullEntity>
+		<FullEntity id="71" ts="12:09:51.3424264">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="71" />
+		</FullEntity>
+		<FullEntity id="72" ts="12:09:51.3424264">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="72" />
+		</FullEntity>
+		<FullEntity id="73" ts="12:09:51.3424264">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="73" />
+		</FullEntity>
+		<FullEntity id="74" ts="12:09:51.3424264">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="74" />
+		</FullEntity>
+		<FullEntity id="75" ts="12:09:51.3424264">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="75" />
+		</FullEntity>
+		<FullEntity id="76" ts="12:09:51.3429317">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="76" />
+		</FullEntity>
+		<FullEntity id="77" ts="12:09:51.3429317">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="77" />
+		</FullEntity>
+		<FullEntity id="78" ts="12:09:51.3429317">
+			<Tag tag="49" value="6" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="78" />
+		</FullEntity>
+		<FullEntity id="79" ts="12:09:51.3429317">
+			<Tag tag="49" value="2" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="79" />
+		</FullEntity>
+		<FullEntity cardID="HERO_09" id="80" ts="12:09:51.3429317">
+			<Tag tag="45" value="30" />
+			<Tag tag="49" value="1" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="80" />
+			<Tag tag="201" value="3" />
+			<Tag tag="202" value="3" />
+			<Tag tag="203" value="2" />
+			<Tag tag="380" value="479" />
+		</FullEntity>
+		<FullEntity cardID="CS1h_001" id="81" ts="12:09:51.3434248">
+			<Tag tag="48" value="2" />
+			<Tag tag="49" value="1" />
+			<Tag tag="50" value="1" />
+			<Tag tag="53" value="81" />
+			<Tag tag="201" value="3" />
+			<Tag tag="202" value="10" />
+			<Tag tag="203" value="2" />
+			<Tag tag="313" value="80" />
+			<Tag tag="466" value="2" />
+		</FullEntity>
+		<FullEntity cardID="HERO_06" id="82" ts="12:09:51.3434248">
+			<Tag tag="45" value="30" />
+			<Tag tag="49" value="1" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="82" />
+			<Tag tag="201" value="3" />
+			<Tag tag="202" value="3" />
+			<Tag tag="203" value="2" />
+			<Tag tag="380" value="1123" />
+		</FullEntity>
+		<FullEntity cardID="CS2_017" id="83" ts="12:09:51.3439259">
+			<Tag tag="48" value="2" />
+			<Tag tag="49" value="1" />
+			<Tag tag="50" value="2" />
+			<Tag tag="53" value="83" />
+			<Tag tag="201" value="3" />
+			<Tag tag="202" value="10" />
+			<Tag tag="203" value="2" />
+			<Tag tag="313" value="82" />
+			<Tag tag="466" value="2" />
+		</FullEntity>
+		<TagChange tag="204" value="2" entity="1" />
+		<TagChange tag="17" value="1" entity="2" />
+		<TagChange tag="17" value="1" entity="3" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:09:51.3449253">
+			<TagChange tag="23" value="1" entity="3" />
+			<TagChange tag="24" value="1" entity="3" />
+			<TagChange tag="20" value="1" entity="1" />
+			<TagChange tag="467" value="4" entity="2" />
+			<ShowEntity cardID="KAR_114" entity="17" ts="12:09:51.3454254">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="45" value="4" />
+				<Tag tag="47" value="3" />
+				<Tag tag="48" value="4" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="17" />
+				<Tag tag="114" value="1" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="4" />
+				<Tag tag="203" value="5" />
+				<Tag tag="218" value="1" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="4" />
+				<Tag tag="479" value="3" />
+			</ShowEntity>
+			<TagChange tag="263" value="1" entity="17" />
+			<TagChange tag="399" value="1" entity="2" />
+			<TagChange tag="467" value="3" entity="2" />
+			<ShowEntity cardID="KAR_204" entity="28" ts="12:09:51.3459248">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="45" value="4" />
+				<Tag tag="47" value="3" />
+				<Tag tag="48" value="5" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="28" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="4" />
+				<Tag tag="203" value="3" />
+				<Tag tag="218" value="1" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="5" />
+				<Tag tag="479" value="3" />
+			</ShowEntity>
+			<TagChange tag="263" value="2" entity="28" />
+			<TagChange tag="399" value="2" entity="2" />
+			<TagChange tag="467" value="2" entity="2" />
+			<ShowEntity cardID="BRM_017" entity="25" ts="12:09:51.3464252">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="2" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="25" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="3" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="2" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="3" entity="25" />
+			<TagChange tag="399" value="3" entity="2" />
+			<TagChange tag="467" value="1" entity="2" />
+			<ShowEntity cardID="LOE_111" entity="33" ts="12:09:51.3469249">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="5" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="33" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="3" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="5" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="4" entity="33" />
+			<TagChange tag="399" value="4" entity="2" />
+			<TagChange tag="467" value="0" entity="2" />
+			<TagChange tag="272" value="1" entity="2" />
+			<FullEntity cardID="GAME_005" id="84" ts="12:09:51.3474377">
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="84" />
+				<Tag tag="202" value="5" />
+				<Tag tag="263" value="5" />
+				<Tag tag="313" value="1" />
+			</FullEntity>
+			<TagChange tag="467" value="3" entity="3" />
+			<TagChange tag="49" value="3" entity="56" />
+			<TagChange tag="263" value="1" entity="56" />
+			<TagChange tag="399" value="1" entity="3" />
+			<TagChange tag="467" value="2" entity="3" />
+			<TagChange tag="49" value="3" entity="76" />
+			<TagChange tag="263" value="2" entity="76" />
+			<TagChange tag="399" value="2" entity="3" />
+			<TagChange tag="467" value="1" entity="3" />
+			<TagChange tag="49" value="3" entity="35" />
+			<TagChange tag="263" value="3" entity="35" />
+			<TagChange tag="399" value="3" entity="3" />
+			<TagChange tag="467" value="0" entity="3" />
+			<TagChange tag="272" value="1" entity="3" />
+			<TagChange tag="7" value="75" entity="2" />
+			<TagChange tag="7" value="75" entity="3" />
+			<TagChange tag="10" value="85" entity="1" />
+			<TagChange tag="198" value="4" entity="1" />
+		</Action>
+		<TagChange tag="19" value="4" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:09:51.7979948">
+			<TagChange tag="305" value="1" entity="3" />
+			<TagChange tag="305" value="1" entity="3" />
+		</Action>
+		<TagChange tag="305" value="2" entity="2" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:11.9204467">
+			<ShowEntity cardID="EX1_622" entity="4" ts="12:10:11.9204467">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="3" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="4" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="1" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="3" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="2" entity="4" />
+			<HideEntity entity="28" zone="2" ts="12:10:11.9209464" />
+			<TagChange tag="49" value="2" entity="28" />
+			<TagChange tag="263" value="0" entity="28" />
+			<ShowEntity cardID="BRM_017" entity="12" ts="12:10:11.9214454">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="2" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="12" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="3" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="2" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="4" entity="12" />
+			<HideEntity entity="33" zone="2" ts="12:10:11.9214454" />
+			<TagChange tag="49" value="2" entity="33" />
+			<TagChange tag="263" value="0" entity="33" />
+			<TagChange tag="305" value="3" entity="2" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:11.9219452">
+			<TagChange tag="305" value="4" entity="2" />
+		</Action>
+		<TagChange tag="305" value="2" entity="3" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:13.4176328">
+			<TagChange tag="49" value="3" entity="50" />
+			<TagChange tag="263" value="1" entity="50" />
+			<TagChange tag="49" value="2" entity="56" />
+			<TagChange tag="263" value="0" entity="56" />
+			<TagChange tag="49" value="3" entity="45" />
+			<TagChange tag="263" value="3" entity="45" />
+			<TagChange tag="49" value="2" entity="35" />
+			<TagChange tag="263" value="0" entity="35" />
+			<TagChange tag="305" value="3" entity="3" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:13.4176328">
+			<TagChange tag="305" value="4" entity="3" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:13.4181269">
+			<TagChange tag="271" value="1" entity="82" />
+			<TagChange tag="271" value="1" entity="83" />
+			<TagChange tag="271" value="1" entity="80" />
+			<TagChange tag="271" value="1" entity="81" />
+			<TagChange tag="26" value="1" entity="3" />
+			<TagChange tag="399" value="0" entity="3" />
+			<TagChange tag="198" value="17" entity="1" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:13.4181269">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:13.4181269">
+			<TagChange tag="467" value="1" entity="3" />
+			<TagChange tag="49" value="3" entity="39" />
+			<TagChange tag="263" value="4" entity="39" />
+			<TagChange tag="399" value="1" entity="3" />
+			<TagChange tag="467" value="0" entity="3" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:13.4181269">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<TagChange tag="19" value="12" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:25.4380735">
+			<TagChange tag="198" value="16" entity="1" />
+		</Action>
+		<TagChange tag="19" value="16" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:25.4380735">
+			<TagChange tag="198" value="13" entity="1" />
+		</Action>
+		<TagChange tag="19" value="13" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:10:25.4380735">
+			<TagChange tag="272" value="0" entity="3" />
+			<TagChange tag="272" value="1" entity="3" />
+			<TagChange tag="23" value="0" entity="3" />
+			<TagChange tag="23" value="1" entity="2" />
+			<TagChange tag="20" value="2" entity="1" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:25.4380735">
+			<TagChange tag="271" value="2" entity="80" />
+			<TagChange tag="271" value="2" entity="81" />
+			<TagChange tag="271" value="2" entity="82" />
+			<TagChange tag="271" value="2" entity="83" />
+			<TagChange tag="26" value="1" entity="2" />
+			<TagChange tag="399" value="0" entity="2" />
+			<TagChange tag="198" value="17" entity="1" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:25.4385760">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:25.4385760">
+			<TagChange tag="467" value="1" entity="2" />
+			<ShowEntity cardID="CS2_004" entity="19" ts="12:10:25.4385760">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="1" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="19" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="201" value="3" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="2" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="1" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="6" entity="19" />
+			<TagChange tag="399" value="1" entity="2" />
+			<TagChange tag="467" value="0" entity="2" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:25.4395744">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="2" ts="12:10:25.5470903">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="84" index="1" type="3" />
+		</Options>
+		<TagChange tag="19" value="12" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:37.6955493">
+			<TagChange tag="198" value="16" entity="1" />
+		</Action>
+		<TagChange tag="19" value="16" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:37.6955493">
+			<TagChange tag="198" value="13" entity="1" />
+		</Action>
+		<TagChange tag="19" value="13" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:10:37.6955493">
+			<TagChange tag="272" value="0" entity="2" />
+			<TagChange tag="272" value="1" entity="2" />
+			<TagChange tag="23" value="0" entity="2" />
+			<TagChange tag="23" value="1" entity="3" />
+			<TagChange tag="20" value="3" entity="1" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:37.6955493">
+			<TagChange tag="271" value="3" entity="82" />
+			<TagChange tag="271" value="3" entity="83" />
+			<TagChange tag="271" value="3" entity="80" />
+			<TagChange tag="271" value="3" entity="81" />
+			<TagChange tag="26" value="2" entity="3" />
+			<TagChange tag="399" value="0" entity="3" />
+			<TagChange tag="198" value="17" entity="1" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:37.6960497">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:37.6960497">
+			<TagChange tag="467" value="1" entity="3" />
+			<TagChange tag="49" value="3" entity="35" />
+			<TagChange tag="263" value="5" entity="35" />
+			<TagChange tag="399" value="1" entity="3" />
+			<TagChange tag="467" value="0" entity="3" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:37.6960497">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="83"
+			ts="12:10:41.9885782">
+			<TagChange tag="25" value="2" entity="3" />
+			<TagChange tag="418" value="2" entity="3" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="83"
+				ts="12:10:41.9890786">
+				<TagChange tag="292" value="1" entity="82" />
+				<FullEntity id="85" ts="12:10:41.9890786">
+					<Tag tag="49" value="6" />
+					<Tag tag="50" value="2" />
+					<Tag tag="53" value="85" />
+				</FullEntity>
+				<ShowEntity cardID="CS2_017o" entity="85" ts="12:10:41.9890786">
+					<Tag tag="40" value="82" />
+					<Tag tag="44" value="0" />
+					<Tag tag="49" value="6" />
+					<Tag tag="50" value="2" />
+					<Tag tag="53" value="85" />
+					<Tag tag="188" value="0" />
+					<Tag tag="189" value="0" />
+					<Tag tag="190" value="0" />
+					<Tag tag="191" value="0" />
+					<Tag tag="194" value="0" />
+					<Tag tag="197" value="0" />
+					<Tag tag="202" value="6" />
+					<Tag tag="260" value="0" />
+					<Tag tag="263" value="0" />
+					<Tag tag="297" value="0" />
+					<Tag tag="313" value="83" />
+					<Tag tag="338" value="1" />
+					<Tag tag="352" value="0" />
+					<Tag tag="360" value="0" />
+					<Tag tag="372" value="0" />
+					<Tag tag="376" value="0" />
+					<Tag tag="444" value="0" />
+					<Tag tag="466" value="0" />
+					<Tag tag="479" value="0" />
+				</ShowEntity>
+				<TagChange tag="338" value="1" entity="82" />
+				<TagChange tag="49" value="1" entity="85" />
+			</Block>
+			<TagChange tag="406" value="1" entity="3" />
+			<TagChange tag="43" value="1" entity="83" />
+			<TagChange tag="479" value="1" entity="82" />
+			<TagChange tag="47" value="1" entity="82" />
+			<Block effectIndex="-1" index="0" target="0" type="5" entity="3"
+				ts="12:10:41.9895790">
+				<TagChange tag="394" value="1" entity="3" />
+			</Block>
+			<TagChange tag="358" value="1" entity="3" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="80" type="1" entity="82"
+			ts="12:10:43.9583650">
+			<TagChange tag="39" value="82" entity="1" />
+			<TagChange tag="37" value="80" entity="1" />
+			<TagChange tag="38" value="1" entity="82" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="2" entity="3" />
+			<TagChange tag="36" value="1" entity="80" />
+			<TagChange tag="318" value="1" entity="80" />
+			<TagChange tag="318" value="0" entity="80" />
+			<MetaData data="1" entity="1" info="1" meta="1"
+				ts="12:10:43.9588651">
+				<Info entity="80" id="80" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="82" entity="80" />
+			<TagChange tag="44" value="1" entity="80" />
+			<TagChange tag="297" value="1" entity="82" />
+			<TagChange tag="43" value="1" entity="82" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="82" />
+			<TagChange tag="36" value="0" entity="80" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:43.9593648">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<TagChange tag="19" value="12" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:45.0855003">
+			<TagChange tag="198" value="16" entity="1" />
+		</Action>
+		<TagChange tag="19" value="16" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:45.0855003">
+			<TagChange tag="198" value="13" entity="1" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="85"
+			ts="12:10:45.0855003">
+			<TagChange tag="18" value="85" entity="85" />
+			<TagChange tag="49" value="4" entity="85" />
+			<TagChange tag="338" value="0" entity="82" />
+			<HideEntity entity="85" zone="4" ts="12:10:45.0855003" />
+			<TagChange tag="479" value="0" entity="82" />
+			<TagChange tag="47" value="0" entity="82" />
+		</Action>
+		<TagChange tag="19" value="13" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:10:45.0860004">
+			<TagChange tag="272" value="0" entity="3" />
+			<TagChange tag="272" value="1" entity="3" />
+			<TagChange tag="23" value="0" entity="3" />
+			<TagChange tag="23" value="1" entity="2" />
+			<TagChange tag="20" value="4" entity="1" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:45.0860004">
+			<TagChange tag="271" value="4" entity="80" />
+			<TagChange tag="271" value="4" entity="81" />
+			<TagChange tag="271" value="4" entity="82" />
+			<TagChange tag="271" value="4" entity="83" />
+			<TagChange tag="26" value="2" entity="2" />
+			<TagChange tag="399" value="0" entity="2" />
+			<TagChange tag="198" value="17" entity="1" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:45.0860004">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:45.0860004">
+			<TagChange tag="467" value="1" entity="2" />
+			<ShowEntity cardID="OG_153" entity="24" ts="12:10:45.0865001">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="45" value="8" />
+				<Tag tag="47" value="6" />
+				<Tag tag="48" value="7" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="24" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="1" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="4" />
+				<Tag tag="203" value="1" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="7" />
+				<Tag tag="479" value="6" />
+			</ShowEntity>
+			<TagChange tag="263" value="7" entity="24" />
+			<TagChange tag="399" value="1" entity="2" />
+			<TagChange tag="467" value="0" entity="2" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:45.0870005">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="6" ts="12:10:45.1560019">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="84" index="1" type="3" />
+			<Option entity="81" index="2" type="3">
+				<Target entity="80" index="0" />
+				<Target entity="82" index="1" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="80" type="7" entity="81"
+			ts="12:10:53.5415550">
+			<TagChange tag="25" value="2" entity="2" />
+			<TagChange tag="418" value="2" entity="2" />
+			<TagChange tag="267" value="80" entity="81" />
+			<Block effectIndex="-1" index="0" target="80" type="3" entity="81"
+				ts="12:10:53.5420544">
+				<MetaData data="0" entity="0" info="1" meta="0"
+					ts="12:10:53.5420544">
+					<Info entity="80" id="80" index="0" />
+				</MetaData>
+				<TagChange tag="425" value="2" entity="80" />
+				<TagChange tag="425" value="0" entity="80" />
+				<MetaData data="1" entity="2" info="1" meta="2"
+					ts="12:10:53.5420544">
+					<Info entity="80" id="80" index="0" />
+				</MetaData>
+				<TagChange tag="44" value="0" entity="80" />
+			</Block>
+			<TagChange tag="406" value="1" entity="2" />
+			<TagChange tag="43" value="1" entity="81" />
+			<Block effectIndex="-1" index="0" target="0" type="5" entity="2"
+				ts="12:10:53.5420544">
+				<TagChange tag="394" value="1" entity="2" />
+			</Block>
+			<TagChange tag="358" value="1" entity="2" />
+		</Action>
+		<Options id="7" ts="12:10:53.5750589">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="84" index="1" type="3" />
+		</Options>
+		<TagChange tag="19" value="12" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:55.0377399">
+			<TagChange tag="198" value="16" entity="1" />
+		</Action>
+		<TagChange tag="19" value="16" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:10:55.0377399">
+			<TagChange tag="198" value="13" entity="1" />
+		</Action>
+		<TagChange tag="19" value="13" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:10:55.0382400">
+			<TagChange tag="272" value="0" entity="2" />
+			<TagChange tag="272" value="1" entity="2" />
+			<TagChange tag="23" value="0" entity="2" />
+			<TagChange tag="23" value="1" entity="3" />
+			<TagChange tag="20" value="5" entity="1" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:55.0382400">
+			<TagChange tag="271" value="5" entity="82" />
+			<TagChange tag="271" value="5" entity="83" />
+			<TagChange tag="271" value="5" entity="80" />
+			<TagChange tag="271" value="5" entity="81" />
+			<TagChange tag="26" value="3" entity="3" />
+			<TagChange tag="25" value="0" entity="3" />
+			<TagChange tag="358" value="0" entity="3" />
+			<TagChange tag="43" value="0" entity="82" />
+			<TagChange tag="43" value="0" entity="83" />
+			<TagChange tag="399" value="0" entity="3" />
+			<TagChange tag="198" value="17" entity="1" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:55.0382400">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:55.0387407">
+			<TagChange tag="467" value="1" entity="3" />
+			<TagChange tag="49" value="3" entity="42" />
+			<TagChange tag="263" value="6" entity="42" />
+			<TagChange tag="399" value="1" entity="3" />
+			<TagChange tag="467" value="0" entity="3" />
+			<TagChange tag="297" value="0" entity="82" />
+			<TagChange tag="406" value="0" entity="3" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:10:55.0387407">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="50"
+			ts="12:11:05.4780235">
+			<TagChange tag="269" value="1" entity="3" />
+			<TagChange tag="430" value="1" entity="3" />
+			<TagChange tag="263" value="5" entity="42" />
+			<TagChange tag="263" value="4" entity="35" />
+			<TagChange tag="263" value="3" entity="39" />
+			<TagChange tag="263" value="2" entity="45" />
+			<TagChange tag="263" value="1" entity="76" />
+			<ShowEntity cardID="EX1_169" entity="50" ts="12:11:05.4780235">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="49" value="1" />
+				<Tag tag="50" value="2" />
+				<Tag tag="53" value="50" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="201" value="3" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="2" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="1" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="0" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="0" entity="50" />
+			<TagChange tag="261" value="1" entity="50" />
+			<TagChange tag="397" value="50" entity="3" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="50"
+				ts="12:11:05.4785232">
+				<TagChange tag="295" value="2" entity="3" />
+			</Block>
+			<TagChange tag="49" value="4" entity="50" />
+			<TagChange tag="266" value="1" entity="3" />
+			<TagChange tag="358" value="1" entity="3" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="42"
+			ts="12:11:07.5092666">
+			<TagChange tag="295" value="0" entity="3" />
+			<TagChange tag="25" value="3" entity="3" />
+			<TagChange tag="418" value="7" entity="3" />
+			<TagChange tag="269" value="2" entity="3" />
+			<TagChange tag="430" value="2" entity="3" />
+			<ShowEntity cardID="EX1_164" entity="42" ts="12:11:07.5097664">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="5" />
+				<Tag tag="49" value="1" />
+				<Tag tag="50" value="2" />
+				<Tag tag="53" value="42" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="201" value="3" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="3" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="5" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="443" value="1" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="5" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="0" entity="42" />
+			<TagChange tag="261" value="1" entity="42" />
+			<TagChange tag="397" value="42" entity="3" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="42"
+				ts="12:11:07.5102668">
+				<MetaData data="0" entity="0" info="1" meta="0"
+					ts="12:11:07.5102668">
+					<Info entity="42" id="42" index="0" />
+				</MetaData>
+				<TagChange tag="467" value="3" entity="3" />
+				<TagChange tag="49" value="3" entity="74" />
+				<TagChange tag="263" value="5" entity="74" />
+				<TagChange tag="399" value="2" entity="3" />
+				<TagChange tag="467" value="2" entity="3" />
+				<TagChange tag="49" value="3" entity="69" />
+				<TagChange tag="263" value="6" entity="69" />
+				<TagChange tag="399" value="3" entity="3" />
+				<TagChange tag="467" value="1" entity="3" />
+				<TagChange tag="49" value="3" entity="60" />
+				<TagChange tag="263" value="7" entity="60" />
+				<TagChange tag="399" value="4" entity="3" />
+				<TagChange tag="467" value="0" entity="3" />
+			</Block>
+			<TagChange tag="49" value="4" entity="42" />
+			<TagChange tag="358" value="2" entity="3" />
+		</Action>
+		<TagChange tag="19" value="12" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:11:14.4621006">
+			<TagChange tag="198" value="16" entity="1" />
+		</Action>
+		<TagChange tag="19" value="16" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:11:14.4621006">
+			<TagChange tag="198" value="13" entity="1" />
+		</Action>
+		<TagChange tag="19" value="13" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:11:14.4625947">
+			<TagChange tag="272" value="0" entity="3" />
+			<TagChange tag="272" value="1" entity="3" />
+			<TagChange tag="23" value="0" entity="3" />
+			<TagChange tag="23" value="1" entity="2" />
+			<TagChange tag="20" value="6" entity="1" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:11:14.4625947">
+			<TagChange tag="271" value="6" entity="80" />
+			<TagChange tag="271" value="6" entity="81" />
+			<TagChange tag="271" value="6" entity="82" />
+			<TagChange tag="271" value="6" entity="83" />
+			<TagChange tag="26" value="3" entity="2" />
+			<TagChange tag="25" value="0" entity="2" />
+			<TagChange tag="358" value="0" entity="2" />
+			<TagChange tag="43" value="0" entity="81" />
+			<TagChange tag="399" value="0" entity="2" />
+			<TagChange tag="198" value="17" entity="1" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:11:14.4630945">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:11:14.4630945">
+			<TagChange tag="467" value="1" entity="2" />
+			<ShowEntity cardID="EX1_622" entity="22" ts="12:11:14.4630945">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="3" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="22" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="1" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="3" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="8" entity="22" />
+			<TagChange tag="399" value="1" entity="2" />
+			<TagChange tag="467" value="0" entity="2" />
+			<TagChange tag="406" value="0" entity="2" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:11:14.4635945">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="11" ts="12:11:14.5296018">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="84" index="1" type="3" />
+			<Option entity="81" index="2" type="3">
+				<Target entity="80" index="0" />
+				<Target entity="82" index="1" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="84"
+			ts="12:11:22.2050229">
+			<TagChange tag="269" value="1" entity="2" />
+			<TagChange tag="430" value="1" entity="2" />
+			<TagChange tag="263" value="7" entity="22" />
+			<TagChange tag="263" value="6" entity="24" />
+			<TagChange tag="263" value="5" entity="19" />
+			<TagChange tag="49" value="1" entity="84" />
+			<TagChange tag="263" value="0" entity="84" />
+			<TagChange tag="261" value="1" entity="84" />
+			<TagChange tag="397" value="84" entity="2" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="84"
+				ts="12:11:22.2050229">
+				<TagChange tag="295" value="1" entity="2" />
+			</Block>
+			<TagChange tag="49" value="4" entity="84" />
+			<TagChange tag="266" value="1" entity="2" />
+			<TagChange tag="358" value="1" entity="2" />
+		</Action>
+		<Options id="12" ts="12:11:22.2380264">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="17" index="1" type="3" />
+			<Option entity="81" index="2" type="3">
+				<Target entity="80" index="0" />
+				<Target entity="82" index="1" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="17"
+			ts="12:11:23.4051728">
+			<TagChange tag="295" value="0" entity="2" />
+			<TagChange tag="25" value="3" entity="2" />
+			<TagChange tag="418" value="6" entity="2" />
+			<TagChange tag="269" value="2" entity="2" />
+			<TagChange tag="317" value="1" entity="2" />
+			<TagChange tag="263" value="6" entity="22" />
+			<TagChange tag="263" value="5" entity="24" />
+			<TagChange tag="263" value="4" entity="19" />
+			<TagChange tag="263" value="3" entity="12" />
+			<TagChange tag="263" value="1" entity="4" />
+			<TagChange tag="263" value="2" entity="25" />
+			<TagChange tag="49" value="1" entity="17" />
+			<TagChange tag="43" value="1" entity="17" />
+			<TagChange tag="261" value="1" entity="17" />
+			<TagChange tag="397" value="17" entity="2" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="17"
+				ts="12:11:23.4056729">
+				<FullEntity cardID="EX1_016" id="86" ts="12:11:23.4056729">
+					<Tag tag="43" value="1" />
+					<Tag tag="45" value="5" />
+					<Tag tag="47" value="5" />
+					<Tag tag="48" value="6" />
+					<Tag tag="49" value="1" />
+					<Tag tag="50" value="1" />
+					<Tag tag="53" value="86" />
+					<Tag tag="114" value="1" />
+					<Tag tag="202" value="4" />
+					<Tag tag="203" value="5" />
+					<Tag tag="217" value="1" />
+					<Tag tag="263" value="2" />
+					<Tag tag="313" value="17" />
+					<Tag tag="466" value="6" />
+					<Tag tag="479" value="5" />
+				</FullEntity>
+				<FullEntity id="87" ts="12:11:23.4061722">
+					<Tag tag="49" value="6" />
+					<Tag tag="50" value="1" />
+					<Tag tag="53" value="87" />
+				</FullEntity>
+				<ShowEntity cardID="KAR_114e" entity="87" ts="12:11:23.4061722">
+					<Tag tag="40" value="86" />
+					<Tag tag="44" value="0" />
+					<Tag tag="49" value="6" />
+					<Tag tag="50" value="1" />
+					<Tag tag="53" value="87" />
+					<Tag tag="188" value="0" />
+					<Tag tag="189" value="0" />
+					<Tag tag="190" value="0" />
+					<Tag tag="191" value="0" />
+					<Tag tag="194" value="0" />
+					<Tag tag="197" value="0" />
+					<Tag tag="202" value="6" />
+					<Tag tag="260" value="0" />
+					<Tag tag="263" value="0" />
+					<Tag tag="297" value="0" />
+					<Tag tag="313" value="17" />
+					<Tag tag="352" value="0" />
+					<Tag tag="360" value="0" />
+					<Tag tag="372" value="0" />
+					<Tag tag="376" value="0" />
+					<Tag tag="444" value="0" />
+					<Tag tag="466" value="0" />
+					<Tag tag="479" value="0" />
+				</ShowEntity>
+				<TagChange tag="49" value="1" entity="87" />
+				<MetaData data="0" entity="0" info="1" meta="0"
+					ts="12:11:23.4061722">
+					<Info entity="86" id="86" index="0" />
+				</MetaData>
+			</Block>
+			<TagChange tag="479" value="1" entity="86" />
+			<TagChange tag="45" value="1" entity="86" />
+			<TagChange tag="47" value="1" entity="86" />
+			<TagChange tag="358" value="2" entity="2" />
+		</Action>
+		<Options id="13" ts="12:11:23.4386721">
+			<Option entity="0" index="0" type="2" />
+		</Options>
+		<TagChange tag="19" value="12" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:11:31.2106067">
+			<TagChange tag="198" value="16" entity="1" />
+		</Action>
+		<TagChange tag="19" value="16" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:11:31.2111012">
+			<TagChange tag="261" value="0" entity="17" />
+			<TagChange tag="198" value="13" entity="1" />
+		</Action>
+		<TagChange tag="19" value="13" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:11:31.2111012">
+			<TagChange tag="272" value="0" entity="2" />
+			<TagChange tag="272" value="1" entity="2" />
+			<TagChange tag="23" value="0" entity="2" />
+			<TagChange tag="23" value="1" entity="3" />
+			<TagChange tag="20" value="7" entity="1" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:11:31.2111012">
+			<TagChange tag="271" value="7" entity="82" />
+			<TagChange tag="271" value="7" entity="83" />
+			<TagChange tag="271" value="7" entity="80" />
+			<TagChange tag="271" value="7" entity="81" />
+			<TagChange tag="271" value="1" entity="17" />
+			<TagChange tag="271" value="1" entity="86" />
+			<TagChange tag="271" value="1" entity="87" />
+			<TagChange tag="26" value="4" entity="3" />
+			<TagChange tag="25" value="0" entity="3" />
+			<TagChange tag="266" value="0" entity="3" />
+			<TagChange tag="269" value="0" entity="3" />
+			<TagChange tag="358" value="0" entity="3" />
+			<TagChange tag="430" value="0" entity="3" />
+			<TagChange tag="399" value="0" entity="3" />
+			<TagChange tag="198" value="17" entity="1" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:11:31.2116087">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:11:31.2116087">
+			<TagChange tag="467" value="1" entity="3" />
+			<TagChange tag="49" value="3" entity="66" />
+			<TagChange tag="263" value="8" entity="66" />
+			<TagChange tag="399" value="1" entity="3" />
+			<TagChange tag="467" value="0" entity="3" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:11:31.2116087">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="86" type="7" entity="39"
+			ts="12:11:40.6592849">
+			<TagChange tag="25" value="2" entity="3" />
+			<TagChange tag="418" value="9" entity="3" />
+			<TagChange tag="269" value="1" entity="3" />
+			<TagChange tag="430" value="1" entity="3" />
+			<TagChange tag="263" value="7" entity="66" />
+			<TagChange tag="263" value="6" entity="60" />
+			<TagChange tag="263" value="5" entity="69" />
+			<TagChange tag="263" value="4" entity="74" />
+			<TagChange tag="263" value="3" entity="35" />
+			<ShowEntity cardID="EX1_154" entity="39" ts="12:11:40.6597907">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="2" />
+				<Tag tag="49" value="1" />
+				<Tag tag="50" value="2" />
+				<Tag tag="53" value="39" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="201" value="3" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="1" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="3" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="443" value="1" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="2" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="0" entity="39" />
+			<TagChange tag="261" value="1" entity="39" />
+			<TagChange tag="397" value="39" entity="3" />
+			<TagChange tag="267" value="86" entity="39" />
+			<Block effectIndex="-1" index="0" target="86" type="3" entity="39"
+				ts="12:11:40.6602907">
+				<TagChange tag="467" value="1" entity="3" />
+				<TagChange tag="49" value="3" entity="36" />
+				<TagChange tag="263" value="8" entity="36" />
+				<TagChange tag="399" value="2" entity="3" />
+				<TagChange tag="467" value="0" entity="3" />
+				<MetaData data="0" entity="0" info="1" meta="0"
+					ts="12:11:40.6602907">
+					<Info entity="86" id="86" index="0" />
+				</MetaData>
+				<TagChange tag="318" value="1" entity="86" />
+				<TagChange tag="318" value="0" entity="86" />
+				<MetaData data="1" entity="1" info="1" meta="1"
+					ts="12:11:40.6607912">
+					<Info entity="86" id="86" index="0" />
+				</MetaData>
+				<TagChange tag="18" value="39" entity="86" />
+				<TagChange tag="44" value="1" entity="86" />
+			</Block>
+			<TagChange tag="49" value="4" entity="39" />
+			<Block effectIndex="-1" index="0" target="0" type="6" entity="1"
+				ts="12:11:40.6607912">
+				<TagChange tag="368" value="1" entity="2" />
+				<TagChange tag="369" value="1" entity="1" />
+				<TagChange tag="43" value="0" entity="86" />
+				<TagChange tag="49" value="4" entity="86" />
+				<TagChange tag="398" value="1" entity="2" />
+				<TagChange tag="412" value="1" entity="2" />
+				<HideEntity entity="87" zone="1" ts="12:11:40.6607912" />
+				<TagChange tag="49" value="5" entity="87" />
+				<TagChange tag="263" value="0" entity="86" />
+				<TagChange tag="44" value="0" entity="86" />
+			</Block>
+			<TagChange tag="45" value="5" entity="86" />
+			<TagChange tag="47" value="5" entity="86" />
+			<Block effectIndex="-1" index="0" target="0" type="5" entity="86"
+				ts="12:11:40.6612909" />
+			<TagChange tag="266" value="1" entity="3" />
+			<TagChange tag="358" value="1" entity="3" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="76"
+			ts="12:11:53.3838896">
+			<TagChange tag="25" value="3" entity="3" />
+			<TagChange tag="418" value="10" entity="3" />
+			<TagChange tag="269" value="2" entity="3" />
+			<TagChange tag="430" value="2" entity="3" />
+			<TagChange tag="263" value="7" entity="36" />
+			<TagChange tag="263" value="6" entity="66" />
+			<TagChange tag="263" value="5" entity="60" />
+			<TagChange tag="263" value="4" entity="69" />
+			<TagChange tag="263" value="3" entity="74" />
+			<TagChange tag="263" value="2" entity="35" />
+			<TagChange tag="263" value="1" entity="45" />
+			<ShowEntity cardID="AT_037" entity="76" ts="12:11:53.3843889">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="1" />
+				<Tag tag="49" value="1" />
+				<Tag tag="50" value="2" />
+				<Tag tag="53" value="76" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="1" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="1" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="443" value="1" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="1" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="0" entity="76" />
+			<TagChange tag="261" value="1" entity="76" />
+			<TagChange tag="397" value="76" entity="3" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="76"
+				ts="12:11:53.3848873">
+				<FullEntity cardID="AT_037t" id="88" ts="12:11:53.3848873">
+					<Tag tag="43" value="1" />
+					<Tag tag="45" value="1" />
+					<Tag tag="47" value="1" />
+					<Tag tag="48" value="1" />
+					<Tag tag="49" value="1" />
+					<Tag tag="50" value="2" />
+					<Tag tag="53" value="88" />
+					<Tag tag="202" value="4" />
+					<Tag tag="263" value="1" />
+					<Tag tag="313" value="76" />
+					<Tag tag="466" value="1" />
+					<Tag tag="479" value="1" />
+				</FullEntity>
+				<FullEntity cardID="AT_037t" id="89" ts="12:11:53.3848873">
+					<Tag tag="43" value="1" />
+					<Tag tag="45" value="1" />
+					<Tag tag="47" value="1" />
+					<Tag tag="48" value="1" />
+					<Tag tag="49" value="1" />
+					<Tag tag="50" value="2" />
+					<Tag tag="53" value="89" />
+					<Tag tag="202" value="4" />
+					<Tag tag="263" value="2" />
+					<Tag tag="313" value="76" />
+					<Tag tag="466" value="1" />
+					<Tag tag="479" value="1" />
+				</FullEntity>
+			</Block>
+			<TagChange tag="49" value="4" entity="76" />
+			<TagChange tag="358" value="2" entity="3" />
+		</Action>
+		<TagChange tag="19" value="12" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:11:54.9130705">
+			<TagChange tag="198" value="16" entity="1" />
+		</Action>
+		<TagChange tag="19" value="16" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:11:54.9130705">
+			<TagChange tag="198" value="13" entity="1" />
+		</Action>
+		<TagChange tag="19" value="13" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:11:54.9130705">
+			<TagChange tag="272" value="0" entity="3" />
+			<TagChange tag="272" value="1" entity="3" />
+			<TagChange tag="23" value="0" entity="3" />
+			<TagChange tag="23" value="1" entity="2" />
+			<TagChange tag="20" value="8" entity="1" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:11:54.9135702">
+			<TagChange tag="271" value="8" entity="80" />
+			<TagChange tag="271" value="8" entity="81" />
+			<TagChange tag="271" value="2" entity="17" />
+			<TagChange tag="271" value="8" entity="82" />
+			<TagChange tag="271" value="8" entity="83" />
+			<TagChange tag="271" value="1" entity="88" />
+			<TagChange tag="271" value="1" entity="89" />
+			<TagChange tag="26" value="4" entity="2" />
+			<TagChange tag="25" value="0" entity="2" />
+			<TagChange tag="266" value="0" entity="2" />
+			<TagChange tag="269" value="0" entity="2" />
+			<TagChange tag="317" value="0" entity="2" />
+			<TagChange tag="358" value="0" entity="2" />
+			<TagChange tag="430" value="0" entity="2" />
+			<TagChange tag="43" value="0" entity="17" />
+			<TagChange tag="399" value="0" entity="2" />
+			<TagChange tag="198" value="17" entity="1" />
+			<TagChange tag="398" value="0" entity="2" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:11:54.9140710">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:11:54.9140710">
+			<TagChange tag="467" value="1" entity="2" />
+			<ShowEntity cardID="KAR_204" entity="10" ts="12:11:54.9140710">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="45" value="4" />
+				<Tag tag="47" value="3" />
+				<Tag tag="48" value="5" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="10" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="4" />
+				<Tag tag="203" value="3" />
+				<Tag tag="218" value="1" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="5" />
+				<Tag tag="479" value="3" />
+			</ShowEntity>
+			<TagChange tag="263" value="7" entity="10" />
+			<TagChange tag="399" value="1" entity="2" />
+			<TagChange tag="467" value="0" entity="2" />
+			<TagChange tag="368" value="0" entity="2" />
+			<TagChange tag="369" value="0" entity="1" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:11:54.9145707">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="17" ts="12:11:54.9790845">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="25" index="1" type="3" />
+			<Option entity="12" index="2" type="3" />
+			<Option entity="19" index="3" type="3">
+				<Target entity="17" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="81" index="4" type="3">
+				<Target entity="80" index="0" />
+				<Target entity="82" index="1" />
+				<Target entity="17" index="2" />
+				<Target entity="88" index="3" />
+				<Target entity="89" index="4" />
+			</Option>
+			<Option entity="17" index="5" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="25"
+			ts="12:12:01.8504279">
+			<TagChange tag="25" value="2" entity="2" />
+			<TagChange tag="418" value="8" entity="2" />
+			<TagChange tag="269" value="1" entity="2" />
+			<TagChange tag="430" value="1" entity="2" />
+			<TagChange tag="263" value="6" entity="10" />
+			<TagChange tag="263" value="5" entity="22" />
+			<TagChange tag="263" value="4" entity="24" />
+			<TagChange tag="263" value="3" entity="19" />
+			<TagChange tag="263" value="2" entity="12" />
+			<TagChange tag="49" value="1" entity="25" />
+			<TagChange tag="263" value="0" entity="25" />
+			<TagChange tag="261" value="1" entity="25" />
+			<TagChange tag="397" value="25" entity="2" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="25"
+				ts="12:12:01.8509276">
+				<FullEntity cardID="EX1_016" id="90" ts="12:12:01.8509276">
+					<Tag tag="43" value="1" />
+					<Tag tag="45" value="5" />
+					<Tag tag="47" value="5" />
+					<Tag tag="48" value="6" />
+					<Tag tag="49" value="1" />
+					<Tag tag="50" value="1" />
+					<Tag tag="53" value="90" />
+					<Tag tag="114" value="1" />
+					<Tag tag="202" value="4" />
+					<Tag tag="203" value="5" />
+					<Tag tag="217" value="1" />
+					<Tag tag="263" value="2" />
+					<Tag tag="313" value="25" />
+					<Tag tag="466" value="6" />
+					<Tag tag="479" value="5" />
+				</FullEntity>
+				<MetaData data="0" entity="0" info="1" meta="0"
+					ts="12:12:01.8509276">
+					<Info entity="90" id="90" index="0" />
+				</MetaData>
+			</Block>
+			<TagChange tag="49" value="4" entity="25" />
+			<TagChange tag="266" value="1" entity="2" />
+			<TagChange tag="358" value="1" entity="2" />
+		</Action>
+		<Options id="18" ts="12:12:01.8834317">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="12" index="1" type="3" />
+			<Option entity="19" index="2" type="3">
+				<Target entity="17" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+				<Target entity="90" index="3" />
+			</Option>
+			<Option entity="81" index="3" type="3">
+				<Target entity="80" index="0" />
+				<Target entity="82" index="1" />
+				<Target entity="17" index="2" />
+				<Target entity="88" index="3" />
+				<Target entity="89" index="4" />
+				<Target entity="90" index="5" />
+			</Option>
+			<Option entity="17" index="4" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="12"
+			ts="12:12:03.6556426">
+			<TagChange tag="25" value="4" entity="2" />
+			<TagChange tag="418" value="10" entity="2" />
+			<TagChange tag="269" value="2" entity="2" />
+			<TagChange tag="430" value="2" entity="2" />
+			<TagChange tag="263" value="5" entity="10" />
+			<TagChange tag="263" value="4" entity="22" />
+			<TagChange tag="263" value="3" entity="24" />
+			<TagChange tag="263" value="2" entity="19" />
+			<TagChange tag="49" value="1" entity="12" />
+			<TagChange tag="263" value="0" entity="12" />
+			<TagChange tag="261" value="1" entity="12" />
+			<TagChange tag="397" value="12" entity="2" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="12"
+				ts="12:12:03.6561356">
+				<FullEntity cardID="EX1_016" id="91" ts="12:12:03.6561356">
+					<Tag tag="43" value="1" />
+					<Tag tag="45" value="5" />
+					<Tag tag="47" value="5" />
+					<Tag tag="48" value="6" />
+					<Tag tag="49" value="1" />
+					<Tag tag="50" value="1" />
+					<Tag tag="53" value="91" />
+					<Tag tag="114" value="1" />
+					<Tag tag="202" value="4" />
+					<Tag tag="203" value="5" />
+					<Tag tag="217" value="1" />
+					<Tag tag="263" value="3" />
+					<Tag tag="313" value="12" />
+					<Tag tag="466" value="6" />
+					<Tag tag="479" value="5" />
+				</FullEntity>
+				<MetaData data="0" entity="0" info="1" meta="0"
+					ts="12:12:03.6566364">
+					<Info entity="91" id="91" index="0" />
+				</MetaData>
+			</Block>
+			<TagChange tag="49" value="4" entity="12" />
+			<TagChange tag="358" value="2" entity="2" />
+		</Action>
+		<Options id="19" ts="12:12:03.6891465">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="17" index="1" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="82" type="1" entity="17"
+			ts="12:12:05.5168645">
+			<TagChange tag="417" value="1" entity="2" />
+			<TagChange tag="39" value="17" entity="1" />
+			<TagChange tag="37" value="82" entity="1" />
+			<TagChange tag="38" value="1" entity="17" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="3" entity="2" />
+			<TagChange tag="36" value="1" entity="82" />
+			<TagChange tag="318" value="3" entity="82" />
+			<TagChange tag="318" value="0" entity="82" />
+			<MetaData data="3" entity="1" info="1" meta="1"
+				ts="12:12:05.5168645">
+				<Info entity="82" id="82" index="0" />
+			</MetaData>
+			<TagChange tag="292" value="0" entity="82" />
+			<TagChange tag="18" value="17" entity="82" />
+			<TagChange tag="44" value="2" entity="82" />
+			<TagChange tag="297" value="1" entity="17" />
+			<TagChange tag="43" value="1" entity="17" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="17" />
+			<TagChange tag="36" value="0" entity="82" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:12:05.5173646">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="20" ts="12:12:05.5498624">
+			<Option entity="0" index="0" type="2" />
+		</Options>
+		<TagChange tag="19" value="12" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:12:07.2795744">
+			<TagChange tag="198" value="16" entity="1" />
+		</Action>
+		<TagChange tag="19" value="16" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:12:07.2800748">
+			<TagChange tag="198" value="13" entity="1" />
+		</Action>
+		<TagChange tag="19" value="13" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:12:07.2800748">
+			<TagChange tag="272" value="0" entity="2" />
+			<TagChange tag="272" value="1" entity="2" />
+			<TagChange tag="23" value="0" entity="2" />
+			<TagChange tag="23" value="1" entity="3" />
+			<TagChange tag="20" value="9" entity="1" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:12:07.2800748">
+			<TagChange tag="271" value="9" entity="82" />
+			<TagChange tag="271" value="9" entity="83" />
+			<TagChange tag="271" value="2" entity="88" />
+			<TagChange tag="271" value="2" entity="89" />
+			<TagChange tag="271" value="9" entity="80" />
+			<TagChange tag="271" value="9" entity="81" />
+			<TagChange tag="271" value="3" entity="17" />
+			<TagChange tag="271" value="1" entity="90" />
+			<TagChange tag="271" value="1" entity="91" />
+			<TagChange tag="26" value="5" entity="3" />
+			<TagChange tag="25" value="0" entity="3" />
+			<TagChange tag="266" value="0" entity="3" />
+			<TagChange tag="297" value="0" entity="17" />
+			<TagChange tag="269" value="0" entity="3" />
+			<TagChange tag="358" value="0" entity="3" />
+			<TagChange tag="430" value="0" entity="3" />
+			<TagChange tag="43" value="0" entity="88" />
+			<TagChange tag="43" value="0" entity="89" />
+			<TagChange tag="399" value="0" entity="3" />
+			<TagChange tag="198" value="17" entity="1" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:12:07.2805742">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:12:07.2805742">
+			<TagChange tag="467" value="1" entity="3" />
+			<TagChange tag="49" value="3" entity="46" />
+			<TagChange tag="263" value="8" entity="46" />
+			<TagChange tag="399" value="1" entity="3" />
+			<TagChange tag="467" value="0" entity="3" />
+			<TagChange tag="417" value="0" entity="2" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:12:07.2810742">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="46"
+			ts="12:12:23.9880654">
+			<TagChange tag="25" value="5" entity="3" />
+			<TagChange tag="418" value="15" entity="3" />
+			<TagChange tag="269" value="1" entity="3" />
+			<TagChange tag="430" value="1" entity="3" />
+			<ShowEntity cardID="EX1_164" entity="46" ts="12:12:23.9880654">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="5" />
+				<Tag tag="49" value="1" />
+				<Tag tag="50" value="2" />
+				<Tag tag="53" value="46" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="201" value="3" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="3" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="8" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="443" value="1" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="5" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="0" entity="46" />
+			<TagChange tag="261" value="1" entity="46" />
+			<TagChange tag="397" value="46" entity="3" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="46"
+				ts="12:12:23.9890645">
+				<TagChange tag="26" value="7" entity="3" />
+			</Block>
+			<TagChange tag="49" value="4" entity="46" />
+			<TagChange tag="266" value="1" entity="3" />
+			<TagChange tag="358" value="1" entity="3" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="80" type="1" entity="89"
+			ts="12:12:30.0027963">
+			<TagChange tag="417" value="1" entity="3" />
+			<TagChange tag="39" value="89" entity="1" />
+			<TagChange tag="37" value="80" entity="1" />
+			<TagChange tag="38" value="1" entity="89" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="2" entity="3" />
+			<TagChange tag="36" value="1" entity="80" />
+			<TagChange tag="318" value="1" entity="80" />
+			<TagChange tag="318" value="0" entity="80" />
+			<MetaData data="1" entity="1" info="1" meta="1"
+				ts="12:12:30.0027963">
+				<Info entity="80" id="80" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="89" entity="80" />
+			<TagChange tag="44" value="1" entity="80" />
+			<TagChange tag="297" value="1" entity="89" />
+			<TagChange tag="43" value="1" entity="89" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="89" />
+			<TagChange tag="36" value="0" entity="80" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:12:30.0032964">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="80" type="1" entity="88"
+			ts="12:12:32.3626011">
+			<TagChange tag="417" value="2" entity="3" />
+			<TagChange tag="39" value="88" entity="1" />
+			<TagChange tag="37" value="80" entity="1" />
+			<TagChange tag="38" value="1" entity="88" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="3" entity="3" />
+			<TagChange tag="36" value="1" entity="80" />
+			<TagChange tag="318" value="1" entity="80" />
+			<TagChange tag="318" value="0" entity="80" />
+			<MetaData data="1" entity="1" info="1" meta="1"
+				ts="12:12:32.3626011">
+				<Info entity="80" id="80" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="88" entity="80" />
+			<TagChange tag="44" value="2" entity="80" />
+			<TagChange tag="297" value="1" entity="88" />
+			<TagChange tag="43" value="1" entity="88" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="88" />
+			<TagChange tag="36" value="0" entity="80" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:12:32.3630969">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="83"
+			ts="12:12:32.8941641">
+			<TagChange tag="25" value="7" entity="3" />
+			<TagChange tag="418" value="17" entity="3" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="83"
+				ts="12:12:32.8941641">
+				<TagChange tag="292" value="1" entity="82" />
+				<FullEntity id="92" ts="12:12:32.8941641">
+					<Tag tag="49" value="6" />
+					<Tag tag="50" value="2" />
+					<Tag tag="53" value="92" />
+				</FullEntity>
+				<ShowEntity cardID="CS2_017o" entity="92" ts="12:12:32.8941641">
+					<Tag tag="40" value="82" />
+					<Tag tag="44" value="0" />
+					<Tag tag="49" value="6" />
+					<Tag tag="50" value="2" />
+					<Tag tag="53" value="92" />
+					<Tag tag="188" value="0" />
+					<Tag tag="189" value="0" />
+					<Tag tag="190" value="0" />
+					<Tag tag="191" value="0" />
+					<Tag tag="194" value="0" />
+					<Tag tag="197" value="0" />
+					<Tag tag="202" value="6" />
+					<Tag tag="260" value="0" />
+					<Tag tag="263" value="0" />
+					<Tag tag="297" value="0" />
+					<Tag tag="313" value="83" />
+					<Tag tag="338" value="1" />
+					<Tag tag="352" value="0" />
+					<Tag tag="360" value="0" />
+					<Tag tag="372" value="0" />
+					<Tag tag="376" value="0" />
+					<Tag tag="444" value="0" />
+					<Tag tag="466" value="0" />
+					<Tag tag="479" value="0" />
+				</ShowEntity>
+				<TagChange tag="338" value="1" entity="82" />
+				<TagChange tag="49" value="1" entity="92" />
+			</Block>
+			<TagChange tag="406" value="1" entity="3" />
+			<TagChange tag="43" value="1" entity="83" />
+			<TagChange tag="479" value="1" entity="82" />
+			<TagChange tag="47" value="1" entity="82" />
+			<Block effectIndex="-1" index="0" target="0" type="5" entity="3"
+				ts="12:12:32.8946642">
+				<TagChange tag="394" value="2" entity="3" />
+			</Block>
+			<TagChange tag="358" value="4" entity="3" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="80" type="1" entity="82"
+			ts="12:12:34.5558608">
+			<TagChange tag="39" value="82" entity="1" />
+			<TagChange tag="37" value="80" entity="1" />
+			<TagChange tag="38" value="1" entity="82" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="5" entity="3" />
+			<TagChange tag="36" value="1" entity="80" />
+			<TagChange tag="318" value="1" entity="80" />
+			<TagChange tag="318" value="0" entity="80" />
+			<MetaData data="1" entity="1" info="1" meta="1"
+				ts="12:12:34.5558608">
+				<Info entity="80" id="80" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="82" entity="80" />
+			<TagChange tag="44" value="3" entity="80" />
+			<TagChange tag="297" value="1" entity="82" />
+			<TagChange tag="43" value="1" entity="82" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="82" />
+			<TagChange tag="36" value="0" entity="80" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:12:34.5563574">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<TagChange tag="19" value="12" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:12:35.5859828">
+			<TagChange tag="198" value="16" entity="1" />
+		</Action>
+		<TagChange tag="19" value="16" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:12:35.5859828">
+			<TagChange tag="198" value="13" entity="1" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="92"
+			ts="12:12:35.5859828">
+			<TagChange tag="18" value="92" entity="92" />
+			<TagChange tag="49" value="4" entity="92" />
+			<TagChange tag="338" value="0" entity="82" />
+			<HideEntity entity="92" zone="4" ts="12:12:35.5859828" />
+			<TagChange tag="479" value="0" entity="82" />
+			<TagChange tag="47" value="0" entity="82" />
+		</Action>
+		<TagChange tag="19" value="13" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:12:35.5864828">
+			<TagChange tag="272" value="0" entity="3" />
+			<TagChange tag="272" value="1" entity="3" />
+			<TagChange tag="23" value="0" entity="3" />
+			<TagChange tag="23" value="1" entity="2" />
+			<TagChange tag="20" value="10" entity="1" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:12:35.5864828">
+			<TagChange tag="271" value="10" entity="80" />
+			<TagChange tag="271" value="10" entity="81" />
+			<TagChange tag="271" value="4" entity="17" />
+			<TagChange tag="271" value="2" entity="90" />
+			<TagChange tag="271" value="2" entity="91" />
+			<TagChange tag="271" value="10" entity="82" />
+			<TagChange tag="271" value="10" entity="83" />
+			<TagChange tag="271" value="3" entity="88" />
+			<TagChange tag="271" value="3" entity="89" />
+			<TagChange tag="26" value="5" entity="2" />
+			<TagChange tag="25" value="0" entity="2" />
+			<TagChange tag="266" value="0" entity="2" />
+			<TagChange tag="297" value="0" entity="88" />
+			<TagChange tag="297" value="0" entity="89" />
+			<TagChange tag="269" value="0" entity="2" />
+			<TagChange tag="358" value="0" entity="2" />
+			<TagChange tag="430" value="0" entity="2" />
+			<TagChange tag="43" value="0" entity="17" />
+			<TagChange tag="43" value="0" entity="90" />
+			<TagChange tag="43" value="0" entity="91" />
+			<TagChange tag="399" value="0" entity="2" />
+			<TagChange tag="198" value="17" entity="1" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:12:35.5869833">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:12:35.5869833">
+			<TagChange tag="467" value="1" entity="2" />
+			<ShowEntity cardID="LOE_104" entity="27" ts="12:12:35.5869833">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="6" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="27" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="1" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="6" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="6" entity="27" />
+			<TagChange tag="399" value="1" entity="2" />
+			<TagChange tag="467" value="0" entity="2" />
+			<TagChange tag="417" value="0" entity="3" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:12:35.5879771">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="27" ts="12:12:35.6524891">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="4" index="1" type="3">
+				<Target entity="90" index="0" />
+				<Target entity="91" index="1" />
+			</Option>
+			<Option entity="19" index="2" type="3">
+				<Target entity="17" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+				<Target entity="90" index="3" />
+				<Target entity="91" index="4" />
+			</Option>
+			<Option entity="22" index="3" type="3">
+				<Target entity="90" index="0" />
+				<Target entity="91" index="1" />
+			</Option>
+			<Option entity="10" index="4" type="3" />
+			<Option entity="81" index="5" type="3">
+				<Target entity="80" index="0" />
+				<Target entity="82" index="1" />
+				<Target entity="17" index="2" />
+				<Target entity="88" index="3" />
+				<Target entity="89" index="4" />
+				<Target entity="90" index="5" />
+				<Target entity="91" index="6" />
+			</Option>
+			<Option entity="17" index="6" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="90" index="7" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="91" index="8" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="10"
+			ts="12:12:48.1159601">
+			<TagChange tag="25" value="5" entity="2" />
+			<TagChange tag="418" value="15" entity="2" />
+			<TagChange tag="269" value="1" entity="2" />
+			<TagChange tag="317" value="1" entity="2" />
+			<TagChange tag="263" value="5" entity="27" />
+			<TagChange tag="49" value="1" entity="10" />
+			<TagChange tag="263" value="2" entity="10" />
+			<TagChange tag="263" value="4" entity="91" />
+			<TagChange tag="263" value="3" entity="90" />
+			<TagChange tag="43" value="1" entity="10" />
+			<TagChange tag="261" value="1" entity="10" />
+			<TagChange tag="397" value="10" entity="2" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="10"
+				ts="12:12:48.1164595">
+				<FullEntity cardID="EX1_016" id="93" ts="12:12:48.1164595">
+					<Tag tag="43" value="1" />
+					<Tag tag="45" value="5" />
+					<Tag tag="47" value="5" />
+					<Tag tag="48" value="6" />
+					<Tag tag="49" value="1" />
+					<Tag tag="50" value="1" />
+					<Tag tag="53" value="93" />
+					<Tag tag="114" value="1" />
+					<Tag tag="202" value="4" />
+					<Tag tag="203" value="5" />
+					<Tag tag="217" value="1" />
+					<Tag tag="263" value="5" />
+					<Tag tag="313" value="10" />
+					<Tag tag="466" value="6" />
+					<Tag tag="479" value="5" />
+				</FullEntity>
+				<MetaData data="0" entity="0" info="1" meta="0"
+					ts="12:12:48.1164595">
+					<Info entity="93" id="93" index="0" />
+				</MetaData>
+			</Block>
+			<TagChange tag="266" value="1" entity="2" />
+			<TagChange tag="358" value="1" entity="2" />
+		</Action>
+		<Options id="28" ts="12:12:48.1484639">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="17" index="1" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="90" index="2" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="91" index="3" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="82" type="1" entity="17"
+			ts="12:13:07.3467539">
+			<TagChange tag="417" value="1" entity="2" />
+			<TagChange tag="39" value="17" entity="1" />
+			<TagChange tag="37" value="82" entity="1" />
+			<TagChange tag="38" value="1" entity="17" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="2" entity="2" />
+			<TagChange tag="36" value="1" entity="82" />
+			<TagChange tag="318" value="3" entity="82" />
+			<TagChange tag="318" value="0" entity="82" />
+			<MetaData data="3" entity="1" info="1" meta="1"
+				ts="12:13:07.3472529">
+				<Info entity="82" id="82" index="0" />
+			</MetaData>
+			<TagChange tag="292" value="0" entity="82" />
+			<TagChange tag="44" value="4" entity="82" />
+			<TagChange tag="297" value="1" entity="17" />
+			<TagChange tag="43" value="1" entity="17" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="17" />
+			<TagChange tag="36" value="0" entity="82" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:13:07.3472529">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="29" ts="12:13:07.3797577">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="90" index="1" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="91" index="2" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="82" type="1" entity="90"
+			ts="12:13:08.2488587">
+			<TagChange tag="417" value="2" entity="2" />
+			<TagChange tag="39" value="90" entity="1" />
+			<TagChange tag="37" value="82" entity="1" />
+			<TagChange tag="38" value="1" entity="90" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="3" entity="2" />
+			<TagChange tag="36" value="1" entity="82" />
+			<TagChange tag="318" value="5" entity="82" />
+			<TagChange tag="318" value="0" entity="82" />
+			<MetaData data="5" entity="1" info="1" meta="1"
+				ts="12:13:08.2493602">
+				<Info entity="82" id="82" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="90" entity="82" />
+			<TagChange tag="44" value="9" entity="82" />
+			<TagChange tag="297" value="1" entity="90" />
+			<TagChange tag="43" value="1" entity="90" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="90" />
+			<TagChange tag="36" value="0" entity="82" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:13:08.2493602">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="30" ts="12:13:08.2818650">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="91" index="1" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="82" type="1" entity="91"
+			ts="12:13:09.2784986">
+			<TagChange tag="417" value="3" entity="2" />
+			<TagChange tag="39" value="91" entity="1" />
+			<TagChange tag="37" value="82" entity="1" />
+			<TagChange tag="38" value="1" entity="91" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="4" entity="2" />
+			<TagChange tag="36" value="1" entity="82" />
+			<TagChange tag="318" value="5" entity="82" />
+			<TagChange tag="318" value="0" entity="82" />
+			<MetaData data="5" entity="1" info="1" meta="1"
+				ts="12:13:09.2789976">
+				<Info entity="82" id="82" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="91" entity="82" />
+			<TagChange tag="44" value="14" entity="82" />
+			<TagChange tag="297" value="1" entity="91" />
+			<TagChange tag="43" value="1" entity="91" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="91" />
+			<TagChange tag="36" value="0" entity="82" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:13:09.2789976">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="31" ts="12:13:09.3780104">
+			<Option entity="0" index="0" type="2" />
+		</Options>
+		<TagChange tag="19" value="12" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:13:13.3504779">
+			<TagChange tag="198" value="16" entity="1" />
+		</Action>
+		<TagChange tag="19" value="16" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:13:13.3504779">
+			<TagChange tag="261" value="0" entity="10" />
+			<TagChange tag="198" value="13" entity="1" />
+		</Action>
+		<TagChange tag="19" value="13" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:13:13.3504779">
+			<TagChange tag="272" value="0" entity="2" />
+			<TagChange tag="272" value="1" entity="2" />
+			<TagChange tag="23" value="0" entity="2" />
+			<TagChange tag="23" value="1" entity="3" />
+			<TagChange tag="20" value="11" entity="1" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:13:13.3504779">
+			<TagChange tag="271" value="11" entity="82" />
+			<TagChange tag="271" value="11" entity="83" />
+			<TagChange tag="271" value="4" entity="88" />
+			<TagChange tag="271" value="4" entity="89" />
+			<TagChange tag="271" value="11" entity="80" />
+			<TagChange tag="271" value="11" entity="81" />
+			<TagChange tag="271" value="5" entity="17" />
+			<TagChange tag="271" value="3" entity="90" />
+			<TagChange tag="271" value="3" entity="91" />
+			<TagChange tag="271" value="1" entity="10" />
+			<TagChange tag="271" value="1" entity="93" />
+			<TagChange tag="26" value="8" entity="3" />
+			<TagChange tag="25" value="0" entity="3" />
+			<TagChange tag="266" value="0" entity="3" />
+			<TagChange tag="297" value="0" entity="17" />
+			<TagChange tag="297" value="0" entity="90" />
+			<TagChange tag="297" value="0" entity="91" />
+			<TagChange tag="269" value="0" entity="3" />
+			<TagChange tag="358" value="0" entity="3" />
+			<TagChange tag="430" value="0" entity="3" />
+			<TagChange tag="43" value="0" entity="82" />
+			<TagChange tag="43" value="0" entity="83" />
+			<TagChange tag="43" value="0" entity="88" />
+			<TagChange tag="43" value="0" entity="89" />
+			<TagChange tag="399" value="0" entity="3" />
+			<TagChange tag="198" value="17" entity="1" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:13:13.3514780">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:13:13.3514780">
+			<TagChange tag="467" value="1" entity="3" />
+			<TagChange tag="49" value="3" entity="68" />
+			<TagChange tag="263" value="8" entity="68" />
+			<TagChange tag="399" value="1" entity="3" />
+			<TagChange tag="467" value="0" entity="3" />
+			<TagChange tag="297" value="0" entity="82" />
+			<TagChange tag="417" value="0" entity="2" />
+			<TagChange tag="406" value="0" entity="3" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:13:13.3514780">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="35"
+			ts="12:13:17.4709696">
+			<TagChange tag="25" value="6" entity="3" />
+			<TagChange tag="418" value="23" entity="3" />
+			<TagChange tag="269" value="1" entity="3" />
+			<TagChange tag="317" value="1" entity="3" />
+			<TagChange tag="263" value="7" entity="68" />
+			<TagChange tag="263" value="6" entity="36" />
+			<TagChange tag="263" value="5" entity="66" />
+			<TagChange tag="263" value="4" entity="60" />
+			<TagChange tag="263" value="3" entity="69" />
+			<TagChange tag="263" value="2" entity="74" />
+			<ShowEntity cardID="OG_293" entity="35" ts="12:13:17.4714694">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="45" value="7" />
+				<Tag tag="47" value="5" />
+				<Tag tag="48" value="6" />
+				<Tag tag="49" value="1" />
+				<Tag tag="50" value="2" />
+				<Tag tag="53" value="35" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="1" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="4" />
+				<Tag tag="203" value="1" />
+				<Tag tag="218" value="1" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="2" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="424" value="1" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="6" />
+				<Tag tag="479" value="5" />
+			</ShowEntity>
+			<TagChange tag="263" value="3" entity="35" />
+			<TagChange tag="43" value="1" entity="35" />
+			<TagChange tag="261" value="1" entity="35" />
+			<TagChange tag="397" value="35" entity="3" />
+			<TagChange tag="445" value="1" entity="3" />
+			<Block effectIndex="-1" index="0" target="0" type="9" entity="35"
+				ts="12:13:17.4719691">
+				<FullEntity id="94" ts="12:13:17.4719691">
+					<Tag tag="49" value="6" />
+					<Tag tag="50" value="2" />
+					<Tag tag="53" value="94" />
+				</FullEntity>
+				<ShowEntity cardID="OG_279" entity="94" ts="12:13:17.4719691">
+					<Tag tag="44" value="0" />
+					<Tag tag="45" value="6" />
+					<Tag tag="47" value="6" />
+					<Tag tag="48" value="10" />
+					<Tag tag="49" value="6" />
+					<Tag tag="50" value="2" />
+					<Tag tag="53" value="94" />
+					<Tag tag="114" value="1" />
+					<Tag tag="188" value="0" />
+					<Tag tag="189" value="0" />
+					<Tag tag="190" value="0" />
+					<Tag tag="191" value="0" />
+					<Tag tag="194" value="0" />
+					<Tag tag="197" value="0" />
+					<Tag tag="202" value="4" />
+					<Tag tag="203" value="5" />
+					<Tag tag="260" value="0" />
+					<Tag tag="263" value="0" />
+					<Tag tag="297" value="0" />
+					<Tag tag="313" value="3" />
+					<Tag tag="352" value="0" />
+					<Tag tag="360" value="0" />
+					<Tag tag="372" value="0" />
+					<Tag tag="376" value="0" />
+					<Tag tag="410" value="1" />
+					<Tag tag="444" value="0" />
+					<Tag tag="466" value="10" />
+					<Tag tag="479" value="6" />
+				</ShowEntity>
+				<TagChange tag="434" value="94" entity="3" />
+				<Block effectIndex="-1" index="0" target="0" type="3" entity="35"
+					ts="12:13:17.4724695">
+					<FullEntity id="95" ts="12:13:17.4724695">
+						<Tag tag="49" value="6" />
+						<Tag tag="50" value="2" />
+						<Tag tag="53" value="95" />
+					</FullEntity>
+					<ShowEntity cardID="OG_281e" entity="95" ts="12:13:17.4724695">
+						<Tag tag="40" value="94" />
+						<Tag tag="44" value="0" />
+						<Tag tag="49" value="6" />
+						<Tag tag="50" value="2" />
+						<Tag tag="53" value="95" />
+						<Tag tag="188" value="0" />
+						<Tag tag="189" value="0" />
+						<Tag tag="190" value="0" />
+						<Tag tag="191" value="0" />
+						<Tag tag="194" value="0" />
+						<Tag tag="197" value="0" />
+						<Tag tag="202" value="6" />
+						<Tag tag="260" value="0" />
+						<Tag tag="263" value="0" />
+						<Tag tag="297" value="0" />
+						<Tag tag="313" value="94" />
+						<Tag tag="352" value="0" />
+						<Tag tag="360" value="0" />
+						<Tag tag="372" value="0" />
+						<Tag tag="376" value="0" />
+						<Tag tag="444" value="0" />
+						<Tag tag="466" value="0" />
+						<Tag tag="479" value="0" />
+					</ShowEntity>
+					<TagChange tag="49" value="1" entity="95" />
+				</Block>
+				<TagChange tag="45" value="9" entity="94" />
+				<TagChange tag="47" value="9" entity="94" />
+			</Block>
+			<TagChange tag="266" value="1" entity="3" />
+			<TagChange tag="358" value="1" entity="3" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="68"
+			ts="12:13:20.3147995">
+			<TagChange tag="25" value="8" entity="3" />
+			<TagChange tag="418" value="25" entity="3" />
+			<TagChange tag="269" value="2" entity="3" />
+			<TagChange tag="430" value="1" entity="3" />
+			<ShowEntity cardID="CS2_013" entity="68" ts="12:13:20.3147995">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="48" value="2" />
+				<Tag tag="49" value="1" />
+				<Tag tag="50" value="2" />
+				<Tag tag="53" value="68" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="201" value="3" />
+				<Tag tag="202" value="5" />
+				<Tag tag="203" value="2" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="7" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="2" />
+				<Tag tag="479" value="0" />
+			</ShowEntity>
+			<TagChange tag="263" value="0" entity="68" />
+			<TagChange tag="261" value="1" entity="68" />
+			<TagChange tag="397" value="68" entity="3" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="68"
+				ts="12:13:20.3152978">
+				<TagChange tag="26" value="9" entity="3" />
+				<TagChange tag="25" value="9" entity="3" />
+			</Block>
+			<TagChange tag="49" value="4" entity="68" />
+			<TagChange tag="358" value="2" entity="3" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="80" type="1" entity="89"
+			ts="12:13:24.5157989">
+			<TagChange tag="417" value="1" entity="3" />
+			<TagChange tag="39" value="89" entity="1" />
+			<TagChange tag="37" value="80" entity="1" />
+			<TagChange tag="38" value="1" entity="89" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="3" entity="3" />
+			<TagChange tag="36" value="1" entity="80" />
+			<TagChange tag="318" value="1" entity="80" />
+			<TagChange tag="318" value="0" entity="80" />
+			<MetaData data="1" entity="1" info="1" meta="1"
+				ts="12:13:24.5162916">
+				<Info entity="80" id="80" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="89" entity="80" />
+			<TagChange tag="44" value="4" entity="80" />
+			<TagChange tag="297" value="1" entity="89" />
+			<TagChange tag="43" value="1" entity="89" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="89" />
+			<TagChange tag="36" value="0" entity="80" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:13:24.5162916">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="80" type="1" entity="88"
+			ts="12:13:27.7066677">
+			<TagChange tag="417" value="2" entity="3" />
+			<TagChange tag="39" value="88" entity="1" />
+			<TagChange tag="37" value="80" entity="1" />
+			<TagChange tag="38" value="1" entity="88" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="4" entity="3" />
+			<TagChange tag="36" value="1" entity="80" />
+			<TagChange tag="318" value="1" entity="80" />
+			<TagChange tag="318" value="0" entity="80" />
+			<MetaData data="1" entity="1" info="1" meta="1"
+				ts="12:13:27.7066677">
+				<Info entity="80" id="80" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="88" entity="80" />
+			<TagChange tag="44" value="5" entity="80" />
+			<TagChange tag="297" value="1" entity="88" />
+			<TagChange tag="43" value="1" entity="88" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="88" />
+			<TagChange tag="36" value="0" entity="80" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:13:27.7071671">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<TagChange tag="19" value="12" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:13:29.0023205">
+			<TagChange tag="198" value="16" entity="1" />
+		</Action>
+		<TagChange tag="19" value="16" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="3"
+			ts="12:13:29.0023205">
+			<TagChange tag="261" value="0" entity="35" />
+			<TagChange tag="198" value="13" entity="1" />
+		</Action>
+		<TagChange tag="19" value="13" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:13:29.0028199">
+			<TagChange tag="272" value="0" entity="3" />
+			<TagChange tag="272" value="1" entity="3" />
+			<TagChange tag="23" value="0" entity="3" />
+			<TagChange tag="23" value="1" entity="2" />
+			<TagChange tag="20" value="12" entity="1" />
+			<TagChange tag="198" value="6" entity="1" />
+		</Action>
+		<TagChange tag="19" value="6" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:13:29.0028199">
+			<TagChange tag="271" value="12" entity="80" />
+			<TagChange tag="271" value="12" entity="81" />
+			<TagChange tag="271" value="6" entity="17" />
+			<TagChange tag="271" value="4" entity="90" />
+			<TagChange tag="271" value="4" entity="91" />
+			<TagChange tag="271" value="2" entity="10" />
+			<TagChange tag="271" value="2" entity="93" />
+			<TagChange tag="271" value="12" entity="82" />
+			<TagChange tag="271" value="12" entity="83" />
+			<TagChange tag="271" value="5" entity="88" />
+			<TagChange tag="271" value="5" entity="89" />
+			<TagChange tag="271" value="1" entity="35" />
+			<TagChange tag="271" value="1" entity="95" />
+			<TagChange tag="26" value="6" entity="2" />
+			<TagChange tag="25" value="0" entity="2" />
+			<TagChange tag="266" value="0" entity="2" />
+			<TagChange tag="297" value="0" entity="88" />
+			<TagChange tag="297" value="0" entity="89" />
+			<TagChange tag="269" value="0" entity="2" />
+			<TagChange tag="317" value="0" entity="2" />
+			<TagChange tag="358" value="0" entity="2" />
+			<TagChange tag="43" value="0" entity="17" />
+			<TagChange tag="43" value="0" entity="90" />
+			<TagChange tag="43" value="0" entity="91" />
+			<TagChange tag="43" value="0" entity="10" />
+			<TagChange tag="43" value="0" entity="93" />
+			<TagChange tag="399" value="0" entity="2" />
+			<TagChange tag="198" value="17" entity="1" />
+		</Action>
+		<TagChange tag="19" value="17" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:13:29.0033193">
+			<TagChange tag="198" value="9" entity="1" />
+		</Action>
+		<TagChange tag="19" value="9" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:13:29.0033193">
+			<TagChange tag="467" value="1" entity="2" />
+			<ShowEntity cardID="EX1_016" entity="6" ts="12:13:29.0038193">
+				<Tag tag="12" value="0" />
+				<Tag tag="44" value="0" />
+				<Tag tag="45" value="5" />
+				<Tag tag="47" value="5" />
+				<Tag tag="48" value="6" />
+				<Tag tag="49" value="3" />
+				<Tag tag="50" value="1" />
+				<Tag tag="53" value="6" />
+				<Tag tag="114" value="1" />
+				<Tag tag="188" value="0" />
+				<Tag tag="189" value="0" />
+				<Tag tag="190" value="0" />
+				<Tag tag="191" value="0" />
+				<Tag tag="194" value="0" />
+				<Tag tag="197" value="0" />
+				<Tag tag="202" value="4" />
+				<Tag tag="203" value="5" />
+				<Tag tag="217" value="1" />
+				<Tag tag="260" value="0" />
+				<Tag tag="263" value="0" />
+				<Tag tag="297" value="0" />
+				<Tag tag="352" value="0" />
+				<Tag tag="360" value="0" />
+				<Tag tag="372" value="0" />
+				<Tag tag="376" value="0" />
+				<Tag tag="444" value="0" />
+				<Tag tag="466" value="6" />
+				<Tag tag="479" value="5" />
+			</ShowEntity>
+			<TagChange tag="263" value="6" entity="6" />
+			<TagChange tag="399" value="1" entity="2" />
+			<TagChange tag="467" value="0" entity="2" />
+			<TagChange tag="417" value="0" entity="3" />
+			<TagChange tag="198" value="10" entity="1" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:13:29.0043194">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="37" ts="12:13:29.1023307">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="4" index="1" type="3">
+				<Target entity="90" index="0" />
+				<Target entity="91" index="1" />
+				<Target entity="93" index="2" />
+				<Target entity="35" index="3" />
+			</Option>
+			<Option entity="19" index="2" type="3">
+				<Target entity="17" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+				<Target entity="90" index="3" />
+				<Target entity="91" index="4" />
+				<Target entity="10" index="5" />
+				<Target entity="93" index="6" />
+				<Target entity="35" index="7" />
+			</Option>
+			<Option entity="22" index="3" type="3">
+				<Target entity="90" index="0" />
+				<Target entity="91" index="1" />
+				<Target entity="93" index="2" />
+				<Target entity="35" index="3" />
+			</Option>
+			<Option entity="27" index="4" type="3">
+				<Target entity="88" index="0" />
+				<Target entity="89" index="1" />
+				<Target entity="35" index="2" />
+			</Option>
+			<Option entity="6" index="5" type="3" />
+			<Option entity="81" index="6" type="3">
+				<Target entity="80" index="0" />
+				<Target entity="82" index="1" />
+				<Target entity="17" index="2" />
+				<Target entity="88" index="3" />
+				<Target entity="89" index="4" />
+				<Target entity="90" index="5" />
+				<Target entity="91" index="6" />
+				<Target entity="10" index="7" />
+				<Target entity="93" index="8" />
+				<Target entity="35" index="9" />
+			</Option>
+			<Option entity="17" index="7" type="3">
+				<Target entity="35" index="0" />
+			</Option>
+			<Option entity="90" index="8" type="3">
+				<Target entity="35" index="0" />
+			</Option>
+			<Option entity="91" index="9" type="3">
+				<Target entity="35" index="0" />
+			</Option>
+			<Option entity="10" index="10" type="3">
+				<Target entity="35" index="0" />
+			</Option>
+			<Option entity="93" index="11" type="3">
+				<Target entity="35" index="0" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="0" type="7" entity="6"
+			ts="12:13:50.2113363">
+			<TagChange tag="25" value="6" entity="2" />
+			<TagChange tag="418" value="21" entity="2" />
+			<TagChange tag="269" value="1" entity="2" />
+			<TagChange tag="317" value="1" entity="2" />
+			<TagChange tag="49" value="1" entity="6" />
+			<TagChange tag="43" value="1" entity="6" />
+			<TagChange tag="261" value="1" entity="6" />
+			<TagChange tag="397" value="6" entity="2" />
+			<Block effectIndex="-1" index="0" target="0" type="3" entity="6"
+				ts="12:13:50.2118360" />
+			<TagChange tag="266" value="1" entity="2" />
+			<TagChange tag="358" value="1" entity="2" />
+		</Action>
+		<Options id="38" ts="12:13:50.2443401">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="17" index="1" type="3">
+				<Target entity="35" index="0" />
+			</Option>
+			<Option entity="90" index="2" type="3">
+				<Target entity="35" index="0" />
+			</Option>
+			<Option entity="91" index="3" type="3">
+				<Target entity="35" index="0" />
+			</Option>
+			<Option entity="10" index="4" type="3">
+				<Target entity="35" index="0" />
+			</Option>
+			<Option entity="93" index="5" type="3">
+				<Target entity="35" index="0" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="35" type="1" entity="90"
+			ts="12:14:10.3457115">
+			<TagChange tag="417" value="1" entity="2" />
+			<TagChange tag="39" value="90" entity="1" />
+			<TagChange tag="37" value="35" entity="1" />
+			<TagChange tag="38" value="1" entity="90" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="2" entity="2" />
+			<TagChange tag="36" value="1" entity="35" />
+			<TagChange tag="318" value="5" entity="35" />
+			<TagChange tag="318" value="0" entity="35" />
+			<MetaData data="5" entity="1" info="1" meta="1"
+				ts="12:14:10.3457115">
+				<Info entity="35" id="35" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="90" entity="35" />
+			<TagChange tag="44" value="5" entity="35" />
+			<TagChange tag="318" value="5" entity="90" />
+			<TagChange tag="318" value="0" entity="90" />
+			<MetaData data="5" entity="1" info="1" meta="1"
+				ts="12:14:10.3457115">
+				<Info entity="90" id="90" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="35" entity="90" />
+			<TagChange tag="44" value="5" entity="90" />
+			<TagChange tag="297" value="1" entity="90" />
+			<TagChange tag="43" value="1" entity="90" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="90" />
+			<TagChange tag="36" value="0" entity="35" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="6" entity="1"
+			ts="12:14:10.3462116">
+			<TagChange tag="368" value="1" entity="2" />
+			<TagChange tag="369" value="1" entity="1" />
+			<TagChange tag="43" value="0" entity="90" />
+			<TagChange tag="263" value="5" entity="6" />
+			<TagChange tag="263" value="4" entity="93" />
+			<TagChange tag="263" value="3" entity="91" />
+			<TagChange tag="49" value="4" entity="90" />
+			<TagChange tag="398" value="1" entity="2" />
+			<TagChange tag="412" value="2" entity="2" />
+			<TagChange tag="297" value="0" entity="90" />
+			<TagChange tag="263" value="0" entity="90" />
+			<TagChange tag="44" value="0" entity="90" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="90"
+			ts="12:14:10.3462116">
+			<MetaData data="0" entity="0" info="1" meta="0"
+				ts="12:14:10.3467113">
+				<Info entity="35" id="35" index="0" />
+			</MetaData>
+			<TagChange tag="50" value="1" entity="35" />
+			<TagChange tag="263" value="6" entity="35" />
+			<TagChange tag="271" value="0" entity="35" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:14:10.3467113">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="39" ts="12:14:10.3782156">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="17" index="1" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="91" index="2" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="10" index="3" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="93" index="4" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="82" type="1" entity="91"
+			ts="12:14:17.3570686">
+			<TagChange tag="417" value="2" entity="2" />
+			<TagChange tag="39" value="91" entity="1" />
+			<TagChange tag="37" value="82" entity="1" />
+			<TagChange tag="38" value="1" entity="91" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="3" entity="2" />
+			<TagChange tag="36" value="1" entity="82" />
+			<TagChange tag="318" value="5" entity="82" />
+			<TagChange tag="318" value="0" entity="82" />
+			<MetaData data="5" entity="1" info="1" meta="1"
+				ts="12:14:17.3575690">
+				<Info entity="82" id="82" index="0" />
+			</MetaData>
+			<TagChange tag="44" value="19" entity="82" />
+			<TagChange tag="297" value="1" entity="91" />
+			<TagChange tag="43" value="1" entity="91" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="91" />
+			<TagChange tag="36" value="0" entity="82" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:14:17.3575690">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="40" ts="12:14:17.3905725">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="17" index="1" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="10" index="2" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="93" index="3" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="82" type="1" entity="93"
+			ts="12:14:18.3546854">
+			<TagChange tag="417" value="3" entity="2" />
+			<TagChange tag="39" value="93" entity="1" />
+			<TagChange tag="37" value="82" entity="1" />
+			<TagChange tag="38" value="1" entity="93" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="4" entity="2" />
+			<TagChange tag="36" value="1" entity="82" />
+			<TagChange tag="318" value="5" entity="82" />
+			<TagChange tag="318" value="0" entity="82" />
+			<MetaData data="5" entity="1" info="1" meta="1"
+				ts="12:14:18.3551855">
+				<Info entity="82" id="82" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="93" entity="82" />
+			<TagChange tag="44" value="24" entity="82" />
+			<TagChange tag="297" value="1" entity="93" />
+			<TagChange tag="43" value="1" entity="93" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="93" />
+			<TagChange tag="36" value="0" entity="82" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:14:18.3551855">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="41" ts="12:14:18.3876896">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="17" index="1" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+			<Option entity="10" index="2" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="82" type="1" entity="10"
+			ts="12:14:20.3484209">
+			<TagChange tag="417" value="4" entity="2" />
+			<TagChange tag="39" value="10" entity="1" />
+			<TagChange tag="37" value="82" entity="1" />
+			<TagChange tag="38" value="1" entity="10" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="5" entity="2" />
+			<TagChange tag="36" value="1" entity="82" />
+			<TagChange tag="318" value="3" entity="82" />
+			<TagChange tag="318" value="0" entity="82" />
+			<MetaData data="3" entity="1" info="1" meta="1"
+				ts="12:14:20.3484209">
+				<Info entity="82" id="82" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="10" entity="82" />
+			<TagChange tag="44" value="27" entity="82" />
+			<TagChange tag="297" value="1" entity="10" />
+			<TagChange tag="43" value="1" entity="10" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="10" />
+			<TagChange tag="36" value="0" entity="82" />
+		</Action>
+		<TagChange tag="19" value="10" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="2"
+			ts="12:14:20.3489231">
+			<TagChange tag="198" value="12" entity="1" />
+		</Action>
+		<Options id="42" ts="12:14:20.3814307">
+			<Option entity="0" index="0" type="2" />
+			<Option entity="17" index="1" type="3">
+				<Target entity="82" index="0" />
+				<Target entity="88" index="1" />
+				<Target entity="89" index="2" />
+			</Option>
+		</Options>
+		<Action effectIndex="-1" index="0" target="82" type="1" entity="17"
+			ts="12:14:22.0101218">
+			<TagChange tag="417" value="5" entity="2" />
+			<TagChange tag="39" value="17" entity="1" />
+			<TagChange tag="37" value="82" entity="1" />
+			<TagChange tag="38" value="1" entity="17" />
+			<TagChange tag="198" value="10" entity="1" />
+			<TagChange tag="19" value="11" entity="1" />
+			<TagChange tag="358" value="6" entity="2" />
+			<TagChange tag="36" value="1" entity="82" />
+			<TagChange tag="318" value="3" entity="82" />
+			<TagChange tag="318" value="0" entity="82" />
+			<MetaData data="3" entity="1" info="1" meta="1"
+				ts="12:14:22.0106212">
+				<Info entity="82" id="82" index="0" />
+			</MetaData>
+			<TagChange tag="18" value="17" entity="82" />
+			<TagChange tag="44" value="30" entity="82" />
+			<TagChange tag="297" value="1" entity="17" />
+			<TagChange tag="43" value="1" entity="17" />
+			<TagChange tag="39" value="0" entity="1" />
+			<TagChange tag="37" value="0" entity="1" />
+			<TagChange tag="38" value="0" entity="17" />
+			<TagChange tag="36" value="0" entity="82" />
+		</Action>
+		<Action effectIndex="-1" index="0" target="0" type="6" entity="1"
+			ts="12:14:22.0616210">
+			<TagChange tag="49" value="4" entity="82" />
+			<TagChange tag="17" value="3" entity="3" />
+		</Action>
+		<TagChange tag="17" value="5" entity="3" />
+		<TagChange tag="17" value="4" entity="2" />
+		<TagChange tag="198" value="14" entity="1" />
+		<TagChange tag="19" value="14" entity="1" />
+		<Action effectIndex="-1" index="0" target="0" type="5" entity="1"
+			ts="12:14:22.0621210">
+			<TagChange tag="198" value="15" entity="1" />
+		</Action>
+		<TagChange tag="19" value="15" entity="1" />
+		<TagChange tag="204" value="3" entity="1" />
+		<TagChange tag="13" value="2" entity="2" />
+		<TagChange tag="13" value="2" entity="3" />
+	</Game>
+</HSReplay>

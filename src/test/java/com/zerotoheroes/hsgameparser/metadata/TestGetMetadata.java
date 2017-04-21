@@ -24,6 +24,7 @@ public class TestGetMetadata {
 
 		// More checks on win/loss
 		checkMeta("old.xml", 12, 476, "lost", "coin");
+		checkMeta("win_status_error.xml", 6, 271, "won", "coin");
 
 		checkMeta("from log file.xml", 9, 687, "won", "play");
 
