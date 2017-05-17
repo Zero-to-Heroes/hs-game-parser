@@ -1,5 +1,6 @@
 <!-- http://central.sonatype.org/pages/apache-maven.html -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.zerotoheroes</groupId>
 	<artifactId>hs-game-parser</artifactId>
@@ -45,7 +46,7 @@
 	</distributionManagement>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>com.zerotoheroes</groupId>
 			<artifactId>hs-game-entities</artifactId>
@@ -54,9 +55,9 @@
 		<dependency>
 			<groupId>com.zerotoheroes</groupId>
 			<artifactId>hs-game-converter</artifactId>
-			<version>1.0.7</version> 
+			<version>1.0.7</version>
 		</dependency>
-		
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -75,6 +76,11 @@
 			<artifactId>mockito-all</artifactId>
 			<version>1.10.19</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.6.2</version>
 		</dependency>
 		<!-- Other cool stuff -->
 		<dependency>
@@ -109,7 +115,7 @@
 	<!-- mvn release:clean release:prepare mvn release:perform -->
 	<build>
 		<plugins>
-			<plugin> 
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>

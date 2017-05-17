@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.Getter;
+
 import org.json.simple.parser.JSONParser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-
-import lombok.Getter;
 
 @Getter
 public class CardsList {
@@ -36,6 +36,12 @@ public class CardsList {
 
 	public Card find(String cardId) {
 		Optional<Card> optional = cards.stream().filter(c -> c.getId().equals(cardId)).findFirst();
+		if (optional.isPresent()) { return optional.get(); }
+		return null;
+	}
+
+	public Card fromDbfId(int dbfId) {
+		Optional<Card> optional = cards.stream().filter(c -> c.getDbfId() == dbfId).findFirst();
 		if (optional.isPresent()) { return optional.get(); }
 		return null;
 	}
