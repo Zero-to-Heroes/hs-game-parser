@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.zerotoheroes</groupId>
 	<artifactId>hs-game-parser</artifactId>
-	<version>1.0.17-SNAPSHOT</version>
+	<version>1.0.17</version>
 	<packaging>jar</packaging>
 
 	<name>${project.groupId}:${project.artifactId}</name>
