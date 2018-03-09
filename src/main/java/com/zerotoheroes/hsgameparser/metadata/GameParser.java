@@ -2,27 +2,28 @@ package com.zerotoheroes.hsgameparser.metadata;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import org.apache.commons.lang.StringUtils;
 
 import com.zerotoheroes.hsgameentities.enums.GameTag;
 import com.zerotoheroes.hsgameentities.enums.PlayState;
 import com.zerotoheroes.hsgameentities.replaydata.GameData;
 import com.zerotoheroes.hsgameentities.replaydata.GameHelper;
 import com.zerotoheroes.hsgameentities.replaydata.HearthstoneReplay;
+import com.zerotoheroes.hsgameentities.replaydata.entities.BaseEntity;
 import com.zerotoheroes.hsgameentities.replaydata.entities.FullEntity;
 import com.zerotoheroes.hsgameentities.replaydata.entities.PlayerEntity;
 import com.zerotoheroes.hsgameentities.replaydata.gameactions.TagChange;
 import com.zerotoheroes.hsgameparser.db.Card;
 import com.zerotoheroes.hsgameparser.db.CardsList;
-
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 
 @Slf4j
 public class GameParser {
@@ -45,29 +46,43 @@ public class GameParser {
 		GameHelper helper = new GameHelper();
 		helper.setGame(replay.getGames().get(0));
 
+		List<HasTag> orderedTags = new ArrayList<>();
+		for (GameData gameData : helper.getFlatData()) {
+			if (gameData instanceof TagChange) {
+				orderedTags.add(HasTag.of((TagChange) gameData));
+			}
+			else if (gameData instanceof BaseEntity) {
+				orderedTags.addAll(HasTag.from((BaseEntity) gameData));
+			}
+		}
+
 		// Find out the first turn number - if it's not 1, no point in parsing
 		// the metadata
-		TagChange firstTurn = helper.getFlatData().stream().filter(d -> (d instanceof TagChange))
-				.map(p -> (TagChange) p).filter(t -> t.getEntity() == 1 && t.getName() == GameTag.TURN.getIntValue())
-				.findFirst().orElse(null);
-		if (firstTurn == null || firstTurn
-				.getValue() != 1) { throw new InvalidGameReplayException("first registered turn is " + firstTurn); }
+		List<HasTag> turnTags = orderedTags.stream()
+				.filter(t -> t.getEntity() == 1 && t.getName() == GameTag.TURN.getIntValue())
+				.collect(Collectors.toList());
+
+		HasTag firstTurn = turnTags.isEmpty() ? null : turnTags.get(0);
+		if (firstTurn == null || firstTurn.getValue() != 1) {
+			throw new InvalidGameReplayException("first registered turn is " + firstTurn);
+		}
 
 		// Find out the last turn number
-		List<TagChange> turnChanges = helper.getFlatData().stream().filter(d -> (d instanceof TagChange))
-				.map(p -> (TagChange) p).filter(t -> t.getEntity() == 1 && t.getName() == GameTag.TURN.getIntValue())
-				.collect(Collectors.toList());
-		TagChange lastTurn = turnChanges.get(turnChanges.size() - 1);
+		HasTag lastTurn = turnTags.get(turnTags.size() - 1);
 		int numberOfTurns = (int) Math.ceil(lastTurn.getValue() / 2.0);
 		meta.setNumberOfTurns(numberOfTurns);
+		if (numberOfTurns == 0) {
+			throw new InvalidGameReplayException("Should never have 0 turns");
+		}
 
 		// Game duration
 		List<GameData> timestampedData = helper.getFlatData().stream()
-				.filter(d -> !StringUtils.isEmpty(d.getTimestamp())).collect(Collectors.toList());
-		Collections.sort(timestampedData, (o1, o2) -> o1.getTimestamp().compareTo(o2.getTimestamp()));
+				.filter(d -> !StringUtils.isEmpty(d.getTimestamp()))
+				.collect(Collectors.toList());
+		timestampedData.sort(Comparator.comparing(GameData::getTimestamp));
 
 		// Get the first and last moments
-		if (timestampedData != null && timestampedData.size() > 0) {
+		if (timestampedData.size() > 0) {
 			Date first = parseDate(timestampedData.get(0).getTimestamp());
 			Date last = parseDate(timestampedData.get(timestampedData.size() - 1).getTimestamp());
 			meta.setDurationInSeconds((int) ((last.getTime() - first.getTime()) / 1000));
@@ -117,9 +132,10 @@ public class GameParser {
 
 		// Find if we're on the coin or on the play
 		// The first player to draw 4 cards is on the coin
-		TagChange drawFourCardsTag = tagChanges.stream()
-				.filter(t -> t.getName() == GameTag.NUM_CARDS_DRAWN_THIS_TURN.getIntValue() && t.getValue() == 4)
-				.findFirst().get();
+		HasTag drawFourCardsTag = orderedTags.stream()
+				.filter(t -> t.getValue() == 4 && t.getName() == GameTag.NUM_CARDS_DRAWN_THIS_TURN.getIntValue())
+				.findFirst()
+				.get();
 		int coinPlayerId = drawFourCardsTag.getEntity();
 		// System.out.println("coin player id " + coinPlayerId + " our " +
 		// ourEntityId);
@@ -160,5 +176,24 @@ public class GameParser {
 				.filter(c -> playerEntity.getCardId().equalsIgnoreCase(c.getId())).findFirst().get();
 
 		return playerCard.getPlayerClass().toLowerCase();
+	}
+
+	@Getter
+	@RequiredArgsConstructor
+	private static class HasTag {
+
+		private final int entity;
+		private final int name;
+		private final int value;
+
+		static HasTag of(TagChange tagChange) {
+			return new HasTag(tagChange.getEntity(), tagChange.getName(), tagChange.getValue());
+		}
+
+		static List<HasTag> from(BaseEntity entity) {
+			return entity.getTags().stream()
+					.map(t -> new HasTag(entity.getId(), t.getName(), t.getValue()))
+					.collect(Collectors.toList());
+		}
 	}
 }
