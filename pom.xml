@@ -30,7 +30,7 @@
 		<connection>scm:git:git://github.com/Zero-to-Heroes/hs-game-parser.git</connection>
 		<developerConnection>scm:git:https://github.com/Zero-to-Heroes/hs-game-parser.git</developerConnection>
 		<url>https://github.com/Zero-to-Heroes/hs-game-parser/tree/master</url>
-		<tag>hs-game-parser-1.0.0</tag>
+		<tag>hs-game-parser-1.0.17</tag>
 	</scm>
 
 	<distributionManagement>
@@ -121,6 +121,7 @@
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
