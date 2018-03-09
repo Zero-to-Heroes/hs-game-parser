@@ -22,6 +22,7 @@ import com.zerotoheroes.hsgameparser.db.Card;
 import com.zerotoheroes.hsgameparser.db.CardsList;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 
@@ -135,11 +136,13 @@ public class GameParser {
 		HasTag drawFourCardsTag = orderedTags.stream()
 				.filter(t -> t.getValue() == 4 && t.getName() == GameTag.NUM_CARDS_DRAWN_THIS_TURN.getIntValue())
 				.findFirst()
-				.get();
-		int coinPlayerId = drawFourCardsTag.getEntity();
+				// The only case where the second player doesn't draw the coin is Adventures, where the AI
+				// doesn't have a Coin - so we're playing first in any case
+				// TODO: this probably needs to be improved
+				.orElse(new HasTag(-1, -1, -1));
 		// System.out.println("coin player id " + coinPlayerId + " our " +
 		// ourEntityId);
-		meta.setPlayCoin(coinPlayerId == ourEntityId ? "coin" : "play");
+		meta.setPlayCoin(drawFourCardsTag.getEntity() == ourEntityId ? "coin" : "play");
 
 		log.debug("retrieved meta " + meta);
 
@@ -180,6 +183,7 @@ public class GameParser {
 
 	@Getter
 	@RequiredArgsConstructor
+	@ToString
 	private static class HasTag {
 
 		private final int entity;

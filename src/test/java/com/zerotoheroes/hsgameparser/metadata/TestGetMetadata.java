@@ -33,7 +33,8 @@ public class TestGetMetadata implements WithAssertions {
 
 	@Test
 	public void testParsingIssues() throws Exception {
-		checkMeta("bug_parsing.xml", "RalleHead", "Козюта");
+		checkMeta("bugparsing/bug_parsing.xml", "RalleHead", "Козюта");
+		checkMeta("bugparsing/bug_parsing2.xml", "Побег из храма", "outcold58");
 	}
 
 	private void checkMeta(String fileName, int nbTurns, int duration, String winStatus, String playCoinStatus)
