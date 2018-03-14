@@ -49,12 +49,12 @@
 		<dependency>
 			<groupId>com.zerotoheroes</groupId>
 			<artifactId>hs-game-entities</artifactId>
-			<version>1.0.8</version>
+			<version>1.0.19</version>
 		</dependency>
 		<dependency>
 			<groupId>com.zerotoheroes</groupId>
 			<artifactId>hs-game-converter</artifactId>
-			<version>1.0.7</version>
+			<version>1.0.12</version>
 		</dependency>
 
 		<!-- Logging -->

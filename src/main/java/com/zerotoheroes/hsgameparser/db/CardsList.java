@@ -5,16 +5,11 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-import lombok.Getter;
-
-import org.json.simple.parser.JSONParser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import org.json.simple.parser.JSONParser;
 
-@Getter
 public class CardsList {
 
 	private List<Card> cards = new ArrayList<>();
@@ -34,15 +29,15 @@ public class CardsList {
 		return instance;
 	}
 
+	public List<Card> getCards() {
+		return cards;
+	}
+
 	public Card find(String cardId) {
-		Optional<Card> optional = cards.stream().filter(c -> c.getId().equals(cardId)).findFirst();
-		if (optional.isPresent()) { return optional.get(); }
-		return null;
+		return cards.stream().filter(c -> c.getId().equals(cardId)).findFirst().orElse(null);
 	}
 
 	public Card fromDbfId(int dbfId) {
-		Optional<Card> optional = cards.stream().filter(c -> c.getDbfId() == dbfId).findFirst();
-		if (optional.isPresent()) { return optional.get(); }
-		return null;
+		return cards.stream().filter(c -> c.getDbfId() == dbfId).findFirst().orElse(null);
 	}
 }
