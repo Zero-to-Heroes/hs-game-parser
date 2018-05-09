@@ -1,12 +1,12 @@
 package com.zerotoheroes.hsgameparser.metadata;
 
-import static org.junit.Assert.*;
-
+import com.zerotoheroes.hsgameentities.replaydata.HearthstoneReplay;
+import com.zerotoheroes.hsgameparser.GameLoader;
+import com.zerotoheroes.hsgameparser.db.CardsList;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.zerotoheroes.hsgameentities.replaydata.HearthstoneReplay;
-import com.zerotoheroes.hsgameparser.GameLoader;
+import static org.junit.Assert.assertEquals;
 
 public class TestParseClasses {
 
@@ -16,7 +16,7 @@ public class TestParseClasses {
 	@Before
 	public void setup() throws Exception {
 		gameLoader = new GameLoader();
-		gameParser = new GameParser();
+		gameParser = new GameParser(CardsList.create());
 	}
 
 	@Test

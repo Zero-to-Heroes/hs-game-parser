@@ -2,6 +2,7 @@ package com.zerotoheroes.hsgameparser.metadata;
 
 import com.zerotoheroes.hsgameentities.replaydata.HearthstoneReplay;
 import com.zerotoheroes.hsgameparser.GameLoader;
+import com.zerotoheroes.hsgameparser.db.CardsList;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,7 @@ public class TestGetMetadata implements WithAssertions {
 	@Before
 	public void setup() throws Exception {
 		gameLoader = new GameLoader();
-		gameParser = new GameParser();
+		gameParser = new GameParser(CardsList.create());
 	}
 
 	@Test

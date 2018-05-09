@@ -1,14 +1,5 @@
 package com.zerotoheroes.hsgameparser.metadata;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import com.zerotoheroes.hsgameentities.enums.GameTag;
 import com.zerotoheroes.hsgameentities.enums.PlayState;
 import com.zerotoheroes.hsgameentities.replaydata.GameData;
@@ -26,26 +17,23 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Slf4j
 public class GameParser {
 
 	@Getter
-	private static CardsList cardsList;
+	private CardsList cardsList;
 
-	static {
-		try {
-			cardsList = CardsList.create();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		log.debug("Created cards list with " + cardsList.getCards().size() + " cards. ");
-		try {
-			log.debug("Text card is " + cardsList.fromDbfId(31));
-		}
-		catch (Exception e) {
-			log.error("Could not call fromDbfId");
-			e.printStackTrace();
-		}
+	public GameParser(CardsList cardsList) {
+		this.cardsList = cardsList;
 	}
 
 	public GameMetaData getMetaData(HearthstoneReplay replay) throws InvalidGameReplayException {
