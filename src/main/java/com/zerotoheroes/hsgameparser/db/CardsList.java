@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.json.simple.parser.JSONParser;
 
-public class CardsList {
+public class CardsList implements ICardsList {
 
 	private List<Card> cards = new ArrayList<>();
 
@@ -29,14 +29,17 @@ public class CardsList {
 		return instance;
 	}
 
+	@Override
 	public List<Card> getCards() {
 		return cards;
 	}
 
+	@Override
 	public Card find(String cardId) {
 		return cards.stream().filter(c -> c.getId().equals(cardId)).findFirst().orElse(null);
 	}
 
+	@Override
 	public Card fromDbfId(int dbfId) {
 		return cards.stream().filter(c -> c.getDbfId() == dbfId).findFirst().orElse(null);
 	}
