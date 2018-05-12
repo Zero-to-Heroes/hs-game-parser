@@ -4,9 +4,9 @@ import java.util.List;
 
 interface ICardsList {
 
-    List<Card> getCards();
+    List<DbCard> getDbCards();
 
-    Card find(String cardId);
+    DbCard findDbCard(String cardId);
 
-    Card fromDbfId(int dbfId);
+    DbCard dbCardFromDbfId(int dbfId);
 }

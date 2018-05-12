@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Data
 // http://stackoverflow.com/questions/4486787/jackson-with-json-unrecognized-field-not-marked-as-ignorable
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Card {
+public class DbCard {
 
 	private String id;
 	private int dbfId;

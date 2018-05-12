@@ -30,6 +30,7 @@ public class TestGetMetadata implements WithAssertions {
 
 		// Also test with hsreplay.net files
 		checkMeta("worgen otk 32 dmg.xml", 11, 890, "won", "play");
+		gameParser.getCardsList().dbCardFromDbfId(31);
 	}
 
 	@Test

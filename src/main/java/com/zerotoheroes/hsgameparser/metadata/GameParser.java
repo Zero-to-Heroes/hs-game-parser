@@ -9,7 +9,7 @@ import com.zerotoheroes.hsgameentities.replaydata.entities.BaseEntity;
 import com.zerotoheroes.hsgameentities.replaydata.entities.FullEntity;
 import com.zerotoheroes.hsgameentities.replaydata.entities.PlayerEntity;
 import com.zerotoheroes.hsgameentities.replaydata.gameactions.TagChange;
-import com.zerotoheroes.hsgameparser.db.Card;
+import com.zerotoheroes.hsgameparser.db.DbCard;
 import com.zerotoheroes.hsgameparser.db.CardsList;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -92,7 +92,7 @@ public class GameParser {
 		// Action block
 		PlayerEntity player = helper.getMainPlayer();
 		int ourEntityId = player.getId();
-		// Now find the tag change that tells us if we won
+		// Now findDbCard the tag change that tells us if we won
 		List<TagChange> tagChanges = helper.filterGameData(TagChange.class);
 		Optional<TagChange> winner = tagChanges.stream().filter(
 				t -> t.getName() == GameTag.PLAYSTATE.getIntValue() && t.getValue() == PlayState.WON.getIntValue())
@@ -172,10 +172,10 @@ public class GameParser {
 		FullEntity playerEntity = data.stream().filter(d -> (d instanceof FullEntity)).map(e -> (FullEntity) e)
 				.filter(e -> e.getId() == playerEntityId).findFirst().get();
 
-		Card playerCard = cardsList.getCards().stream()
+		DbCard playerDbCard = cardsList.getDbCards().stream()
 				.filter(c -> playerEntity.getCardId().equalsIgnoreCase(c.getId())).findFirst().get();
 
-		return playerCard.getPlayerClass().toLowerCase();
+		return playerDbCard.getPlayerClass().toLowerCase();
 	}
 
 	@Getter

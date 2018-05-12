@@ -1,18 +1,18 @@
 package com.zerotoheroes.hsgameparser.db;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import org.json.simple.parser.JSONParser;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
-import org.json.simple.parser.JSONParser;
-
 public class CardsList implements ICardsList {
 
-	private List<Card> cards = new ArrayList<>();
+	private List<DbCard> dbCards = new ArrayList<>();
 
 	public static CardsList create() throws Exception {
 		CardsList instance = new CardsList();
@@ -23,24 +23,24 @@ public class CardsList implements ICardsList {
 
 		ObjectMapper mapper = new ObjectMapper();
 
-		instance.cards = mapper.readValue(cardsString,
-				TypeFactory.defaultInstance().constructCollectionType(List.class, Card.class));
+		instance.dbCards = mapper.readValue(cardsString,
+				TypeFactory.defaultInstance().constructCollectionType(List.class, DbCard.class));
 
 		return instance;
 	}
 
 	@Override
-	public List<Card> getCards() {
-		return cards;
+	public List<DbCard> getDbCards() {
+		return dbCards;
 	}
 
 	@Override
-	public Card find(String cardId) {
-		return cards.stream().filter(c -> c.getId().equals(cardId)).findFirst().orElse(null);
+	public DbCard findDbCard(String cardId) {
+		return dbCards.stream().filter(c -> c.getId().equals(cardId)).findFirst().orElse(null);
 	}
 
 	@Override
-	public Card fromDbfId(int dbfId) {
-		return cards.stream().filter(c -> c.getDbfId() == dbfId).findFirst().orElse(null);
+	public DbCard dbCardFromDbfId(int dbfId) {
+		return dbCards.stream().filter(c -> c.getDbfId() == dbfId).findFirst().orElse(null);
 	}
 }
