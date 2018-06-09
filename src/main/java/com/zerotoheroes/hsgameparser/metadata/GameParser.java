@@ -125,8 +125,10 @@ public class GameParser {
 
 		meta.setPlayerName(player1.getName());
 		meta.setPlayerClass(getPlayerClass(replay, player1));
+		meta.setPlayerCardId(getPlayerCardId(replay, player1));
 		meta.setOpponentName(player2.getName());
 		meta.setOpponentClass(getPlayerClass(replay, player2));
+		meta.setOpponentCardId(getPlayerCardId(replay, player2));
 
 		// Find if we're on the coin or on the play
 		// The first player to draw 4 cards is on the coin
@@ -176,6 +178,17 @@ public class GameParser {
 				.filter(c -> playerEntity.getCardId().equalsIgnoreCase(c.getId())).findFirst().get();
 
 		return playerDbCard.getPlayerClass().toLowerCase();
+	}
+
+	private String getPlayerCardId(HearthstoneReplay replay, PlayerEntity player) {
+		List<GameData> data = replay.getGames().get(0).getData();
+
+		int playerEntityId = player.getTags().stream().filter(t -> t.getName() == GameTag.HERO_ENTITY.getIntValue())
+				.findFirst().get().getValue();
+		FullEntity playerEntity = data.stream().filter(d -> (d instanceof FullEntity)).map(e -> (FullEntity) e)
+				.filter(e -> e.getId() == playerEntityId).findFirst().get();
+
+		return playerEntity.getCardId();
 	}
 
 	@Getter

@@ -13,6 +13,7 @@ public class DbCard {
 	private int dbfId;
 	private int cost;
 	private String name;
+	private int health;
 	private String playerClass;
 	private String type;
 	private String rarity;

@@ -23,14 +23,13 @@ public class TestGetMetadata implements WithAssertions {
 	@Test
 	public void testMetadata() throws Exception {
 		// More checks on win/loss
-		checkMeta("old.xml", 12, 476, "lost", "coin");
-		checkMeta("win_status_error.xml", 6, 271, "won", "coin");
-		checkMeta("from log file.xml", 9, 687, "won", "play");
-		checkMeta("brawl won.xml", 5, 193, "won", "coin");
+		checkMeta("old.xml", 12, 476, "lost", "coin", "HERO_01", "HERO_07");
+		checkMeta("win_status_error.xml", 6, 271, "won", "coin", "HERO_09", "HERO_06");
+		checkMeta("from log file.xml", 9, 687, "won", "play", "HERO_08a", "HERO_08a");
+		checkMeta("brawl won.xml", 5, 193, "won", "coin", "HERO_05", "HERO_03");
 
 		// Also test with hsreplay.net files
-		checkMeta("worgen otk 32 dmg.xml", 11, 890, "won", "play");
-		gameParser.getCardsList().dbCardFromDbfId(31);
+		checkMeta("worgen otk 32 dmg.xml", 11, 890, "won", "play", "HERO_01", "HERO_04");
 	}
 
 	@Test
@@ -41,7 +40,8 @@ public class TestGetMetadata implements WithAssertions {
 		checkMeta("bugparsing/bug_parsing2.xml", "Побег из храма", "outcold58");
 	}
 
-	private void checkMeta(String fileName, int nbTurns, int duration, String winStatus, String playCoinStatus)
+	private void checkMeta(String fileName, int nbTurns, int duration, String winStatus, String playCoinStatus,
+	                       String playerCardId, String opponentCardId)
 			throws Exception {
 
 		HearthstoneReplay replay = gameLoader.load(fileName);
@@ -50,6 +50,8 @@ public class TestGetMetadata implements WithAssertions {
 		assertEquals("Incorrect duration", duration, metaData.getDurationInSeconds());
 		assertEquals("Incorrect win status", winStatus, metaData.getResult());
 		assertEquals("Incorrect play/coin status", playCoinStatus, metaData.getPlayCoin());
+		assertEquals("Incorrect player card Id", playerCardId, metaData.getPlayerCardId());
+		assertEquals("Incorrect opponent card Id", opponentCardId, metaData.getOpponentCardId());
 	}
 
 	private void checkMeta(String fileName, String playerName, String opponentName) throws Exception {
