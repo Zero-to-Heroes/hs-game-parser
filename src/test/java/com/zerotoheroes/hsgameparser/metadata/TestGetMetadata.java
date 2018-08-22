@@ -34,6 +34,7 @@ public class TestGetMetadata implements WithAssertions {
 
 	@Test
 	public void testParsingIssues() throws Exception {
+		checkMeta("bugparsing/puzzle.xml", "Вомбат#2497", "Dexter the Dendrologist");
 		checkMeta("bugparsing/bug_parsing_23576_2.xml", "DeMarco#1198", "IGUANAPARK#1795");
 		checkMeta("bugparsing/bug_parsing_23576.xml", "Rox3r#2849", "аллахакбар#2297");
 		checkMeta("bugparsing/bug_parsing.xml", "RalleHead", "Козюта");

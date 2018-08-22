@@ -174,10 +174,12 @@ public class GameParser {
 		FullEntity playerEntity = data.stream().filter(d -> (d instanceof FullEntity)).map(e -> (FullEntity) e)
 				.filter(e -> e.getId() == playerEntityId).findFirst().get();
 
-		DbCard playerDbCard = cardsList.getDbCards().stream()
-				.filter(c -> playerEntity.getCardId().equalsIgnoreCase(c.getId())).findFirst().get();
-
-		return playerDbCard.getPlayerClass().toLowerCase();
+		return cardsList.getDbCards().stream()
+				.filter(c -> playerEntity.getCardId().equalsIgnoreCase(c.getId()))
+				.findFirst()
+				.map(DbCard::getPlayerClass)
+				.map(String::toLowerCase)
+				.orElse("unknown");
 	}
 
 	private String getPlayerCardId(HearthstoneReplay replay, PlayerEntity player) {
