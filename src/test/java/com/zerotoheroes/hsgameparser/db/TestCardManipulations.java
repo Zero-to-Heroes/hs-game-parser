@@ -2,6 +2,7 @@ package com.zerotoheroes.hsgameparser.db;
 
 import org.junit.Test;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,5 +46,21 @@ public class TestCardManipulations {
                 .collect(Collectors.toList());
 //        System.out.println(String.join("\n", bossCards.stream().map(DbCard::toString).collect(Collectors.toList())));
         System.out.println(String.join("\n", strings));
+    }
+
+    @Test
+    public void generate_all_spells() throws Exception {
+        CardsList cardsList = CardsList.create();
+        List<DbCard> spellCards = cardsList.getDbCards().stream()
+                .filter(DbCard::isCollectible)
+                .filter(card -> "Spell".equalsIgnoreCase(card.getType()))
+                .collect(Collectors.toList());
+        String csvSpellList = spellCards.stream()
+                .sorted(Comparator.comparing(DbCard::getSet).thenComparing(DbCard::getId))
+                .map(card -> String.join(",", card.getSet(), card.getId(), card.getType(), card.getName(), ""))
+                .collect(Collectors.joining("\n"));
+        csvSpellList = "set,cardId,type,name,soundRecorded?\n" + csvSpellList;
+        System.out.println(csvSpellList);
+        System.out.println(spellCards.size() + " spell");
     }
 }

@@ -27,6 +27,7 @@ public class TestGetMetadata implements WithAssertions {
 		checkMeta("win_status_error.xml", 6, 271, "won", "coin", "HERO_09", "HERO_06");
 		checkMeta("from log file.xml", 9, 687, "won", "play", "HERO_08a", "HERO_08a");
 		checkMeta("brawl won.xml", 5, 193, "won", "coin", "HERO_05", "HERO_03");
+		checkMeta("bugparsing/bug_parsing2.xml", 9, 502, "lost", "play", "HERO_03a", "LOEA04_01h");
 
 		// Also test with hsreplay.net files
 		checkMeta("worgen otk 32 dmg.xml", 11, 890, "won", "play", "HERO_01", "HERO_04");

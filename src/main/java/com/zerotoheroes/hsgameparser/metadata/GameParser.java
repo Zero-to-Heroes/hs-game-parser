@@ -132,16 +132,19 @@ public class GameParser {
 
 		// Find if we're on the coin or on the play
 		// The first player to draw 4 cards is on the coin
-		HasTag drawFourCardsTag = orderedTags.stream()
-				.filter(t -> t.getValue() == 4 && t.getName() == GameTag.NUM_CARDS_DRAWN_THIS_TURN.getIntValue())
+		HasTag firstPlayerTag = orderedTags.stream()
+				.filter(t -> t.getValue() == 1 && t.getName() == GameTag.FIRST_PLAYER.getIntValue())
 				.findFirst()
-				// The only case where the second player doesn't draw the coin is Adventures, where the AI
-				// doesn't have a Coin - so we're playing first in any case
-				// TODO: this probably needs to be improved
 				.orElse(new HasTag(-1, -1, -1));
-		// System.out.println("coin player id " + coinPlayerId + " our " +
-		// ourEntityId);
-		meta.setPlayCoin(drawFourCardsTag.getEntity() == ourEntityId ? "coin" : "play");
+//		HasTag drawFourCardsTag = orderedTags.stream()
+//				.filter(t -> t.getValue() == 4 && t.getName() == GameTag.NUM_CARDS_DRAWN_THIS_TURN.getIntValue())
+//				.findFirst()
+//				// The only case where the second player doesn't draw the coin is Adventures, where the AI
+//				// doesn't have a Coin - so we're playing first in any case
+//				// TODO: this probably needs to be improved
+//				.orElse(new HasTag(-1, -1, -1));
+//		meta.setPlayCoin(drawFourCardsTag.getEntity() == ourEntityId ? "coin" : "play");
+		meta.setPlayCoin(firstPlayerTag.getEntity() == ourEntityId ? "play" : "coin");
 
 		log.debug("retrieved meta " + meta);
 
