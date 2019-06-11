@@ -36,7 +36,8 @@ public class CardsList implements ICardsList {
 
 	@Override
 	public DbCard findDbCard(String cardId) {
-		return dbCards.stream().filter(c -> c.getId().equals(cardId)).findFirst().orElse(null);
+		DbCard dbCard = dbCards.stream().filter(c -> c.getId().equals(cardId)).findFirst().orElse(null);
+		return dbCard;
 	}
 
 	@Override
