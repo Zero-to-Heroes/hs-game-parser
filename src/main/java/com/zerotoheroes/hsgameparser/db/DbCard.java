@@ -23,4 +23,8 @@ public class DbCard {
 	private String text;
 	private boolean collectible;
 	private List<String> mechanics;
+
+	public String getSafeName() {
+		return name.replace("\"", "");
+	}
 }
