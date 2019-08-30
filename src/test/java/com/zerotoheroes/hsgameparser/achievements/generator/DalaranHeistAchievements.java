@@ -61,12 +61,15 @@ public class DalaranHeistAchievements implements WithAssertions {
                 .filter(card -> "Hero".equals(card.getType()))
                 // Remove bartenders
                 .filter(card -> !Lists.newArrayList("DALA_BOSS_98h", "DALA_BOSS_99h").contains(card.getId()))
+                .filter(card -> !Lists.newArrayList(
+                        "DALA_BOSS_06dk" // Scourgelord Drazzik, which comes from Drazzik playing his DK card in Heroic
+                        ).contains(card.getId()))
                 .collect(Collectors.toList());
         List<RawAchievement> result = bossCards.stream()
                 .flatMap(card -> buildDalaranBossEntries(card).stream())
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(304);
+        assertThat(result.size()).isEqualTo(300);
         return result;
     }
 

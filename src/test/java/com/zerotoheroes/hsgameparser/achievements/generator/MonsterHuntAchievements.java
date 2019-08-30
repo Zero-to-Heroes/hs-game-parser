@@ -207,7 +207,7 @@ public class MonsterHuntAchievements implements WithAssertions {
                         .resetEvents(newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
                         .build())
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(62);
+        assertThat(result.size()).isEqualTo(63);
         return result;
     }
 
