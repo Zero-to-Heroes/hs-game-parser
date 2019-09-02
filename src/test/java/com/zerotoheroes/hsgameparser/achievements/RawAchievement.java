@@ -13,9 +13,12 @@ public class RawAchievement {
     private String id;
     private String type; // A kind of "family" for the achievements, used to group them together
     private String name;
+    private boolean root;
+    private int priority;
     private String displayName;
     private String emptyText;
     private String text;
+    private String completedText;
     private String displayCardId; // The image to display in the achievements screen
     private String displayCardType; // Since the art for spells is cropped differently than the art for minions
     private String difficulty;
