@@ -9,7 +9,6 @@ import com.zerotoheroes.hsgameparser.db.CardsList;
 import com.zerotoheroes.hsgameparser.db.DbCard;
 import lombok.SneakyThrows;
 import org.assertj.core.api.WithAssertions;
-import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -75,19 +74,29 @@ public class RumbleRunAchievements implements WithAssertions {
                 })
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(8 * 9 * 3);
+        List<String> types = result.stream()
+                .map(RawAchievement::getType)
+                .map(type -> "'" + type + "'")
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println(String.join(",", types));
         return result;
     }
 
     private RawAchievement buildProgressionStep(DbCard hero, DbCard shrine, int i) {
         return RawAchievement.builder()
                 .id("rumble_run_progression_" + hero.getId() + "_" + shrine.getId() + "_" + i)
-                .type("rumble_run_progression")
-                .name(shrine.getName() + " (" + hero.getPlayerClass() + ") - Cleared round " + (i + 1))
+                .type("rumble_run_progression_" + hero.getId() + "_" + shrine.getId())
+                .icon("boss_victory")
+                .root(i == 0)
+                .priority(i)
+                .name("Rumble Run progression " + shrine.getName() + " (" + hero.getPlayerClass() + ")")
                 .displayName(shrine.getName() + " (" + hero.getPlayerClass() + ") - Cleared round " + (i + 1))
-                .emptyText("Clear the first round with " + hero.getName() + " (" + hero.getPlayerClass() + ") to get started")
-                .text("Cleared round " + (i + 1))
                 .displayCardId(shrine.getId())
                 .displayCardType(shrine.getType().toLowerCase())
+                .text(null)
+                .emptyText("Clear the first round with " + hero.getName() + " (" + hero.getPlayerClass() + ") to get started")
+                .completedText("You cleared Rumble Run's round " + (i + 1))
                 .difficulty(i == 7 ? "epic" : "free")
                 .points(1 + 2 * i)
                 .requirements(newArrayList(
@@ -97,7 +106,7 @@ public class RumbleRunAchievements implements WithAssertions {
                         Requirement.builder().type(CARD_PLAYED_OR_ON_BOARD_AT_GAME_START).values(newArrayList(shrine.getId())).build(),
                         Requirement.builder().type(SCENARIO_IDS).values(newArrayList("" + RUMBLE_RUN)).build()
                 ))
-                .resetEvents(Lists.newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
     }
 
@@ -107,13 +116,17 @@ public class RumbleRunAchievements implements WithAssertions {
         List<RawAchievement> result = shrineCards.stream()
                 .map(card -> RawAchievement.builder()
                         .id("rumble_run_shrine_play_" + card.getId())
-                        .type("rumble_run_shrine_play")
+                        .type("rumble_run_shrine_play_" + card.getId())
+                        .icon("boss_victory")
+                        .root(true)
+                        .priority(0)
                         .name(card.getName())
                         .displayName("Shrine played: " + card.getName())
-                        .emptyText(null)
-                        .text(card.getText().replace("<b>Shrine</b>", ""))
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
+                        .text(this.sanitize(card.getText()).replace("Shrine", ""))
+                        .emptyText(null)
+                        .completedText("You played " + card.getName())
                         .difficulty("common")
                         .points(1)
                         .requirements(newArrayList(
@@ -125,6 +138,12 @@ public class RumbleRunAchievements implements WithAssertions {
                         .build())
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(9 * 3);
+        List<String> types = result.stream()
+                .map(RawAchievement::getType)
+                .map(type -> "'" + type + "'")
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println(String.join(",", types));
         return result;
     }
 
@@ -140,13 +159,17 @@ public class RumbleRunAchievements implements WithAssertions {
         List<RawAchievement> result = teammates.stream()
                 .map(card -> RawAchievement.builder()
                         .id("rumble_run_teammate_play_" + card.getId())
-                        .type("rumble_run_teammate_play")
+                        .type("rumble_run_teammate_play_" + card.getId())
+                        .icon("boss_victory")
+                        .root(true)
+                        .priority(0)
                         .name(card.getName())
                         .displayName("Teammate joined: " + card.getName())
-                        .emptyText(null)
-                        .text(card.getText())
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
+                        .text(sanitize(card.getText()))
+                        .emptyText(null)
+                        .completedText("Teammate " + card.getName() + " joined")
                         .difficulty("rare")
                         .points(3)
                         .requirements(newArrayList(
@@ -157,6 +180,11 @@ public class RumbleRunAchievements implements WithAssertions {
                         .build())
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(54);
+        List<String> treasureTypes = result.stream()
+                .map(RawAchievement::getType)
+                .map(type -> "'" + type + "'")
+                .collect(Collectors.toList());
+        System.out.println(String.join(",", treasureTypes));
         return result;
     }
 
@@ -181,13 +209,17 @@ public class RumbleRunAchievements implements WithAssertions {
         List<RawAchievement> result = pasiveCards.stream()
                 .map(card -> RawAchievement.builder()
                         .id("rumble_run_passive_play_" + card.getId())
-                        .type("rumble_run_passive_play")
+                        .type("rumble_run_passive_play_" + card.getId())
+                        .icon("boss_victory")
+                        .root(true)
+                        .priority(0)
                         .name(card.getName())
                         .displayName("Passive ability triggered: " + card.getName())
-                        .emptyText(null)
-                        .text(card.getText().replace("<b>Passive</b>", ""))
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
+                        .text(sanitize(card.getText()).replace("<b>Passive</b>", ""))
+                        .emptyText(null)
+                        .completedText("You triggered " + card.getName())
                         .difficulty("rare")
                         .points(3)
                         .requirements(newArrayList(
@@ -198,11 +230,27 @@ public class RumbleRunAchievements implements WithAssertions {
                         .build())
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(9);
+        List<String> types = result.stream()
+                .map(RawAchievement::getType)
+                .map(type -> "'" + type + "'")
+                .collect(Collectors.toList());
+        System.out.println(String.join(",", types));
         return result;
     }
 
     @SneakyThrows
     private String serialize(RawAchievement rawAchievement) {
         return mapper.writeValueAsString(rawAchievement);
+    }
+
+    private String sanitize(String text) {
+        String displayText = text == null ? "..." : text;
+        return displayText
+                .replace("<i>", "")
+                .replace("</i>", "")
+                .replace("[x]", "")
+                .replace("<b>", "")
+                .replace("</b>", "")
+                .replace("\n", ". ");
     }
 }
