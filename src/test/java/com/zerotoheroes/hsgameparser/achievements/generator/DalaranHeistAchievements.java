@@ -70,6 +70,12 @@ public class DalaranHeistAchievements implements WithAssertions {
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(300);
+        List<String> types = result.stream()
+                .map(RawAchievement::getType)
+                .map(type -> "'" + type + "'")
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println(String.join(",", types));
         return result;
     }
 
@@ -83,7 +89,11 @@ public class DalaranHeistAchievements implements WithAssertions {
 
     private RawAchievement buildDalaranBossEncounterEntry(DbCard card) {
         return buildDalaranBossEntry(card, "dalaran_heist_boss_encounter")
+                .icon("boss_encounter")
+                .root(true)
+                .priority(0)
                 .displayName("Boss met: " + card.getSafeName())
+                .completedText("You met " + card.getName())
                 .difficulty("common")
                 .points(1)
                 .requirements(Lists.newArrayList(
@@ -97,7 +107,11 @@ public class DalaranHeistAchievements implements WithAssertions {
 
     private RawAchievement buildDalaranBossHeroicEncounterEntry(DbCard card) {
         return buildDalaranBossEntry(card, "dalaran_heist_boss_encounter_heroic")
+                .icon("boss_encounter")
+                .root(false)
+                .priority(2)
                 .displayName("Heroic boss met: " + card.getSafeName())
+                .completedText("You heroically met " + card.getName())
                 .difficulty("rare")
                 .points(2)
                 .requirements(Lists.newArrayList(
@@ -111,7 +125,11 @@ public class DalaranHeistAchievements implements WithAssertions {
 
     private RawAchievement buildDalaranBossVictoryEntry(DbCard card) {
         return buildDalaranBossEntry(card, "dalaran_heist_boss_victory")
+                .icon("boss_victory")
+                .root(false)
+                .priority(1)
                 .displayName("Boss defeated: " + card.getSafeName())
+                .completedText("You defeated " + card.getName())
                 .difficulty("common")
                 .points(2)
                 .requirements(Lists.newArrayList(
@@ -125,7 +143,11 @@ public class DalaranHeistAchievements implements WithAssertions {
 
     private RawAchievement buildDalaranBossHeroicVictoryEntry(DbCard card) {
         return buildDalaranBossEntry(card, "dalaran_heist_boss_victory_heroic")
+                .icon("boss_victory")
+                .root(false)
+                .priority(3)
                 .displayName("Heroic boss defeated: " + card.getSafeName())
+                .completedText("You heroically defeeated " + card.getName())
                 .difficulty("rare")
                 .points(3)
                 .requirements(Lists.newArrayList(
@@ -140,10 +162,10 @@ public class DalaranHeistAchievements implements WithAssertions {
     private RawAchievement.RawAchievementBuilder buildDalaranBossEntry(DbCard card, String type) {
         return RawAchievement.builder()
                 .id(type + "_" + card.getId())
-                .type(type)
+                .type("dalaran_heist_boss_" + card.getId())
                 .name(card.getSafeName())
+                .text(this.sanitize(card.getText()))
                 .emptyText(null)
-                .text(card.getText())
                 .displayCardId(card.getId())
                 .displayCardType(card.getType().toLowerCase());
     }
@@ -179,13 +201,17 @@ public class DalaranHeistAchievements implements WithAssertions {
         List<RawAchievement> result = treasureCards.stream()
                 .map(card -> RawAchievement.builder()
                         .id("dalaran_heist_treasure_play_" + card.getId())
-                        .type("dalaran_heist_treasure_play")
+                        .type("dalaran_heist_treasure_play_" + card.getId())
+                        .icon("boss_victory")
+                        .root(true)
+                        .priority(0)
                         .name(card.getName())
                         .displayName("Treasure played: " + card.getSafeName())
-                        .emptyText(null)
-                        .text(card.getText())
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
+                        .text(sanitize(card.getText()))
+                        .emptyText(null)
+                        .completedText("You played " + card.getName())
                         .difficulty("rare")
                         .points(3)
                         .requirements(Lists.newArrayList(
@@ -200,6 +226,11 @@ public class DalaranHeistAchievements implements WithAssertions {
                         .build())
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(29);
+        List<String> types = result.stream()
+                .map(RawAchievement::getType)
+                .map(type -> "'" + type + "'")
+                .collect(Collectors.toList());
+        System.out.println(String.join(",", types));
         return result;
     }
 
@@ -228,13 +259,17 @@ public class DalaranHeistAchievements implements WithAssertions {
         List<RawAchievement> result = pasiveCards.stream()
                 .map(card -> RawAchievement.builder()
                         .id("dalaran_heist_passive_play_" + card.getId())
-                        .type("dalaran_heist_passive_play")
+                        .type("dalaran_heist_passive_play_" + card.getId())
+                        .icon("boss_victory")
+                        .root(true)
+                        .priority(0)
                         .name(card.getName())
                         .displayName("Passive ability triggered: " + card.getName())
-                        .emptyText(null)
-                        .text(card.getText().replace("<b>Passive</b>", ""))
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
+                        .text(sanitize(card.getText()).replace("<b>Passive</b>", ""))
+                        .emptyText(null)
+                        .completedText("You triggered " + card.getName())
                         .difficulty("rare")
                         .points(3)
                         .requirements(Lists.newArrayList(
@@ -245,6 +280,11 @@ public class DalaranHeistAchievements implements WithAssertions {
                         .build())
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(29);
+        List<String> types = result.stream()
+                .map(RawAchievement::getType)
+                .map(type -> "'" + type + "'")
+                .collect(Collectors.toList());
+        System.out.println(String.join(",", types));
         return result;
     }
 
@@ -255,5 +295,16 @@ public class DalaranHeistAchievements implements WithAssertions {
     @SneakyThrows
     private String serialize(RawAchievement rawAchievement) {
         return mapper.writeValueAsString(rawAchievement);
+    }
+
+    private String sanitize(String text) {
+        String displayText = text == null ? "..." : text;
+        return displayText
+                .replace("<i>", "")
+                .replace("</i>", "")
+                .replace("[x]", "")
+                .replace("<b>", "")
+                .replace("</b>", "")
+                .replace("\n", ". ");
     }
 }
