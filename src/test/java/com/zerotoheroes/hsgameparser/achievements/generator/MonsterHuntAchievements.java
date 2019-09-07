@@ -9,7 +9,6 @@ import com.zerotoheroes.hsgameparser.db.CardsList;
 import com.zerotoheroes.hsgameparser.db.DbCard;
 import lombok.SneakyThrows;
 import org.assertj.core.api.WithAssertions;
-import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -71,19 +70,29 @@ public class MonsterHuntAchievements implements WithAssertions {
                 .collect(Collectors.toList());
         result.add(generateMonsterHuntBossDefeat(cardsList));
         assertThat(result.size()).isEqualTo(8 * 4 + 1);
+        List<String> types = result.stream()
+                .map(RawAchievement::getType)
+                .map(type -> "'" + type + "'")
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println(String.join(",", types));
         return result;
     }
 
     private RawAchievement buildProgressionStep(DbCard card, int i) {
         return RawAchievement.builder()
                 .id("monster_hunt_progression_" + card.getId() + "_" + i)
-                .type("monster_hunt_progression")
-                .name(card.getName() + " (" + card.getPlayerClass() + ") - Cleared round " + (i + 1))
+                .type("monster_hunt_progression_" + card.getId())
+                .icon("boss_victory")
+                .root(i == 0)
+                .priority(i)
+                .name("Monster Hunt progression - " + card.getName() + " (" + card.getPlayerClass() + ")")
                 .displayName(card.getName() + " (" + card.getPlayerClass() + ") - Cleared round " + (i + 1))
-                .emptyText("Clear the first round with " + card.getPlayerClass() + " to get started")
-                .text("Cleared round " + (i + 1))
                 .displayCardId(card.getId())
                 .displayCardType(card.getType().toLowerCase())
+                .text(null)
+                .emptyText("Clear the first round with " + card.getPlayerClass() + " to get started")
+                .completedText("You cleared Monster Hunt's round " + (i + 1))
                 .difficulty(i == 7 ? "epic" : "free")
                 .points(1 + 2 * i)
                 .requirements(newArrayList(
@@ -92,7 +101,7 @@ public class MonsterHuntAchievements implements WithAssertions {
                         Requirement.builder().type(PLAYER_HERO).values(newArrayList(card.getId())).build(),
                         Requirement.builder().type(SCENARIO_IDS).values(newArrayList("" + MONSTER_HUNT, "" + MONSTER_HUNT_FINAL)).build()
                 ))
-                .resetEvents(Lists.newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
     }
 
@@ -103,11 +112,17 @@ public class MonsterHuntAchievements implements WithAssertions {
                 .orElseThrow(IllegalStateException::new);
         return RawAchievement.builder()
                 .id("monster_hunt_final_boss")
-                .type("monster_hunt_progression")
-                .name("Defeated Hagatha the Witch!")
+                .type("monster_hunt_final_boss")
+                .icon("boss_victory")
+                .root(true)
+                .priority(0)
+                .name("Final Boss - Hagatha the Witch")
                 .displayName("Defeated Hagatha the Witch!")
                 .displayCardId(card.getId())
                 .displayCardType(card.getType().toLowerCase())
+                .text(null)
+                .emptyText("Get ready to fight Hagatha the Witch!")
+                .completedText("You defeated Hagatha the Witch!")
                 .difficulty("legendary")
                 .points(15)
                 .requirements(newArrayList(
@@ -129,13 +144,17 @@ public class MonsterHuntAchievements implements WithAssertions {
         List<RawAchievement> encounters = bossCards.stream()
                 .map(card -> RawAchievement.builder()
                         .id("monster_hunt_boss_encounter_" + card.getId())
-                        .type("monster_hunt_boss_encounter")
+                        .type("monster_hunt_boss_" + card.getId())
+                        .icon("boss_encounter")
+                        .root(true)
+                        .priority(0)
                         .name(card.getName())
                         .displayName("Boss met: " + card.getName())
-                        .emptyText(null)
-                        .text(card.getText())
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
+                        .text(this.sanitize(card.getText()))
+                        .emptyText(null)
+                        .completedText("You met " + card.getName())
                         .difficulty("rare")
                         .points(2)
                         .requirements(newArrayList(
@@ -149,13 +168,17 @@ public class MonsterHuntAchievements implements WithAssertions {
         List<RawAchievement> victories = bossCards.stream()
                 .map(card -> RawAchievement.builder()
                         .id("monster_hunt_boss_victory_" + card.getId())
-                        .type("monster_hunt_boss_victory")
+                        .type("monster_hunt_boss_" + card.getId())
+                        .icon("boss_victory")
+                        .root(false)
+                        .priority(1)
                         .name(card.getName())
                         .displayName("Boss defeated: " + card.getName())
-                        .emptyText(null)
-                        .text(card.getText())
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
+                        .text(this.sanitize(card.getText()))
+                        .emptyText(null)
+                        .completedText("You defeated " + card.getName())
                         .difficulty("rare")
                         .points(3)
                         .requirements(newArrayList(
@@ -169,6 +192,12 @@ public class MonsterHuntAchievements implements WithAssertions {
         List<RawAchievement> result = Stream.concat(encounters.stream(), victories.stream())
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(47 * 2);
+        List<String> types = result.stream()
+                .map(RawAchievement::getType)
+                .map(type -> "'" + type + "'")
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println(String.join(",", types));
         return result;
     }
 
@@ -191,13 +220,17 @@ public class MonsterHuntAchievements implements WithAssertions {
         List<RawAchievement> result = treasureCards.stream()
                 .map(card -> RawAchievement.builder()
                         .id("monster_hunt_treasure_play_" + card.getId())
-                        .type("monster_hunt_treasure_play")
+                        .type("monster_hunt_treasure_play_" + card.getId())
+                        .icon("boss_victory")
+                        .root(true)
+                        .priority(0)
                         .name(card.getName())
                         .displayName("Treasure played: " + card.getName())
-                        .emptyText(null)
-                        .text(card.getText())
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
+                        .text(sanitize(card.getText()))
+                        .emptyText(null)
+                        .completedText("You played " + card.getName())
                         .difficulty("rare")
                         .points(3)
                         .requirements(newArrayList(
@@ -208,6 +241,11 @@ public class MonsterHuntAchievements implements WithAssertions {
                         .build())
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(63);
+        List<String> treasureTypes = result.stream()
+                        .map(RawAchievement::getType)
+                        .map(type -> "'" + type + "'")
+                        .collect(Collectors.toList());
+        System.out.println(String.join(",", treasureTypes));
         return result;
     }
 
@@ -222,13 +260,17 @@ public class MonsterHuntAchievements implements WithAssertions {
         List<RawAchievement> result = pasiveCards.stream()
                 .map(card -> RawAchievement.builder()
                         .id("monster_hunt_passive_play_" + card.getId())
-                        .type("monster_hunt_passive_play")
+                        .type("monster_hunt_passive_play_" + card.getId())
+                        .icon("boss_victory")
+                        .root(true)
+                        .priority(0)
                         .name(card.getName())
                         .displayName("Passive ability triggered: " + card.getName())
-                        .emptyText(null)
-                        .text(card.getText().replace("<b>Passive</b>", ""))
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
+                        .text(sanitize(card.getText()).replace("<b>Passive</b>", ""))
+                        .emptyText(null)
+                        .completedText("You triggered " + card.getName())
                         .difficulty("rare")
                         .points(3)
                         .requirements(newArrayList(
@@ -239,11 +281,27 @@ public class MonsterHuntAchievements implements WithAssertions {
                         .build())
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(21);
+        List<String> types = result.stream()
+                .map(RawAchievement::getType)
+                .map(type -> "'" + type + "'")
+                .collect(Collectors.toList());
+        System.out.println(String.join(",", types));
         return result;
     }
 
     @SneakyThrows
     private String serialize(RawAchievement rawAchievement) {
         return mapper.writeValueAsString(rawAchievement);
+    }
+
+    private String sanitize(String text) {
+        String displayText = text == null ? "..." : text;
+        return displayText
+                .replace("<i>", "")
+                .replace("</i>", "")
+                .replace("[x]", "")
+                .replace("<b>", "")
+                .replace("</b>", "")
+                .replace("\n", ". ");
     }
 }
