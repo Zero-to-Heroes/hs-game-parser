@@ -15,17 +15,22 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.zerotoheroes.hsgameparser.achievements.FormatType.STANDARD;
-import static com.zerotoheroes.hsgameparser.achievements.GameType.ARENA;
 import static com.zerotoheroes.hsgameparser.achievements.GameType.RANKED;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.ARMOR_AT_END;
-import static com.zerotoheroes.hsgameparser.achievements.Requirement.FULL_HEALTH_AT_END;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.DAMAGE_AT_END;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_MIN_TURNS;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TIE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.HEALTH_AT_END;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.MINIONS_CONTROLLED_DURING_TURN;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.MINION_SUMMONED;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.QUALIFIER_AT_LEAST;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.RANKED_FORMAT_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.RANKED_MIN_RANK;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.RESUMMONED_RECURRING_VILLAIN;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_ARMOR_GAINED;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_DAMAGE_DEALT;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_DAMAGE_TAKEN;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_DISCARD;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_HERO_HEAL;
@@ -44,19 +49,29 @@ public class AmazingPlaysAchievements implements WithAssertions {
     @Test
     public void generate_achievements() throws Exception {
         List<RawAchievement> winWithOneHp = buildWinWithOneHps();
-//        RawAchievement winWithFullHp = buildWinWithFullHp();
-//        RawAchievement winWithoutTakingAnyDamange = buildWinWithoutTakingDamage();
-//        RawAchievement gameTie = buildGameTie();
-//        RawAchievement discardCards = buildDiscardCards();
-//        RawAchievement totalHeal = buildTotalHeal();
-        List<RawAchievement> partialResult = newArrayList(
-//                winWithFullHp,
-//                winWithoutTakingAnyDamange,
-//                gameTie,
-//                discardCards,
-//                totalHeal
-        );
-        List<RawAchievement> result = Stream.of(winWithOneHp, partialResult)
+        List<RawAchievement> winWithFullHp = buildWinWithFullHps();
+        List<RawAchievement> winWithoutTakingAnyDamange = buildWinWithoutTakingDamages();
+        List<RawAchievement> gameTies = buildGameTies();
+        List<RawAchievement> highkeeperRa = buildHighkeeperRas();
+        List<RawAchievement> discardCards = buildDiscardCards();
+        List<RawAchievement> totalHeal = buildTotalHeals();
+        List<RawAchievement> totalDamages = totalDamageInGames();
+        List<RawAchievement> totalArmors = totalArmorInGames();
+        List<RawAchievement> desertObelisks = desertObelisks();
+        List<RawAchievement> recurringVillains = recurringVillains();
+        List<RawAchievement> result =
+                Stream.of(
+                        winWithOneHp,
+                        winWithFullHp,
+                        gameTies,
+                        winWithoutTakingAnyDamange,
+                        highkeeperRa,
+                        discardCards,
+                        totalHeal,
+                        totalDamages,
+                        totalArmors,
+                        desertObelisks,
+                        recurringVillains)
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
         List<String> serializedAchievements = result.stream()
@@ -74,18 +89,18 @@ public class AmazingPlaysAchievements implements WithAssertions {
 
     private RawAchievement buildWinWithOneHp(int minimumRank, boolean isRoot) {
         return RawAchievement.builder()
-                .id("amazing_play_win_with_one_hp_" + minimumRank)
-                .type("amazing_play_win_with_one_hp")
-                .name("One HP matters")
+                .id("amazing_plays_win_with_one_hp_" + minimumRank)
+                .type("amazing_plays_win_with_one_hp")
+                .icon("boss_victory")
                 .root(isRoot)
                 .priority(-minimumRank)
-                .displayName("Win with 1 HP left and no armor remaining (Ranked Standard, at least rank " + minimumRank + ")")
+                .name("One HP matters")
+                .displayName("Achievement completed: One HP matters (rank " + minimumRank + ")")
                 .displayCardId("GILA_BOSS_49p")
                 .displayCardType("minion")
                 .difficulty("rare")
-                .text("One HP matters (Standard, rank " + minimumRank + ")")
                 .emptyText("Win one game with one HP left and no armor remaining in Ranked Standard")
-                .completedText("You won with one HP left at rank " + minimumRank)
+                .completedText("You won with one HP left at rank " + minimumRank + " or better")
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
@@ -99,41 +114,97 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .build();
     }
 
-    private RawAchievement buildWinWithFullHp() {
+    private List<RawAchievement> buildWinWithFullHps() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> buildWinWithFullHp(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement buildWinWithFullHp(int minimumRank, boolean isRoot) {
         return RawAchievement.builder()
-                .id("amazing_play_win_with_full_hp")
-                .type("amazing_plays")
-                .name("Don't hit me")
-                .displayName("Win with your full health remaining")
+                .id("amazing_plays_win_with_full_hp_" + minimumRank)
+                .type("amazing_plays_win_with_full_hp")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Don't Hit Me!")
+                .displayName("Achievement completed: Don't Hit Me! (rank " + minimumRank + ")")
                 .displayCardId("BRMA10_4")
                 .displayCardType("minion")
                 .difficulty("rare")
+                .emptyText("Win one game with your full HP left in Ranked Standard")
+                .completedText("You won with your full HP left at rank " + minimumRank + " or better")
                 .points(5)
                 .requirements(newArrayList(
-                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED, ARENA)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("19")).build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
-                        Requirement.builder().type(FULL_HEALTH_AT_END).build(),
+                        Requirement.builder().type(DAMAGE_AT_END).values(newArrayList("0")).build(),
                         Requirement.builder().type(GAME_MIN_TURNS).values(newArrayList("4")).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
     }
 
-    private RawAchievement buildWinWithoutTakingDamage() {
+    private List<RawAchievement> buildGameTies() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> buildGameTie(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement buildGameTie(int minimumRank, boolean isRoot) {
         return RawAchievement.builder()
-                .id("amazing_play_win_without_taking_damage")
-                .type("amazing_plays")
-                .name("Immune to everything")
-                .displayName("Win without taking a single damage during the game")
+                .id("amazing_plays_game_tie_" + minimumRank)
+                .type("amazing_plays_game_tie")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("That's A Nice Tie")
+                .displayName("Achievement completed: That's A Nice Tie (rank " + minimumRank + ")")
+                .displayCardId("KAR_044a") // Moroes' stewart
+                .displayCardType("minion")
+                .difficulty("legendary")
+                .emptyText("End the game with a tie in Ranked Standard")
+                .completedText("You tied a game at rank " + minimumRank + " or better")
+                .points(15 + (25 - minimumRank))
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_TIE).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> buildWinWithoutTakingDamages() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> buildWinWithoutTakingDamage(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement buildWinWithoutTakingDamage(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("amazing_plays_win_without_taking_damage_" + minimumRank)
+                .type("amazing_plays_win_without_taking_damage")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Immune")
+                .displayName("Achievement completed: Immune (rank " + minimumRank + ")")
                 .displayCardId("CRED_69")
                 .displayCardType("minion")
                 .difficulty("epic")
-                .points(10)
+                .emptyText("Win the game without taking any damage in Ranked Standard")
+                .completedText("You won a game without taking any damage at rank " + minimumRank + " or better")
+                .points(10 + (25 - minimumRank))
                 .requirements(newArrayList(
-                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED, ARENA)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("19")).build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(TOTAL_DAMAGE_TAKEN).values(newArrayList("0")).build(),
@@ -143,62 +214,229 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .build();
     }
 
-    private RawAchievement buildGameTie() {
-        return RawAchievement.builder()
-                .id("amazing_play_game_tie")
-                .type("amazing_plays")
-                .name("It's a tie!")
-                .displayName("End the game with a tie (both players dying at the same time)")
-                .displayCardId("KAR_044a") // Moroes' stewart
-                .displayCardType("minion")
-                .difficulty("legendary")
-                .points(20)
-                .requirements(newArrayList(
-                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED, ARENA)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("19")).build(),
-                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
-                        Requirement.builder().type(GAME_TIE).build()
-                        ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
-                .build();
+    private List<RawAchievement> buildDiscardCards() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> buildDiscardCard(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
     }
 
-    private RawAchievement buildDiscardCards() {
+    private RawAchievement buildDiscardCard(int minimumRank, boolean isRoot) {
         return RawAchievement.builder()
-                .id("amazing_play_discard_cards")
-                .type("amazing_plays")
-                .name("Discard!")
-                .displayName("Discard at least 10 cards during a game")
+                .id("amazing_plays_discard_cards_" + minimumRank)
+                .type("amazing_plays_discard_cards")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Put it Away")
+                .displayName("Achievement completed: Put it Away (rank " + minimumRank + ")")
                 .displayCardId("TRL_252")
                 .displayCardType("minion")
-                .difficulty("rare")
-                .points(5)
+                .difficulty("epic")
+                .emptyText("Discard 8 cards in a single game in Ranked Standard")
+                .completedText("You discarded 8 cards in a single game at rank " + minimumRank + " or better")
+                .points(5 + (25 - minimumRank))
                 .requirements(newArrayList(
-                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED, ARENA)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("19")).build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
-                        Requirement.builder().type(TOTAL_DISCARD).values(newArrayList("10")).build()
+                        Requirement.builder().type(TOTAL_DISCARD).values(newArrayList("8")).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
     }
 
-    private RawAchievement buildTotalHeal() {
+    private List<RawAchievement> buildHighkeeperRas() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> buildHighkeeperRa(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement buildHighkeeperRa(int minimumRank, boolean isRoot) {
         return RawAchievement.builder()
-                .id("amazing_play_total_heal")
-                .type("amazing_plays")
+                .id("amazing_plays_summon_highkeeper_ra_" + minimumRank)
+                .type("amazing_plays_summon_highkeeper_ra (rank " + minimumRank + ")")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Highkeeper Ra")
+                .displayName("Achievement completed: Highkeeper Ra is among us! (rank " + minimumRank + ")")
+                .displayCardId("ULD_705t")
+                .displayCardType("minion")
+                .difficulty("legendary")
+                .emptyText("Summon Highkeeper Ra in Ranked Standard")
+                .completedText("You summoned Highkeeper Ra at rank " + minimumRank + " or better")
+                .points(40)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(MINION_SUMMONED).values(newArrayList("ULD_705t")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> buildTotalHeals() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> buildTotalHeal(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement buildTotalHeal(int minimumRank, boolean isRoot) {
+        int amountToHeal = 30;
+        return RawAchievement.builder()
+                .id("amazing_plays_hero_heal_" + minimumRank)
+                .type("amazing_plays_hero_heal")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
                 .name("Healed!")
-                .displayName("Heal your hero for at least 50 health in a single game")
+                .displayName("Achievement completed: Healed! (rank " + minimumRank + ")")
                 .displayCardId("CS1h_001_H2_AT_132")
                 .displayCardType("minion")
-                .text("Healed your hero for 50 health")
+                .emptyText("Heal your hero for " + amountToHeal + " health in Ranked Standard")
+                .completedText("You healed your hero for " + amountToHeal + " health at rank " + minimumRank + " or better")
                 .difficulty("rare")
-                .points(5)
+                .points(5 + (25 - minimumRank) / 2)
                 .requirements(newArrayList(
-                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED, ARENA)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("19")).build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
-                        Requirement.builder().type(TOTAL_HERO_HEAL).values(newArrayList("50")).build()
+                        Requirement.builder().type(TOTAL_HERO_HEAL).values(newArrayList("" + amountToHeal, QUALIFIER_AT_LEAST)).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> totalDamageInGames() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> totalDamageInGame(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement totalDamageInGame(int minimumRank, boolean isRoot) {
+        int damageToDeal = 120;
+        return RawAchievement.builder()
+                .id("amazing_plays_deal_damage_" + minimumRank)
+                .type("amazing_plays_deal_damage")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Burn Them All!")
+                .displayName("Achievement completed: Burn Them All! (rank " + minimumRank + ")")
+                .displayCardId("BRM_027p")
+                .displayCardType("minion")
+                .emptyText("Deal at least " + damageToDeal + " damage during one Ranked Standard game")
+                .completedText("You dealt " + damageToDeal + " damage at rank " + minimumRank + " or better")
+                .difficulty("rare")
+                .points(5 + (25 - minimumRank) / 2)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(TOTAL_DAMAGE_DEALT).values(newArrayList("" + damageToDeal, QUALIFIER_AT_LEAST)).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> totalArmorInGames() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> totalArmorInGame(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement totalArmorInGame(int minimumRank, boolean isRoot) {
+        int armorToGain = 60;
+        return RawAchievement.builder()
+                .id("amazing_plays_gain_armor_" + minimumRank)
+                .type("amazing_plays_gain_armor")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Iron Defense")
+                .displayName("Achievement completed: Iron Defense (rank " + minimumRank + ")")
+                .displayCardId("EX1_606")
+                .displayCardType("spell")
+                .emptyText("Gain at least " + armorToGain + " armor during one Ranked Standard game")
+                .completedText("You gained " + armorToGain + " armor at rank " + minimumRank + " or better")
+                .difficulty("rare")
+                .points(5 + (25 - minimumRank) / 2)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(TOTAL_ARMOR_GAINED).values(newArrayList("" + armorToGain, QUALIFIER_AT_LEAST)).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> desertObelisks() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> desertObelisk(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement desertObelisk(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("amazing_plays_desert_obelisk_" + minimumRank)
+                .type("amazing_plays_desert_obelisk")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Desert Obelisks")
+                .displayName("Achievement completed: Desert Obelisks (rank " + minimumRank + ")")
+                .displayCardId("ULD_703")
+                .displayCardType("minion")
+                .emptyText("Control 3 Desert Obelisks during your turn in Ranked Standard")
+                .completedText("You controlled 3 Desert Obelisks at rank " + minimumRank + " or better")
+                .difficulty("epic")
+                .points(5 + (25 - minimumRank) / 2)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(MINIONS_CONTROLLED_DURING_TURN).values(newArrayList("ULD_703", "3", QUALIFIER_AT_LEAST)).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> recurringVillains() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> recurringVillain(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement recurringVillain(int minimumRank, boolean isRoot) {
+        int numberOfResummons = 3;
+        return RawAchievement.builder()
+                .id("amazing_plays_recurring_villains_" + minimumRank)
+                .type("amazing_plays_recurring_villains")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Recurring Villains")
+                .displayName("Achievement completed: Recurring Villains (rank " + minimumRank + ")")
+                .displayCardId("DAL_749")
+                .displayCardType("minion")
+                .emptyText("Resummon a Recurring Villain at least " + numberOfResummons + " times in Ranked Standard")
+                .completedText("You resummoned " + numberOfResummons + " Recurring Villains at rank " + minimumRank + " or better")
+                .difficulty("rare")
+                .points(5 + (25 - minimumRank) / 2)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(RESUMMONED_RECURRING_VILLAIN).values(newArrayList("3", QUALIFIER_AT_LEAST)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();

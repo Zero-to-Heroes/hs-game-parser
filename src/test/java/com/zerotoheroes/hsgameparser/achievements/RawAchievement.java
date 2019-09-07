@@ -13,11 +13,15 @@ public class RawAchievement {
     private String id;
     private String type; // A kind of "family" for the achievements, used to group them together
     private String name;
+    private String icon;
     private boolean root;
     private int priority;
-    private String displayName;
-    private String emptyText;
+    private String displayName; // The text displayed in the notification
+    // If present, we always use this text in the achievement, irrespective of
+    // whether it is completed or not
     private String text;
+    private String emptyText;
+    // The text displayed in the icon's tooltip
     private String completedText;
     private String displayCardId; // The image to display in the achievements screen
     private String displayCardType; // Since the art for spells is cropped differently than the art for minions
