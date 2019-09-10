@@ -95,6 +95,7 @@ public class DalaranHeistAchievements implements WithAssertions {
                 .displayName("Boss met: " + card.getSafeName())
                 .completedText("You met " + card.getName())
                 .difficulty("common")
+                .maxNumberOfRecords(1)
                 .points(1)
                 .requirements(Lists.newArrayList(
                         Requirement.builder().type(CORRECT_OPPONENT).values(Lists.newArrayList(card.getId())).build(),
@@ -113,6 +114,7 @@ public class DalaranHeistAchievements implements WithAssertions {
                 .displayName("Heroic boss met: " + card.getSafeName())
                 .completedText("You heroically met " + card.getName())
                 .difficulty("rare")
+                .maxNumberOfRecords(1)
                 .points(2)
                 .requirements(Lists.newArrayList(
                         Requirement.builder().type(CORRECT_OPPONENT).values(Lists.newArrayList(card.getId())).build(),
@@ -131,6 +133,7 @@ public class DalaranHeistAchievements implements WithAssertions {
                 .displayName("Boss defeated: " + card.getSafeName())
                 .completedText("You defeated " + card.getName())
                 .difficulty("common")
+                .maxNumberOfRecords(1)
                 .points(2)
                 .requirements(Lists.newArrayList(
                         Requirement.builder().type(CORRECT_OPPONENT).values(Lists.newArrayList(card.getId())).build(),
@@ -149,6 +152,7 @@ public class DalaranHeistAchievements implements WithAssertions {
                 .displayName("Heroic boss defeated: " + card.getSafeName())
                 .completedText("You heroically defeeated " + card.getName())
                 .difficulty("rare")
+                .maxNumberOfRecords(2)
                 .points(3)
                 .requirements(Lists.newArrayList(
                         Requirement.builder().type(CORRECT_OPPONENT).values(Lists.newArrayList(card.getId())).build(),
@@ -213,6 +217,7 @@ public class DalaranHeistAchievements implements WithAssertions {
                         .emptyText(null)
                         .completedText("You played " + card.getName())
                         .difficulty("rare")
+                        .maxNumberOfRecords(2)
                         .points(3)
                         .requirements(Lists.newArrayList(
                                 Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(Lists.newArrayList(card.getId())).build(),
@@ -271,6 +276,7 @@ public class DalaranHeistAchievements implements WithAssertions {
                         .emptyText(null)
                         .completedText("You triggered " + card.getName())
                         .difficulty("rare")
+                        .maxNumberOfRecords(1)
                         .points(3)
                         .requirements(Lists.newArrayList(
                                 Requirement.builder().type(PASSIVE_BUFF).values(Lists.newArrayList(card.getId())).build(),

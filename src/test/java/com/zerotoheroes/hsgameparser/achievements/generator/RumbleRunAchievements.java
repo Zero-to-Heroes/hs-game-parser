@@ -98,6 +98,7 @@ public class RumbleRunAchievements implements WithAssertions {
                 .emptyText("Clear the first round with " + hero.getName() + " (" + hero.getPlayerClass() + ") to get started")
                 .completedText("You cleared Rumble Run's round " + (i + 1))
                 .difficulty(i == 7 ? "epic" : "free")
+                .maxNumberOfRecords(i == 7 ? 3 : 1)
                 .points(1 + 2 * i)
                 .requirements(newArrayList(
                         Requirement.builder().type(RUMBLE_RUN_STEP).values(newArrayList("" + i)).build(),
@@ -128,6 +129,7 @@ public class RumbleRunAchievements implements WithAssertions {
                         .emptyText(null)
                         .completedText("You played " + card.getName())
                         .difficulty("common")
+                        .maxNumberOfRecords(1)
                         .points(1)
                         .requirements(newArrayList(
                                 Requirement.builder().type(CARD_PLAYED_OR_ON_BOARD_AT_GAME_START).values(newArrayList(card.getId())).build(),
@@ -171,6 +173,7 @@ public class RumbleRunAchievements implements WithAssertions {
                         .emptyText(null)
                         .completedText("Teammate " + card.getName() + " joined")
                         .difficulty("rare")
+                        .maxNumberOfRecords(2)
                         .points(3)
                         .requirements(newArrayList(
                                 Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId())).build(),
@@ -221,6 +224,7 @@ public class RumbleRunAchievements implements WithAssertions {
                         .emptyText(null)
                         .completedText("You triggered " + card.getName())
                         .difficulty("rare")
+                        .maxNumberOfRecords(1)
                         .points(3)
                         .requirements(newArrayList(
                                 Requirement.builder().type(PASSIVE_BUFF).values(newArrayList(card.getId())).build(),

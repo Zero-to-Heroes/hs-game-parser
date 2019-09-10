@@ -94,6 +94,7 @@ public class MonsterHuntAchievements implements WithAssertions {
                 .emptyText("Clear the first round with " + card.getPlayerClass() + " to get started")
                 .completedText("You cleared Monster Hunt's round " + (i + 1))
                 .difficulty(i == 7 ? "epic" : "free")
+                .maxNumberOfRecords(i == 7 ? 3 : 1)
                 .points(1 + 2 * i)
                 .requirements(newArrayList(
                         Requirement.builder().type(MONSTER_HUNT_STEP).values(newArrayList("" + i)).build(),
@@ -124,6 +125,7 @@ public class MonsterHuntAchievements implements WithAssertions {
                 .emptyText("Get ready to fight Hagatha the Witch!")
                 .completedText("You defeated Hagatha the Witch!")
                 .difficulty("legendary")
+                .maxNumberOfRecords(5)
                 .points(15)
                 .requirements(newArrayList(
                         Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
@@ -156,6 +158,7 @@ public class MonsterHuntAchievements implements WithAssertions {
                         .emptyText(null)
                         .completedText("You met " + card.getName())
                         .difficulty("rare")
+                        .maxNumberOfRecords(1)
                         .points(2)
                         .requirements(newArrayList(
                                 Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
@@ -180,6 +183,7 @@ public class MonsterHuntAchievements implements WithAssertions {
                         .emptyText(null)
                         .completedText("You defeated " + card.getName())
                         .difficulty("rare")
+                        .maxNumberOfRecords(2)
                         .points(3)
                         .requirements(newArrayList(
                                 Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
@@ -232,6 +236,7 @@ public class MonsterHuntAchievements implements WithAssertions {
                         .emptyText(null)
                         .completedText("You played " + card.getName())
                         .difficulty("rare")
+                        .maxNumberOfRecords(2)
                         .points(3)
                         .requirements(newArrayList(
                                 Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId())).build(),
@@ -272,6 +277,7 @@ public class MonsterHuntAchievements implements WithAssertions {
                         .emptyText(null)
                         .completedText("You triggered " + card.getName())
                         .difficulty("rare")
+                        .maxNumberOfRecords(1)
                         .points(3)
                         .requirements(newArrayList(
                                 Requirement.builder().type(PASSIVE_BUFF).values(newArrayList(card.getId())).build(),

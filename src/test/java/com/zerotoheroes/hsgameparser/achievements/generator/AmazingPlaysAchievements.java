@@ -101,6 +101,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .difficulty("rare")
                 .emptyText("Win one game with one HP left and no armor remaining in Ranked Standard")
                 .completedText("You won with one HP left at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
@@ -135,6 +136,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .difficulty("rare")
                 .emptyText("Win one game with your full HP left in Ranked Standard")
                 .completedText("You won with your full HP left at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
@@ -169,6 +171,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .difficulty("legendary")
                 .emptyText("End the game with a tie in Ranked Standard")
                 .completedText("You tied a game at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(null)
                 .points(15 + (25 - minimumRank))
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
@@ -201,6 +204,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .difficulty("epic")
                 .emptyText("Win the game without taking any damage in Ranked Standard")
                 .completedText("You won a game without taking any damage at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
                 .points(10 + (25 - minimumRank))
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
@@ -235,6 +239,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .difficulty("epic")
                 .emptyText("Discard 8 cards in a single game in Ranked Standard")
                 .completedText("You discarded 8 cards in a single game at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank))
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
@@ -267,6 +272,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .difficulty("legendary")
                 .emptyText("Summon Highkeeper Ra in Ranked Standard")
                 .completedText("You summoned Highkeeper Ra at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(null)
                 .points(40)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
@@ -300,6 +306,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .emptyText("Heal your hero for " + amountToHeal + " health in Ranked Standard")
                 .completedText("You healed your hero for " + amountToHeal + " health at rank " + minimumRank + " or better")
                 .difficulty("rare")
+                .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank) / 2)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
@@ -333,6 +340,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .emptyText("Deal at least " + damageToDeal + " damage during one Ranked Standard game")
                 .completedText("You dealt " + damageToDeal + " damage at rank " + minimumRank + " or better")
                 .difficulty("rare")
+                .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank) / 2)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
@@ -366,6 +374,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .emptyText("Gain at least " + armorToGain + " armor during one Ranked Standard game")
                 .completedText("You gained " + armorToGain + " armor at rank " + minimumRank + " or better")
                 .difficulty("rare")
+                .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank) / 2)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
@@ -398,6 +407,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .emptyText("Control 3 Desert Obelisks during your turn in Ranked Standard")
                 .completedText("You controlled 3 Desert Obelisks at rank " + minimumRank + " or better")
                 .difficulty("epic")
+                .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank) / 2)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
@@ -431,6 +441,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .emptyText("Resummon a Recurring Villain at least " + numberOfResummons + " times in Ranked Standard")
                 .completedText("You resummoned " + numberOfResummons + " Recurring Villains at rank " + minimumRank + " or better")
                 .difficulty("rare")
+                .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank) / 2)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
