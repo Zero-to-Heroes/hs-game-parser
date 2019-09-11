@@ -7,13 +7,13 @@ import com.zerotoheroes.hsgameparser.achievements.RawAchievement;
 import com.zerotoheroes.hsgameparser.achievements.Requirement;
 import com.zerotoheroes.hsgameparser.db.CardsList;
 import com.zerotoheroes.hsgameparser.db.DbCard;
-import lombok.SneakyThrows;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,6 +27,7 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.PLAYER_HERO
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENARIO_IDS;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENE_CHANGED_TO_GAME;
 import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.DUNGEON_RUN;
+import static com.zerotoheroes.hsgameparser.achievements.generator.GeneralHelper.sanitize;
 import static org.assertj.core.util.Lists.newArrayList;
 
 public class DungeonRunAchievements implements WithAssertions {
@@ -47,9 +48,10 @@ public class DungeonRunAchievements implements WithAssertions {
         List<RawAchievement> passives = buildPassiveAchievements();
         List<RawAchievement> result = Stream.of(progression, boss, treasures, passives)
                 .flatMap(List::stream)
+                .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
         List<String> serializedAchievements = result.stream()
-                .map(this::serialize)
+                .map(GeneralHelper::serialize)
                 .collect(Collectors.toList());
         System.out.println(serializedAchievements);
     }
@@ -128,7 +130,7 @@ public class DungeonRunAchievements implements WithAssertions {
                         .displayName("Boss met: " + card.getName())
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
-                        .text(this.sanitize(card.getText()))
+                        .text(sanitize(card.getText()))
                         .emptyText(null)
                         .completedText("You met " + card.getName())
                         .difficulty("rare")
@@ -153,7 +155,7 @@ public class DungeonRunAchievements implements WithAssertions {
                         .displayName("Boss defeated: " + card.getName())
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
-                        .text(this.sanitize(card.getText()))
+                        .text(sanitize(card.getText()))
                         .emptyText(null)
                         .completedText("You defeated " + card.getName())
                         .difficulty("rare")
@@ -263,21 +265,5 @@ public class DungeonRunAchievements implements WithAssertions {
                 .collect(Collectors.toList());
         System.out.println(String.join(",", types));
         return result;
-    }
-
-    @SneakyThrows
-    private String serialize(RawAchievement rawAchievement) {
-        return mapper.writeValueAsString(rawAchievement);
-    }
-
-    private String sanitize(String text) {
-        String displayText = text == null ? "..." : text;
-        return displayText
-                .replace("<i>", "")
-                .replace("</i>", "")
-                .replace("[x]", "")
-                .replace("<b>", "")
-                .replace("</b>", "")
-                .replace("\n", ". ");
     }
 }

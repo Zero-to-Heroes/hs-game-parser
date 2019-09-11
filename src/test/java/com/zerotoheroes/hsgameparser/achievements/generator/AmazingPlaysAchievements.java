@@ -5,11 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zerotoheroes.hsgameparser.achievements.GameEvents;
 import com.zerotoheroes.hsgameparser.achievements.RawAchievement;
 import com.zerotoheroes.hsgameparser.achievements.Requirement;
-import lombok.SneakyThrows;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -73,9 +73,10 @@ public class AmazingPlaysAchievements implements WithAssertions {
                         desertObelisks,
                         recurringVillains)
                 .flatMap(List::stream)
+                .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
         List<String> serializedAchievements = result.stream()
-                .map(this::serialize)
+                .map(GeneralHelper::serialize)
                 .collect(Collectors.toList());
         System.out.println(serializedAchievements);
     }
@@ -451,14 +452,5 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
-    }
-
-    private List<String> toStrings(List<Integer> scenarioIds) {
-        return scenarioIds.stream().map(String::valueOf).collect(Collectors.toList());
-    }
-
-    @SneakyThrows
-    private String serialize(RawAchievement rawAchievement) {
-        return mapper.writeValueAsString(rawAchievement);
     }
 }

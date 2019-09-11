@@ -7,12 +7,12 @@ import com.zerotoheroes.hsgameparser.achievements.RawAchievement;
 import com.zerotoheroes.hsgameparser.achievements.Requirement;
 import com.zerotoheroes.hsgameparser.db.CardsList;
 import com.zerotoheroes.hsgameparser.db.DbCard;
-import lombok.SneakyThrows;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,6 +26,7 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.PLAYER_HERO
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.RUMBLE_RUN_STEP;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENARIO_IDS;
 import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.RUMBLE_RUN;
+import static com.zerotoheroes.hsgameparser.achievements.generator.GeneralHelper.sanitize;
 import static org.assertj.core.util.Lists.newArrayList;
 
 public class RumbleRunAchievements implements WithAssertions {
@@ -46,9 +47,10 @@ public class RumbleRunAchievements implements WithAssertions {
         List<RawAchievement> passives = buildPassiveAchievements();
         List<RawAchievement> result = Stream.of(progression, shrines, teammates, passives)
                 .flatMap(List::stream)
+                .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
         List<String> serializedAchievements = result.stream()
-                .map(this::serialize)
+                .map(GeneralHelper::serialize)
                 .collect(Collectors.toList());
         System.out.println(serializedAchievements);
     }
@@ -125,7 +127,7 @@ public class RumbleRunAchievements implements WithAssertions {
                         .displayName("Shrine played: " + card.getName())
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
-                        .text(this.sanitize(card.getText()).replace("Shrine", ""))
+                        .text(sanitize(card.getText()).replace("Shrine", ""))
                         .emptyText(null)
                         .completedText("You played " + card.getName())
                         .difficulty("common")
@@ -240,21 +242,5 @@ public class RumbleRunAchievements implements WithAssertions {
                 .collect(Collectors.toList());
         System.out.println(String.join(",", types));
         return result;
-    }
-
-    @SneakyThrows
-    private String serialize(RawAchievement rawAchievement) {
-        return mapper.writeValueAsString(rawAchievement);
-    }
-
-    private String sanitize(String text) {
-        String displayText = text == null ? "..." : text;
-        return displayText
-                .replace("<i>", "")
-                .replace("</i>", "")
-                .replace("[x]", "")
-                .replace("<b>", "")
-                .replace("</b>", "")
-                .replace("\n", ". ");
     }
 }

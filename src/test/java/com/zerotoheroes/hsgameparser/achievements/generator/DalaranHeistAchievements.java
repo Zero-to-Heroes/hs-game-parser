@@ -7,7 +7,6 @@ import com.zerotoheroes.hsgameparser.achievements.RawAchievement;
 import com.zerotoheroes.hsgameparser.achievements.Requirement;
 import com.zerotoheroes.hsgameparser.db.CardsList;
 import com.zerotoheroes.hsgameparser.db.DbCard;
-import lombok.SneakyThrows;
 import org.assertj.core.api.WithAssertions;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
@@ -29,6 +28,8 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENE_CHANG
 import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.DALARAN_HEIST;
 import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.DALARAN_HEIST_HEROIC;
 import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.DALARAN_HEIST_NORMAL;
+import static com.zerotoheroes.hsgameparser.achievements.generator.GeneralHelper.sanitize;
+import static com.zerotoheroes.hsgameparser.achievements.generator.GeneralHelper.toStrings;
 
 public class DalaranHeistAchievements implements WithAssertions {
 
@@ -47,9 +48,10 @@ public class DalaranHeistAchievements implements WithAssertions {
         List<RawAchievement> passives = buildPassiveAchievements();
         List<RawAchievement> result = Stream.of(boss, treasures, passives)
                 .flatMap(List::stream)
+                .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
         List<String> serializedAchievements = result.stream()
-                .map(this::serialize)
+                .map(GeneralHelper::serialize)
                 .collect(Collectors.toList());
         System.out.println(serializedAchievements);
     }
@@ -168,7 +170,7 @@ public class DalaranHeistAchievements implements WithAssertions {
                 .id(type + "_" + card.getId())
                 .type("dalaran_heist_boss_" + card.getId())
                 .name(card.getSafeName())
-                .text(this.sanitize(card.getText()))
+                .text(sanitize(card.getText()))
                 .emptyText(null)
                 .displayCardId(card.getId())
                 .displayCardType(card.getType().toLowerCase());
@@ -229,6 +231,7 @@ public class DalaranHeistAchievements implements WithAssertions {
                         ))
                         .resetEvents(Lists.newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
                         .build())
+                .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(29);
         List<String> types = result.stream()
@@ -284,6 +287,7 @@ public class DalaranHeistAchievements implements WithAssertions {
                         ))
                         .resetEvents(Lists.newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
                         .build())
+                .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(29);
         List<String> types = result.stream()
@@ -292,25 +296,5 @@ public class DalaranHeistAchievements implements WithAssertions {
                 .collect(Collectors.toList());
         System.out.println(String.join(",", types));
         return result;
-    }
-
-    private List<String> toStrings(List<Integer> scenarioIds) {
-        return scenarioIds.stream().map(String::valueOf).collect(Collectors.toList());
-    }
-
-    @SneakyThrows
-    private String serialize(RawAchievement rawAchievement) {
-        return mapper.writeValueAsString(rawAchievement);
-    }
-
-    private String sanitize(String text) {
-        String displayText = text == null ? "..." : text;
-        return displayText
-                .replace("<i>", "")
-                .replace("</i>", "")
-                .replace("[x]", "")
-                .replace("<b>", "")
-                .replace("</b>", "")
-                .replace("\n", ". ");
     }
 }

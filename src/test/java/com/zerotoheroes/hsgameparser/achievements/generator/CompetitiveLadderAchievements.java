@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zerotoheroes.hsgameparser.achievements.GameEvents;
 import com.zerotoheroes.hsgameparser.achievements.RawAchievement;
 import com.zerotoheroes.hsgameparser.achievements.Requirement;
-import lombok.SneakyThrows;
 import org.apache.commons.lang.StringUtils;
 import org.assertj.core.api.WithAssertions;
 import org.junit.Before;
@@ -43,7 +42,7 @@ public class CompetitiveLadderAchievements implements WithAssertions {
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
         List<String> serializedAchievements = result.stream()
-                .map(this::serialize)
+                .map(GeneralHelper::serialize)
                 .collect(Collectors.toList());
         System.out.println(serializedAchievements);
     }
@@ -144,14 +143,5 @@ public class CompetitiveLadderAchievements implements WithAssertions {
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
-    }
-
-    private List<String> toStrings(List<Integer> scenarioIds) {
-        return scenarioIds.stream().map(String::valueOf).collect(Collectors.toList());
-    }
-
-    @SneakyThrows
-    private String serialize(RawAchievement rawAchievement) {
-        return mapper.writeValueAsString(rawAchievement);
     }
 }

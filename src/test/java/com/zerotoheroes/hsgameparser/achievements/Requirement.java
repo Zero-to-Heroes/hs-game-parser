@@ -13,6 +13,7 @@ public class Requirement {
     public static final String RUMBLE_RUN_STEP = "RUMBLE_RUN_STEP";
     public static final String GAME_WON = "GAME_WON";
     public static final String GAME_TIE = "GAME_TIE";
+    public static final String WIN_STREAK_LENGTH = "WIN_STREAK_LENGTH";
     public static final String PLAYER_HERO = "PLAYER_HERO";
     public static final String CORRECT_OPPONENT = "CORRECT_OPPONENT";
     public static final String SCENE_CHANGED_TO_GAME = "SCENE_CHANGED_TO_GAME";
@@ -37,6 +38,7 @@ public class Requirement {
     public static final String TOTAL_ARMOR_GAINED = "TOTAL_ARMOR_GAINED";
     public static final String MINIONS_CONTROLLED_DURING_TURN = "MINIONS_CONTROLLED_DURING_TURN";
     public static final String RESUMMONED_RECURRING_VILLAIN = "RESUMMONED_RECURRING_VILLAIN";
+    public static final String WINS_AGAINST_CLASS_IN_RANKED_STANDARD_IN_LIMITED_TIME = "WINS_AGAINST_CLASS_IN_RANKED_STANDARD_IN_LIMITED_TIME";
 
     public static final String QUALIFIER_AT_LEAST = "AT_LEAST";
 
