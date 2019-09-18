@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ScenarioIds {
+    public static final int PRACTICE = 263;
     public static final int DUNGEON_RUN = 2663;
     public static final int MONSTER_HUNT = 2706;
     public static final int MONSTER_HUNT_FINAL = 2821;

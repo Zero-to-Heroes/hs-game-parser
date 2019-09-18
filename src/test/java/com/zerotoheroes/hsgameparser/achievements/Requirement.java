@@ -22,6 +22,7 @@ public class Requirement {
     public static final String MINION_SUMMONED = "MINION_SUMMONED";
     public static final String PASSIVE_BUFF = "PASSIVE_BUFF";
     public static final String SCENARIO_IDS = "SCENARIO_IDS";
+    public static final String EXCLUDED_SCENARIO_IDS = "EXCLUDED_SCENARIO_IDS";
     public static final String GAME_TYPE = "GAME_TYPE";
     public static final String RANKED_FORMAT_TYPE = "RANKED_FORMAT_TYPE";
     public static final String RANKED_MIN_RANK = "RANKED_MIN_RANK";
@@ -41,6 +42,13 @@ public class Requirement {
     public static final String WINS_AGAINST_CLASS_IN_RANKED_STANDARD_IN_LIMITED_TIME = "WINS_AGAINST_CLASS_IN_RANKED_STANDARD_IN_LIMITED_TIME";
 
     public static final String QUALIFIER_AT_LEAST = "AT_LEAST";
+
+    // We just have one requirement per deckbuilding constraint
+    public static final String DECK_CLASSIC = "DECK_CLASSIC";
+    public static final String DECK_EPIC = "DECK_EPIC";
+    public static final String DECK_MECHANIC = "DECK_MECHANIC";
+    public static final String DECK_NO_CARD_WITH_LETTER_IN_NAME = "DECK_NO_CARD_WITH_LETTER_IN_NAME";
+    public static final String DECK_NUMBER_OF_MINIONS = "DECK_NUMBER_OF_MINIONS";
 
     private String type;
     private List<String> values;
