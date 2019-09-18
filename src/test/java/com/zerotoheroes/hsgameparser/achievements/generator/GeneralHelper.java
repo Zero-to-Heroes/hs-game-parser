@@ -1,5 +1,6 @@
 package com.zerotoheroes.hsgameparser.achievements.generator;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zerotoheroes.hsgameparser.achievements.RawAchievement;
 import lombok.SneakyThrows;
@@ -9,7 +10,13 @@ import java.util.stream.Collectors;
 
 public class GeneralHelper {
 
-    private static ObjectMapper mapper = new ObjectMapper();
+    private static ObjectMapper mapper = buildObjectMapper();
+
+    public static ObjectMapper buildObjectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
+        return mapper;
+    }
 
     public static List<String> toStrings(List<Integer> scenarioIds) {
         return scenarioIds.stream().map(String::valueOf).collect(Collectors.toList());
