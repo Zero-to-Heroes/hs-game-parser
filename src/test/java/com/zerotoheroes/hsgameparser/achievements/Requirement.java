@@ -16,6 +16,7 @@ public class Requirement {
     public static final String WIN_STREAK_LENGTH = "WIN_STREAK_LENGTH";
     public static final String PLAYER_HERO = "PLAYER_HERO";
     public static final String CORRECT_OPPONENT = "CORRECT_OPPONENT";
+    public static final String CORRECT_STARTING_HEALTH = "CORRECT_STARTING_HEALTH";
     public static final String SCENE_CHANGED_TO_GAME = "SCENE_CHANGED_TO_GAME";
     public static final String CARD_PLAYED_OR_CHANGED_ON_BOARD = "CARD_PLAYED_OR_CHANGED_ON_BOARD";
     public static final String CARD_DRAWN_OR_RECEIVED_IN_HAND = "CARD_DRAWN_OR_RECEIVED_IN_HAND";
