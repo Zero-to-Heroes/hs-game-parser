@@ -16,16 +16,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.BOARD_FULL_OF_SAME_LEGENDARY_MINION;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CARD_PLAYED_OR_CHANGED_ON_BOARD;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CORRECT_OPPONENT;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CORRECT_STARTING_HEALTH;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.DEATHRATTLE_TRIGGERED;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.EXCLUDED_SCENARIO_IDS;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.FATIGUE_DAMAGE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.LAST_DAMAGE_DONE_BY_MINION;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.MINIONS_CONTROLLED_DURING_TURN;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.MINION_ATTACK_ON_BOARD;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.PASSIVE_BUFF;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.QUALIFIER_AT_LEAST;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENE_CHANGED_TO_GAME;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.SECRET_TRIGGERED;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_DAMAGE_DEALT;
 import static com.zerotoheroes.hsgameparser.achievements.generator.GeneralHelper.sanitize;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -286,6 +293,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 .filter(card -> !card.getName().contains(" Dummy"))
                 .filter(card -> !card.getName().contains("Random Deck"))
                 .filter(card -> !Arrays.asList(
+                        "ULDA_008t", // Ancient Snake
                         "ULDA_026", // Servant of Siamat
                         "ULDA_030", // Sand Trap
                         "ULDA_031", // Sanctum Golem
@@ -324,7 +332,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         .build())
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(62);
+        assertThat(result.size()).isEqualTo(59);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -365,7 +373,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         .build())
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(18);
+        assertThat(result.size()).isEqualTo(26);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -379,11 +387,20 @@ public class TombsOfTerrorAchievements implements WithAssertions {
         List<DbCard> pasiveCards = cardsList.getDbCards().stream()
                 .filter(card -> card.getId().matches("ULDA_\\d{3}[a-z]?")
                         || Arrays.asList(
+                        "DALA_728", // Recycling
+                        "DALA_731", // Rocket Backpacks
+                        "DALA_737", // Resourcefulness
+                        "DALA_739", // Book of Wonders
                         "DALA_746", // Elixir of Vigor
                         "DALA_747", // Elixir of Vim
                         "LOOTA_803", // Scepter of Summoning
                         "LOOTA_824", // Scrying Orb
-                        "LOOTA_831" // Glyph of Warding
+                        "LOOTA_828", // Captured Flag
+                        "LOOTA_831", // Glyph of Warding
+                        "LOOTA_832", // Cload of Invisibility
+                        "LOOTA_833", // Mysterious Tome
+                        "LOOTA_846", // Battle Totem
+                        "GILA_506" // First-Aid Kit
                 ).contains(card.getId()))
                 .filter(card -> card.getMechanics() != null && card.getMechanics().contains("DUNGEON_PASSIVE_BUFF"))
                 .filter(card -> !card.getType().equals("Enchantment"))
@@ -415,7 +432,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         .build())
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(21);
+        assertThat(result.size()).isEqualTo(30);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -431,15 +448,188 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 unstoppable("ULDA_BOSS_38h"),
                 unstoppable("ULDA_BOSS_39h"),
                 unstoppable("ULDA_BOSS_40h"),
-                unstoppable("ULDA_BOSS_67h")
+                unstoppable("ULDA_BOSS_67h"),
+                aegis(),
+                gatlingWand(),
+                fullLegendary(),
+                highAttackMinion(),
+                fatigueVesh(),
+                siamat()
         );
-        assertThat(result.size()).isEqualTo(6);
+        assertThat(result.size()).isEqualTo(12);
         List<String> types = result.stream()
+                .sorted(Comparator.comparing(RawAchievement::getId))
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
                 .collect(Collectors.toList());
         System.out.println(String.join(",", types));
         return result;
+    }
+
+    private RawAchievement siamat() throws Exception {
+        CardsList cardsList = CardsList.create();
+        DbCard card = cardsList.findDbCard("ULDA_026");
+        return RawAchievement.builder()
+                .id("tombs_of_terror_amazing_plays_siamat_servant")
+                .type("tombs_of_terror_amazing_plays_siamat_servant")
+                .name("For Siamat!")
+                .emptyText("Kill Siamat with their own servant")
+                .completedText("You killed Siamat with their own servant")
+                .displayCardId(card.getId())
+                .displayCardType(card.getType().toLowerCase())
+                .icon("boss_victory")
+                .root(true)
+                .priority(0)
+                .displayName("Achievement completed: For Siamat!")
+                .difficulty("legendary")
+                .maxNumberOfRecords(3)
+                .points(40)
+                .requirements(newArrayList(
+                        Requirement.builder().type(LAST_DAMAGE_DONE_BY_MINION).values(newArrayList("ULDA_026")).build(),
+                        Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList("ULDA_BOSS_66h")).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
+                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
+                .build();
+    }
+
+    private RawAchievement fatigueVesh() throws Exception {
+        CardsList cardsList = CardsList.create();
+        List<DbCard> veshForms = newArrayList(
+                cardsList.findDbCard("ULDA_BOSS_39h"),
+                cardsList.findDbCard("ULDA_BOSS_39h2"),
+                cardsList.findDbCard("ULDA_BOSS_39h3"));
+        DbCard card = cardsList.findDbCard("ULDA_BOSS_39h3");
+        return RawAchievement.builder()
+                .id("tombs_of_terror_amazing_plays_fatigue_vash")
+                .type("tombs_of_terror_amazing_plays_fatigue_vash")
+                .name("3,482 of you? Not enough!")
+                .emptyText("Have " + sanitize(card.getName()) + " take fatigue damage")
+                .completedText(sanitize(card.getName()) + " took fatigue damage")
+                .displayCardId(card.getId())
+                .displayCardType(card.getType().toLowerCase())
+                .icon("boss_victory")
+                .root(true)
+                .priority(0)
+                .displayName("Achievement completed: 3,482 of you? Not enough!")
+                .difficulty("legendary")
+                .maxNumberOfRecords(3)
+                .points(40)
+                .requirements(newArrayList(
+                        Requirement.builder()
+                                .type(FATIGUE_DAMAGE)
+                                .values(newArrayList("1", "AT_LEAST", "OPPONENT"))
+                                .build(),
+                        Requirement.builder()
+                                .type(CORRECT_OPPONENT)
+                                .values(newArrayList(veshForms.stream().map(DbCard::getId).collect(Collectors.toList())))
+                                .build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
+                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
+                .build();
+    }
+
+    private RawAchievement highAttackMinion() throws Exception {
+        CardsList cardsList = CardsList.create();
+        int minAttack = 100;
+        DbCard card = cardsList.findDbCard("ULDA_113");
+        return RawAchievement.builder()
+                .id("tombs_of_terror_amazing_plays_high_attack_minion")
+                .type("tombs_of_terror_amazing_plays_high_attack_minion")
+                .name("So Strong!")
+                .emptyText("Have a minion with at least " + minAttack + " attack on the board")
+                .completedText("You got a minion with at least " + minAttack + " attack on the board")
+                .displayCardId(card.getId())
+                .displayCardType(card.getType().toLowerCase())
+                .icon("boss_victory")
+                .root(true)
+                .priority(0)
+                .displayName("Achievement completed: So Strong!")
+                .difficulty("legendary")
+                .maxNumberOfRecords(3)
+                .points(40)
+                .requirements(newArrayList(
+                        Requirement.builder()
+                                .type(MINION_ATTACK_ON_BOARD)
+                                .values(newArrayList("100", "AT_LEAST"))
+                                .build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
+                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
+                .build();
+    }
+
+    private RawAchievement gatlingWand() throws Exception {
+        CardsList cardsList = CardsList.create();
+        int damageToDeal = 100;
+        DbCard card = cardsList.findDbCard("ULDA_207");
+        return RawAchievement.builder()
+                .id("tombs_of_terror_amazing_plays_gatling_wand")
+                .type("tombs_of_terror_amazing_plays_gatling_wand")
+                .name("The Gatling Wand")
+                .emptyText("Deal at least " + damageToDeal + " damage with The Gatling Wand treasure")
+                .completedText("You dealt at least " + damageToDeal + " damage with The Gatling Wand")
+                .displayCardId(card.getId())
+                .displayCardType(card.getType().toLowerCase())
+                .icon("boss_victory")
+                .root(true)
+                .priority(0)
+                .displayName("Achievement completed: The Gatling Wand")
+                .difficulty("legendary")
+                .maxNumberOfRecords(3)
+                .points(40)
+                .requirements(newArrayList(
+                        Requirement.builder()
+                                .type(TOTAL_DAMAGE_DEALT)
+                                .values(newArrayList("100", "AT_LEAST", card.getId()))
+                                .individualResetEvents(newArrayList(GameEvents.TURN_START))
+                                .build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
+                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
+                .build();
+    }
+
+    private RawAchievement aegis() throws Exception {
+        CardsList cardsList = CardsList.create();
+        DbCard card = cardsList.findDbCard("ULDA_114"); // Aegis of Death
+        return RawAchievement.builder()
+                .id("tombs_of_terror_amazing_plays_aegis_bulwark")
+                .type("tombs_of_terror_amazing_plays_aegis_bulwark")
+                .name("Bulwark of Death")
+                .emptyText("Reflect your Aegis of Death's deathrattle with Primordial Bulwark")
+                .completedText("You reflected your Aegis of Death's deathrattle with Primordial Bulwark")
+                .displayCardId(card.getId())
+                .displayCardType(card.getType().toLowerCase())
+                .icon("boss_victory")
+                .root(true)
+                .priority(0)
+                .displayName("Achievement completed: Bulwark of Death")
+                .difficulty("legendary")
+                .maxNumberOfRecords(3)
+                .points(40)
+                .requirements(newArrayList(
+                        Requirement.builder()
+                                .type(SECRET_TRIGGERED)
+                                .values(newArrayList("ULDA_045t")) // Bulwark's Secret token
+                                .individualResetEvents(newArrayList(GameEvents.TURN_START)) // We want both of them played in the same turn
+                                .build(),
+                        Requirement.builder()
+                                .type(DEATHRATTLE_TRIGGERED)
+                                .values(newArrayList("ULDA_114")) // Bulwark's Secret token
+                                .individualResetEvents(newArrayList(GameEvents.TURN_START))
+                                .build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
+                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
+                .build();
     }
 
     private RawAchievement unstoppable(String cardId) throws Exception {
@@ -448,7 +638,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
         return RawAchievement.builder()
                 .id("tombs_of_terror_amazing_plays_unstoppable_" + card.getId())
                 .type("tombs_of_terror_amazing_plays_unstoppable_" + card.getId())
-                .name(card.getSafeName())
+                .name("Unstoppable - " + card.getSafeName())
                 .emptyText("Defeat " + sanitize(card.getName()) + " in a single encounter")
                 .completedText("You defeated " + sanitize(card.getName()) + " in a single encounter")
                 .displayCardId(card.getId())
@@ -456,7 +646,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 .icon("boss_victory")
                 .root(true)
                 .priority(0)
-                .displayName("Unstoppable: " + sanitize(card.getName()))
+                .displayName("Achievement completed: Unstoppable  - " + sanitize(card.getName()))
                 .difficulty("epic")
                 .maxNumberOfRecords(3)
                 .points(20)
@@ -498,9 +688,35 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 .build();
     }
 
+    private RawAchievement fullLegendary() {
+        return RawAchievement.builder()
+                .id("tombs_of_terror_amazing_plays_legendary_seven_copies_on_board")
+                .type("tombs_of_terror_amazing_plays_legendary_seven_copies_on_board")
+                .icon("boss_victory")
+                .root(true)
+                .priority(0)
+                .name("Not so legendary")
+                .displayName("Achievement completed: Not so legendary")
+                .displayCardId("ULDA_014")
+                .displayCardType("spell")
+                .emptyText("Get a board with 7 copies of the same legendary minion in a Tombs of Terrors game")
+                .completedText("You've built a board with 7 copies of the same legendary minion")
+                .difficulty("epic")
+                .maxNumberOfRecords(3)
+                .points(20)
+                .requirements(newArrayList(
+                        Requirement.builder().type(BOARD_FULL_OF_SAME_LEGENDARY_MINION).build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
+                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
     private List<String> bobsTreats() {
         return newArrayList(
-                "ULDA_019", // Pack Mule
+                "DALA_902", // Dismiss
+                "DALA_903", // Take a Chance
                 "DALA_904", // Good Food
                 "DALA_905", // Right Hand Man
                 "DALA_906", // Round of Drinks
@@ -510,6 +726,11 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 "DALA_910", // The Gang's All Here
                 "DALA_912", // Brood
                 "DALA_913", // Tall Tales
+                "DALA_914", // The Upper Hand
+                "ULDA_019", // Pack Mule
+                "ULDA_024", // Upgraded Pack Mule
+                "ULDA_038", // Explorer Retraining
+                "ULDA_504", // Tea Time
                 "ULDA_601", // Hiring Replacements
                 "ULDA_602", // Study break
                 "ULDA_603", // Friendly Smith
@@ -517,7 +738,9 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 "ULDA_605", // Fast Food
                 "ULDA_606", // Work, Work!
                 "ULDA_607", // House Special
-                "ULDA_608" // Do the Math
+                "ULDA_608", // Do the Math
+                "ULDA_911", // Kindle
+                "ULDA_912" // Recruit
         );
     }
 

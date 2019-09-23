@@ -22,14 +22,18 @@ public class Requirement {
     public static final String CARD_DRAWN_OR_RECEIVED_IN_HAND = "CARD_DRAWN_OR_RECEIVED_IN_HAND";
     public static final String MINION_SUMMONED = "MINION_SUMMONED";
     public static final String PASSIVE_BUFF = "PASSIVE_BUFF";
+    public static final String SECRET_TRIGGERED = "SECRET_TRIGGERED";
+    public static final String DEATHRATTLE_TRIGGERED = "DEATHRATTLE_TRIGGERED";
     public static final String SCENARIO_IDS = "SCENARIO_IDS";
     public static final String EXCLUDED_SCENARIO_IDS = "EXCLUDED_SCENARIO_IDS";
     public static final String GAME_TYPE = "GAME_TYPE";
     public static final String RANKED_FORMAT_TYPE = "RANKED_FORMAT_TYPE";
     public static final String RANKED_MIN_RANK = "RANKED_MIN_RANK";
     public static final String HEALTH_AT_END = "HEALTH_AT_END";
+    public static final String MINION_ATTACK_ON_BOARD = "MINION_ATTACK_ON_BOARD";
     public static final String ARMOR_AT_END = "ARMOR_AT_END";
     public static final String DAMAGE_AT_END = "DAMAGE_AT_END";
+    public static final String FATIGUE_DAMAGE = "FATIGUE_DAMAGE";
     public static final String GAME_MIN_TURNS = "GAME_MIN_TURNS";
     public static final String MULLIGAN_DONE = "MULLIGAN_DONE";
     public static final String CARD_PLAYED_OR_ON_BOARD_AT_GAME_START = "CARD_PLAYED_OR_ON_BOARD_AT_GAME_START";
@@ -39,8 +43,11 @@ public class Requirement {
     public static final String TOTAL_DAMAGE_DEALT = "TOTAL_DAMAGE_DEALT";
     public static final String TOTAL_ARMOR_GAINED = "TOTAL_ARMOR_GAINED";
     public static final String MINIONS_CONTROLLED_DURING_TURN = "MINIONS_CONTROLLED_DURING_TURN";
+
+    public static final String LAST_DAMAGE_DONE_BY_MINION = "LAST_DAMAGE_DONE_BY_MINION";
     public static final String RESUMMONED_RECURRING_VILLAIN = "RESUMMONED_RECURRING_VILLAIN";
     public static final String WINS_AGAINST_CLASS_IN_RANKED_STANDARD_IN_LIMITED_TIME = "WINS_AGAINST_CLASS_IN_RANKED_STANDARD_IN_LIMITED_TIME";
+    public static final String BOARD_FULL_OF_SAME_LEGENDARY_MINION = "BOARD_FULL_OF_SAME_LEGENDARY_MINION";
 
     public static final String QUALIFIER_AT_LEAST = "AT_LEAST";
 
@@ -52,5 +59,6 @@ public class Requirement {
     public static final String DECK_NUMBER_OF_MINIONS = "DECK_NUMBER_OF_MINIONS";
 
     private String type;
+    private List<String> individualResetEvents;
     private List<String> values;
 }
