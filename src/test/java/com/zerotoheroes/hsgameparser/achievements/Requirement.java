@@ -55,6 +55,8 @@ public class Requirement {
     public static final String DECK_CLASSIC = "DECK_CLASSIC";
     public static final String DECK_EPIC = "DECK_EPIC";
     public static final String DECK_MECHANIC = "DECK_MECHANIC";
+    public static final String DECK_TYPE = "DECK_TYPE";
+    public static final String DECK_CARD_ATTRIBUTE_VALUE = "DECK_CARD_ATTRIBUTE_VALUE";
     public static final String DECK_NO_CARD_WITH_LETTER_IN_NAME = "DECK_NO_CARD_WITH_LETTER_IN_NAME";
     public static final String DECK_NUMBER_OF_MINIONS = "DECK_NUMBER_OF_MINIONS";
 
