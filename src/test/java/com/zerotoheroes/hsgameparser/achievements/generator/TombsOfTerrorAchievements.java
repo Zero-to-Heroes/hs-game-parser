@@ -299,6 +299,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         "ULDA_031", // Sanctum Golem
                         "ULDA_036t", // Giant Locust
                         "ULDA_038", // Explorer Retraining
+                        "ULDA_045t", // Primordial Bulwark secret
                         "ULDA_804t", // Eternal Tomb
                         "ULDA_801t", // Surprise! Murlocs!
                         "ULDA_911", // Kindle
@@ -332,7 +333,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         .build())
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(59);
+        assertThat(result.size()).isEqualTo(58);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
