@@ -4,7 +4,6 @@ import com.zerotoheroes.hsgameparser.achievements.GameEvents;
 import com.zerotoheroes.hsgameparser.achievements.GameType;
 import com.zerotoheroes.hsgameparser.achievements.RawAchievement;
 import com.zerotoheroes.hsgameparser.achievements.Requirement;
-import com.zerotoheroes.hsgameparser.achievements.ScenarioIds;
 import com.zerotoheroes.hsgameparser.db.CardsList;
 import com.zerotoheroes.hsgameparser.db.DbCard;
 import org.assertj.core.api.WithAssertions;
@@ -21,7 +20,6 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.CARD_PLAYED
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CORRECT_OPPONENT;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CORRECT_STARTING_HEALTH;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DEATHRATTLE_TRIGGERED;
-import static com.zerotoheroes.hsgameparser.achievements.Requirement.EXCLUDED_SCENARIO_IDS;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.FATIGUE_DAMAGE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
@@ -30,10 +28,15 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.MINIONS_CON
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.MINION_ATTACK_ON_BOARD;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.PASSIVE_BUFF;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.QUALIFIER_AT_LEAST;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENARIO_IDS;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENE_CHANGED_TO_GAME;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.SECRET_TRIGGERED;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_DAMAGE_DEALT;
+import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.TOMBS_OF_TERROR;
+import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.TOMBS_OF_TERROR_HEROIC;
+import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.TOMBS_OF_TERROR_NORMAL;
 import static com.zerotoheroes.hsgameparser.achievements.generator.GeneralHelper.sanitize;
+import static com.zerotoheroes.hsgameparser.achievements.generator.GeneralHelper.toStrings;
 import static org.assertj.core.util.Lists.newArrayList;
 
 public class TombsOfTerrorAchievements implements WithAssertions {
@@ -88,26 +91,22 @@ public class TombsOfTerrorAchievements implements WithAssertions {
 
     private List<RawAchievement> buildPlagueLordsAchievements() throws Exception {
         CardsList cardsList = CardsList.create();
-//        List<DbCard> plagueLordCards = cardsList.getDbCards().stream()
-//                .filter(card -> Lists.newArrayList(
-//                        "ULDA_BOSS_37h", "ULDA_BOSS_37h2", "ULDA_BOSS_37h3",
-//                        "ULDA_BOSS_38h", "ULDA_BOSS_38h2", "ULDA_BOSS_38h3",
-//                        "ULDA_BOSS_39h", "ULDA_BOSS_39h2", "ULDA_BOSS_39h3",
-//                        "ULDA_BOSS_40h", "ULDA_BOSS_40h2", "ULDA_BOSS_40h3",
-//                        "ULDA_BOSS_67h", "ULDA_BOSS_67h2", "ULDA_BOSS_67h3"
-//                ).contains(card.getId()))
-//                .collect(Collectors.toList());
         List<RawAchievement> result = newArrayList(
                         buildPlagueLordEntry(newArrayList(cardsList.findDbCard("ULDA_BOSS_37h"), cardsList.findDbCard("ULDA_BOSS_37h2"), cardsList.findDbCard("ULDA_BOSS_37h3"))),
                         buildPlagueLordEntry(newArrayList(cardsList.findDbCard("ULDA_BOSS_38h"), cardsList.findDbCard("ULDA_BOSS_38h2"), cardsList.findDbCard("ULDA_BOSS_38h3"))),
                         buildPlagueLordEntry(newArrayList(cardsList.findDbCard("ULDA_BOSS_39h"), cardsList.findDbCard("ULDA_BOSS_39h2"), cardsList.findDbCard("ULDA_BOSS_39h3"))),
                         buildPlagueLordEntry(newArrayList(cardsList.findDbCard("ULDA_BOSS_40h"), cardsList.findDbCard("ULDA_BOSS_40h2"), cardsList.findDbCard("ULDA_BOSS_40h3"))),
-                        buildPlagueLordEntry(newArrayList(cardsList.findDbCard("ULDA_BOSS_67h")))
+                        buildPlagueLordEntry(newArrayList(cardsList.findDbCard("ULDA_BOSS_67h"))),
+                        buildPlagueLordEntryHeroic(newArrayList(cardsList.findDbCard("ULDA_BOSS_37h"), cardsList.findDbCard("ULDA_BOSS_37h2"), cardsList.findDbCard("ULDA_BOSS_37h3"))),
+                        buildPlagueLordEntryHeroic(newArrayList(cardsList.findDbCard("ULDA_BOSS_38h"), cardsList.findDbCard("ULDA_BOSS_38h2"), cardsList.findDbCard("ULDA_BOSS_38h3"))),
+                        buildPlagueLordEntryHeroic(newArrayList(cardsList.findDbCard("ULDA_BOSS_39h"), cardsList.findDbCard("ULDA_BOSS_39h2"), cardsList.findDbCard("ULDA_BOSS_39h3"))),
+                        buildPlagueLordEntryHeroic(newArrayList(cardsList.findDbCard("ULDA_BOSS_40h"), cardsList.findDbCard("ULDA_BOSS_40h2"), cardsList.findDbCard("ULDA_BOSS_40h3"))),
+                        buildPlagueLordEntryHeroic(newArrayList(cardsList.findDbCard("ULDA_BOSS_67h")))
                 ).stream()
                 .flatMap(List::stream)
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(10);
+        assertThat(result.size()).isEqualTo(20);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -121,8 +120,6 @@ public class TombsOfTerrorAchievements implements WithAssertions {
         return newArrayList(
                 buildBossEncounterEntry(card),
                 buildBossVictoryEntry(card));
-//                buildDalaranBossHeroicEncounterEntry(card),
-//                buildDalaranBossHeroicVictoryEntry(card));
     }
 
     private RawAchievement buildBossEncounterEntry(DbCard card) {
@@ -139,31 +136,12 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
                         Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
-//                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST_NORMAL)).build()
+//                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
-
-//    private RawAchievement buildDalaranBossHeroicEncounterEntry(DbCard card) {
-//        return buildDalaranBossEntry(card, "dalaran_heist_boss_encounter_heroic")
-//                .icon("boss_encounter")
-//                .root(false)
-//                .priority(2)
-//                .displayName("Heroic boss met: " + card.getSafeName())
-//                .completedText("You heroically met " + card.getName())
-//                .difficulty("rare")
-//                .maxNumberOfRecords(1)
-//                .points(2)
-//                .requirements(Lists.newArrayList(
-//                        Requirement.builder().type(CORRECT_OPPONENT).values(Lists.newArrayList(card.getId())).build(),
-//                        Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
-//                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST_HEROIC)).build()
-//                ))
-//                .resetEvents(Lists.newArrayList(GameEvents.GAME_END))
-//                .build();
-//    }
 
     private RawAchievement buildBossVictoryEntry(DbCard card) {
         return buildBossEntry(card, "tombs_of_terror_boss_victory")
@@ -179,31 +157,12 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
-//                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST_NORMAL)).build()
+//                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
     }
-
-//    private RawAchievement buildDalaranBossHeroicVictoryEntry(DbCard card) {
-//        return buildDalaranBossEntry(card, "dalaran_heist_boss_victory_heroic")
-//                .icon("boss_victory")
-//                .root(false)
-//                .priority(3)
-//                .displayName("Heroic boss defeated: " + card.getSafeName())
-//                .completedText("You heroically defeeated " + card.getName())
-//                .difficulty("rare")
-//                .maxNumberOfRecords(2)
-//                .points(3)
-//                .requirements(Lists.newArrayList(
-//                        Requirement.builder().type(CORRECT_OPPONENT).values(Lists.newArrayList(card.getId())).build(),
-//                        Requirement.builder().type(GAME_WON).build(),
-//                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST_HEROIC)).build()
-//                ))
-//                .resetEvents(Lists.newArrayList(GameEvents.GAME_START))
-//                .build();
-//    }
 
     private RawAchievement.RawAchievementBuilder buildBossEntry(DbCard card, String type) {
         return RawAchievement.builder()
@@ -242,7 +201,8 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                                         .build(),
                                 Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
                                 Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                                Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+//                                Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                                Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR_NORMAL)).build()
 //                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST_NORMAL)).build()
                         ))
                         .resetEvents(newArrayList(GameEvents.GAME_END))
@@ -270,11 +230,71 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                                         .build(),
                                 Requirement.builder().type(GAME_WON).build(),
                                 Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                                Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+//                                Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                                Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR_NORMAL)).build()
                                 // Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST_NORMAL)).build()
                         ))
                         .resetEvents(newArrayList(GameEvents.GAME_START))
-                .build());
+                        .build());
+    }
+
+    private List<RawAchievement> buildPlagueLordEntryHeroic(List<DbCard> bossForms) {
+        DbCard firstForm = bossForms.get(0);
+        return newArrayList(
+                RawAchievement.builder()
+                        .id("tombs_of_terror_boss_encounter_" + firstForm.getId() + "_heroic")
+                        .type("tombs_of_terror_boss_" + firstForm.getId())
+                        .name(firstForm.getSafeName())
+                        .text(sanitize(firstForm.getText()))
+                        .emptyText(null)
+                        .displayCardId(firstForm.getId())
+                        .displayCardType(firstForm.getType().toLowerCase())
+                        .icon("boss_encounter")
+                        .root(false)
+                        .priority(2)
+                        .displayName("Plague Lord met: " + firstForm.getSafeName() + " (Heroic)")
+                        .completedText("You met " + firstForm.getName() + " (Heroic)")
+                        .difficulty("epic")
+                        .maxNumberOfRecords(3)
+                        .points(20)
+                        .requirements(newArrayList(
+                                Requirement.builder()
+                                        .type(CORRECT_OPPONENT)
+                                        .values(newArrayList(bossForms.stream().map(DbCard::getId).collect(Collectors.toList())))
+                                        .build(),
+                                Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
+                                Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
+                                Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR_HEROIC)).build()
+                        ))
+                        .resetEvents(newArrayList(GameEvents.GAME_END))
+                        .build(),
+                RawAchievement.builder()
+                        .id("tombs_of_terror_boss_victory_" + firstForm.getId() + "_heroic")
+                        .type("tombs_of_terror_boss_" + firstForm.getId())
+                        .name(firstForm.getSafeName())
+                        .text(sanitize(firstForm.getText()))
+                        .emptyText(null)
+                        .displayCardId(firstForm.getId())
+                        .displayCardType(firstForm.getType().toLowerCase())
+                        .icon("boss_victory")
+                        .root(false)
+                        .priority(3)
+                        .displayName("Plague Lord defeated: " + firstForm.getSafeName() + " (Heroic)")
+                        .completedText("You defeated " + firstForm.getName() + " (Heroic)")
+                        .difficulty("epic")
+                        .maxNumberOfRecords(3)
+                        .points(30)
+                        .requirements(newArrayList(
+                                Requirement.builder().type(CORRECT_OPPONENT)
+                                        // We want to grant the achievement whatever the initial form of the boss was
+                                        .values(newArrayList(bossForms.stream().map(DbCard::getId).collect(Collectors.toList())))
+                                        .build(),
+                                Requirement.builder().type(GAME_WON).build(),
+                                Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
+                                Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR_HEROIC)).build()
+                        ))
+                        .resetEvents(newArrayList(GameEvents.GAME_START))
+                        .build());
     }
 
     private List<RawAchievement> buildTreasureAchievements() throws Exception {
@@ -326,8 +346,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         .requirements(newArrayList(
                                 Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId())).build(),
                                 Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                                Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
-//                                Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST)).build()
+                                Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                         ))
                         .resetEvents(newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
                         .build())
@@ -367,8 +386,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         .requirements(newArrayList(
                                 Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId())).build(),
                                 Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                                Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
-//                                Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST)).build()
+                                Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                         ))
                         .resetEvents(newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
                         .build())
@@ -426,8 +444,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         .requirements(newArrayList(
                                 Requirement.builder().type(PASSIVE_BUFF).values(newArrayList(card.getId())).build(),
                                 Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                                Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
-//                                Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST)).build()
+                                Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                         ))
                         .resetEvents(newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
                         .build())
@@ -443,25 +460,31 @@ public class TombsOfTerrorAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildAmazingPlaysAchievements() throws Exception {
-        List<RawAchievement> result = newArrayList(
+        List<RawAchievement> singles = newArrayList(
                 fullTinyfin(),
-                unstoppable("ULDA_BOSS_37h"),
-                unstoppable("ULDA_BOSS_38h"),
-                unstoppable("ULDA_BOSS_39h"),
-                unstoppable("ULDA_BOSS_40h"),
-                unstoppable("ULDA_BOSS_67h"),
                 aegis(),
                 gatlingWand(),
                 fullLegendary(),
                 highAttackMinion(),
                 fatigueVesh(),
-                siamat()
-        );
-        assertThat(result.size()).isEqualTo(12);
+                siamat());
+        List<RawAchievement> result =
+                Stream.of(
+                        singles,
+                        unstoppable("ULDA_BOSS_37h"),
+                        unstoppable("ULDA_BOSS_38h"),
+                        unstoppable("ULDA_BOSS_39h"),
+                        unstoppable("ULDA_BOSS_40h"),
+                        unstoppable("ULDA_BOSS_67h"))
+                .flatMap(List::stream)
+                .sorted(Comparator.comparing(RawAchievement::getId))
+                .collect(Collectors.toList());
+        assertThat(result.size()).isEqualTo(17);
         List<String> types = result.stream()
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
+                .distinct()
                 .collect(Collectors.toList());
         System.out.println(String.join(",", types));
         return result;
@@ -490,7 +513,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList("ULDA_BOSS_66h")).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
@@ -528,7 +551,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                                 .values(newArrayList(veshForms.stream().map(DbCard::getId).collect(Collectors.toList())))
                                 .build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
@@ -559,7 +582,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                                 .values(newArrayList("100", "AT_LEAST"))
                                 .build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
@@ -591,7 +614,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                                 .individualResetEvents(newArrayList(GameEvents.TURN_START))
                                 .build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
@@ -627,16 +650,16 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                                 .individualResetEvents(newArrayList(GameEvents.TURN_START))
                                 .build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
-    private RawAchievement unstoppable(String cardId) throws Exception {
+    private List<RawAchievement> unstoppable(String cardId) throws Exception {
         CardsList cardsList = CardsList.create();
         DbCard card = cardsList.findDbCard(cardId);
-        return RawAchievement.builder()
+        RawAchievement normal = RawAchievement.builder()
                 .id("tombs_of_terror_amazing_plays_unstoppable_" + card.getId())
                 .type("tombs_of_terror_amazing_plays_unstoppable_" + card.getId())
                 .name("Unstoppable - " + card.getSafeName())
@@ -657,11 +680,36 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         Requirement.builder().type(CORRECT_STARTING_HEALTH).values(newArrayList(card.getId(), "" + card.getHealth())).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
-                        // Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST_NORMAL)).build()
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR_NORMAL)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
+        RawAchievement heroic = RawAchievement.builder()
+                .id("tombs_of_terror_amazing_plays_unstoppable_" + card.getId() + "_heroic")
+                .type("tombs_of_terror_amazing_plays_unstoppable_" + card.getId())
+                .name("Unstoppable - " + card.getSafeName() + " (Heroic)")
+                .emptyText("Defeat " + sanitize(card.getName()) + " in a single encounter (Heroic)")
+                .completedText("You defeated " + sanitize(card.getName()) + " in a single encounter (Heroic)")
+                .displayCardId(card.getId())
+                .displayCardType(card.getType().toLowerCase())
+                .icon("boss_victory")
+                .root(false)
+                .priority(1)
+                .displayName("Achievement completed: Unstoppable  - " + sanitize(card.getName()) + " (Heroic)")
+                .difficulty("legendary")
+                .maxNumberOfRecords(3)
+                .points(50)
+                .requirements(newArrayList(
+                        // Only award the achievement if the boss was defeated after starting the fight with full HP
+                        Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
+                        Requirement.builder().type(CORRECT_STARTING_HEALTH).values(newArrayList(card.getId(), "" + card.getHealth())).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR_HEROIC)).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+        return newArrayList(normal, heroic);
     }
 
     private RawAchievement fullTinyfin() {
@@ -683,7 +731,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 .requirements(newArrayList(
                         Requirement.builder().type(MINIONS_CONTROLLED_DURING_TURN).values(newArrayList("LOEA10_3", "7", QUALIFIER_AT_LEAST)).build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
@@ -708,7 +756,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 .requirements(newArrayList(
                         Requirement.builder().type(BOARD_FULL_OF_SAME_LEGENDARY_MINION).build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
@@ -745,15 +793,15 @@ public class TombsOfTerrorAchievements implements WithAssertions {
         );
     }
 
-    private List<String> excludedScenarioIds() {
-        return
-                Stream.of(
-                        GeneralHelper.toStrings(ScenarioIds.DALARAN_HEIST),
-                        GeneralHelper.toStrings(newArrayList(ScenarioIds.DUNGEON_RUN)),
-                        GeneralHelper.toStrings(newArrayList(ScenarioIds.MONSTER_HUNT, ScenarioIds.MONSTER_HUNT_FINAL)),
-                        GeneralHelper.toStrings(newArrayList(ScenarioIds.RUMBLE_RUN)),
-                        GeneralHelper.toStrings(newArrayList(ScenarioIds.PRACTICE)))
-                .flatMap(List::stream)
-                .collect(Collectors.toList());
-    }
+//    private List<String> excludedScenarioIds() {
+//        return
+//                Stream.of(
+//                        toStrings(ScenarioIds.DALARAN_HEIST),
+//                        toStrings(newArrayList(ScenarioIds.DUNGEON_RUN)),
+//                        toStrings(newArrayList(ScenarioIds.MONSTER_HUNT, ScenarioIds.MONSTER_HUNT_FINAL)),
+//                        toStrings(newArrayList(ScenarioIds.RUMBLE_RUN)),
+//                        toStrings(newArrayList(ScenarioIds.PRACTICE)))
+//                .flatMap(List::stream)
+//                .collect(Collectors.toList());
+//    }
 }
