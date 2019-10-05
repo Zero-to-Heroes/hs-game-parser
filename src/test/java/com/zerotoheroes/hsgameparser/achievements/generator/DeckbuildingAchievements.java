@@ -16,6 +16,8 @@ import java.util.stream.Stream;
 import static com.zerotoheroes.hsgameparser.achievements.FormatType.STANDARD;
 import static com.zerotoheroes.hsgameparser.achievements.GameType.RANKED;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_CARD_ATTRIBUTE_VALUE;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_CARD_TEXT_NUMBER_OF_WORDS;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_CARD_TEXT_VALUE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_CLASSIC;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_EPIC;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_MECHANIC;
@@ -46,6 +48,10 @@ public class DeckbuildingAchievements implements WithAssertions {
         List<RawAchievement> voids = voids();
         List<RawAchievement> quiets = quiets();
         List<RawAchievement> thousandCuts = thousandCuts();
+        List<RawAchievement> fragileNatures = fragileNatures();
+        List<RawAchievement> summoners = summoners();
+        List<RawAchievement> simples = simples();
+        List<RawAchievement> complexes = complexes();
         List<RawAchievement> result =
                 Stream.of(
                         classic,
@@ -53,7 +59,11 @@ public class DeckbuildingAchievements implements WithAssertions {
                         lifesteals,
                         voids,
                         quiets,
-                        thousandCuts)
+                        thousandCuts,
+                        fragileNatures,
+                        summoners,
+                        simples,
+                        complexes)
                 .flatMap(List::stream)
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
@@ -243,7 +253,6 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .build();
     }
 
-
     private List<RawAchievement> thousandCuts() {
         List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
         return minimumRanks.stream()
@@ -275,6 +284,144 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_ATTRIBUTE_VALUE).values(newArrayList("" + minNumberOfMinions, "AT_LEAST", "attack", "1", "AT_MOST")).build(),
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("" + 0, "SPELL", "AT_MOST")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> fragileNatures() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> fragileNature(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement fragileNature(int minimumRank, boolean isRoot) {
+        int minNumberOfMinions = 15;
+        return RawAchievement.builder()
+                .id("deckbuilding_win_fragile_nature_" + minimumRank)
+                .type("deckbuilding_win_fragile_nature")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Fragile Nature")
+                .displayName("Achievement completed: Fragile Nature (rank " + minimumRank + ")")
+                .displayCardId("GIL_665")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing at least " + minNumberOfMinions + " minions with 1 health and no spell in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_CARD_ATTRIBUTE_VALUE).values(newArrayList("" + minNumberOfMinions, "AT_LEAST", "health", "1", "AT_MOST")).build(),
+                        Requirement.builder().type(DECK_TYPE).values(newArrayList("" + 0, "SPELL", "AT_MOST")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> summoners() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> summoner(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement summoner(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_summoner_" + minimumRank)
+                .type("deckbuilding_win_summoner")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Summoner")
+                .displayName("Achievement completed: Summoner (rank " + minimumRank + ")")
+                .displayCardId("DAL_575")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing only cards with the \"Summon\" word in their text or name in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_CARD_TEXT_VALUE).values(newArrayList("" + 30, "AT_LEAST", "summon", "CONTAINS")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> simples() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> simple(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement simple(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_simple_" + minimumRank)
+                .type("deckbuilding_win_simple")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Keeping it Simple")
+                .displayName("Achievement completed: Keeping it Simple (rank " + minimumRank + ")")
+                .displayCardId("CS2_182")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing only cards with at most 3 works in their text in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_CARD_TEXT_NUMBER_OF_WORDS).values(newArrayList("" + 30, "AT_LEAST", "3", "AT_MOST")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> complexes() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> complex(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement complex(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_complex_" + minimumRank)
+                .type("deckbuilding_win_complex")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Complexity")
+                .displayName("Achievement completed: Complexity (rank " + minimumRank + ")")
+                .displayCardId("CS2_233")
+                .displayCardType("spell")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing only cards with at leat 8 works in their text in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_CARD_TEXT_NUMBER_OF_WORDS).values(newArrayList("" + 30, "AT_LEAST", "8", "AT_LEAST")).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
