@@ -307,6 +307,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         || "Spell".equals(card.getType())
                         || "Weapon".equals(card.getType()))
                 .filter(card -> !bobsTreats().contains(card.getId()))
+                .filter(card -> !nonLootableTreasures().contains(card.getId()))
                 .filter(card -> card.getText() == null || !card.getText().contains("Add to your deck"))
                 .filter(card -> !card.getName().contains("Twist - "))
                 .filter(card -> !card.getName().contains("Anomaly - "))
@@ -352,7 +353,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         .build())
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(58);
+        assertThat(result.size()).isEqualTo(56);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -471,6 +472,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
         List<RawAchievement> result =
                 Stream.of(
                         singles,
+                        amazingTreasures(),
                         unstoppable("ULDA_BOSS_37h"),
                         unstoppable("ULDA_BOSS_38h"),
                         unstoppable("ULDA_BOSS_39h"),
@@ -479,7 +481,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 .flatMap(List::stream)
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(17);
+        assertThat(result.size()).isEqualTo(19);
         List<String> types = result.stream()
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .map(RawAchievement::getType)
@@ -712,6 +714,46 @@ public class TombsOfTerrorAchievements implements WithAssertions {
         return newArrayList(normal, heroic);
     }
 
+    private List<RawAchievement> amazingTreasures() throws Exception {
+        CardsList cardsList = CardsList.create();
+        List<DbCard> treasureCards = cardsList.getDbCards().stream()
+                .filter(card -> nonLootableTreasures().contains(card.getId()))
+                .collect(Collectors.toList());
+        List<RawAchievement> result = treasureCards.stream()
+                .map(card -> RawAchievement.builder()
+                        .id("tombs_of_terror_amazing_treasure_play_" + card.getId())
+                        .type("tombs_of_terror_amazing_treasure_play_" + card.getId())
+                        .icon("boss_victory")
+                        .root(true)
+                        .priority(0)
+                        .name(card.getName())
+                        .displayName("Treasure played: " + card.getSafeName())
+                        .displayCardId(card.getId())
+                        .displayCardType(card.getType().toLowerCase())
+                        .text("Play " + sanitize(card.getName()) + " by stealing it from the boss")
+                        .emptyText(null)
+                        .completedText("You played " + card.getName())
+                        .difficulty("legendary")
+                        .maxNumberOfRecords(3)
+                        .points(50)
+                        .requirements(newArrayList(
+                                Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId())).build(),
+                                Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
+                                Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
+                        ))
+                        .resetEvents(newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
+                        .build())
+                .sorted(Comparator.comparing(RawAchievement::getId))
+                .collect(Collectors.toList());
+        assertThat(result.size()).isEqualTo(2);
+//        List<String> types = result.stream()
+//                .map(RawAchievement::getType)
+//                .map(type -> "'" + type + "'")
+//                .collect(Collectors.toList());
+//        System.out.println(String.join(",", types));
+        return result;
+    }
+
     private RawAchievement fullTinyfin() {
         return RawAchievement.builder()
                 .id("tombs_of_terror_amazing_plays_full_tinyfin")
@@ -790,6 +832,13 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 "ULDA_608", // Do the Math
                 "ULDA_911", // Kindle
                 "ULDA_912" // Recruit
+        );
+    }
+
+    private List<String> nonLootableTreasures() {
+        return newArrayList(
+                "ULDA_033", // Rakanishu
+                "ULDA_032" // Enflamed Golen
         );
     }
 
