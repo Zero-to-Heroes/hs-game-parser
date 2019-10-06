@@ -53,9 +53,9 @@ public class Requirement {
 
     // We just have one requirement per deckbuilding constraint
     public static final String DECK_CLASSIC = "DECK_CLASSIC";
-    public static final String DECK_EPIC = "DECK_EPIC";
     public static final String DECK_MECHANIC = "DECK_MECHANIC";
     public static final String DECK_TYPE = "DECK_TYPE";
+    public static final String DECK_RARITY = "DECK_RARITY";
     public static final String DECK_CARD_ATTRIBUTE_VALUE = "DECK_CARD_ATTRIBUTE_VALUE";
     public static final String DECK_CARD_TEXT_VALUE = "DECK_CARD_TEXT_VALUE";
     public static final String DECK_NO_CARD_WITH_LETTER_IN_NAME = "DECK_NO_CARD_WITH_LETTER_IN_NAME";

@@ -19,10 +19,10 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_CARD_A
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_CARD_TEXT_NUMBER_OF_WORDS;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_CARD_TEXT_VALUE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_CLASSIC;
-import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_EPIC;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_MECHANIC;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_NO_CARD_WITH_LETTER_IN_NAME;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_NUMBER_OF_MINIONS;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_RARITY;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
@@ -50,6 +50,7 @@ public class DeckbuildingAchievements implements WithAssertions {
         List<RawAchievement> thousandCuts = thousandCuts();
         List<RawAchievement> fragileNatures = fragileNatures();
         List<RawAchievement> summoners = summoners();
+        List<RawAchievement> randoms = randoms();
         List<RawAchievement> simples = simples();
         List<RawAchievement> complexes = complexes();
         List<RawAchievement> result =
@@ -62,6 +63,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         thousandCuts,
                         fragileNatures,
                         summoners,
+                        randoms,
                         simples,
                         complexes)
                 .flatMap(List::stream)
@@ -141,7 +143,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
-                        Requirement.builder().type(DECK_EPIC).build()
+                        Requirement.builder().type(DECK_RARITY).values(newArrayList("30", "AT_LEAST", "epic")).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
@@ -344,7 +346,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .displayCardId("DAL_575")
                 .displayCardType("minion")
                 .difficulty("rare")
-                .emptyText("Win one game with a deck containing only cards with the \"Summon\" word in their text or name in Ranked Standard")
+                .emptyText("Win one game with a deck containing only cards with the word \"Summon\" in their text or name in Ranked Standard")
                 .completedText("Completed at rank " + minimumRank + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
@@ -354,6 +356,40 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_TEXT_VALUE).values(newArrayList("" + 30, "AT_LEAST", "summon", "CONTAINS")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> randoms() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> random(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement random(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_random_" + minimumRank)
+                .type("deckbuilding_win_random")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("My Own Casino")
+                .displayName("Achievement completed: My Own Casino (rank " + minimumRank + ")")
+                .displayCardId("KAR_009")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing only cards with the word \"random\" in their text or name in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_CARD_TEXT_VALUE).values(newArrayList("" + 30, "AT_LEAST", "random", "CONTAINS")).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
@@ -378,7 +414,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .displayCardId("CS2_182")
                 .displayCardType("minion")
                 .difficulty("rare")
-                .emptyText("Win one game with a deck containing only cards with at most 3 works in their text in Ranked Standard")
+                .emptyText("Win one game with a deck containing only cards with at most 3 words in their text in Ranked Standard")
                 .completedText("Completed at rank " + minimumRank + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
@@ -412,7 +448,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .displayCardId("CS2_233")
                 .displayCardType("spell")
                 .difficulty("rare")
-                .emptyText("Win one game with a deck containing only cards with at leat 8 works in their text in Ranked Standard")
+                .emptyText("Win one game with a deck containing only cards with at leat 8 words in their text in Ranked Standard")
                 .completedText("Completed at rank " + minimumRank + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
