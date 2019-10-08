@@ -58,6 +58,7 @@ public class DeckbuildingAchievements implements WithAssertions {
         List<RawAchievement> sorcerers = sorcerers();
         List<RawAchievement> minions = minions();
         List<RawAchievement> balanceds = balanceds();
+        List<RawAchievement> richlyBalanceds = richlyBalanceds();
         List<RawAchievement> swordAndSpells = swordAndSpells();
         List<RawAchievement> result =
                 Stream.of(
@@ -75,6 +76,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         complexes,
                         minions,
                         balanceds,
+                        richlyBalanceds,
                         sorcerers,
                         miracles,
                         swordAndSpells)
@@ -190,6 +192,42 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "common")).build(),
+                        Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "rare")).build(),
+                        Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "epic")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> richlyBalanceds() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> richlyBalanced(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement richlyBalanced(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_richly_balanced_" + minimumRank)
+                .type("deckbuilding_win_richly_balanced")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Richly Balanced")
+                .displayName("Achievement completed: Richly Balanced (rank " + minimumRank + ")")
+                .displayCardId("TRLA_116")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing 10 rare, epic and legendary cards in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "legendary")).build(),
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "rare")).build(),
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "epic")).build()
                 ))
