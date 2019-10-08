@@ -53,6 +53,12 @@ public class DeckbuildingAchievements implements WithAssertions {
         List<RawAchievement> randoms = randoms();
         List<RawAchievement> simples = simples();
         List<RawAchievement> complexes = complexes();
+        List<RawAchievement> miracles = miracles();
+        List<RawAchievement> loneSurvivors = loneSurvivors();
+        List<RawAchievement> sorcerers = sorcerers();
+        List<RawAchievement> minions = minions();
+        List<RawAchievement> balanceds = balanceds();
+        List<RawAchievement> swordAndSpells = swordAndSpells();
         List<RawAchievement> result =
                 Stream.of(
                         classic,
@@ -65,7 +71,13 @@ public class DeckbuildingAchievements implements WithAssertions {
                         summoners,
                         randoms,
                         simples,
-                        complexes)
+                        loneSurvivors,
+                        complexes,
+                        minions,
+                        balanceds,
+                        sorcerers,
+                        miracles,
+                        swordAndSpells)
                 .flatMap(List::stream)
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
@@ -144,6 +156,215 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("30", "AT_LEAST", "epic")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> balanceds() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> balanced(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement balanced(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_balanced_" + minimumRank)
+                .type("deckbuilding_win_balanced")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Perfectly Balanced")
+                .displayName("Achievement completed: Perfectly Balanced (rank " + minimumRank + ")")
+                .displayCardId("ULDA_BOSS_62h")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing 10 common, rare and epic cards in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "common")).build(),
+                        Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "rare")).build(),
+                        Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "epic")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> minions() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> minion(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement minion(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_minion_" + minimumRank)
+                .type("deckbuilding_win_minion")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("A Whole Army")
+                .displayName("Achievement completed: A Whole Army (rank " + minimumRank + ")")
+                .displayCardId("BOT_912")
+                .displayCardType("spell")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing only minions in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_NUMBER_OF_MINIONS).values(newArrayList("30", "AT_LEAST")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> sorcerers() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> sorcerer(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement sorcerer(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_sorcerer_" + minimumRank)
+                .type("deckbuilding_win_sorcerer")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Sorcerer")
+                .displayName("Achievement completed: Sorcerer (rank " + minimumRank + ")")
+                .displayCardId("OG_090")
+                .displayCardType("spell")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing only spells in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_TYPE).values(newArrayList("30", "SPELL", "AT_LEAST")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> loneSurvivors() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> loneSurvivor(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement loneSurvivor(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_lone_survivor_" + minimumRank)
+                .type("deckbuilding_win_lone_survivor")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Lone Survivor")
+                .displayName("Achievement completed: Lone Survivor (rank " + minimumRank + ")")
+                .displayCardId("LOOT_124")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing 1 minion and 29 spells in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_TYPE).values(newArrayList("29", "SPELL", "AT_LEAST")).build(),
+                        Requirement.builder().type(DECK_TYPE).values(newArrayList("1", "MINION", "AT_LEAST")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> miracles() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> miracle(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement miracle(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_miracle_" + minimumRank)
+                .type("deckbuilding_win_miracle")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("The Miracle")
+                .displayName("Achievement completed: The Miracle (rank " + minimumRank + ")")
+                .displayCardId("ULD_216")
+                .displayCardType("spell")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing 29 minions and 1 spell in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_TYPE).values(newArrayList("29", "MINION", "AT_LEAST")).build(),
+                        Requirement.builder().type(DECK_TYPE).values(newArrayList("1", "SPELL", "AT_LEAST")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> swordAndSpells() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> swordAndSpell(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement swordAndSpell(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_sword_and_spell_" + minimumRank)
+                .type("deckbuilding_win_sword_and_spell")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Swords and Spells")
+                .displayName("Achievement completed: Swords and Spells (rank " + minimumRank + ")")
+                .displayCardId("ULD_329")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing 15 minions and 15 spells in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_TYPE).values(newArrayList("15", "MINION", "AT_LEAST")).build(),
+                        Requirement.builder().type(DECK_TYPE).values(newArrayList("15", "SPELL", "AT_LEAST")).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
