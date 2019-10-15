@@ -47,6 +47,7 @@ public class DeckbuildingAchievements implements WithAssertions {
         List<RawAchievement> lifesteals = lifesteals();
         List<RawAchievement> voids = voids();
         List<RawAchievement> quiets = quiets();
+        List<RawAchievement> freeSpeeches = freeSpeeches();
         List<RawAchievement> thousandCuts = thousandCuts();
         List<RawAchievement> fragileNatures = fragileNatures();
         List<RawAchievement> summoners = summoners();
@@ -67,6 +68,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         lifesteals,
                         voids,
                         quiets,
+                        freeSpeeches,
                         thousandCuts,
                         fragileNatures,
                         summoners,
@@ -509,6 +511,40 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(DECK_NUMBER_OF_MINIONS).values(newArrayList("" + minNumberOfMinions, "AT_LEAST")).build(),
                         Requirement.builder().type(DECK_MECHANIC).values(newArrayList("" + 0, "BATTLECRY", "AT_MOST")).build(),
                         Requirement.builder().type(DECK_MECHANIC).values(newArrayList("" + 0, "DEATHRATTLE", "AT_MOST")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> freeSpeeches() {
+        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> freeSpeech(minimumRank, minimumRank == 25))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement freeSpeech(int minimumRank, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("deckbuilding_win_free_speech_" + minimumRank)
+                .type("deckbuilding_win_free_speech")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("Free Speech")
+                .displayName("Achievement completed: Free Speech (rank " + minimumRank + ")")
+                .displayCardId("ICC_809")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .emptyText("Win one game with a deck containing 30 battlecry cards in Ranked Standard")
+                .completedText("Completed at rank " + minimumRank + " or better")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(DECK_MECHANIC).values(newArrayList("30", "BATTLECRY", "AT_LEAST")).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();

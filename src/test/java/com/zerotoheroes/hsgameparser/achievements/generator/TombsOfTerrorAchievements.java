@@ -21,6 +21,7 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.CORRECT_OPP
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CORRECT_STARTING_HEALTH;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.DEATHRATTLE_TRIGGERED;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.FATIGUE_DAMAGE;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TIE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.LAST_DAMAGE_DONE_BY_MINION;
@@ -468,6 +469,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 fullLegendary(),
                 highAttackMinion(),
                 fatigueVesh(),
+                tieAgainstPlagueLord(),
                 siamat());
         List<RawAchievement> result =
                 Stream.of(
@@ -481,7 +483,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 .flatMap(List::stream)
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(19);
+        assertThat(result.size()).isEqualTo(20);
         List<String> types = result.stream()
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .map(RawAchievement::getType)
@@ -554,6 +556,50 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                                 .build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
                         Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
+                .build();
+    }
+
+    private RawAchievement tieAgainstPlagueLord() throws Exception {
+        CardsList cardsList = CardsList.create();
+        List<DbCard> validOpponents = newArrayList(
+                cardsList.findDbCard("ULDA_BOSS_39h"),
+                cardsList.findDbCard("ULDA_BOSS_39h2"),
+                cardsList.findDbCard("ULDA_BOSS_39h3"),
+                cardsList.findDbCard("ULDA_BOSS_40h"),
+                cardsList.findDbCard("ULDA_BOSS_40h2"),
+                cardsList.findDbCard("ULDA_BOSS_40h3"),
+                cardsList.findDbCard("ULDA_BOSS_37h"),
+                cardsList.findDbCard("ULDA_BOSS_37h2"),
+                cardsList.findDbCard("ULDA_BOSS_37h3"),
+                cardsList.findDbCard("ULDA_BOSS_38h"),
+                cardsList.findDbCard("ULDA_BOSS_38h2"),
+                cardsList.findDbCard("ULDA_BOSS_38h3"),
+                cardsList.findDbCard("ULDA_BOSS_67h"));
+        return RawAchievement.builder()
+                .id("tombs_of_terror_amazing_plays_plague_lord_tie")
+                .type("tombs_of_terror_amazing_plays_plague_lord_tie")
+                .name("Tied a Plague Lord")
+                .emptyText("End the game with a Plague Lord in a tie")
+                .completedText("You ended a game with a Plague Lord in a tie")
+                .displayCardId("BOTA_601")
+                .displayCardType("minion")
+                .icon("boss_victory")
+                .root(true)
+                .priority(0)
+                .displayName("Achievement completed: Tied a Plague Lord")
+                .difficulty("legendary")
+                .maxNumberOfRecords(3)
+                .points(40)
+                .requirements(newArrayList(
+                        Requirement.builder()
+                                .type(CORRECT_OPPONENT)
+                                .values(newArrayList(validOpponents.stream().map(DbCard::getId).collect(Collectors.toList())))
+                                .build(),
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
+                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build(),
+                        Requirement.builder().type(GAME_TIE).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
