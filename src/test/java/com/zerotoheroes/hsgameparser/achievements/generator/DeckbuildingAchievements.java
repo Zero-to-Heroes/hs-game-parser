@@ -127,7 +127,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CLASSIC).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -161,7 +161,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("30", "AT_LEAST", "epic")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -197,7 +197,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "rare")).build(),
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "epic")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -233,7 +233,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "rare")).build(),
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "epic")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -267,7 +267,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_NUMBER_OF_MINIONS).values(newArrayList("30", "AT_LEAST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -301,7 +301,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("30", "SPELL", "AT_LEAST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -336,7 +336,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("29", "SPELL", "AT_LEAST")).build(),
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("1", "MINION", "AT_LEAST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -371,7 +371,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("29", "MINION", "AT_LEAST")).build(),
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("1", "SPELL", "AT_LEAST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -406,7 +406,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("15", "MINION", "AT_LEAST")).build(),
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("15", "SPELL", "AT_LEAST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -441,7 +441,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_MECHANIC).values(newArrayList("" + minLifestealCards, "LIFESTEAL", "AT_LEAST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -475,7 +475,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_NO_CARD_WITH_LETTER_IN_NAME).values(newArrayList("e")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -512,7 +512,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(DECK_MECHANIC).values(newArrayList("" + 0, "BATTLECRY", "AT_MOST")).build(),
                         Requirement.builder().type(DECK_MECHANIC).values(newArrayList("" + 0, "DEATHRATTLE", "AT_MOST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -546,7 +546,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_MECHANIC).values(newArrayList("30", "BATTLECRY", "AT_LEAST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -582,7 +582,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(DECK_CARD_ATTRIBUTE_VALUE).values(newArrayList("" + minNumberOfMinions, "AT_LEAST", "attack", "1", "AT_MOST")).build(),
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("" + 0, "SPELL", "AT_MOST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -618,7 +618,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(DECK_CARD_ATTRIBUTE_VALUE).values(newArrayList("" + minNumberOfMinions, "AT_LEAST", "health", "1", "AT_MOST")).build(),
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("" + 0, "SPELL", "AT_MOST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -652,7 +652,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_TEXT_VALUE).values(newArrayList("" + 30, "AT_LEAST", "summon", "CONTAINS")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -686,7 +686,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_TEXT_VALUE).values(newArrayList("" + 30, "AT_LEAST", "random", "CONTAINS")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -720,7 +720,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_TEXT_NUMBER_OF_WORDS).values(newArrayList("" + 30, "AT_LEAST", "3", "AT_MOST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 
@@ -743,7 +743,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .displayCardId("CS2_233")
                 .displayCardType("spell")
                 .difficulty("rare")
-                .emptyText("Win one game with a deck containing only cards with at leat 8 words in their text in Ranked Standard")
+                .emptyText("Win one game with a deck containing only cards with at least 8 words in their text in Ranked Standard")
                 .completedText("Completed at rank " + minimumRank + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
@@ -754,7 +754,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_TEXT_NUMBER_OF_WORDS).values(newArrayList("" + 30, "AT_LEAST", "8", "AT_LEAST")).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
     }
 }
