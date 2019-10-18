@@ -535,7 +535,7 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .displayCardId("ICC_809")
                 .displayCardType("minion")
                 .difficulty("rare")
-                .emptyText("Win one game with a deck containing 30 battlecry cards in Ranked Standard")
+                .emptyText("Win one game with a deck containing 30 cards with Battlecry in Ranked Standard")
                 .completedText("Completed at rank " + minimumRank + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
