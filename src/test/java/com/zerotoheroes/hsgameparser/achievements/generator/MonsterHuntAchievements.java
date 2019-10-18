@@ -234,7 +234,7 @@ public class MonsterHuntAchievements implements WithAssertions {
                         .displayName("Treasure played: " + card.getName())
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
-                        .text(sanitize(card.getText()))
+                        .text(addClassSpecificText(card) + sanitize(card.getText()))
                         .emptyText(null)
                         .completedText("You played " + card.getName())
                         .difficulty("rare")
@@ -275,7 +275,7 @@ public class MonsterHuntAchievements implements WithAssertions {
                         .displayName("Passive ability triggered: " + card.getName())
                         .displayCardId(card.getId())
                         .displayCardType(card.getType().toLowerCase())
-                        .text(sanitize(card.getText()).replace("<b>Passive</b>", ""))
+                        .text(addClassSpecificText(card) + sanitize(card.getText()).replace("<b>Passive</b>", ""))
                         .emptyText(null)
                         .completedText("You triggered " + card.getName())
                         .difficulty("rare")
@@ -295,5 +295,21 @@ public class MonsterHuntAchievements implements WithAssertions {
                 .collect(Collectors.toList());
         System.out.println(String.join(",", types));
         return result;
+    }
+
+    private String addClassSpecificText(DbCard card) {
+        if (newArrayList("GILA_513", "GILA_511", "GILA_501", "GILA_509", "GILA_503", "GILA_507", "GILA_510").contains(card.getId())) {
+            return "(Tracker only) ";
+        }
+        if (newArrayList("GILA_605", "GILA_603", "GILA_602", "GILA_610", "GILA_612", "GILA_611").contains(card.getId())) {
+            return "(Cannoneer only) ";
+        }
+        if (newArrayList("GILA_414", "GILA_410", "GILA_403", "GILA_411", "GILA_413", "GILA_401").contains(card.getId())) {
+            return "(Houndmaster only) ";
+        }
+        if (newArrayList("GILA_913", "GILA_911", "GILA_901", "GILA_907", "GILA_903", "GILA_906", "GILA_910", "GILA_904").contains(card.getId())) {
+            return "(Time-Tinker only) ";
+        }
+        return "";
     }
 }
