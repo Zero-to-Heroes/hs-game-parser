@@ -15,6 +15,7 @@ public class RawAchievement {
     private String name;
     private String icon;
     private boolean root;
+    private boolean canBeCompletedOnlyOnce;
     private int priority;
     private String displayName; // The text displayed in the notification
     /** If present, we always use this text in the achievement, irrespective of

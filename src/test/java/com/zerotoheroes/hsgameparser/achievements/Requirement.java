@@ -49,6 +49,8 @@ public class Requirement {
     public static final String WINS_AGAINST_CLASS_IN_RANKED_STANDARD_IN_LIMITED_TIME = "WINS_AGAINST_CLASS_IN_RANKED_STANDARD_IN_LIMITED_TIME";
     public static final String BOARD_FULL_OF_SAME_LEGENDARY_MINION = "BOARD_FULL_OF_SAME_LEGENDARY_MINION";
 
+    public static final String GLOBAL_STAT = "GLOBAL_STAT";
+
     public static final String QUALIFIER_AT_LEAST = "AT_LEAST";
 
     // We just have one requirement per deckbuilding constraint
