@@ -7,6 +7,7 @@ public class GlobalStats {
         public static final String TOTAL_MANA_SPENT = "total-mana-spent";
         public static final String TOTAL_ENEMY_MINIONS_DEATH = "total-enemy-minions-death";
         public static final String TOTAL_DURATION = "total-duration";
+        public static final String TOTAL_NUMBER_OF_MATCHES = "total-number-of-matches";
     }
 
     public static class Context {

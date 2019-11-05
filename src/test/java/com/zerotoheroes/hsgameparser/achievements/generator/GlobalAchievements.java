@@ -33,15 +33,23 @@ public class GlobalAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildTrackingAchievements() throws Exception {
-        List<RawAchievement> damageDealtToEnemyHeroes = buildDamageDealtToEnemyHeroes();
-        List<RawAchievement> manaSpents = buildManaSpents();
-        List<RawAchievement> enemyMinionsDeads = buildEnemyMinionsDeads();
+        List<RawAchievement> totalMatches = buildTotalMatches();
         List<RawAchievement> totalDurations = buildTotalDurations();
-        List<RawAchievement> result = Stream.of(damageDealtToEnemyHeroes, manaSpents, enemyMinionsDeads, totalDurations)
+        List<RawAchievement> manaSpents = buildManaSpents();
+        List<RawAchievement> damageDealtToEnemyHeroes = buildDamageDealtToEnemyHeroes();
+        List<RawAchievement> enemyMinionsDeads = buildEnemyMinionsDeads();
+        List<RawAchievement> result =
+                Stream.of(
+                        totalMatches,
+                        totalDurations,
+                        manaSpents,
+                        damageDealtToEnemyHeroes,
+                        enemyMinionsDeads
+                )
                 .flatMap(List::stream)
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(35);
+        assertThat(result.size()).isEqualTo(42);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -202,6 +210,45 @@ public class GlobalAchievements implements WithAssertions {
                                 GlobalStats.Key.TOTAL_DURATION,
                                 GlobalStats.Context.GLOBAL,
                                 "" + hoursPlayed)
+                        ).build()
+                ))
+                .build();
+    }
+
+    private List<RawAchievement> buildTotalMatches() throws Exception {
+        List<Integer> targetMatches = newArrayList(10, 50, 100, 500, 1000, 5000, 10000);
+        return targetMatches.stream()
+                .map(targetMatch -> buildTotalMatch(targetMatch, targetMatch == 10))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement buildTotalMatch(int matchesPlayed, boolean isRoot) {
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+        return RawAchievement.builder()
+                .id("global_total_match_" + matchesPlayed)
+                .type("global_total_match")
+                .icon("boss_victory")
+                .root(isRoot)
+                .canBeCompletedOnlyOnce(true)
+                .priority(matchesPlayed)
+                .name("I can't stop")
+                .displayName("Achievement completed: I can't stop (" + formatter.format(matchesPlayed) + " matches played)")
+                .displayCardId("DALA_BOSS_53h")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .text("Play matches in all game modes (%%globalStats."
+                        + GlobalStats.Key.TOTAL_NUMBER_OF_MATCHES
+                        + "."
+                        + GlobalStats.Context.GLOBAL
+                        + "%% matches played so far)")
+                .completedText("Played " + formatter.format(matchesPlayed) + " matches")
+                .maxNumberOfRecords(1)
+                .points(25)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GLOBAL_STAT).values(newArrayList(
+                                GlobalStats.Key.TOTAL_NUMBER_OF_MATCHES,
+                                GlobalStats.Context.GLOBAL,
+                                "" + matchesPlayed)
                         ).build()
                 ))
                 .build();
