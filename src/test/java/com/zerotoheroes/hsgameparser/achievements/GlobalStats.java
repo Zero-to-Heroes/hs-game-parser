@@ -12,6 +12,7 @@ public class GlobalStats {
 
     public static class Context {
         public static final String GLOBAL = "global";
+        public static final String BATTLEGROUNDS = "battlegrounds";
 
     }
 }

@@ -17,5 +17,5 @@ public class GameType {
     public static final String FSG_BRAWL = "20";
     public static final String FSG_BRAWL_1P_VS_AI = "21";
     public static final String FSG_BRAWL_2P_COOP = "22";
-    public static final String TOURNAMENT = "23";
+    public static final String BATTLEGROUNDS = "23";
 }
