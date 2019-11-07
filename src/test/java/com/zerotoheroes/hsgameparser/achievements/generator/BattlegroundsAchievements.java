@@ -170,7 +170,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                                         .root(card.getId().equals(root.getId()))
                                         .priority(card.getId().equals(root.getId()) ? 0 : 1)
                                         .name(card.getName())
-                                        .displayName("Achievement completed: " + (card.getId().equals(root.getId()) ? "Minion played: " : "Triple played: ") + card.getName())
+                                        .displayName((card.getId().equals(root.getId()) ? "Minion played: " : "Triple played: ") + card.getName())
                                         .displayCardId(card.getId())
                                         .displayCardType(card.getType().toLowerCase())
                                         .text(sanitize(card.getText()))
@@ -228,7 +228,7 @@ public class BattlegroundsAchievements implements WithAssertions {
         RawAchievement heroPlayed = heroFinishBuilder(card, "play")
                 .root(true)
                 .priority(0)
-                .displayName("Achievement completed: played " + sanitize(card.getName()))
+                .displayName("Played " + sanitize(card.getName()))
                 .completedText("You played " + sanitize(card.getName()))
                 .text("Take part in a Battlegrounds with " + sanitize(card.getName()))
                 .maxNumberOfRecords(1)
@@ -241,7 +241,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .build();
         RawAchievement finishTop4 = heroFinishBuilder(card, "finish_4")
                 .priority(1)
-                .displayName("Achievement completed: top 4 with " + sanitize(card.getName()))
+                .displayName("Top 4 with " + sanitize(card.getName()))
                 .completedText("You finished top 4 " + sanitize(card.getName()))
                 .text("Finish in the top 4 of a Battlegrounds with " + sanitize(card.getName()))
                 .maxNumberOfRecords(3)
@@ -256,7 +256,7 @@ public class BattlegroundsAchievements implements WithAssertions {
         RawAchievement win = heroFinishBuilder(card, "finish_1")
                 .priority(2)
                 .displayName("Battlegrounds won with " + sanitize(card.getName()))
-                .completedText("Achievement completed: won with " + sanitize(card.getName()))
+                .completedText("Won with " + sanitize(card.getName()))
                 .text("Win a Battlegrounds with " + sanitize(card.getName()))
                 .maxNumberOfRecords(4)
                 .difficulty("epic")
@@ -301,7 +301,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                         .flatMap(List::stream)
                         .sorted(Comparator.comparing(RawAchievement::getId))
                         .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(36);
+        assertThat(result.size()).isEqualTo(37);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -312,7 +312,7 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildDamageDealtToEnemyHeroes() throws Exception {
-        List<Integer> targetDamages = newArrayList(50, 100, 200, 500, 1000, 5000, 10000, 20000);
+        List<Integer> targetDamages = newArrayList(200, 700, 1_500, 3_000, 7_000, 14_000, 20_000);
         return targetDamages.stream()
                 .map(targetDamage -> buildDamageDealtToEnemyHero(targetDamage, targetDamage == 200))
                 .collect(Collectors.toList());
@@ -328,7 +328,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .canBeCompletedOnlyOnce(true)
                 .priority(targetDamage)
                 .name("Face is the Place")
-                .displayName("Achievement completed: Face is the Place (" + formatter.format(targetDamage) + " damage)")
+                .displayName("Face is the Place (" + formatter.format(targetDamage) + " damage)")
                 .displayCardId("DALA_BOSS_24e")
                 .displayCardType("minion")
                 .difficulty("rare")
@@ -351,7 +351,7 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildCoinSpents() throws Exception {
-        List<Integer> targetCoins = newArrayList(200, 500, 1000, 5000, 10_000, 20_000, 50_000, 100_000);
+        List<Integer> targetCoins = newArrayList(250, 800, 2_000, 4_500, 10_000, 20_000, 50_000, 100_000);
         return targetCoins.stream()
                 .map(targetMana -> buildCoinSpent(targetMana, targetMana == 200))
                 .collect(Collectors.toList());
@@ -366,8 +366,8 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .root(isRoot)
                 .canBeCompletedOnlyOnce(true)
                 .priority(targetMana)
-                .name("Shopping!")
-                .displayName("Achievement completed: Shopping (" + formatter.format(targetMana) + " coins spent)")
+                .name("Shopper")
+                .displayName("Shopper (" + formatter.format(targetMana) + " coins spent)")
                 .displayCardId("CS2_013t")
                 .displayCardType("minion")
                 .difficulty("rare")
@@ -390,7 +390,7 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildEnemyMinionsDeads() throws Exception {
-        List<Integer> targetMinionsDead = newArrayList(50, 100, 200, 500, 1_000, 2_000, 5_000);
+        List<Integer> targetMinionsDead = newArrayList(100, 500, 1_000, 2_000, 3_000, 5_000, 10_000, 25_000, 50_000);
         return targetMinionsDead.stream()
                 .map(minionsDead -> buildEnemyMinionsDead(minionsDead, minionsDead == 50))
                 .collect(Collectors.toList());
@@ -406,7 +406,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .canBeCompletedOnlyOnce(true)
                 .priority(minionsDead)
                 .name("Assassin")
-                .displayName("Achievement completed: Assassin (" + formatter.format(minionsDead) + " enemy minions dead)")
+                .displayName("Assassin (" + formatter.format(minionsDead) + " enemy minions dead)")
                 .displayCardId("CS2_076")
                 .displayCardType("spell")
                 .difficulty("rare")
@@ -445,7 +445,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .canBeCompletedOnlyOnce(true)
                 .priority(hoursPlayed)
                 .name("Addicted")
-                .displayName("Achievement completed: Addicted (" + formatter.format(hoursPlayed) + " hours spent in battlegrounds matches)")
+                .displayName("Addicted (" + formatter.format(hoursPlayed) + " hours spent in battlegrounds matches)")
                 .displayCardId("UNG_028t")
                 .displayCardType("spell")
                 .difficulty("rare")
@@ -484,7 +484,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .canBeCompletedOnlyOnce(true)
                 .priority(matchesPlayed)
                 .name("I can't stop")
-                .displayName("Achievement completed: I can't stop (" + formatter.format(matchesPlayed) + " matches played)")
+                .displayName("I can't stop (" + formatter.format(matchesPlayed) + " matches played)")
                 .displayCardId("DALA_BOSS_53h")
                 .displayCardType("minion")
                 .difficulty("rare")
