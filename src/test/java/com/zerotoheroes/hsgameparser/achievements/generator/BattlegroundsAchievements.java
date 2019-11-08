@@ -22,6 +22,7 @@ import static com.zerotoheroes.hsgameparser.achievements.GameType.BATTLEGROUNDS;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.BATTLEGROUNDS_FINISH;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CARD_PLAYED_OR_CHANGED_ON_BOARD;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TYPE;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GLOBAL_STAT;
 import static com.zerotoheroes.hsgameparser.achievements.generator.GeneralHelper.sanitize;
 import static org.assertj.core.util.Lists.newArrayList;
@@ -177,6 +178,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                                         .emptyText(null)
                                         .completedText((card.getId().equals(root.getId()) ? "Minion played: " : "Triple played: ") + card.getName())
                                         .difficulty("rare")
+                                        .canBeCompletedOnlyOnce(true)
                                         .maxNumberOfRecords(2)
                                         .points(3)
                                         .requirements(newArrayList(
@@ -230,7 +232,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .priority(0)
                 .displayName("Played " + sanitize(card.getName()))
                 .completedText("You played " + sanitize(card.getName()))
-                .text("Take part in a Battlegrounds with " + sanitize(card.getName()))
+                .emptyText("Take part in a Battlegrounds with " + sanitize(card.getName()))
                 .maxNumberOfRecords(1)
                 .difficulty("common")
                 .points(1)
@@ -242,8 +244,8 @@ public class BattlegroundsAchievements implements WithAssertions {
         RawAchievement finishTop4 = heroFinishBuilder(card, "finish_4")
                 .priority(1)
                 .displayName("Top 4 with " + sanitize(card.getName()))
-                .completedText("You finished top 4 " + sanitize(card.getName()))
-                .text("Finish in the top 4 of a Battlegrounds with " + sanitize(card.getName()))
+                .completedText("You finished Top 4 with " + sanitize(card.getName()))
+                .emptyText("Finish in the top 4 of a Battlegrounds with " + sanitize(card.getName()))
                 .maxNumberOfRecords(3)
                 .difficulty("rare")
                 .points(10)
@@ -256,14 +258,14 @@ public class BattlegroundsAchievements implements WithAssertions {
         RawAchievement win = heroFinishBuilder(card, "finish_1")
                 .priority(2)
                 .displayName("Battlegrounds won with " + sanitize(card.getName()))
-                .completedText("Won with " + sanitize(card.getName()))
-                .text("Win a Battlegrounds with " + sanitize(card.getName()))
+                .completedText("You won a Battlegrounds with " + sanitize(card.getName()))
+                .emptyText("Win a Battlegrounds with " + sanitize(card.getName()))
                 .maxNumberOfRecords(4)
                 .difficulty("epic")
                 .points(20)
                 .requirements(newArrayList(
                         Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId())).build(),
-                        Requirement.builder().type(BATTLEGROUNDS_FINISH).values(newArrayList("1", "AT_LEAST")).build(),
+                        Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(BATTLEGROUNDS)).build()
                 ))
                 .build();
@@ -353,7 +355,7 @@ public class BattlegroundsAchievements implements WithAssertions {
     private List<RawAchievement> buildCoinSpents() throws Exception {
         List<Integer> targetCoins = newArrayList(250, 800, 2_000, 4_500, 10_000, 20_000, 50_000, 100_000);
         return targetCoins.stream()
-                .map(targetMana -> buildCoinSpent(targetMana, targetMana == 200))
+                .map(targetMana -> buildCoinSpent(targetMana, targetMana == 250))
                 .collect(Collectors.toList());
     }
 
@@ -392,7 +394,7 @@ public class BattlegroundsAchievements implements WithAssertions {
     private List<RawAchievement> buildEnemyMinionsDeads() throws Exception {
         List<Integer> targetMinionsDead = newArrayList(100, 500, 1_000, 2_000, 3_000, 5_000, 10_000, 25_000, 50_000);
         return targetMinionsDead.stream()
-                .map(minionsDead -> buildEnemyMinionsDead(minionsDead, minionsDead == 50))
+                .map(minionsDead -> buildEnemyMinionsDead(minionsDead, minionsDead == 100))
                 .collect(Collectors.toList());
     }
 
