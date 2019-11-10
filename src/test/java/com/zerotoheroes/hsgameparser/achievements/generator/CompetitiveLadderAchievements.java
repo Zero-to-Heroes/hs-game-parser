@@ -74,7 +74,7 @@ public class CompetitiveLadderAchievements implements WithAssertions {
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
-                        Requirement.builder().type(WIN_STREAK_LENGTH).values(newArrayList("" + winStreakLength, "AT_LEAST")).build()
+                        Requirement.builder().type(WIN_STREAK_LENGTH).values(newArrayList("" + winStreakLength, "AT_LEAST", "standard", "ranked")).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();

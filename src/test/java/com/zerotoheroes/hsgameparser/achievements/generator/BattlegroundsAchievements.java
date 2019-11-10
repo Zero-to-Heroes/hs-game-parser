@@ -15,15 +15,18 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.zerotoheroes.hsgameparser.achievements.GameType.BATTLEGROUNDS;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.BATTLEGROUNDS_FINISH;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.BATTLEGROUNDS_RANK;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CARD_PLAYED_OR_CHANGED_ON_BOARD;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GLOBAL_STAT;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.WIN_STREAK_LENGTH;
 import static com.zerotoheroes.hsgameparser.achievements.generator.GeneralHelper.sanitize;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -48,14 +51,18 @@ public class BattlegroundsAchievements implements WithAssertions {
 
     private List<RawAchievement> buildCompetitiveAchievements() throws Exception {
         List<RawAchievement> heroFinishes = buildHeroFinishes();
+        List<RawAchievement> winStreaks = winStreaks();
+        List<RawAchievement> rankings = rankings();
         List<RawAchievement> result =
                 Stream.of(
+                        rankings,
+                        winStreaks,
                         heroFinishes
                 )
                         .flatMap(List::stream)
                         .sorted(Comparator.comparing(RawAchievement::getId))
                         .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(72);
+        assertThat(result.size()).isEqualTo(88);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -63,6 +70,74 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .collect(Collectors.toList());
         System.out.println(String.join(",", types));
         return result;
+    }
+
+    private List<RawAchievement> rankings() {
+        List<Integer> rankings = newArrayList(3700, 3850, 4000, 4250, 4500, 4750, 5000, 5250, 5500, 5750, 6000);
+        return rankings.stream()
+                .map(raning -> ranking(raning, raning == 3700))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement ranking(int ranking, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("battlegrounds_0ranking_" + ranking)
+                .type("battlegrounds_0ranking")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(ranking)
+                .name("Best rank")
+                .displayName("Best rank (" + ranking + ")")
+                .displayCardId("TB_BaconShopBob")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .emptyText("Get a ranking of " + ranking + " in Battlegrounds")
+                .completedText("You got rank " + ranking + "")
+                .text("Improve your rankings in the Battlegrounds (best ranking is %%globalStats."
+                        + GlobalStats.Key.BEST_RANK
+                        + "."
+                        + GlobalStats.Context.BATTLEGROUNDS
+                        + "%%)")
+                .canBeCompletedOnlyOnce(true)
+                .maxNumberOfRecords(3)
+                .points(25)
+                .requirements(newArrayList(
+                        Requirement.builder().type(BATTLEGROUNDS_RANK).values(newArrayList("" + ranking)).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> winStreaks() {
+        List<Integer> winStreakLength = newArrayList(2, 3, 4, 5, 6);
+        return winStreakLength.stream()
+                .map(length -> winStreak(length, length == 2))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement winStreak(int winStreakLength, boolean isRoot) {
+        return RawAchievement.builder()
+                .id("battlegrounds_0win_streak_" + winStreakLength)
+                .type("battlegrounds_0win_streak")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(winStreakLength)
+                .name("Win Streaks")
+                .displayName("Battlegrounds Win Streak (" + winStreakLength + " games)")
+                .displayCardId("TRL_074")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .emptyText("Win " + winStreakLength + " runs in a row in Battlegrounds")
+                .completedText("You won " + winStreakLength + " runs in a row")
+                .maxNumberOfRecords(3)
+                .points(5)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(BATTLEGROUNDS)).build(),
+                        Requirement.builder().type(GAME_WON).build(),
+                        Requirement.builder().type(WIN_STREAK_LENGTH).values(newArrayList("" + winStreakLength, "AT_LEAST", null, "battlegrounds")).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
     }
 
     private List<RawAchievement> buildMinionsPlays() throws Exception {
@@ -162,34 +237,35 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .collect(Collectors.toList());
         List<RawAchievement> result = mininionCards.stream()
                 .map(minions -> {
-                    DbCard root = minions.get(0);
-                    return minions.stream()
-                                .map(card -> RawAchievement.builder()
-                                        .id("battlegrounds_minion_play_" + card.getId())
-                                        .type("battlegrounds_minion_play_" + root.getId())
-                                        .icon("boss_victory")
-                                        .root(card.getId().equals(root.getId()))
-                                        .priority(card.getId().equals(root.getId()) ? 0 : 1)
-                                        .name(card.getName())
-                                        .displayName((card.getId().equals(root.getId()) ? "Minion played: " : "Triple played: ") + card.getName())
-                                        .displayCardId(card.getId())
-                                        .displayCardType(card.getType().toLowerCase())
-                                        .text(sanitize(card.getText()))
-                                        .emptyText(null)
-                                        .completedText((card.getId().equals(root.getId()) ? "Minion played: " : "Triple played: ") + card.getName())
-                                        .difficulty("rare")
-                                        .canBeCompletedOnlyOnce(true)
-                                        .maxNumberOfRecords(2)
-                                        .points(3)
-                                        .requirements(newArrayList(
-                                                Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId())).build(),
-                                                Requirement.builder().type(GAME_TYPE).values(newArrayList(BATTLEGROUNDS)).build()
-                                        ))
-                                        .resetEvents(newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
-                                        .build())
-                            .collect(Collectors.toList());
+                    if (minions.size() == 1) {
+                        return null;
+                    }
+                    DbCard card = minions.get(1);
+                    return RawAchievement.builder()
+                            .id("battlegrounds_minion_play_" + card.getId())
+                            .type("battlegrounds_minion_play_" + card.getId())
+                            .icon("boss_victory")
+                            .root(card.getId().equals(card.getId()))
+                            .priority(card.getId().equals(card.getId()) ? 0 : 1)
+                            .name(card.getName())
+                            .displayName((card.getId().equals(card.getId()) ? "Minion played: " : "Triple played: ") + card.getName())
+                            .displayCardId(card.getId())
+                            .displayCardType(card.getType().toLowerCase())
+                            .text(sanitize(card.getText()))
+                            .emptyText(null)
+                            .completedText((card.getId().equals(card.getId()) ? "Minion played: " : "Triple played: ") + card.getName())
+                            .difficulty("rare")
+                            .canBeCompletedOnlyOnce(true)
+                            .maxNumberOfRecords(2)
+                            .points(3)
+                            .requirements(newArrayList(
+                                    Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId())).build(),
+                                    Requirement.builder().type(GAME_TYPE).values(newArrayList(BATTLEGROUNDS)).build()
+                            ))
+                            .resetEvents(newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
+                            .build();
                 })
-                .flatMap(List::stream)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
         assertThat(result.size()).isEqualTo(147);
         List<String> types = result.stream()
@@ -329,9 +405,9 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .root(isRoot)
                 .canBeCompletedOnlyOnce(true)
                 .priority(targetDamage)
-                .name("Face is the Place")
-                .displayName("Face is the Place (" + formatter.format(targetDamage) + " damage)")
-                .displayCardId("DALA_BOSS_24e")
+                .name("Past the Defense")
+                .displayName("Past the Defense (" + formatter.format(targetDamage) + " damage)")
+                .displayCardId("TB_BaconUps_038")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Deal damage to enemy heroes in Battlegrounds (%%globalStats."
@@ -407,10 +483,10 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .root(isRoot)
                 .canBeCompletedOnlyOnce(true)
                 .priority(minionsDead)
-                .name("Assassin")
-                .displayName("Assassin (" + formatter.format(minionsDead) + " enemy minions dead)")
-                .displayCardId("CS2_076")
-                .displayCardType("spell")
+                .name("Master of the Board")
+                .displayName("Master of the Board (" + formatter.format(minionsDead) + " enemy minions dead)")
+                .displayCardId("AT_121")
+                .displayCardType("minion")
                 .difficulty("rare")
                 .text("Kill enemy minions in Battlegrounds (%%globalStats."
                         + GlobalStats.Key.TOTAL_ENEMY_MINIONS_DEATH
@@ -446,9 +522,9 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .root(isRoot)
                 .canBeCompletedOnlyOnce(true)
                 .priority(hoursPlayed)
-                .name("Addicted")
-                .displayName("Addicted (" + formatter.format(hoursPlayed) + " hours spent in battlegrounds matches)")
-                .displayCardId("UNG_028t")
+                .name("Time is the Essence")
+                .displayName("Time is the Essence (" + formatter.format(hoursPlayed) + " hours spent in battlegrounds matches)")
+                .displayCardId("BOT_537")
                 .displayCardType("spell")
                 .difficulty("rare")
                 .text("Spend time in Battlegrounds matches (%%globalStats."
@@ -485,9 +561,9 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .root(isRoot)
                 .canBeCompletedOnlyOnce(true)
                 .priority(matchesPlayed)
-                .name("I can't stop")
-                .displayName("I can't stop (" + formatter.format(matchesPlayed) + " matches played)")
-                .displayCardId("DALA_BOSS_53h")
+                .name("Just One More Game")
+                .displayName("Just One More Game (" + formatter.format(matchesPlayed) + " matches played)")
+                .displayCardId("TB_BaconUps_087")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Play matches in Battlegrounds (%%globalStats."
