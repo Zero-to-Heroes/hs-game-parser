@@ -248,12 +248,12 @@ public class BattlegroundsAchievements implements WithAssertions {
                             .root(card.getId().equals(card.getId()))
                             .priority(card.getId().equals(card.getId()) ? 0 : 1)
                             .name(card.getName())
-                            .displayName((card.getId().equals(card.getId()) ? "Minion played: " : "Triple played: ") + card.getName())
+                            .displayName("Triple played: " + card.getName())
                             .displayCardId(card.getId())
                             .displayCardType(card.getType().toLowerCase())
-                            .text(sanitize(card.getText()))
+                            .text("Play a Triple version of " + sanitize(card.getName()))
                             .emptyText(null)
-                            .completedText((card.getId().equals(card.getId()) ? "Minion played: " : "Triple played: ") + card.getName())
+                            .completedText("Triple played: " + card.getName())
                             .difficulty("rare")
                             .canBeCompletedOnlyOnce(true)
                             .maxNumberOfRecords(2)
@@ -267,7 +267,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 })
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(147);
+        assertThat(result.size()).isEqualTo(66);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -368,18 +368,26 @@ public class BattlegroundsAchievements implements WithAssertions {
         List<RawAchievement> manaSpents = buildCoinSpents();
         List<RawAchievement> damageDealtToEnemyHeroes = buildDamageDealtToEnemyHeroes();
         List<RawAchievement> enemyMinionsDeads = buildEnemyMinionsDeads();
+        List<RawAchievement> tavernUpgrades = buildTavernUpgrades();
+        List<RawAchievement> lockAlls = buildLockAlls();
+        List<RawAchievement> eliminateOtherPLayers = buildEliminateOtherPLayers();
+        List<RawAchievement> rerollTavern = buildRerollTaverns();
         List<RawAchievement> result =
                 Stream.of(
                         totalMatches,
                         totalDurations,
                         manaSpents,
                         damageDealtToEnemyHeroes,
-                        enemyMinionsDeads
+                        enemyMinionsDeads,
+                        tavernUpgrades,
+                        lockAlls,
+                        eliminateOtherPLayers,
+                        rerollTavern
                 )
                         .flatMap(List::stream)
                         .sorted(Comparator.comparing(RawAchievement::getId))
                         .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(37);
+        assertThat(result.size()).isEqualTo(69);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -501,6 +509,162 @@ public class BattlegroundsAchievements implements WithAssertions {
                                 GlobalStats.Key.TOTAL_ENEMY_MINIONS_DEATH,
                                 GlobalStats.Context.BATTLEGROUNDS,
                                 "" + minionsDead)
+                        ).build()
+                ))
+                .build();
+    }
+
+    private List<RawAchievement> buildTavernUpgrades() throws Exception {
+        List<Integer> upgrades = newArrayList(30, 60, 150, 300, 500, 1000, 2000, 5000);
+        return upgrades.stream()
+                .map(upgrade -> buildTavernUpgrade(upgrade, upgrade == 30))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement buildTavernUpgrade(int tavernsUpgraded, boolean isRoot) {
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+        return RawAchievement.builder()
+                .id("battlegrounds_tavern_upgrade_" + tavernsUpgraded)
+                .type("battlegrounds_tavern_upgrade")
+                .icon("boss_victory")
+                .root(isRoot)
+                .canBeCompletedOnlyOnce(true)
+                .priority(tavernsUpgraded)
+                .name("Upgrade")
+                .displayName("Upgrade (" + formatter.format(tavernsUpgraded) + " taverns upgraded)")
+                .displayCardId("TB_BaconShopTechUp02_Button")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .text("Upgrade your tavern (%%globalStats."
+                        + GlobalStats.Key.TOTAL_TAVERN_UPGRADES
+                        + "."
+                        + GlobalStats.Context.BATTLEGROUNDS
+                        + "%% taverns upgraded so far)")
+                .completedText("Upgraded " + formatter.format(tavernsUpgraded) + " taverns")
+                .maxNumberOfRecords(1)
+                .points(25)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GLOBAL_STAT).values(newArrayList(
+                                GlobalStats.Key.TOTAL_TAVERN_UPGRADES,
+                                GlobalStats.Context.BATTLEGROUNDS,
+                                "" + tavernsUpgraded)
+                        ).build()
+                ))
+                .build();
+    }
+
+    private List<RawAchievement> buildLockAlls() throws Exception {
+        List<Integer> values = newArrayList(30, 60, 150, 300, 500, 1000, 2000, 5000);
+        return values.stream()
+                .map(value -> buildLockAll(value, value == 30))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement buildLockAll(int tavernsUpgraded, boolean isRoot) {
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+        return RawAchievement.builder()
+                .id("battlegrounds_lock_all_" + tavernsUpgraded)
+                .type("battlegrounds_lock_all")
+                .icon("boss_victory")
+                .root(isRoot)
+                .canBeCompletedOnlyOnce(true)
+                .priority(tavernsUpgraded)
+                .name("Lock Them All")
+                .displayName("Lock Them All (" + formatter.format(tavernsUpgraded) + " times)")
+                .displayCardId("TB_BaconShopLockAll_Button")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .text("Freeze all minions during the Recruit phase (%%globalStats."
+                        + GlobalStats.Key.TOTAL_TAVERN_LOCK_ALL
+                        + "."
+                        + GlobalStats.Context.BATTLEGROUNDS
+                        + "%% times so far)")
+                .completedText("Locked minions " + formatter.format(tavernsUpgraded) + " times")
+                .maxNumberOfRecords(1)
+                .points(25)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GLOBAL_STAT).values(newArrayList(
+                                GlobalStats.Key.TOTAL_TAVERN_LOCK_ALL,
+                                GlobalStats.Context.BATTLEGROUNDS,
+                                "" + tavernsUpgraded)
+                        ).build()
+                ))
+                .build();
+    }
+
+    private List<RawAchievement> buildRerollTaverns() throws Exception {
+        List<Integer> values = newArrayList(30, 60, 150, 300, 500, 1000, 2000, 5000);
+        return values.stream()
+                .map(value -> buildRerollTavern(value, value == 30))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement buildRerollTavern(int tavernsUpgraded, boolean isRoot) {
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+        return RawAchievement.builder()
+                .id("battlegrounds_reroll_tavern_" + tavernsUpgraded)
+                .type("battlegrounds_reroll_tavern")
+                .icon("boss_victory")
+                .root(isRoot)
+                .canBeCompletedOnlyOnce(true)
+                .priority(tavernsUpgraded)
+                .name("Not That One")
+                .displayName("Not That One (tavern rerolled " + formatter.format(tavernsUpgraded) + " times)")
+                .displayCardId("TB_BaconShop_1p_Reroll_Button")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .text("Reroll the minions in the tavern (%%globalStats."
+                        + GlobalStats.Key.TOTAL_TAVERN_REROLL
+                        + "."
+                        + GlobalStats.Context.BATTLEGROUNDS
+                        + "%% times so far)")
+                .completedText("Rerolled minions " + formatter.format(tavernsUpgraded) + " times")
+                .maxNumberOfRecords(1)
+                .points(25)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GLOBAL_STAT).values(newArrayList(
+                                GlobalStats.Key.TOTAL_TAVERN_REROLL,
+                                GlobalStats.Context.BATTLEGROUNDS,
+                                "" + tavernsUpgraded)
+                        ).build()
+                ))
+                .build();
+    }
+
+    private List<RawAchievement> buildEliminateOtherPLayers() throws Exception {
+        List<Integer> values = newArrayList(30, 60, 150, 300, 500, 1000, 2000, 5000);
+        return values.stream()
+                .map(value -> buildEliminateOtherPlayer(value, value == 30))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement buildEliminateOtherPlayer(int tavernsUpgraded, boolean isRoot) {
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+        return RawAchievement.builder()
+                .id("battlegrounds_eliminate_other_players_" + tavernsUpgraded)
+                .type("battlegrounds_eliminate_other_players")
+                .icon("boss_victory")
+                .root(isRoot)
+                .canBeCompletedOnlyOnce(true)
+                .priority(tavernsUpgraded)
+                .name("Today You Die")
+                .displayName("Today You Die (eliminated " + formatter.format(tavernsUpgraded) + " players)")
+                .displayCardId("GVG_021")
+                .displayCardType("minion")
+                .difficulty("rare")
+                .text("Eliminate other players (%%globalStats."
+                        + GlobalStats.Key.TOTAL_ENEMY_HEROES_KILLED
+                        + "."
+                        + GlobalStats.Context.BATTLEGROUNDS
+                        + "%% players eliminated so far)")
+                .completedText("Eliminated " + formatter.format(tavernsUpgraded) + " players")
+                .maxNumberOfRecords(1)
+                .points(25)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GLOBAL_STAT).values(newArrayList(
+                                GlobalStats.Key.TOTAL_ENEMY_HEROES_KILLED,
+                                GlobalStats.Context.BATTLEGROUNDS,
+                                "" + tavernsUpgraded)
                         ).build()
                 ))
                 .build();
