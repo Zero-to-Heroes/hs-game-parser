@@ -73,9 +73,9 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> rankings() {
-        List<Integer> rankings = newArrayList(3700, 3850, 4000, 4250, 4500, 4750, 5000, 5250, 5500, 5750, 6000);
+        List<Integer> rankings = newArrayList(4250, 4500, 4750, 5000, 5250, 5500, 5750, 6000);
         return rankings.stream()
-                .map(raning -> ranking(raning, raning == 3700))
+                .map(raning -> ranking(raning, raning == 4250))
                 .collect(Collectors.toList());
     }
 
@@ -372,6 +372,7 @@ public class BattlegroundsAchievements implements WithAssertions {
         List<RawAchievement> lockAlls = buildLockAlls();
         List<RawAchievement> eliminateOtherPLayers = buildEliminateOtherPLayers();
         List<RawAchievement> rerollTavern = buildRerollTaverns();
+        List<RawAchievement> tribesPlayed = buildTribesPlayed();
         List<RawAchievement> result =
                 Stream.of(
                         totalMatches,
@@ -382,12 +383,13 @@ public class BattlegroundsAchievements implements WithAssertions {
                         tavernUpgrades,
                         lockAlls,
                         eliminateOtherPLayers,
-                        rerollTavern
+                        rerollTavern,
+                        tribesPlayed
                 )
                         .flatMap(List::stream)
                         .sorted(Comparator.comparing(RawAchievement::getId))
                         .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(69);
+        assertThat(result.size()).isEqualTo(93);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -397,10 +399,88 @@ public class BattlegroundsAchievements implements WithAssertions {
         return result;
     }
 
+
+    private List<RawAchievement> buildTribesPlayed() throws Exception {
+        List<Integer> values = newArrayList(50, 100, 200, 500, 1000, 2000);
+        return values.stream()
+                .map(value -> newArrayList(
+                        buildMurlocPlayed(value, value == 50),
+                        buildDemonPlayed(value, value == 50),
+                        buildMechPlayed(value, value == 50),
+                        buildBeastPlayed(value, value == 50)
+                ))
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement buildMurlocPlayed(int value, boolean isRoot) {
+        String tribe = "murloc";
+        String displayTribe = tribe;
+        String title = "Murloc Invasion";
+        String cardId = "TB_BaconUps_011";
+        return buildTribePlayed(value, isRoot, tribe, displayTribe, title, cardId);
+    }
+
+    private RawAchievement buildDemonPlayed(int value, boolean isRoot) {
+        String tribe = "demon";
+        String displayTribe = tribe;
+        String title = "Demon Invasion";
+        String cardId = "TB_BaconUps_030";
+        return buildTribePlayed(value, isRoot, tribe, displayTribe, title, cardId);
+    }
+
+    private RawAchievement buildMechPlayed(int value, boolean isRoot) {
+        String tribe = "mechanical";
+        String displayTribe = "mech";
+        String title = "Mech Invasion";
+        String cardId = "TB_BaconUps_032";
+        return buildTribePlayed(value, isRoot, tribe, displayTribe, title, cardId);
+    }
+
+    private RawAchievement buildBeastPlayed(int value, boolean isRoot) {
+        String tribe = "beast";
+        String displayTribe = tribe;
+        String title = "Beast Invasion";
+        String cardId = "TB_BaconUps_043";
+        return buildTribePlayed(value, isRoot, tribe, displayTribe, title, cardId);
+    }
+
+    private RawAchievement buildTribePlayed(int value, boolean isRoot, String tribe, String displayTribe, String title, String cardId) {
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
+        return RawAchievement.builder()
+                .id("battlegrounds_tribe_played_" + tribe + "_" + value)
+                .type("battlegrounds_tribe_played_" + tribe)
+                .icon("boss_victory")
+                .root(isRoot)
+                .canBeCompletedOnlyOnce(true)
+                .priority(value)
+                .name(title)
+                .displayName(title + " (" + formatter.format(value) + " " + displayTribe + "s played)")
+                .displayCardId(cardId)
+                .displayCardType("minion")
+                .difficulty("rare")
+                .text("Play " + displayTribe + "s in Battlegrounds (%%globalStats."
+                        + GlobalStats.Key.TOTAL_MINIONS_PLAYED_BY_TRIBE + tribe
+                        + "."
+                        + GlobalStats.Context.BATTLEGROUNDS
+                        + "%% " + displayTribe + "s played so far)")
+                .completedText("Played " + formatter.format(value) + " " + displayTribe + "s")
+                .maxNumberOfRecords(1)
+                .points(25)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GLOBAL_STAT).values(newArrayList(
+                                GlobalStats.Key.TOTAL_MINIONS_PLAYED_BY_TRIBE + tribe,
+                                GlobalStats.Context.BATTLEGROUNDS,
+                                "" + value)
+                        ).build()
+                ))
+                .build();
+    }
+
     private List<RawAchievement> buildDamageDealtToEnemyHeroes() throws Exception {
-        List<Integer> targetDamages = newArrayList(200, 700, 1_500, 3_000, 7_000, 14_000, 20_000);
+        List<Integer> targetDamages = newArrayList(350, 700, 1_500, 3_000, 7_000, 14_000, 20_000);
         return targetDamages.stream()
-                .map(targetDamage -> buildDamageDealtToEnemyHero(targetDamage, targetDamage == 200))
+                .map(targetDamage -> buildDamageDealtToEnemyHero(targetDamage, targetDamage == 350))
                 .collect(Collectors.toList());
     }
 
@@ -437,9 +517,9 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildCoinSpents() throws Exception {
-        List<Integer> targetCoins = newArrayList(250, 800, 2_000, 4_500, 10_000, 20_000, 50_000, 100_000);
+        List<Integer> targetCoins = newArrayList(450, 900, 2_000, 4_500, 10_000, 20_000, 50_000, 100_000);
         return targetCoins.stream()
-                .map(targetMana -> buildCoinSpent(targetMana, targetMana == 250))
+                .map(targetMana -> buildCoinSpent(targetMana, targetMana == 450))
                 .collect(Collectors.toList());
     }
 
@@ -476,9 +556,9 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildEnemyMinionsDeads() throws Exception {
-        List<Integer> targetMinionsDead = newArrayList(100, 500, 1_000, 2_000, 3_000, 5_000, 10_000, 25_000, 50_000);
+        List<Integer> targetMinionsDead = newArrayList(200, 500, 1_000, 2_000, 3_000, 5_000, 10_000, 25_000, 50_000);
         return targetMinionsDead.stream()
-                .map(minionsDead -> buildEnemyMinionsDead(minionsDead, minionsDead == 100))
+                .map(minionsDead -> buildEnemyMinionsDead(minionsDead, minionsDead == 200))
                 .collect(Collectors.toList());
     }
 
@@ -515,7 +595,7 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildTavernUpgrades() throws Exception {
-        List<Integer> upgrades = newArrayList(30, 60, 150, 300, 500, 1000, 2000, 5000);
+        List<Integer> upgrades = newArrayList(30, 60, 150, 300, 500, 1000, 1500, 2000);
         return upgrades.stream()
                 .map(upgrade -> buildTavernUpgrade(upgrade, upgrade == 30))
                 .collect(Collectors.toList());
@@ -554,7 +634,7 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildLockAlls() throws Exception {
-        List<Integer> values = newArrayList(30, 60, 150, 300, 500, 1000, 2000, 5000);
+        List<Integer> values = newArrayList(30, 60, 150, 300, 500, 1000, 1500, 2000);
         return values.stream()
                 .map(value -> buildLockAll(value, value == 30))
                 .collect(Collectors.toList());
@@ -593,9 +673,9 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildRerollTaverns() throws Exception {
-        List<Integer> values = newArrayList(30, 60, 150, 300, 500, 1000, 2000, 5000);
+        List<Integer> values = newArrayList(50, 100, 300, 500, 1000, 2000, 3000, 5000);
         return values.stream()
-                .map(value -> buildRerollTavern(value, value == 30))
+                .map(value -> buildRerollTavern(value, value == 50))
                 .collect(Collectors.toList());
     }
 
@@ -632,7 +712,7 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildEliminateOtherPLayers() throws Exception {
-        List<Integer> values = newArrayList(30, 60, 150, 300, 500, 1000, 2000, 5000);
+        List<Integer> values = newArrayList(30, 60, 150, 300, 500, 1000, 1500, 2000);
         return values.stream()
                 .map(value -> buildEliminateOtherPlayer(value, value == 30))
                 .collect(Collectors.toList());
@@ -671,9 +751,9 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildTotalDurations() throws Exception {
-        List<Integer> targetDurations = newArrayList(1, 10, 20, 50, 100, 200, 300);
+        List<Integer> targetDurations = newArrayList(5, 10, 20, 50, 100, 200, 300);
         return targetDurations.stream()
-                .map(targetDuration -> buildTotalDuration(targetDuration, targetDuration == 1))
+                .map(targetDuration -> buildTotalDuration(targetDuration, targetDuration == 5))
                 .collect(Collectors.toList());
     }
 

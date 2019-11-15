@@ -49,7 +49,7 @@ public class GlobalAchievements implements WithAssertions {
                 .flatMap(List::stream)
                 .sorted(Comparator.comparing(RawAchievement::getId))
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(42);
+        assertThat(result.size()).isEqualTo(39);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -60,9 +60,9 @@ public class GlobalAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildDamageDealtToEnemyHeroes() throws Exception {
-        List<Integer> targetDamages = newArrayList(200, 1_000, 5_000, 10_000, 50_000, 100_000, 500_000, 1_000_000);
+        List<Integer> targetDamages = newArrayList(1_000, 5_000, 10_000, 50_000, 100_000, 500_000, 1_000_000);
         return targetDamages.stream()
-                .map(targetDamage -> buildDamageDealtToEnemyHero(targetDamage, targetDamage == 200))
+                .map(targetDamage -> buildDamageDealtToEnemyHero(targetDamage, targetDamage == 1000))
                 .collect(Collectors.toList());
     }
 
@@ -76,7 +76,7 @@ public class GlobalAchievements implements WithAssertions {
                 .canBeCompletedOnlyOnce(true)
                 .priority(targetDamage)
                 .name("Face is the Place")
-                .displayName("Achievement completed: Face is the Place (" + formatter.format(targetDamage) + " damage)")
+                .displayName("Face is the Place (" + formatter.format(targetDamage) + " damage)")
                 .displayCardId("DALA_BOSS_24e")
                 .displayCardType("minion")
                 .difficulty("rare")
@@ -99,9 +99,9 @@ public class GlobalAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildManaSpents() throws Exception {
-        List<Integer> targetManas = newArrayList(200, 1_000, 5_000, 10_000, 50_000, 100_000, 500_000, 1_000_000);
+        List<Integer> targetManas = newArrayList(500, 1_000, 5_000, 10_000, 50_000, 100_000, 500_000, 1_000_000);
         return targetManas.stream()
-                .map(targetMana -> buildManaSpent(targetMana, targetMana == 200))
+                .map(targetMana -> buildManaSpent(targetMana, targetMana == 500))
                 .collect(Collectors.toList());
     }
 
@@ -115,7 +115,7 @@ public class GlobalAchievements implements WithAssertions {
                 .canBeCompletedOnlyOnce(true)
                 .priority(targetMana)
                 .name("Mana Charged")
-                .displayName("Achievement completed: Mana Charged (" + formatter.format(targetMana) + " mana crystals spent)")
+                .displayName("Mana Charged (" + formatter.format(targetMana) + " mana crystals spent)")
                 .displayCardId("CS2_013t")
                 .displayCardType("minion")
                 .difficulty("rare")
@@ -138,9 +138,9 @@ public class GlobalAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildEnemyMinionsDeads() throws Exception {
-        List<Integer> targetMinionsDead = newArrayList(50, 100, 200, 500, 1_000, 2_000, 5_000, 10_000, 50_000, 100_000);
+        List<Integer> targetMinionsDead = newArrayList(200, 500, 1_000, 2_000, 5_000, 10_000, 50_000, 100_000);
         return targetMinionsDead.stream()
-                .map(minionsDead -> buildEnemyMinionsDead(minionsDead, minionsDead == 50))
+                .map(minionsDead -> buildEnemyMinionsDead(minionsDead, minionsDead == 200))
                 .collect(Collectors.toList());
     }
 
@@ -154,7 +154,7 @@ public class GlobalAchievements implements WithAssertions {
                 .canBeCompletedOnlyOnce(true)
                 .priority(minionsDead)
                 .name("Assassin")
-                .displayName("Achievement completed: Assassin (" + formatter.format(minionsDead) + " enemy minions dead)")
+                .displayName("Assassin (" + formatter.format(minionsDead) + " enemy minions dead)")
                 .displayCardId("CS2_076")
                 .displayCardType("spell")
                 .difficulty("rare")
@@ -177,9 +177,9 @@ public class GlobalAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildTotalDurations() throws Exception {
-        List<Integer> targetDurations = newArrayList(1, 10, 20, 50, 100, 200, 300, 400, 500);
+        List<Integer> targetDurations = newArrayList(10, 20, 50, 100, 200, 300, 400, 500);
         return targetDurations.stream()
-                .map(targetDuration -> buildTotalDuration(targetDuration, targetDuration == 1))
+                .map(targetDuration -> buildTotalDuration(targetDuration, targetDuration == 10))
                 .collect(Collectors.toList());
     }
 
@@ -193,7 +193,7 @@ public class GlobalAchievements implements WithAssertions {
                 .canBeCompletedOnlyOnce(true)
                 .priority(hoursPlayed)
                 .name("Addicted")
-                .displayName("Achievement completed: Addicted (" + formatter.format(hoursPlayed) + " hours spent in matches)")
+                .displayName("Addicted (" + formatter.format(hoursPlayed) + " hours spent in matches)")
                 .displayCardId("UNG_028t")
                 .displayCardType("spell")
                 .difficulty("rare")
@@ -216,9 +216,9 @@ public class GlobalAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildTotalMatches() throws Exception {
-        List<Integer> targetMatches = newArrayList(10, 50, 100, 500, 1000, 5000, 10000);
+        List<Integer> targetMatches = newArrayList(50, 100, 500, 1000, 2000, 5000, 7000, 10000);
         return targetMatches.stream()
-                .map(targetMatch -> buildTotalMatch(targetMatch, targetMatch == 10))
+                .map(targetMatch -> buildTotalMatch(targetMatch, targetMatch == 50))
                 .collect(Collectors.toList());
     }
 
@@ -232,7 +232,7 @@ public class GlobalAchievements implements WithAssertions {
                 .canBeCompletedOnlyOnce(true)
                 .priority(matchesPlayed)
                 .name("I can't stop")
-                .displayName("Achievement completed: I can't stop (" + formatter.format(matchesPlayed) + " matches played)")
+                .displayName("I can't stop (" + formatter.format(matchesPlayed) + " matches played)")
                 .displayCardId("DALA_BOSS_53h")
                 .displayCardType("minion")
                 .difficulty("rare")

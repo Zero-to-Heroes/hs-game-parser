@@ -12,6 +12,7 @@ public class GlobalStats {
         public static final String TOTAL_TAVERN_LOCK_ALL = "total-tavern-lock-all";
         public static final String TOTAL_TAVERN_REROLL = "total-tavern-reroll";
         public static final String TOTAL_ENEMY_HEROES_KILLED = "total-enemy-heroes-killed";
+        public static final String TOTAL_MINIONS_PLAYED_BY_TRIBE = "total-minions-played-by-tribe-";
         public static final String BEST_RANK = "best-rank";
     }
 
