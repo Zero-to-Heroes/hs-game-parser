@@ -9,8 +9,8 @@ import com.zerotoheroes.hsgameentities.replaydata.entities.BaseEntity;
 import com.zerotoheroes.hsgameentities.replaydata.entities.FullEntity;
 import com.zerotoheroes.hsgameentities.replaydata.entities.PlayerEntity;
 import com.zerotoheroes.hsgameentities.replaydata.gameactions.TagChange;
-import com.zerotoheroes.hsgameparser.db.DbCard;
 import com.zerotoheroes.hsgameparser.db.CardsList;
+import com.zerotoheroes.hsgameparser.db.DbCard;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -125,10 +125,10 @@ public class GameParser {
 
 		meta.setPlayerName(player1.getName());
 		meta.setPlayerClass(getPlayerClass(replay, player1));
-		meta.setPlayerCardId(getPlayerCardId(replay, player1));
+		meta.setPlayerCardId(getPlayerCardId(replay, helper, player1));
 		meta.setOpponentName(player2.getName());
 		meta.setOpponentClass(getPlayerClass(replay, player2));
-		meta.setOpponentCardId(getPlayerCardId(replay, player2));
+		meta.setOpponentCardId(getPlayerCardId(replay, helper, player2));
 
 		// Find if we're on the coin or on the play
 		// The first player to draw 4 cards is on the coin
@@ -185,13 +185,39 @@ public class GameParser {
 				.orElse("unknown");
 	}
 
-	private String getPlayerCardId(HearthstoneReplay replay, PlayerEntity player) {
+	private String getPlayerCardId(HearthstoneReplay replay, GameHelper helper, PlayerEntity player) {
 		List<GameData> data = replay.getGames().get(0).getData();
 
-		int playerEntityId = player.getTags().stream().filter(t -> t.getName() == GameTag.HERO_ENTITY.getIntValue())
-				.findFirst().get().getValue();
-		FullEntity playerEntity = data.stream().filter(d -> (d instanceof FullEntity)).map(e -> (FullEntity) e)
-				.filter(e -> e.getId() == playerEntityId).findFirst().get();
+		int playerEntityId = player.getTags().stream()
+				.filter(t -> t.getName() == GameTag.HERO_ENTITY.getIntValue())
+				.findFirst()
+				.get()
+				.getValue();
+		FullEntity playerEntity = data.stream()
+				.filter(d -> (d instanceof FullEntity))
+				.map(e -> (FullEntity) e)
+				.filter(e -> e.getId() == playerEntityId)
+				.findFirst()
+				.get();
+
+		// That's the default value, pre-hero selection for battlegrounds. We actually
+		// want the hero that was picked
+		if ("TB_BaconShop_HERO_PH".equals(playerEntity.getCardId())) {
+			List<TagChange> tagChangeStream = helper.filterGameData(TagChange.class).stream()
+					.map(d -> (TagChange) d)
+					.filter(tagChange -> tagChange.getName() == GameTag.HERO_ENTITY.getIntValue())
+					.collect(Collectors.toList());
+			Integer pickedPlayedHero = tagChangeStream.stream()
+					.filter(tagChange -> tagChange.getEntity() == player.getId())
+					.map(tagChange -> tagChange.getValue())
+					.findFirst()
+					.orElse(null);
+			playerEntity = helper.filterGameData(FullEntity.class).stream()
+					.map(e -> (FullEntity) e)
+					.filter(e -> e.getId() == pickedPlayedHero)
+					.findFirst()
+					.get();
+		}
 
 		return playerEntity.getCardId();
 	}

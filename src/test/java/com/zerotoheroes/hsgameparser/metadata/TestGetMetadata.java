@@ -22,6 +22,9 @@ public class TestGetMetadata implements WithAssertions {
 
 	@Test
 	public void testMetadata() throws Exception {
+		HearthstoneReplay replay = gameLoader.load("bugparsing/battlegrounds.xml");
+		GameMetaData metaData = gameParser.getMetaData(replay);
+		assertEquals("Bob's Tavern", metaData.getOpponentName());
 		// More checks on win/loss
 		checkMeta("old.xml", 12, 476, "lost", "coin", "HERO_01", "HERO_07");
 		checkMeta("win_status_error.xml", 6, 271, "won", "coin", "HERO_09", "HERO_06");
