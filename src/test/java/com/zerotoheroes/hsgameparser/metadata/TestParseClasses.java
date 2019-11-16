@@ -28,7 +28,7 @@ public class TestParseClasses {
 	private void checkMeta(String fileName, String playerClass, String opponentClass) throws Exception {
 
 		HearthstoneReplay replay = gameLoader.load(fileName);
-		GameMetaData metaData = gameParser.getMetaData(replay);
+		GameMetaData metaData = gameParser.getMetaData(replay, null);
 
 		assertEquals("incorrect player class", playerClass, metaData.getPlayerClass());
 		assertEquals("incorrect opponent class", opponentClass, metaData.getOpponentClass());

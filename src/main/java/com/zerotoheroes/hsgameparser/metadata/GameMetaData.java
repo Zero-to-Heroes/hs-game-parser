@@ -12,6 +12,7 @@ public class GameMetaData {
 	private int numberOfTurns;
 	private int durationInSeconds;
 	private String result;
+	private String additionalResult;
 	private String playCoin;
 	private String skillLevel;
 }

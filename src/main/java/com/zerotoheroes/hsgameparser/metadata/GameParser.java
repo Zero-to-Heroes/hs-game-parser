@@ -1,5 +1,6 @@
 package com.zerotoheroes.hsgameparser.metadata;
 
+import com.zerotoheroes.hsgameentities.enums.CardType;
 import com.zerotoheroes.hsgameentities.enums.GameTag;
 import com.zerotoheroes.hsgameentities.enums.PlayState;
 import com.zerotoheroes.hsgameentities.replaydata.GameData;
@@ -8,6 +9,7 @@ import com.zerotoheroes.hsgameentities.replaydata.HearthstoneReplay;
 import com.zerotoheroes.hsgameentities.replaydata.entities.BaseEntity;
 import com.zerotoheroes.hsgameentities.replaydata.entities.FullEntity;
 import com.zerotoheroes.hsgameentities.replaydata.entities.PlayerEntity;
+import com.zerotoheroes.hsgameentities.replaydata.gameactions.Tag;
 import com.zerotoheroes.hsgameentities.replaydata.gameactions.TagChange;
 import com.zerotoheroes.hsgameparser.db.CardsList;
 import com.zerotoheroes.hsgameparser.db.DbCard;
@@ -20,9 +22,11 @@ import org.apache.commons.lang.StringUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -36,7 +40,7 @@ public class GameParser {
 		this.cardsList = cardsList;
 	}
 
-	public GameMetaData getMetaData(HearthstoneReplay replay) throws InvalidGameReplayException {
+	public GameMetaData getMetaData(HearthstoneReplay replay, String gameMode) throws InvalidGameReplayException {
 		log.debug("retrieving metadata for " + replay);
 
 		GameMetaData meta = new GameMetaData();
@@ -117,6 +121,10 @@ public class GameParser {
 			}
 		}
 		meta.setResult(winStatus);
+        if ("battlegrounds".equalsIgnoreCase(gameMode)) {
+            int lastBattlegroundsRank = extractLastBattlegroundsRank(helper, player);
+            meta.setAdditionalResult(String.valueOf(lastBattlegroundsRank));
+        }
 
 		// Filter player data
 		List<PlayerEntity> players = helper.getPlayers();
@@ -151,7 +159,44 @@ public class GameParser {
 		return meta;
 	}
 
-	private Date parseDate(String timestamp) {
+    private int extractLastBattlegroundsRank(GameHelper helper, PlayerEntity player) {
+        List<FullEntity> playerEntities = helper.filterGameData(FullEntity.class).stream()
+                .map(entity -> (FullEntity) entity)
+                .filter(entity -> entity.getTags().stream()
+                        .anyMatch(tag -> tag.getName() == GameTag.CARDTYPE.getIntValue()
+                                && tag.getValue() == CardType.HERO.getIntValue()))
+                .filter(entity -> entity.getTags().stream()
+                        .filter(tag -> tag.getName() == GameTag.CONTROLLER.getIntValue()
+                                && tag.getValue() == player.getPlayerId())
+                        .findFirst()
+                        .orElse(null) != null)
+                .filter(entity ->
+                        !Arrays.asList("TB_BaconShop_HERO_PH", "TB_BaconShop_HERO_KelThuzad", "TB_BaconShopBob")
+                                .contains(entity.getCardId()))
+                .collect(Collectors.toList());
+        List<Integer> entityIds = playerEntities.stream().map(BaseEntity::getId).collect(Collectors.toList());
+        List<Integer> tags = helper.filterGameData(TagChange.class).stream()
+                .map(entity -> (TagChange) entity)
+                .filter(tag -> tag.getName() == GameTag.PLAYER_LEADERBOARD_PLACE.getIntValue())
+                .filter(tag -> entityIds.contains(tag.getEntity()))
+                .map(TagChange::getValue)
+                .filter(value -> value > 0)
+                .collect(Collectors.toList());
+        if (tags == null || tags.size() == 0) {
+            tags = playerEntities.stream()
+                    .map(entity -> entity.getTags().stream()
+                            .filter(tag -> tag.getName() == GameTag.PLAYER_LEADERBOARD_PLACE.getIntValue())
+                            .findFirst()
+                            .orElse(null))
+                    .filter(Objects::nonNull)
+                    .map(Tag::getValue)
+                    .filter(value -> value > 0)
+                    .collect(Collectors.toList());
+        }
+        return tags == null || tags.size() == 0 ? 0 : tags.get(tags.size() - 1);
+    }
+
+    private Date parseDate(String timestamp) {
 		Date result = null;
 		// Try various formats
 		try {

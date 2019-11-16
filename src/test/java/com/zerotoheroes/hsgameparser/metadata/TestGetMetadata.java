@@ -23,8 +23,9 @@ public class TestGetMetadata implements WithAssertions {
 	@Test
 	public void testMetadata() throws Exception {
 		HearthstoneReplay replay = gameLoader.load("bugparsing/battlegrounds.xml");
-		GameMetaData metaData = gameParser.getMetaData(replay);
+		GameMetaData metaData = gameParser.getMetaData(replay, "battlegrounds");
 		assertEquals("Bob's Tavern", metaData.getOpponentName());
+		assertEquals("6", metaData.getAdditionalResult());
 		// More checks on win/loss
 		checkMeta("old.xml", 12, 476, "lost", "coin", "HERO_01", "HERO_07");
 		checkMeta("win_status_error.xml", 6, 271, "won", "coin", "HERO_09", "HERO_06");
@@ -50,7 +51,7 @@ public class TestGetMetadata implements WithAssertions {
 			throws Exception {
 
 		HearthstoneReplay replay = gameLoader.load(fileName);
-		GameMetaData metaData = gameParser.getMetaData(replay);
+		GameMetaData metaData = gameParser.getMetaData(replay, null);
 		assertEquals("Incorrect number of turns", nbTurns, metaData.getNumberOfTurns());
 		assertEquals("Incorrect duration", duration, metaData.getDurationInSeconds());
 		assertEquals("Incorrect win status", winStatus, metaData.getResult());
@@ -61,7 +62,7 @@ public class TestGetMetadata implements WithAssertions {
 
 	private void checkMeta(String fileName, String playerName, String opponentName) throws Exception {
 		HearthstoneReplay replay = gameLoader.load(fileName);
-		GameMetaData metaData = gameParser.getMetaData(replay);
+		GameMetaData metaData = gameParser.getMetaData(replay, null);
 		assertThat(metaData.getPlayerName()).isEqualTo(playerName);
 		assertThat(metaData.getOpponentName()).isEqualTo(opponentName);
 	}
