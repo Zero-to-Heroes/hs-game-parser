@@ -26,6 +26,12 @@ public class TestGetMetadata implements WithAssertions {
 		GameMetaData metaData = gameParser.getMetaData(replay, "battlegrounds");
 		assertEquals("Bob's Tavern", metaData.getOpponentName());
 		assertEquals("6", metaData.getAdditionalResult());
+		assertEquals("TB_BaconShop_HERO_15", metaData.getPlayerCardId());
+
+		replay = gameLoader.load("bugparsing/battlegrounds2.xml");
+		metaData = gameParser.getMetaData(replay, "battlegrounds");
+		assertEquals("TB_BaconShop_HERO_12", metaData.getPlayerCardId());
+
 		// More checks on win/loss
 		checkMeta("old.xml", 12, 476, "lost", "coin", "HERO_01", "HERO_07");
 		checkMeta("win_status_error.xml", 6, 271, "won", "coin", "HERO_09", "HERO_06");

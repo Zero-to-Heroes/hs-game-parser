@@ -8,6 +8,7 @@ import com.zerotoheroes.hsgameentities.replaydata.GameHelper;
 import com.zerotoheroes.hsgameentities.replaydata.HearthstoneReplay;
 import com.zerotoheroes.hsgameentities.replaydata.entities.BaseEntity;
 import com.zerotoheroes.hsgameentities.replaydata.entities.FullEntity;
+import com.zerotoheroes.hsgameentities.replaydata.entities.GameEntity;
 import com.zerotoheroes.hsgameentities.replaydata.entities.PlayerEntity;
 import com.zerotoheroes.hsgameentities.replaydata.gameactions.Tag;
 import com.zerotoheroes.hsgameentities.replaydata.gameactions.TagChange;
@@ -47,6 +48,10 @@ public class GameParser {
 
 		GameHelper helper = new GameHelper();
 		helper.setGame(replay.getGames().get(0));
+		GameEntity gameEntity = helper.filterGameData(GameEntity.class).stream()
+				.map(entity -> (GameEntity)entity)
+				.findFirst()
+				.orElseThrow(IllegalArgumentException::new);
 
 		List<HasTag> orderedTags = new ArrayList<>();
 		for (GameData gameData : helper.getFlatData()) {
@@ -61,7 +66,7 @@ public class GameParser {
 		// Find out the first turn number - if it's not 1, no point in parsing
 		// the metadata
 		List<HasTag> turnTags = orderedTags.stream()
-				.filter(t -> t.getEntity() == 1 && t.getName() == GameTag.TURN.getIntValue())
+				.filter(t -> t.getEntity() == gameEntity.getId() && t.getName() == GameTag.TURN.getIntValue())
 				.collect(Collectors.toList());
 
 		HasTag firstTurn = turnTags.isEmpty() ? null : turnTags.get(0);
@@ -144,14 +149,6 @@ public class GameParser {
 				.filter(t -> t.getValue() == 1 && t.getName() == GameTag.FIRST_PLAYER.getIntValue())
 				.findFirst()
 				.orElse(new HasTag(-1, -1, -1));
-//		HasTag drawFourCardsTag = orderedTags.stream()
-//				.filter(t -> t.getValue() == 4 && t.getName() == GameTag.NUM_CARDS_DRAWN_THIS_TURN.getIntValue())
-//				.findFirst()
-//				// The only case where the second player doesn't draw the coin is Adventures, where the AI
-//				// doesn't have a Coin - so we're playing first in any case
-//				// TODO: this probably needs to be improved
-//				.orElse(new HasTag(-1, -1, -1));
-//		meta.setPlayCoin(drawFourCardsTag.getEntity() == ourEntityId ? "coin" : "play");
 		meta.setPlayCoin(firstPlayerTag.getEntity() == ourEntityId ? "play" : "coin");
 
 		log.debug("retrieved meta " + meta);
