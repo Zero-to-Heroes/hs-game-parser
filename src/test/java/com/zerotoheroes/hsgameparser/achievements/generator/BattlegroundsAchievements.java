@@ -22,6 +22,7 @@ import java.util.stream.Stream;
 import static com.zerotoheroes.hsgameparser.achievements.GameType.BATTLEGROUNDS;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.BATTLEGROUNDS_FINISH;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.BATTLEGROUNDS_RANK;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.BATTLEGROUNDS_TRIPLE_PLAY;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CARD_PLAYED_OR_CHANGED_ON_BOARD;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
@@ -62,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                         .flatMap(List::stream)
                         .sorted(Comparator.comparing(RawAchievement::getId))
                         .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(88);
+        assertThat(result.size()).isEqualTo(85);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -201,14 +202,14 @@ public class BattlegroundsAchievements implements WithAssertions {
                 newArrayList("KAR_702", "TB_BaconUps_073"), // Menagerie Magician
                 newArrayList("BGS_024", "TB_BaconUps_050"), // Piloted Sky Golem
                 newArrayList("BOT_218", "TB_BaconUps_041"), // Security Rover
-                newArrayList("EX1_185"), // Siegebreaker
-                newArrayList("EX1_577"), // The Beast
+                newArrayList("EX1_185", "TB_BaconUps_053"), // Siegebreaker
+                newArrayList("EX1_577", "TB_BaconUps_042"), // The Beast
                 newArrayList("DAL_077"), // Toxfin
                 newArrayList("CFM_816", "TB_BaconUps_074"), // Virmen Sensei
 
                 newArrayList("BGS_010", "TB_BaconUps_083"), // Annihilan Battlemaster
                 newArrayList("FP1_031", "TB_BaconUps_093"), // Baron Rivendare
-                newArrayList("LOE_077"), // Brann Bronzebeard
+                newArrayList("LOE_077", "TB_BaconUps_045"), // Brann Bronzebeard
                 newArrayList("BGS_018", "TB_BaconUps_085"), // Goldrinn
                 newArrayList("TRL_232", "TB_BaconUps_051"), // Ironhide Direhorn
                 newArrayList("BGS_009", "TB_BaconUps_082"), // Lightfang Enforcer
@@ -237,10 +238,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .collect(Collectors.toList());
         List<RawAchievement> result = mininionCards.stream()
                 .map(minions -> {
-                    if (minions.size() == 1) {
-                        return null;
-                    }
-                    DbCard card = minions.get(1);
+                    DbCard card = minions.size() > 1 ? minions.get(1) : minions.get(0);
                     return RawAchievement.builder()
                             .id("battlegrounds_minion_play_" + card.getId())
                             .type("battlegrounds_minion_play_" + card.getId())
@@ -248,18 +246,22 @@ public class BattlegroundsAchievements implements WithAssertions {
                             .root(card.getId().equals(card.getId()))
                             .priority(card.getId().equals(card.getId()) ? 0 : 1)
                             .name(card.getName())
-                            .displayName("Triple played: " + card.getName())
+                            .displayName("That's Triple! " + card.getName())
                             .displayCardId(card.getId())
                             .displayCardType(card.getType().toLowerCase())
-                            .text("Play a Triple version of " + sanitize(card.getName()))
+                            .text("Get a Triple version of " + sanitize(card.getName()))
                             .emptyText(null)
-                            .completedText("Triple played: " + card.getName())
+                            .completedText("Played a Triple of " + card.getName())
                             .difficulty("rare")
                             .canBeCompletedOnlyOnce(true)
                             .maxNumberOfRecords(2)
                             .points(3)
                             .requirements(newArrayList(
-                                    Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId())).build(),
+                                    Requirement.builder().type(BATTLEGROUNDS_TRIPLE_PLAY)
+                                            .values(minions.stream()
+                                                    .map(DbCard::getId)
+                                                    .collect(Collectors.toList()))
+                                            .build(),
                                     Requirement.builder().type(GAME_TYPE).values(newArrayList(BATTLEGROUNDS)).build()
                             ))
                             .resetEvents(newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
@@ -267,7 +269,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 })
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(66);
+        assertThat(result.size()).isEqualTo(81);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -282,10 +284,10 @@ public class BattlegroundsAchievements implements WithAssertions {
         List<DbCard> heroCards = cardsList.getDbCards().stream()
                 .filter(card -> card.getId().startsWith("TB_BaconShop_HERO_"))
                 .filter(card -> !Arrays.asList(
-                        "TB_BaconShop_HERO_27", // Sindragosa
-                        "TB_BaconShop_HERO_40", // Sir Finley
-                        "TB_BaconShop_HERO_42", // Elise
-                        "TB_BaconShop_HERO_43", // Brann Bronzebeard
+                        "TB_BaconShop_HERO_17", // Millificient Manastorm
+                        "TB_BaconShop_HERO_19", // Giantfin
+                        "TB_BaconShop_HERO_25", // Lich Baz(hial
+                        "TB_BaconShop_HERO_38", // Mukla
                         "TB_BaconShop_HERO_KelThuzad", // Kel'Thuzad
                         "TB_BaconShop_HERO_PH" // BaconPHhero
                 )

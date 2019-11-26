@@ -46,6 +46,7 @@ public class Requirement {
 
     public static final String BATTLEGROUNDS_FINISH = "BATTLEGROUNDS_FINISH";
     public static final String BATTLEGROUNDS_RANK = "BATTLEGROUNDS_RANK";
+    public static final String BATTLEGROUNDS_TRIPLE_PLAY = "BATTLEGROUNDS_TRIPLE_PLAY";
 
     public static final String LAST_DAMAGE_DONE_BY_MINION = "LAST_DAMAGE_DONE_BY_MINION";
     public static final String RESUMMONED_RECURRING_VILLAIN = "RESUMMONED_RECURRING_VILLAIN";
