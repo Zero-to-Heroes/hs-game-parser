@@ -164,7 +164,7 @@ public class MonsterHuntAchievements implements WithAssertions {
                         .points(2)
                         .requirements(newArrayList(
                                 Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
-                                Requirement.builder().type(Requirement.SCENE_CHANGED_TO_GAME).build(),
+//                                Requirement.builder().type(Requirement.SCENE_CHANGED_TO_GAME).build(),
                                 Requirement.builder().type(SCENARIO_IDS).values(newArrayList("" + MONSTER_HUNT, "" + MONSTER_HUNT_FINAL)).build()
                         ))
                         .resetEvents(newArrayList(GameEvents.GAME_END))

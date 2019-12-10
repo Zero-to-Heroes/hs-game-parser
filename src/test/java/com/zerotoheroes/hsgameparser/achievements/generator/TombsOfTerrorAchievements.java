@@ -30,7 +30,6 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.MINION_ATTA
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.PASSIVE_BUFF;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.QUALIFIER_AT_LEAST;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENARIO_IDS;
-import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENE_CHANGED_TO_GAME;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.SECRET_TRIGGERED;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_DAMAGE_DEALT;
 import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.TOMBS_OF_TERROR;
@@ -135,7 +134,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 .points(1)
                 .requirements(newArrayList(
                         Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
-                        Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
+//                        Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
 //                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
                         Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
@@ -200,7 +199,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                                         .type(CORRECT_OPPONENT)
                                         .values(newArrayList(bossForms.stream().map(DbCard::getId).collect(Collectors.toList())))
                                         .build(),
-                                Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
+//                                Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
                                 Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
 //                                Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
                                 Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR_NORMAL)).build()
@@ -263,7 +262,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                                         .type(CORRECT_OPPONENT)
                                         .values(newArrayList(bossForms.stream().map(DbCard::getId).collect(Collectors.toList())))
                                         .build(),
-                                Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
+//                                Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
                                 Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
                                 Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR_HEROIC)).build()
                         ))

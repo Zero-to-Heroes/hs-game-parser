@@ -24,7 +24,6 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.CORRECT_OPP
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.PASSIVE_BUFF;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENARIO_IDS;
-import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENE_CHANGED_TO_GAME;
 import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.DALARAN_HEIST;
 import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.DALARAN_HEIST_HEROIC;
 import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.DALARAN_HEIST_NORMAL;
@@ -101,7 +100,7 @@ public class DalaranHeistAchievements implements WithAssertions {
                 .points(1)
                 .requirements(Lists.newArrayList(
                         Requirement.builder().type(CORRECT_OPPONENT).values(Lists.newArrayList(card.getId())).build(),
-                        Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
+//                        Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
                         Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST_NORMAL)).build()
                 ))
                 .resetEvents(Lists.newArrayList(GameEvents.GAME_END))
@@ -120,7 +119,7 @@ public class DalaranHeistAchievements implements WithAssertions {
                 .points(2)
                 .requirements(Lists.newArrayList(
                         Requirement.builder().type(CORRECT_OPPONENT).values(Lists.newArrayList(card.getId())).build(),
-                        Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
+//                        Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
                         Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST_HEROIC)).build()
                 ))
                 .resetEvents(Lists.newArrayList(GameEvents.GAME_END))

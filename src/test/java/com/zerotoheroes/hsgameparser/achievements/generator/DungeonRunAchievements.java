@@ -25,7 +25,7 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.PASSIVE_BUFF;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.PLAYER_HERO;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENARIO_IDS;
-import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENE_CHANGED_TO_GAME;
+//import static com.zerotoheroes.hsgameparser.achievements.Requirement.SCENE_CHANGED_TO_GAME;
 import static com.zerotoheroes.hsgameparser.achievements.ScenarioIds.DUNGEON_RUN;
 import static com.zerotoheroes.hsgameparser.achievements.generator.GeneralHelper.sanitize;
 import static org.assertj.core.util.Lists.newArrayList;
@@ -138,7 +138,7 @@ public class DungeonRunAchievements implements WithAssertions {
                         .points(2)
                         .requirements(newArrayList(
                                 Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
-                                Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
+//                                Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
                                 Requirement.builder().type(SCENARIO_IDS).values(newArrayList("" + DUNGEON_RUN)).build()
                         ))
                         .resetEvents(newArrayList(GameEvents.GAME_END))
