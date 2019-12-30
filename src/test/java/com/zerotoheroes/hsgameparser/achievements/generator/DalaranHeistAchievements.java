@@ -221,11 +221,10 @@ public class DalaranHeistAchievements implements WithAssertions {
                         .maxNumberOfRecords(2)
                         .points(3)
                         .requirements(Lists.newArrayList(
-                                Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(Lists.newArrayList(card.getId())).build(),
                                 // Special case for The Bosx
                                 card.getId().equals("DALA_701")
                                         ? Requirement.builder().type(CARD_DRAWN_OR_RECEIVED_IN_HAND).values(Lists.newArrayList(card.getId())).build()
-                                        : null,
+                                        : Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(Lists.newArrayList(card.getId())).build(),
                                 Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST)).build()
                         ))
                         .resetEvents(Lists.newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
