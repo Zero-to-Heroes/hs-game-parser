@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.BOARD_FULL_OF_SAME_LEGENDARY_MINION;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.CARD_NOT_PLAYED;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CARD_PLAYED_OR_CHANGED_ON_BOARD;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CORRECT_OPPONENT;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.CORRECT_STARTING_HEALTH;
@@ -598,9 +599,11 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                                 .build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
                         Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build(),
+                        // Don't trigger a Tie if Hearthstone was played
+                        Requirement.builder().type(CARD_NOT_PLAYED).values(newArrayList("ULDA_111")).build(),
                         Requirement.builder().type(GAME_TIE).build()
                 ))
-                .resetEvents(newArrayList(GameEvents.GAME_END))
+                .resetEvents(newArrayList(GameEvents.GAME_END, GameEvents.GAME_START))
                 .build();
     }
 
