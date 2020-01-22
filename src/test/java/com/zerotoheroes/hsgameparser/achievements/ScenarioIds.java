@@ -38,6 +38,27 @@ public class ScenarioIds {
     public static final int TOMBS_OF_TERROR_CHAPTER_5_HEROIC = 3437;
     public static final int TOMBS_OF_TERROR_BOB_HEROIC = 3439;
 
+    public static final int GALAKROND_EXPLORER_CHAP_1_FIGHT_1 = 3469; // Chap 1, Fight 1, Explorer (Finley vs Boom)
+    public static final int GALAKROND_EXPLORER_CHAP_1_FIGHT_2 = 3470; // Chap 1, Fight 2, Explorer (Khadgar vs Avalanchan)
+    public static final int GALAKROND_EXPLORER_CHAP_1_FIGHT_3 = 3471; // Chap 1, Fight 3, Explorer (Elise vs Kriziki the Wind)
+    public static final int GALAKROND_EVIL_CHAP_1_FIGHT_1 = 3484; // Chap 1, Fight 1, EVIL (Kriziki vs Finley)
+    public static final int GALAKROND_EVIL_CHAP_1_FIGHT_2 = 3488; // Chap 1, Fight 2, EVIL (vs Chenvaala)
+    public static final int GALAKROND_EVIL_CHAP_1_FIGHT_3 = 3489; // Chap 1, Fight 3, EVIL (Boom vs Reno)
+    public static final int GALAKROND_EXPLORER_CHAP_1_FIGHT_1_HEROIC = 3556; // Heroic Chap 1, Fight 1, Explorer (vs Boom)
+    public static final int GALAKROND_EXPLORER_CHAP_1_FIGHT_2_HEROIC = 3583; // Heroic Chap 1, Fight 2, Explorer (vs Avalanchan)
+    public static final int GALAKROND_EXPLORER_CHAP_1_FIGHT_3_HEROIC = 3584; // Heroic Chap 1, Fight 3, Explorer (vs Kriziki)
+    public static final int GALAKROND_EVIL_CHAP_1_FIGHT_1_HEROIC = 3594; // Heroic Chap 1, Fight 1, EVIL (vs Finley)
+    public static final int GALAKROND_EVIL_CHAP_1_FIGHT_2_HEROIC = 3595; // Heroic Chap 1, Fight 2, EVIL (vs Chenvaala)
+    public static final int GALAKROND_EVIL_CHAP_1_FIGHT_3_HEROIC = 3596; // Heroic Chap 1, Fight 3, EVIL (vs Reno)
+
+    public static final List<Integer> GALAKROND_HEROIC = Lists.newArrayList(
+            GALAKROND_EXPLORER_CHAP_1_FIGHT_1_HEROIC,
+            GALAKROND_EXPLORER_CHAP_1_FIGHT_2_HEROIC,
+            GALAKROND_EXPLORER_CHAP_1_FIGHT_3_HEROIC,
+            GALAKROND_EVIL_CHAP_1_FIGHT_1_HEROIC,
+            GALAKROND_EVIL_CHAP_1_FIGHT_2_HEROIC,
+            GALAKROND_EVIL_CHAP_1_FIGHT_3_HEROIC);
+
     public static final List<Integer> DALARAN_HEIST_NORMAL = Lists.newArrayList(
             DALARAN_HEIST_CHAPTER_1,
             DALARAN_HEIST_CHAPTER_2,

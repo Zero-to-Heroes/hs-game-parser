@@ -15,6 +15,7 @@ public class Requirement {
     public static final String GAME_TIE = "GAME_TIE";
     public static final String WIN_STREAK_LENGTH = "WIN_STREAK_LENGTH";
     public static final String PLAYER_HERO = "PLAYER_HERO";
+    public static final String PLAYER_CLASS = "PLAYER_CLASS";
     public static final String CORRECT_OPPONENT = "CORRECT_OPPONENT";
     public static final String CORRECT_STARTING_HEALTH = "CORRECT_STARTING_HEALTH";
 //    public static final String SCENE_CHANGED_TO_GAME = "SCENE_CHANGED_TO_GAME";
