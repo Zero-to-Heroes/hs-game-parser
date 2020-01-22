@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                         .flatMap(List::stream)
                         .sorted(Comparator.comparing(RawAchievement::getId))
                         .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(106);
+        assertThat(result.size()).isEqualTo(117);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -74,9 +74,9 @@ public class BattlegroundsAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> rankings() {
-        List<Integer> rankings = newArrayList(4250, 4500, 4750, 5000, 5250, 5500, 5750, 6000);
+        List<Integer> rankings = newArrayList(4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 9000, 10_000);
         return rankings.stream()
-                .map(raning -> ranking(raning, raning == 4250))
+                .map(raning -> ranking(raning, raning == 4500))
                 .collect(Collectors.toList());
     }
 
@@ -156,6 +156,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 newArrayList("CS2_065", "TB_BaconUps_059t"), // Voidwalker
                 newArrayList("LOOT_013"), // Vulgar Homonculus
                 newArrayList("BGS_004", "TB_BaconUps_079"), // Wrath Weaver
+                newArrayList("YOD_026", "TB_BaconUps_112"), // Fiendish Servant
 
                 newArrayList("GVG_085"), // Annoy-o-Tron
                 newArrayList("EX1_556", "TB_BaconUps_006"), // Harvest Golem
@@ -173,6 +174,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 newArrayList("GVG_058"), // Shielded Minibot
                 newArrayList("OG_256", "TB_BaconUps_025"), // Spawn of N'Zoth
                 newArrayList("KAR_095", "TB_BaconUps_063"), // Zoobot
+                newArrayList("BGS_014", "TB_BaconUps_113"), // Imprisoner
 
                 newArrayList("GVG_062"), // Cobalt Guardian
                 newArrayList("EX1_103", "TB_BaconUps_064"), // Coldlight Seer
@@ -271,7 +273,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 })
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(83);
+        assertThat(result.size()).isEqualTo(85);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -296,7 +298,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .map(hero -> buildHeroFinishes(hero))
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(31 * 3);
+        assertThat(result.size()).isEqualTo(34 * 3);
         return result;
     }
 
