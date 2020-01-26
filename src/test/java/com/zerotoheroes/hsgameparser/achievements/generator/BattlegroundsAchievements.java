@@ -123,8 +123,8 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .icon("boss_victory")
                 .root(isRoot)
                 .priority(winStreakLength)
-                .name("Win Streaks")
-                .displayName("Battlegrounds Win Streak (" + winStreakLength + " games)")
+                .name("Consecutive Wins")
+                .displayName("Battlegrounds Consecutive Wins (" + winStreakLength + " games)")
                 .displayCardId("TRL_074")
                 .displayCardType("minion")
                 .difficulty("rare")
@@ -233,7 +233,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 newArrayList("BGS_021", "TB_BaconUps_090"), // Mama Bear
                 newArrayList("GVG_114", "TB_BaconUps_080"), // Sneed's Old Shredder
                 newArrayList("LOOT_368", "TB_BaconUps_059"), // Voidlord
-                newArrayList("BGS_022") // Zapp Slywick
+                newArrayList("BGS_022", "TB_BaconUps_091") // Zapp Slywick
         );
         List<List<DbCard>> mininionCards = minionsIds.stream()
                 .map(ids -> ids.size() == 1
