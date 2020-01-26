@@ -115,7 +115,7 @@ public class GalakrondAchievements implements WithAssertions {
                         .flatMap(List::stream)
                         .sorted(Comparator.comparing(RawAchievement::getId))
                         .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(27);
+        assertThat(result.size()).isEqualTo(38);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -126,7 +126,7 @@ public class GalakrondAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildDamageDealtToEnemyHeroes() throws Exception {
-        List<Integer> targetDamages = newArrayList(150, 500, 1_000, 2_000, 3_000);
+        List<Integer> targetDamages = newArrayList(150, 500, 1_000, 2_000, 3_000, 5000, 10000);
         return targetDamages.stream()
                 .map(targetDamage -> buildDamageDealtToEnemyHero(targetDamage, targetDamage == 150))
                 .collect(Collectors.toList());
@@ -165,7 +165,7 @@ public class GalakrondAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildManaSpent() throws Exception {
-        List<Integer> targetCoins = newArrayList(100, 300, 500, 1000, 2000, 3000);
+        List<Integer> targetCoins = newArrayList(100, 300, 500, 1000, 2000, 3000, 5000, 10000);
         return targetCoins.stream()
                 .map(targetMana -> buildManaSpent(targetMana, targetMana == 100))
                 .collect(Collectors.toList());
@@ -204,7 +204,7 @@ public class GalakrondAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildEnemyMinionsDeads() throws Exception {
-        List<Integer> targetMinionsDead = newArrayList(50, 100, 300, 500, 1000, 2000);
+        List<Integer> targetMinionsDead = newArrayList(50, 100, 300, 500, 1000, 2000, 5000, 10000);
         return targetMinionsDead.stream()
                 .map(minionsDead -> buildEnemyMinionsDead(minionsDead, minionsDead == 50))
                 .collect(Collectors.toList());
@@ -243,7 +243,7 @@ public class GalakrondAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildTotalDurations() throws Exception {
-        List<Integer> targetDurations = newArrayList(5, 10, 20, 50, 100);
+        List<Integer> targetDurations = newArrayList(5, 10, 20, 50, 100, 200);
         return targetDurations.stream()
                 .map(targetDuration -> buildTotalDuration(targetDuration, targetDuration == 5))
                 .collect(Collectors.toList());
@@ -282,7 +282,7 @@ public class GalakrondAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildTotalMatches() throws Exception {
-        List<Integer> targetMatches = newArrayList(10, 20, 50, 100, 200);
+        List<Integer> targetMatches = newArrayList(10, 20, 50, 100, 200, 500, 1000, 2000, 5000);
         return targetMatches.stream()
                 .map(targetMatch -> buildTotalMatch(targetMatch, targetMatch == 10))
                 .collect(Collectors.toList());
