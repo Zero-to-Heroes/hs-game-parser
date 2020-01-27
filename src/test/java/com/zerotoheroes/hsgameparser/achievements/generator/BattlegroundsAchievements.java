@@ -128,7 +128,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .displayCardId("TRL_074")
                 .displayCardType("minion")
                 .difficulty("rare")
-                .emptyText("Win " + winStreakLength + " runs in a row in Battlegrounds")
+                .emptyText("Win several runs in a row in Battlegrounds")
                 .completedText("You won " + winStreakLength + " runs in a row")
                 .maxNumberOfRecords(3)
                 .points(5)
