@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BootstrapHeroInfo implements WithAssertions {
+public class BgsConfig implements WithAssertions {
 
     @Test
     public void generate_achievements() throws Exception {
