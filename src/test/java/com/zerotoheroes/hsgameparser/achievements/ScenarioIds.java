@@ -47,17 +47,30 @@ public class ScenarioIds {
     public static final int GALAKROND_EXPLORER_CHAP_1_FIGHT_1_HEROIC = 3556; // Heroic Chap 1, Fight 1, Explorer (vs Boom)
     public static final int GALAKROND_EXPLORER_CHAP_1_FIGHT_2_HEROIC = 3583; // Heroic Chap 1, Fight 2, Explorer (vs Avalanchan)
     public static final int GALAKROND_EXPLORER_CHAP_1_FIGHT_3_HEROIC = 3584; // Heroic Chap 1, Fight 3, Explorer (vs Kriziki)
+    public static final int GALAKROND_EXPLORER_CHAP_2_FIGHT_1_HEROIC = 3585; // Heroic Chap 2, Fight 1, Explorer (Finley vs Madam Lazul)
+    public static final int GALAKROND_EXPLORER_CHAP_2_FIGHT_2_HEROIC = 3586; // Heroic Chap 2, Fight 2, Explorer (vs Cultist Dawnshatter)
+    public static final int GALAKROND_EXPLORER_CHAP_2_FIGHT_3_HEROIC = 3587; // Heroic Chap 2, Fight 3, Explorer (vs Hagatha the Vengeful)
     public static final int GALAKROND_EVIL_CHAP_1_FIGHT_1_HEROIC = 3594; // Heroic Chap 1, Fight 1, EVIL (vs Finley)
     public static final int GALAKROND_EVIL_CHAP_1_FIGHT_2_HEROIC = 3595; // Heroic Chap 1, Fight 2, EVIL (vs Chenvaala)
     public static final int GALAKROND_EVIL_CHAP_1_FIGHT_3_HEROIC = 3596; // Heroic Chap 1, Fight 3, EVIL (vs Reno)
+    public static final int GALAKROND_EVIL_CHAP_2_FIGHT_1_HEROIC = 3597; // Heroic Chap 2, Fight 1, EVIL (Waxmancer vs Dragoncaster Askaraa)
+    public static final int GALAKROND_EVIL_CHAP_2_FIGHT_2_HEROIC = 3598; // Heroic Chap 2, Fight 2, EVIL (Kronx vs United Sr Explorers)
+    public static final int GALAKROND_EVIL_CHAP_2_FIGHT_3_HEROIC = 3599; // Heroic Chap 2, Fight 3, EVIL (Hagatha vs Nitthog)
 
     public static final List<Integer> GALAKROND_HEROIC = Lists.newArrayList(
             GALAKROND_EXPLORER_CHAP_1_FIGHT_1_HEROIC,
             GALAKROND_EXPLORER_CHAP_1_FIGHT_2_HEROIC,
             GALAKROND_EXPLORER_CHAP_1_FIGHT_3_HEROIC,
+            GALAKROND_EXPLORER_CHAP_2_FIGHT_1_HEROIC,
+            GALAKROND_EXPLORER_CHAP_2_FIGHT_2_HEROIC,
+            GALAKROND_EXPLORER_CHAP_2_FIGHT_3_HEROIC,
             GALAKROND_EVIL_CHAP_1_FIGHT_1_HEROIC,
             GALAKROND_EVIL_CHAP_1_FIGHT_2_HEROIC,
-            GALAKROND_EVIL_CHAP_1_FIGHT_3_HEROIC);
+            GALAKROND_EVIL_CHAP_1_FIGHT_3_HEROIC,
+            GALAKROND_EVIL_CHAP_2_FIGHT_1_HEROIC,
+            GALAKROND_EVIL_CHAP_2_FIGHT_2_HEROIC,
+            GALAKROND_EVIL_CHAP_2_FIGHT_3_HEROIC
+    );
 
     public static final List<Integer> DALARAN_HEIST_NORMAL = Lists.newArrayList(
             DALARAN_HEIST_CHAPTER_1,

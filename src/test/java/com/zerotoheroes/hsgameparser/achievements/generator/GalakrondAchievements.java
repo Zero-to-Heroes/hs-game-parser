@@ -78,11 +78,11 @@ public class GalakrondAchievements implements WithAssertions {
                 .name(sanitize(card.getName()))
                 .displayCardId(card.getId())
                 .displayCardType(card.getType().toLowerCase())
-                .emptyText(null)
+                .text("Defeat " + sanitize(card.getName()) + " in Heroic difficulty")
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .root(playerClass.equals("hunter"))
                 .priority(0)
-                .displayName("Defeated " + sanitize(card.getName() + " in Heroic"))
+                .displayName("Defeated " + sanitize(card.getName() + " in Heroic difficulty"))
                 .completedText("You defeated " + sanitize(card.getName() + " with " + playerClass))
                 .emptyText("Defeat " + sanitize(card.getName() + " in Heroic"))
                 .maxNumberOfRecords(2)
@@ -92,6 +92,7 @@ public class GalakrondAchievements implements WithAssertions {
                         Requirement.builder().type(PLAYER_CLASS).values(newArrayList(playerClass)).build(),
                         Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
                         Requirement.builder().type(GAME_WON).build(),
+                        // We need that to avoid granting the achievements in Normal difficulty
                         Requirement.builder().type(SCENARIO_IDS).values(newArrayList(toStrings(GALAKROND_HEROIC))).build()
                 ))
                 .build())
