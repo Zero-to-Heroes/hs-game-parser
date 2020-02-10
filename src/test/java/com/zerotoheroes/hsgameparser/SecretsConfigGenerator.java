@@ -59,6 +59,29 @@ public class SecretsConfigGenerator implements WithAssertions {
         List<SecretsConfig> conf = Lists.newArrayList(wildSecrets, standardSecrets, arenaSecrets);
         System.out.println(GeneralHelper.serialize(conf));
     }
+
+    @Test
+    public void test() throws Exception {
+        CardsList cardsList = CardsList.create();
+        List<DbCard> allSecrets = cardsList.getDbCards().stream()
+                .filter(card -> card.getMechanics() != null)
+                .filter(card -> card.getMechanics().contains("SECRET"))
+                .filter(card -> card.isCollectible())
+                .collect(Collectors.toList());
+        SecretsConfig wildSecrets = SecretsConfig.builder()
+                .mode("wild")
+                .secrets(allSecrets.stream()
+                        .filter(secret -> secret.getPlayerClass().toLowerCase().equals("rogue"))
+                        .map(secret -> SecretConfig.builder()
+                                .cardId(secret.getId())
+                                .cardName(secret.getName())
+                                .cardText(secret.getText())
+                                .build())
+                        .collect(Collectors.toList()))
+                .build();
+        List<SecretsConfig> conf = Lists.newArrayList(wildSecrets);
+        System.out.println(GeneralHelper.serialize(conf));
+    }
 }
 
 @Builder
@@ -72,5 +95,7 @@ class SecretsConfig {
 @Getter
 class SecretConfig {
     private final String cardId;
+    private final String cardName;
+    private final String cardText;
     private final String playerClass;
 }
