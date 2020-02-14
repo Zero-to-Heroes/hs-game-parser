@@ -345,6 +345,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         .difficulty("rare")
                         .maxNumberOfRecords(2)
                         .points(3)
+                        .linkedAchievementIds(buildLinkedAchievementIds("tombs_of_terror_treasure_play_" + card.getId()))
                         .requirements(newArrayList(
                                 Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId())).build(),
                                 Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
@@ -881,6 +882,16 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 "ULDA_911", // Kindle
                 "ULDA_912" // Recruit
         );
+    }
+
+    private List<String> buildLinkedAchievementIds(String id) {
+        switch (id) {
+            case "tombs_of_terror_treasure_play_ULDA_020": return newArrayList("tombs_of_terror_treasure_play_ULDA_015"); // Sr. Scout
+            case "tombs_of_terror_treasure_play_ULDA_021": return newArrayList("tombs_of_terror_treasure_play_ULDA_016"); // Sr. Tomb diver
+            case "tombs_of_terror_treasure_play_ULDA_022": return newArrayList("tombs_of_terror_treasure_play_ULDA_017"); // Sr. Navigator
+            case "tombs_of_terror_treasure_play_ULDA_023": return newArrayList("tombs_of_terror_treasure_play_ULDA_018"); // Sr. Excavator
+        }
+        return null;
     }
 
     private List<String> nonLootableTreasures() {

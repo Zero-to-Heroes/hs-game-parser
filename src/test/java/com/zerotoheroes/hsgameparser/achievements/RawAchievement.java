@@ -33,6 +33,7 @@ public class RawAchievement {
     private float points; // How many points is this achievement worth if you complete it?
     private List<Requirement> requirements;
     private List<String> resetEvents;
+    private List<String> linkedAchievementIds;
 
     public static class RawAchievementBuilder {
         private List<Requirement> requirements;
