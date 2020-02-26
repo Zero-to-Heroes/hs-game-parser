@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                         .flatMap(List::stream)
                         .sorted(Comparator.comparing(RawAchievement::getId))
                         .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(117);
+        assertThat(result.size()).isEqualTo(135);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -157,13 +157,15 @@ public class BattlegroundsAchievements implements WithAssertions {
                 newArrayList("LOOT_013"), // Vulgar Homonculus
                 newArrayList("BGS_004", "TB_BaconUps_079"), // Wrath Weaver
                 newArrayList("YOD_026", "TB_BaconUps_112"), // Fiendish Servant
+                newArrayList("BGS_039"), // Dragonspawn Lieutenant
+                newArrayList("BGS_019", "TB_BaconUps_102"), // Red Whelp
 
-                newArrayList("GVG_085"), // Annoy-o-Tron
+//                newArrayList("GVG_085"), // Annoy-o-Tron
                 newArrayList("EX1_556", "TB_BaconUps_006"), // Harvest Golem
                 newArrayList("BOT_606", "TB_BaconUps_028"), // Kaboom Bot
                 newArrayList("KAR_005", "TB_BaconUps_004"), // Kindly Grandmother
                 newArrayList("GVG_048", "TB_BaconUps_066"), // Metaltooth Leaper
-                newArrayList("BGS_025", "TB_BaconUps_019"), // Mounted Raptor
+//                newArrayList("BGS_025", "TB_BaconUps_019"), // Mounted Raptor
                 newArrayList("EX1_507", "TB_BaconUps_008"), // Murloc Warleader
                 newArrayList("BGS_001", "TB_BaconUps_062"), // Nathrezim Overseer
                 newArrayList("GIL_681"), // Nightmare Amalgam
@@ -171,10 +173,14 @@ public class BattlegroundsAchievements implements WithAssertions {
                 newArrayList("BGS_028", "TB_BaconUps_077"), // Pogo-Hopper
                 newArrayList("CFM_316", "TB_BaconUps_027"), // Rat Pack
                 newArrayList("EX1_531", "TB_BaconUps_043"), // Scavenging Hyena
-                newArrayList("GVG_058"), // Shielded Minibot
+//                newArrayList("GVG_058"), // Shielded Minibot
                 newArrayList("OG_256", "TB_BaconUps_025"), // Spawn of N'Zoth
                 newArrayList("KAR_095", "TB_BaconUps_063"), // Zoobot
                 newArrayList("BGS_014", "TB_BaconUps_113"), // Imprisoner
+                newArrayList("BGS_045", "TB_BaconUps_115"), // Glyph Guardian
+                newArrayList("BGS_037", "TB_BaconUps_107"), // Steward of Time
+                newArrayList("BGS_035", "TB_BaconUps_105"), // Waxrider Togwaggle
+                newArrayList("FP1_024", "TB_BaconUps_118"), // Unstable Ghoul
 
                 newArrayList("GVG_062"), // Cobalt Guardian
                 newArrayList("EX1_103", "TB_BaconUps_064"), // Coldlight Seer
@@ -185,30 +191,35 @@ public class BattlegroundsAchievements implements WithAssertions {
                 newArrayList("OG_216", "TB_BaconUps_026"), // Infested Wolf
                 newArrayList("DAL_575", "TB_BaconUps_034"), // Khadgar
                 newArrayList("BGS_017", "TB_BaconUps_086"), // Pack Leader
-                newArrayList("ULD_179", "TB_BaconUps_038"), // Phalanx Commander
+//                newArrayList("ULD_179", "TB_BaconUps_038"), // Phalanx Commander
                 newArrayList("BGS_023", "TB_BaconUps_035"), // Piloted Shredder
-                newArrayList("OG_145"), // Psych-o-Tron
+//                newArrayList("OG_145"), // Psych-o-Tron
                 newArrayList("BOT_312", "TB_BaconUps_032"), // Replicating Menace
                 newArrayList("GVG_055", "TB_BaconUps_069"), // Screwjank Clunker
                 newArrayList("OG_123", "TB_BaconUps_095"), // Shifter Zerus
                 newArrayList("BGS_002", "TB_BaconUps_075"), // Soul Juggler
-                newArrayList("UNG_037", "TB_BaconUps_031"), // Tortollan Shellraiser
+//                newArrayList("UNG_037", "TB_BaconUps_031"), // Tortollan Shellraiser
                 newArrayList("GVG_100", "TB_BaconUps_101"), // Floating Watcher
+                newArrayList("BGS_034"), // Bronze Warden
+                newArrayList("BGS_033", "TB_BaconUps_104"), // Hangry Dragon
 
                 newArrayList("BOT_911", "TB_BaconUps_099"), // Annoy-o-Module
                 newArrayList("ICC_858", "TB_BaconUps_047"), // Bolvar
                 newArrayList("LOOT_078"), // Cave Hydra
                 newArrayList("EX1_093", "TB_BaconUps_009"), // Defender of Argus
-                newArrayList("GIL_655", "TB_BaconUps_033"), // Festeroot Hulk
+//                newArrayList("GIL_655", "TB_BaconUps_033"), // Festeroot Hulk
                 newArrayList("GVG_027", "TB_BaconUps_044"), // Iron Sensei
                 newArrayList("GVG_106", "TB_BaconUps_046"), // Junkbot
                 newArrayList("KAR_702", "TB_BaconUps_073"), // Menagerie Magician
-                newArrayList("BGS_024", "TB_BaconUps_050"), // Piloted Sky Golem
+//                newArrayList("BGS_024", "TB_BaconUps_050"), // Piloted Sky Golem
                 newArrayList("BOT_218", "TB_BaconUps_041"), // Security Rover
                 newArrayList("EX1_185", "TB_BaconUps_053"), // Siegebreaker
                 newArrayList("EX1_577", "TB_BaconUps_042"), // The Beast
                 newArrayList("DAL_077"), // Toxfin
                 newArrayList("CFM_816", "TB_BaconUps_074"), // Virmen Sensei
+                newArrayList("BGS_067", "TB_BaconUps_117"), // Drakonid Enforcer
+                newArrayList("BGS_032", "TB_BaconUps_103"), // Herald of Flame
+                newArrayList("ICC_029", "TB_BaconUps_120"), // Cobalt Scalebane
 
                 newArrayList("BGS_010", "TB_BaconUps_083"), // Annihilan Battlemaster
                 newArrayList("FP1_031", "TB_BaconUps_055"), // Baron Rivendare
@@ -219,11 +230,14 @@ public class BattlegroundsAchievements implements WithAssertions {
                 newArrayList("GVG_021", "TB_BaconUps_060"), // Mal'Ganis
                 newArrayList("BOT_537", "TB_BaconUps_039"), // Mechano-Egg
                 newArrayList("UNG_937", "TB_BaconUps_089"), // Primalfin Lookout
-                newArrayList("UNG_010", "TB_BaconUps_052"), // Sated Threshadon
+//                newArrayList("UNG_010", "TB_BaconUps_052"), // Sated Threshadon
                 newArrayList("EX1_534", "TB_BaconUps_049"), // Savannah Highmane
                 newArrayList("ICC_807", "TB_BaconUps_072"), // Strongshell Scavenger
-                newArrayList("OG_300", "TB_BaconUps_058"), // The BOogeymonster
+//                newArrayList("OG_300", "TB_BaconUps_058"), // The BOogeymonster
                 newArrayList("BGS_030", "TB_BaconUps_100"), // King Bagurgle
+                newArrayList("BGS_043", "TB_BaconUps_110"), // Murozond
+                newArrayList("BGS_038", "TB_BaconUps_108"), // Twilight Emissary
+                newArrayList("BGS_036", "TB_BaconUps_106"), // Razorgore
 
                 newArrayList("GVG_113"), // Foe Reaper 4000
                 newArrayList("UNG_089", "TB_BaconUps_084"), // Gentle Megasaur
@@ -233,7 +247,11 @@ public class BattlegroundsAchievements implements WithAssertions {
                 newArrayList("BGS_021", "TB_BaconUps_090"), // Mama Bear
                 newArrayList("GVG_114", "TB_BaconUps_080"), // Sneed's Old Shredder
                 newArrayList("LOOT_368", "TB_BaconUps_059"), // Voidlord
-                newArrayList("BGS_022", "TB_BaconUps_091") // Zapp Slywick
+                newArrayList("BGS_022", "TB_BaconUps_091"), // Zapp Slywick
+                newArrayList("BGS_068"), // Holy Mackerel
+                newArrayList("BGS_044", "TB_BaconUps_116"), // Imp Mama
+                newArrayList("BGS_041"), // Kalecgos
+                newArrayList("BGS_040") // Nadina the Red
         );
         List<List<DbCard>> mininionCards = minionsIds.stream()
                 .map(ids -> ids.size() == 1
@@ -273,7 +291,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 })
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(85);
+        assertThat(result.size()).isEqualTo(93);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -298,7 +316,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                 .map(hero -> buildHeroFinishes(hero))
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(34 * 3);
+        assertThat(result.size()).isEqualTo(40 * 3);
         return result;
     }
 
@@ -391,7 +409,7 @@ public class BattlegroundsAchievements implements WithAssertions {
                         .flatMap(List::stream)
                         .sorted(Comparator.comparing(RawAchievement::getId))
                         .collect(Collectors.toList());
-        assertThat(result.size()).isEqualTo(93);
+        assertThat(result.size()).isEqualTo(99);
         List<String> types = result.stream()
                 .map(RawAchievement::getType)
                 .map(type -> "'" + type + "'")
@@ -409,7 +427,8 @@ public class BattlegroundsAchievements implements WithAssertions {
                         buildMurlocPlayed(value, value == 50),
                         buildDemonPlayed(value, value == 50),
                         buildMechPlayed(value, value == 50),
-                        buildBeastPlayed(value, value == 50)
+                        buildBeastPlayed(value, value == 50),
+                        buildDragonPlayed(value, value == 50)
                 ))
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
@@ -444,6 +463,14 @@ public class BattlegroundsAchievements implements WithAssertions {
         String displayTribe = tribe;
         String title = "Beast Invasion";
         String cardId = "TB_BaconUps_043";
+        return buildTribePlayed(value, isRoot, tribe, displayTribe, title, cardId);
+    }
+
+    private RawAchievement buildDragonPlayed(int value, boolean isRoot) {
+        String tribe = "dragon";
+        String displayTribe = tribe;
+        String title = "Dragon Invasion";
+        String cardId = "TB_BaconUps_110";
         return buildTribePlayed(value, isRoot, tribe, displayTribe, title, cardId);
     }
 
