@@ -16,8 +16,8 @@ public class SecretsConfigGenerator implements WithAssertions {
 
     public static List<String> STANDARD_SETS = Lists.newArrayList("core", "expert1", "gilneas", "boomsday",
             "troll", "dalaran", "uldum", "dragons", "yod");
-    public static List<String> ARENA_SETS = Lists.newArrayList("core", "expert1", "brm", "tgt", "kara",
-            "icecrown", "troll", "dragons", "yod");
+    public static List<String> ARENA_SETS = Lists.newArrayList("core", "expert1", "gvg", "gilneas", "uldum",
+            "dragons", "yod");
 
     @Test
     public void generate_config() throws Exception {
