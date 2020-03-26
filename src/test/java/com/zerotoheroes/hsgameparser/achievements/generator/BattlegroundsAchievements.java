@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(135);
+		assertThat(result.size()).isEqualTo(141);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -183,7 +183,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_035", "TB_BaconUps_105"), // Waxrider Togwaggle
 				newArrayList("FP1_024", "TB_BaconUps_118"), // Unstable Ghoul
 
-				newArrayList("GVG_062"), // Cobalt Guardian
+//				newArrayList("GVG_062"), // Cobalt Guardian
 				newArrayList("EX1_103", "TB_BaconUps_064"), // Coldlight Seer
 				newArrayList("AT_121", "TB_BaconUps_037"), // Crowd Favorite
 				newArrayList("CFM_610", "TB_BaconUps_070"), // Crystalweaver
@@ -203,6 +203,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("GVG_100", "TB_BaconUps_101"), // Floating Watcher
 				newArrayList("BGS_034"), // Bronze Warden
 				newArrayList("BGS_033", "TB_BaconUps_104"), // Hangry Dragon
+				newArrayList("BGS_071", "TB_BaconUps_123"), // Deflect-o-bot
+				newArrayList("BT_010", "TB_BaconUps_124"), // Felfin Navigator
 
 				newArrayList("BOT_911", "TB_BaconUps_099"), // Annoy-o-Module
 				newArrayList("ICC_858", "TB_BaconUps_047"), // Bolvar
@@ -299,7 +301,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(92);
+		assertThat(result.size()).isEqualTo(93);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -324,7 +326,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(40 * 3);
+		assertThat(result.size()).isEqualTo(42 * 3);
 		return result;
 	}
 
