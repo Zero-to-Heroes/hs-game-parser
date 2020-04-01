@@ -27,7 +27,7 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.DECK_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.RANKED_FORMAT_TYPE;
-import static com.zerotoheroes.hsgameparser.achievements.Requirement.RANKED_MIN_RANK;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.RANKED_MIN_LEAGUE;
 import static com.zerotoheroes.hsgameparser.achievements.generator.GeneralHelper.buildObjectMapper;
 import static org.assertj.core.util.Lists.newArrayList;
 
@@ -98,9 +98,10 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> clasics() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        // Bronze Silver Gold Platinium Diamond
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1 );
         return minimumRanks.stream()
-                .map(minimumRank -> classic(minimumRank, minimumRank == 25))
+                .map(minimumRank -> classic(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -112,17 +113,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Classic")
-                .displayName("Achievement completed: Classic (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Classic (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("CS2_127")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing only Classic and Basic cards in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CLASSIC).build()
@@ -132,9 +133,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> epics() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> epic(minimumRank, minimumRank == 25))
+                .map(minimumRank -> epic(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -146,17 +147,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Epic")
-                .displayName("Achievement completed: Epic (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Epic (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("TB_KTRAF_HP_RAF4")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing only epic cards in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("30", "AT_LEAST", "epic")).build()
@@ -166,9 +167,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> balanceds() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> balanced(minimumRank, minimumRank == 25))
+                .map(minimumRank -> balanced(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -180,17 +181,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Perfectly Balanced")
-                .displayName("Achievement completed: Perfectly Balanced (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Perfectly Balanced (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("ULDA_BOSS_62h")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing 10 common, rare and epic cards in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "common")).build(),
@@ -202,9 +203,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> richlyBalanceds() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> richlyBalanced(minimumRank, minimumRank == 25))
+                .map(minimumRank -> richlyBalanced(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -216,17 +217,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Richly Balanced")
-                .displayName("Achievement completed: Richly Balanced (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Richly Balanced (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("TRLA_116")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing 10 rare, epic and legendary cards in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_RARITY).values(newArrayList("10", "AT_LEAST", "legendary")).build(),
@@ -238,9 +239,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> minions() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> minion(minimumRank, minimumRank == 25))
+                .map(minimumRank -> minion(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -252,17 +253,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("A Whole Army")
-                .displayName("Achievement completed: A Whole Army (rank " + minimumRank + ")")
+                .displayName("Achievement completed: A Whole Army (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("BOT_912")
                 .displayCardType("spell")
                 .difficulty("rare")
                 .text("Win one game with a deck containing only minions in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_NUMBER_OF_MINIONS).values(newArrayList("30", "AT_LEAST")).build()
@@ -272,9 +273,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> sorcerers() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> sorcerer(minimumRank, minimumRank == 25))
+                .map(minimumRank -> sorcerer(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -286,17 +287,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Sorcerer")
-                .displayName("Achievement completed: Sorcerer (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Sorcerer (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("OG_090")
                 .displayCardType("spell")
                 .difficulty("rare")
                 .text("Win one game with a deck containing only spells in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("30", "SPELL", "AT_LEAST")).build()
@@ -306,9 +307,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> loneSurvivors() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> loneSurvivor(minimumRank, minimumRank == 25))
+                .map(minimumRank -> loneSurvivor(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -320,17 +321,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Lone Survivor")
-                .displayName("Achievement completed: Lone Survivor (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Lone Survivor (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("LOOT_124")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing 1 minion and 29 spells in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("29", "SPELL", "AT_LEAST")).build(),
@@ -341,9 +342,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> miracles() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> miracle(minimumRank, minimumRank == 25))
+                .map(minimumRank -> miracle(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -355,17 +356,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("The Miracle")
-                .displayName("Achievement completed: The Miracle (rank " + minimumRank + ")")
+                .displayName("Achievement completed: The Miracle (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("ULD_216")
                 .displayCardType("spell")
                 .difficulty("rare")
                 .text("Win one game with a deck containing 29 minions and 1 spell in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("29", "MINION", "AT_LEAST")).build(),
@@ -376,9 +377,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> swordAndSpells() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> swordAndSpell(minimumRank, minimumRank == 25))
+                .map(minimumRank -> swordAndSpell(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -390,17 +391,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Swords and Spells")
-                .displayName("Achievement completed: Swords and Spells (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Swords and Spells (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("ULD_329")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing 15 minions and 15 spells in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_TYPE).values(newArrayList("15", "MINION", "AT_LEAST")).build(),
@@ -411,9 +412,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> lifesteals() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> lifesteal(minimumRank, minimumRank == 25))
+                .map(minimumRank -> lifesteal(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -426,17 +427,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Lifesteal")
-                .displayName("Achievement completed: Lifesteal (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Lifesteal (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("DAL_047")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing at least " + minLifestealCards + " cards with lifesteal in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_MECHANIC).values(newArrayList("" + minLifestealCards, "LIFESTEAL", "AT_LEAST")).build()
@@ -446,9 +447,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> voids() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> theVoid(minimumRank, minimumRank == 25))
+                .map(minimumRank -> theVoid(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -460,17 +461,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("The Void")
-                .displayName("Achievement completed: The Void (rank " + minimumRank + ")")
+                .displayName("Achievement completed: The Void (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("ULD_134")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing no cards with the letter \"e\" in its (English) name in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_NO_CARD_WITH_LETTER_IN_NAME).values(newArrayList("e")).build()
@@ -480,9 +481,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> quiets() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> quiet(minimumRank, minimumRank == 25))
+                .map(minimumRank -> quiet(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -495,17 +496,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("So quiet")
-                .displayName("Achievement completed: So Quiet (rank " + minimumRank + ")")
+                .displayName("Achievement completed: So Quiet (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("LOE_077")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing at least " + minNumberOfMinions + " minions and no battlecry or deathrattle card in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_NUMBER_OF_MINIONS).values(newArrayList("" + minNumberOfMinions, "AT_LEAST")).build(),
@@ -517,9 +518,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> freeSpeeches() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> freeSpeech(minimumRank, minimumRank == 25))
+                .map(minimumRank -> freeSpeech(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -531,17 +532,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Free Speech")
-                .displayName("Achievement completed: Free Speech (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Free Speech (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("ICC_809")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing 30 cards with Battlecry in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_MECHANIC).values(newArrayList("30", "BATTLECRY", "AT_LEAST")).build()
@@ -551,9 +552,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> thousandCuts() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> thousandCut(minimumRank, minimumRank == 25))
+                .map(minimumRank -> thousandCut(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -566,17 +567,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Death by a Thousand Cuts")
-                .displayName("Achievement completed: Death by a Thousand Cuts (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Death by a Thousand Cuts (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("DAL_773")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing at least " + minNumberOfMinions + " minions with 1 attack or less and no spell in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_ATTRIBUTE_VALUE).values(newArrayList("" + minNumberOfMinions, "AT_LEAST", "attack", "1", "AT_MOST")).build(),
@@ -587,9 +588,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> fragileNatures() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> fragileNature(minimumRank, minimumRank == 25))
+                .map(minimumRank -> fragileNature(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -602,17 +603,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Fragile Nature")
-                .displayName("Achievement completed: Fragile Nature (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Fragile Nature (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("GIL_665")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing at least " + minNumberOfMinions + " minions with 1 health and no spell in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_ATTRIBUTE_VALUE).values(newArrayList("" + minNumberOfMinions, "AT_LEAST", "health", "1", "AT_MOST")).build(),
@@ -623,9 +624,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> summoners() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> summoner(minimumRank, minimumRank == 25))
+                .map(minimumRank -> summoner(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -637,17 +638,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Summoner")
-                .displayName("Achievement completed: Summoner (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Summoner (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("DAL_575")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing only cards with the word \"Summon\" in their text or name in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_TEXT_VALUE).values(newArrayList("" + 30, "AT_LEAST", "summon", "CONTAINS")).build()
@@ -657,9 +658,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> randoms() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> random(minimumRank, minimumRank == 25))
+                .map(minimumRank -> random(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -671,17 +672,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("My Own Casino")
-                .displayName("Achievement completed: My Own Casino (rank " + minimumRank + ")")
+                .displayName("Achievement completed: My Own Casino (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("KAR_009")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing only cards with the word \"random\" in their text or name in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_TEXT_VALUE).values(newArrayList("" + 30, "AT_LEAST", "random", "CONTAINS")).build()
@@ -691,9 +692,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> simples() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> simple(minimumRank, minimumRank == 25))
+                .map(minimumRank -> simple(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -705,17 +706,17 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Keeping it Simple")
-                .displayName("Achievement completed: Keeping it Simple (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Keeping it Simple (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("CS2_182")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .text("Win one game with a deck containing only cards with at most 3 words in their text in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_TEXT_NUMBER_OF_WORDS).values(newArrayList("" + 30, "AT_LEAST", "3", "AT_MOST")).build()
@@ -725,9 +726,9 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> complexes() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> complex(minimumRank, minimumRank == 25))
+                .map(minimumRank -> complex(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -739,22 +740,33 @@ public class DeckbuildingAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Complexity")
-                .displayName("Achievement completed: Complexity (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Complexity (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("CS2_233")
                 .displayCardType("spell")
                 .difficulty("rare")
                 .text("Win one game with a deck containing only cards with at least 8 words in their text in Ranked Standard")
-                .completedText("Completed at rank " + minimumRank + " or better")
+                .completedText("Completed in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DECK_CARD_TEXT_NUMBER_OF_WORDS).values(newArrayList("" + 30, "AT_LEAST", "8", "AT_LEAST")).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_END))
                 .build();
+    }
+
+    private String getLeagueText(int leagueId) {
+        switch (leagueId) {
+            case 5: return "Bronze";
+            case 4: return "Silver";
+            case 3: return "Gold";
+            case 2: return "Platinum";
+            case 1: return "Diamond";
+        }
+        return "Unknown";
     }
 }

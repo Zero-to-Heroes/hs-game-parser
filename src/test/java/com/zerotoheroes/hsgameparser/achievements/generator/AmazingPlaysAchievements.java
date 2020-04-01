@@ -27,7 +27,7 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.MINIONS_CON
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.MINION_SUMMONED;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.QUALIFIER_AT_LEAST;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.RANKED_FORMAT_TYPE;
-import static com.zerotoheroes.hsgameparser.achievements.Requirement.RANKED_MIN_RANK;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.RANKED_MIN_LEAGUE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.RESUMMONED_RECURRING_VILLAIN;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_ARMOR_GAINED;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_DAMAGE_DEALT;
@@ -82,9 +82,9 @@ public class AmazingPlaysAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildWinWithOneHps() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> buildWinWithOneHp(minimumRank, minimumRank == 25))
+                .map(minimumRank -> buildWinWithOneHp(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -96,17 +96,17 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("One HP matters")
-                .displayName("Achievement completed: One HP matters (rank " + minimumRank + ")")
+                .displayName("Achievement completed: One HP matters (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("GILA_BOSS_49p")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .emptyText("Win one game with one HP left and no armor remaining in Ranked Standard")
-                .completedText("You won with one HP left at rank " + minimumRank + " or better")
+                .completedText("You won with one HP left in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(HEALTH_AT_END).values(newArrayList("1")).build(),
@@ -117,9 +117,9 @@ public class AmazingPlaysAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildWinWithFullHps() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> buildWinWithFullHp(minimumRank, minimumRank == 25))
+                .map(minimumRank -> buildWinWithFullHp(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -131,17 +131,17 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Don't Hit Me!")
-                .displayName("Achievement completed: Don't Hit Me! (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Don't Hit Me! (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("BRMA10_4")
                 .displayCardType("minion")
                 .difficulty("rare")
                 .emptyText("Win one game with your full HP left in Ranked Standard")
-                .completedText("You won with your full HP left at rank " + minimumRank + " or better")
+                .completedText("You won with your full HP left in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(DAMAGE_AT_END).values(newArrayList("0")).build(),
@@ -152,9 +152,9 @@ public class AmazingPlaysAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildGameTies() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> buildGameTie(minimumRank, minimumRank == 25))
+                .map(minimumRank -> buildGameTie(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -166,17 +166,17 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("That's A Nice Tie")
-                .displayName("Achievement completed: That's A Nice Tie (rank " + minimumRank + ")")
+                .displayName("Achievement completed: That's A Nice Tie (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("KAR_044a") // Moroes' stewart
                 .displayCardType("minion")
                 .difficulty("legendary")
                 .emptyText("End the game with a tie in Ranked Standard")
-                .completedText("You tied a game at rank " + minimumRank + " or better")
+                .completedText("You tied a game in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(null)
                 .points(15 + (25 - minimumRank))
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_TIE).build()
                 ))
@@ -185,9 +185,9 @@ public class AmazingPlaysAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildWinWithoutTakingDamages() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> buildWinWithoutTakingDamage(minimumRank, minimumRank == 25))
+                .map(minimumRank -> buildWinWithoutTakingDamage(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -199,17 +199,17 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Immune")
-                .displayName("Achievement completed: Immune (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Immune (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("CRED_69")
                 .displayCardType("minion")
                 .difficulty("epic")
                 .emptyText("Win the game without taking any damage in Ranked Standard")
-                .completedText("You won a game without taking any damage at rank " + minimumRank + " or better")
+                .completedText("You won a game without taking any damage in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(10 + (25 - minimumRank))
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(TOTAL_DAMAGE_TAKEN).values(newArrayList("0")).build(),
@@ -220,9 +220,9 @@ public class AmazingPlaysAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildDiscardCards() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> buildDiscardCard(minimumRank, minimumRank == 25))
+                .map(minimumRank -> buildDiscardCard(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -234,17 +234,17 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Put it Away")
-                .displayName("Achievement completed: Put it Away (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Put it Away (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("TRL_252")
                 .displayCardType("minion")
                 .difficulty("epic")
                 .emptyText("Discard 8 cards in a single game in Ranked Standard")
-                .completedText("You discarded 8 cards in a single game at rank " + minimumRank + " or better")
+                .completedText("You discarded 8 cards in a single game in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank))
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(TOTAL_DISCARD).values(newArrayList("8")).build()
                 ))
@@ -253,31 +253,31 @@ public class AmazingPlaysAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildHighkeeperRas() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> buildHighkeeperRa(minimumRank, minimumRank == 25))
+                .map(minimumRank -> buildHighkeeperRa(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
     private RawAchievement buildHighkeeperRa(int minimumRank, boolean isRoot) {
         return RawAchievement.builder()
                 .id("amazing_plays_summon_highkeeper_ra_" + minimumRank)
-                .type("amazing_plays_summon_highkeeper_ra (rank " + minimumRank + ")")
+                .type("amazing_plays_summon_highkeeper_ra (" + getLeagueText(minimumRank) + ")")
                 .icon("boss_victory")
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Highkeeper Ra")
-                .displayName("Achievement completed: Highkeeper Ra is among us! (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Highkeeper Ra is among us! (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("ULD_705t")
                 .displayCardType("minion")
                 .difficulty("legendary")
                 .emptyText("Summon Highkeeper Ra in Ranked Standard")
-                .completedText("You summoned Highkeeper Ra at rank " + minimumRank + " or better")
+                .completedText("You summoned Highkeeper Ra in " + getLeagueText(minimumRank) + " or better")
                 .maxNumberOfRecords(null)
                 .points(40)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(MINION_SUMMONED).values(newArrayList("ULD_705t")).build()
                 ))
@@ -286,9 +286,9 @@ public class AmazingPlaysAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> buildTotalHeals() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> buildTotalHeal(minimumRank, minimumRank == 25))
+                .map(minimumRank -> buildTotalHeal(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -301,17 +301,17 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Healed!")
-                .displayName("Achievement completed: Healed! (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Healed! (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("CS1h_001_H2_AT_132")
                 .displayCardType("minion")
                 .emptyText("Heal your hero for " + amountToHeal + " health in Ranked Standard")
-                .completedText("You healed your hero for " + amountToHeal + " health at rank " + minimumRank + " or better")
+                .completedText("You healed your hero for " + amountToHeal + " health in " + getLeagueText(minimumRank) + " or better")
                 .difficulty("rare")
                 .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank) / 2)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(TOTAL_HERO_HEAL).values(newArrayList("" + amountToHeal, QUALIFIER_AT_LEAST)).build()
                 ))
@@ -320,9 +320,9 @@ public class AmazingPlaysAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> totalDamageInGames() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> totalDamageInGame(minimumRank, minimumRank == 25))
+                .map(minimumRank -> totalDamageInGame(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -335,17 +335,17 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Burn Them All!")
-                .displayName("Achievement completed: Burn Them All! (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Burn Them All! (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("BRM_027p")
                 .displayCardType("minion")
                 .emptyText("Deal at least " + damageToDeal + " damage during one Ranked Standard game")
-                .completedText("You dealt " + damageToDeal + " damage at rank " + minimumRank + " or better")
+                .completedText("You dealt " + damageToDeal + " damage in " + getLeagueText(minimumRank) + " or better")
                 .difficulty("rare")
                 .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank) / 2)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(TOTAL_DAMAGE_DEALT).values(newArrayList("" + damageToDeal, QUALIFIER_AT_LEAST)).build()
                 ))
@@ -354,9 +354,9 @@ public class AmazingPlaysAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> totalArmorInGames() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> totalArmorInGame(minimumRank, minimumRank == 25))
+                .map(minimumRank -> totalArmorInGame(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -369,17 +369,17 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Iron Defense")
-                .displayName("Achievement completed: Iron Defense (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Iron Defense (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("EX1_606")
                 .displayCardType("spell")
                 .emptyText("Gain at least " + armorToGain + " armor during one Ranked Standard game")
-                .completedText("You gained " + armorToGain + " armor at rank " + minimumRank + " or better")
+                .completedText("You gained " + armorToGain + " armor in " + getLeagueText(minimumRank) + " or better")
                 .difficulty("rare")
                 .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank) / 2)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(TOTAL_ARMOR_GAINED).values(newArrayList("" + armorToGain, QUALIFIER_AT_LEAST)).build()
                 ))
@@ -388,9 +388,9 @@ public class AmazingPlaysAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> desertObelisks() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> desertObelisk(minimumRank, minimumRank == 25))
+                .map(minimumRank -> desertObelisk(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -402,17 +402,17 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Desert Obelisks")
-                .displayName("Achievement completed: Desert Obelisks (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Desert Obelisks (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("ULD_703")
                 .displayCardType("minion")
                 .emptyText("Control 3 Desert Obelisks during your turn in Ranked Standard")
-                .completedText("You controlled 3 Desert Obelisks at rank " + minimumRank + " or better")
+                .completedText("You controlled 3 Desert Obelisks in " + getLeagueText(minimumRank) + " or better")
                 .difficulty("epic")
                 .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank) / 2)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(MINIONS_CONTROLLED_DURING_TURN).values(newArrayList("ULD_703", "3", QUALIFIER_AT_LEAST)).build()
                 ))
@@ -421,9 +421,9 @@ public class AmazingPlaysAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> recurringVillains() {
-        List<Integer> minimumRanks = newArrayList(25, 20, 15, 10, 5, 1);
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
         return minimumRanks.stream()
-                .map(minimumRank -> recurringVillain(minimumRank, minimumRank == 25))
+                .map(minimumRank -> recurringVillain(minimumRank, minimumRank == 5))
                 .collect(Collectors.toList());
     }
 
@@ -436,21 +436,32 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .root(isRoot)
                 .priority(-minimumRank)
                 .name("Recurring Villains")
-                .displayName("Achievement completed: Recurring Villains (rank " + minimumRank + ")")
+                .displayName("Achievement completed: Recurring Villains (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("DAL_749")
                 .displayCardType("minion")
                 .emptyText("Resummon a Recurring Villain at least " + numberOfResummons + " times in Ranked Standard")
-                .completedText("You resummoned " + numberOfResummons + " Recurring Villains at rank " + minimumRank + " or better")
+                .completedText("You resummoned " + numberOfResummons + " Recurring Villains in " + getLeagueText(minimumRank) + " or better")
                 .difficulty("rare")
                 .maxNumberOfRecords(3)
                 .points(5 + (25 - minimumRank) / 2)
                 .requirements(newArrayList(
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
-                        Requirement.builder().type(RANKED_MIN_RANK).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(RESUMMONED_RECURRING_VILLAIN).values(newArrayList("3", QUALIFIER_AT_LEAST)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
+    }
+
+    private String getLeagueText(int leagueId) {
+        switch (leagueId) {
+            case 5: return "Bronze";
+            case 4: return "Silver";
+            case 3: return "Gold";
+            case 2: return "Platinum";
+            case 1: return "Diamond";
+        }
+        return "Unknown";
     }
 }

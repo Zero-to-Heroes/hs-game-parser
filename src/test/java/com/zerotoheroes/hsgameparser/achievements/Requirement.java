@@ -30,7 +30,7 @@ public class Requirement {
     public static final String EXCLUDED_SCENARIO_IDS = "EXCLUDED_SCENARIO_IDS";
     public static final String GAME_TYPE = "GAME_TYPE";
     public static final String RANKED_FORMAT_TYPE = "RANKED_FORMAT_TYPE";
-    public static final String RANKED_MIN_RANK = "RANKED_MIN_RANK";
+    public static final String RANKED_MIN_LEAGUE = "RANKED_MIN_LEAGUE";
     public static final String HEALTH_AT_END = "HEALTH_AT_END";
     public static final String MINION_ATTACK_ON_BOARD = "MINION_ATTACK_ON_BOARD";
     public static final String ARMOR_AT_END = "ARMOR_AT_END";
