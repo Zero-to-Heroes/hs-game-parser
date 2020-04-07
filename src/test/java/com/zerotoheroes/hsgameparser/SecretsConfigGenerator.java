@@ -14,10 +14,9 @@ import java.util.stream.Collectors;
 
 public class SecretsConfigGenerator implements WithAssertions {
 
-    public static List<String> STANDARD_SETS = Lists.newArrayList("core", "expert1", "gilneas", "boomsday",
-            "troll", "dalaran", "uldum", "dragons", "yod");
-    public static List<String> ARENA_SETS = Lists.newArrayList("core", "expert1", "gvg", "gilneas", "uldum",
-            "dragons", "yod");
+    public static List<String> STANDARD_SETS = Lists.newArrayList("core", "expert1", "dalaran", "uldum", "dragons", "yod", "black_temple");
+    public static List<String> ARENA_SETS = Lists.newArrayList("core", "expert1", "dalaran", "uldum", "dragons",
+            "yod", "black_temple");
 
     @Test
     public void generate_config() throws Exception {
