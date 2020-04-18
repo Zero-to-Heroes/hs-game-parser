@@ -419,7 +419,7 @@ public class DeckbuildingAchievements implements WithAssertions {
     }
 
     private RawAchievement lifesteal(int minimumRank, boolean isRoot) {
-        int minLifestealCards = 12;
+        int minLifestealCards = 8;
         return RawAchievement.builder()
                 .id("deckbuilding_win_lifesteal_" + minimumRank)
                 .type("deckbuilding_win_lifesteal")
