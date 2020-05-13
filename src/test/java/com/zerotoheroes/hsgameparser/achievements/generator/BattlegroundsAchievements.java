@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(141);
+		assertThat(result.size()).isEqualTo(150);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -146,7 +146,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 		CardsList cardsList = CardsList.create();
 		List<List<String>> minionsIds = newArrayList(
 				newArrayList("CFM_315", "TB_BaconUps_093"), // Alleycat
-				newArrayList("EX1_162", "TB_BaconUps_088"), // Dire Wolf ALpha
+//				newArrayList("EX1_162", "TB_BaconUps_088"), // Dire Wolf ALpha
+				newArrayList("BGS_075", "TB_BaconUps_125"), // Rabid Saurolisk
 				newArrayList("BOT_445", "TB_BaconUps_002"), // Mecharoo
 				newArrayList("GVG_103", "TB_BaconUps_094"), // Micro Machine
 				newArrayList("EX1_509", "TB_BaconUps_011"), // Murloc Tidecaller
@@ -326,7 +327,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(42 * 3);
+		assertThat(result.size()).isEqualTo(45 * 3);
 		return result;
 	}
 
