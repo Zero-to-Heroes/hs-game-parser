@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(150);
+		assertThat(result.size()).isEqualTo(162);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -161,6 +161,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("YOD_026", "TB_BaconUps_112"), // Fiendish Servant
 				newArrayList("BGS_039"), // Dragonspawn Lieutenant
 				newArrayList("BGS_019", "TB_BaconUps_102"), // Red Whelp
+				newArrayList("BGS_055", "TB_BaconUps_126"), // Deck Swabbie
+				newArrayList("BGS_061", "TB_BaconUps_141"), // Scallywag
 
 //                newArrayList("GVG_085"), // Annoy-o-Tron
 				newArrayList("EX1_556", "TB_BaconUps_006"), // Harvest Golem
@@ -183,6 +185,10 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_037", "TB_BaconUps_107"), // Steward of Time
 				newArrayList("BGS_035", "TB_BaconUps_105"), // Waxrider Togwaggle
 				newArrayList("FP1_024", "TB_BaconUps_118"), // Unstable Ghoul
+				newArrayList("NEW1_027", "TB_BaconUps_136"), // Southsea Captain
+				newArrayList("BGS_077", "TB_BaconUps_128"), // Arcane Cannon
+				newArrayList("BGS_078", "TB_BaconUps_135"), // Monstrous Macaw
+				newArrayList("BGS_049", "TB_BaconUps_127"), // Freedealing Gambler
 
 //				newArrayList("GVG_062"), // Cobalt Guardian
 				newArrayList("EX1_103", "TB_BaconUps_064"), // Coldlight Seer
@@ -206,6 +212,9 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_033", "TB_BaconUps_104"), // Hangry Dragon
 				newArrayList("BGS_071", "TB_BaconUps_123"), // Deflect-o-bot
 				newArrayList("BT_010", "TB_BaconUps_124"), // Felfin Navigator
+				newArrayList("BGS_060"), // Yo-Ho-Ogre
+				newArrayList("BGS_081", "TB_BaconUps_143"), // Salty Looter
+				newArrayList("BGS_053", "TB_BaconUps_138"), // Bloodsail Cannoneer
 
 				newArrayList("BOT_911", "TB_BaconUps_099"), // Annoy-o-Module
 				newArrayList("ICC_858", "TB_BaconUps_047"), // Bolvar
@@ -224,6 +233,9 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_067", "TB_BaconUps_117"), // Drakonid Enforcer
 				newArrayList("BGS_032", "TB_BaconUps_103"), // Herald of Flame
 				newArrayList("ICC_029", "TB_BaconUps_120"), // Cobalt Scalebane
+				newArrayList("BGS_048", "TB_BaconUps_140"), // Southsea Strongarm
+				newArrayList("BGS_066", "TB_BaconUps_130"), // Goldgrubber
+				newArrayList("BGS_056", "TB_BaconUps_139"), // Ripsnarl Captain
 
 				newArrayList("BGS_010", "TB_BaconUps_083"), // Annihilan Battlemaster
 				newArrayList("FP1_031", "TB_BaconUps_055"), // Baron Rivendare
@@ -242,6 +254,9 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_043", "TB_BaconUps_110"), // Murozond
 				newArrayList("BGS_038", "TB_BaconUps_108"), // Twilight Emissary
 				newArrayList("BGS_036", "TB_BaconUps_106"), // Razorgore
+				newArrayList("BGS_080", "TB_BaconUps_142"), // Seabreaker Goliath
+				newArrayList("BGS_046", "TB_BaconUps_132"), // Nat Pagle, Extreme Angler
+				newArrayList("BGS_072", "TB_BaconUps_133"), // Cap'n Hoggarr
 
 				newArrayList("GVG_113"), // Foe Reaper 4000
 				newArrayList("UNG_089", "TB_BaconUps_084"), // Gentle Megasaur
@@ -254,9 +269,10 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_022", "TB_BaconUps_091"), // Zapp Slywick
 				newArrayList("BGS_068"), // Holy Mackerel
 				newArrayList("BGS_044", "TB_BaconUps_116"), // Imp Mama
-				newArrayList("BGS_041", "TB_BaconUps_109", "0"), // Kalecgos - Since it was published withotu the
-				// golden first, we force the app to use the non-premium version for achievement
-				newArrayList("BGS_040") // Nadina the Red
+				newArrayList("BGS_041", "TB_BaconUps_109", "0"), // Kalecgos - Since it was published withotu the golden first, we force the app to use the non-premium version for achievement
+				newArrayList("BGS_040"), // Nadina the Red
+				newArrayList("BGS_047", "TB_BaconUps_134"), // Dread Admiral Eliza
+				newArrayList("BGS_079", "TB_BaconUps_137") // The Tide Razor
 		);
 		List<List<DbCard>> mininionCards = minionsIds.stream()
 				.map(ids -> ids.size() == 1
@@ -302,7 +318,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(93);
+		assertThat(result.size()).isEqualTo(110);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -318,7 +334,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.filter(card -> card.getId().startsWith("TB_BaconShop_HERO_"))
 				.filter(card -> !Arrays.asList(
 						"TB_BaconShop_HERO_KelThuzad", // Kel'Thuzad
-						"TB_BaconShop_HERO_PH" // BaconPHhero
+						"TB_BaconShop_HERO_PH", // BaconPHhero
+						"TB_BaconShop_HERO_59t" // Aranna Unleashed
 				)
 						.contains(card.getId()))
 				.filter(card -> "Hero".equals(card.getType()))
@@ -327,7 +344,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(45 * 3);
+		assertThat(result.size()).isEqualTo(49 * 3);
 		return result;
 	}
 
