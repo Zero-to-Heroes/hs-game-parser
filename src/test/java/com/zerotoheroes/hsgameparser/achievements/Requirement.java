@@ -37,6 +37,7 @@ public class Requirement {
     public static final String DAMAGE_AT_END = "DAMAGE_AT_END";
     public static final String FATIGUE_DAMAGE = "FATIGUE_DAMAGE";
     public static final String GAME_MIN_TURNS = "GAME_MIN_TURNS";
+    public static final String GAME_MAX_TURN = "GAME_MAX_TURN";
     public static final String MULLIGAN_DONE = "MULLIGAN_DONE";
     public static final String CARD_PLAYED_OR_ON_BOARD_AT_GAME_START = "CARD_PLAYED_OR_ON_BOARD_AT_GAME_START";
     public static final String TOTAL_DAMAGE_TAKEN = "TOTAL_DAMAGE_TAKEN";
@@ -45,6 +46,10 @@ public class Requirement {
     public static final String TOTAL_DAMAGE_DEALT = "TOTAL_DAMAGE_DEALT";
     public static final String TOTAL_ARMOR_GAINED = "TOTAL_ARMOR_GAINED";
     public static final String MINIONS_CONTROLLED_DURING_TURN = "MINIONS_CONTROLLED_DURING_TURN";
+    public static final String CARDS_WITH_SAME_ATTRIBUTE_PLAYED = "CARDS_WITH_SAME_ATTRIBUTE_PLAYED";
+    public static final String TOTAL_CARDS_PLAYED = "TOTAL_CARDS_PLAYED";
+    public static final String TOTAL_MINIONS_SUMMONED = "TOTAL_MINIONS_SUMMONED";
+    public static final String SAME_MINION_ATTACK_TIMES = "SAME_MINION_ATTACK_TIMES";
 
     public static final String BATTLEGROUNDS_FINISH = "BATTLEGROUNDS_FINISH";
     public static final String BATTLEGROUNDS_RANK = "BATTLEGROUNDS_RANK";
@@ -69,6 +74,8 @@ public class Requirement {
     public static final String DECK_NO_CARD_WITH_LETTER_IN_NAME = "DECK_NO_CARD_WITH_LETTER_IN_NAME";
     public static final String DECK_CARD_TEXT_NUMBER_OF_WORDS = "DECK_CARD_TEXT_NUMBER_OF_WORDS";
     public static final String DECK_NUMBER_OF_MINIONS = "DECK_NUMBER_OF_MINIONS";
+    public static final String DECK_CARD_NAME = "DECK_CARD_NAME";
+    public static final String DECK_CARD_COST = "DECK_CARD_COST";
 
     private String type;
     private List<String> individualResetEvents;
