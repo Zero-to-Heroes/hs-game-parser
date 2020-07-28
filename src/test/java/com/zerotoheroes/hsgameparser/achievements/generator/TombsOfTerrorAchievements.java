@@ -135,9 +135,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                 .points(1)
                 .requirements(newArrayList(
                         Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
-//                        Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-//                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
                         Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_END))
@@ -158,7 +156,6 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                         Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
                         Requirement.builder().type(GAME_WON).build(),
                         Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-//                        Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
                         Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR)).build()
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
@@ -202,9 +199,7 @@ public class TombsOfTerrorAchievements implements WithAssertions {
                                         .build(),
 //                                Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
                                 Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.VS_AI)).build(),
-//                                Requirement.builder().type(EXCLUDED_SCENARIO_IDS).values(excludedScenarioIds()).build()
                                 Requirement.builder().type(SCENARIO_IDS).values(toStrings(TOMBS_OF_TERROR_NORMAL)).build()
-//                        Requirement.builder().type(SCENARIO_IDS).values(toStrings(DALARAN_HEIST_NORMAL)).build()
                         ))
                         .resetEvents(newArrayList(GameEvents.GAME_END))
                         .build(),

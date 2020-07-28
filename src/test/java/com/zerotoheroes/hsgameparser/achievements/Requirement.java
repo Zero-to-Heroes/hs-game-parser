@@ -37,7 +37,7 @@ public class Requirement {
     public static final String DAMAGE_AT_END = "DAMAGE_AT_END";
     public static final String FATIGUE_DAMAGE = "FATIGUE_DAMAGE";
     public static final String GAME_MIN_TURNS = "GAME_MIN_TURNS";
-    public static final String GAME_MAX_TURN = "GAME_MAX_TURN";
+    public static final String GAME_MAX_TURNS = "GAME_MAX_TURNS";
     public static final String MULLIGAN_DONE = "MULLIGAN_DONE";
     public static final String CARD_PLAYED_OR_ON_BOARD_AT_GAME_START = "CARD_PLAYED_OR_ON_BOARD_AT_GAME_START";
     public static final String TOTAL_DAMAGE_TAKEN = "TOTAL_DAMAGE_TAKEN";

@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(162);
+		assertThat(result.size()).isEqualTo(150);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -240,7 +240,6 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_010", "TB_BaconUps_083"), // Annihilan Battlemaster
 				newArrayList("FP1_031", "TB_BaconUps_055"), // Baron Rivendare
 				newArrayList("LOE_077", "TB_BaconUps_045"), // Brann Bronzebeard
-				newArrayList("BGS_018", "TB_BaconUps_085"), // Goldrinn
 				newArrayList("TRL_232", "TB_BaconUps_051"), // Ironhide Direhorn
 				newArrayList("BGS_009", "TB_BaconUps_082"), // Lightfang Enforcer
 				newArrayList("GVG_021", "TB_BaconUps_060"), // Mal'Ganis
@@ -258,6 +257,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_046", "TB_BaconUps_132"), // Nat Pagle, Extreme Angler
 				newArrayList("BGS_072", "TB_BaconUps_133"), // Cap'n Hoggarr
 
+				newArrayList("BGS_018", "TB_BaconUps_085"), // Goldrinn
 				newArrayList("GVG_113"), // Foe Reaper 4000
 				newArrayList("UNG_089", "TB_BaconUps_084"), // Gentle Megasaur
 				newArrayList("BGS_008", "TB_BaconUps_057"), // Ghastcoiler
@@ -272,6 +272,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_041", "TB_BaconUps_109", "0"), // Kalecgos - Since it was published withotu the golden first, we force the app to use the non-premium version for achievement
 				newArrayList("BGS_040"), // Nadina the Red
 				newArrayList("BGS_047", "TB_BaconUps_134"), // Dread Admiral Eliza
+				newArrayList("BGS_069", "TB_BaconUps_121"), // Amalgadon
 				newArrayList("BGS_079", "TB_BaconUps_137") // The Tide Razor
 		);
 		List<List<DbCard>> mininionCards = minionsIds.stream()
@@ -318,7 +319,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(110);
+		assertThat(result.size()).isEqualTo(111);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -338,13 +339,23 @@ public class BattlegroundsAchievements implements WithAssertions {
 						"TB_BaconShop_HERO_59t" // Aranna Unleashed
 				)
 						.contains(card.getId()))
+				.filter(card -> !Arrays.asList(
+						"TB_BaconShop_HERO_20", // Prof. Putricide
+//						"TB_BaconShop_HERO_43", // Brann
+						"TB_BaconShop_HERO_11", // Ragnaros
+						"TB_BaconShop_HERO_44", // Sylvanas
+						"TB_BaconShop_HERO_47", // Old Brann
+						"TB_BaconShop_HERO_10" // Gallywix
+//						"TB_BaconShop_HERO_38" // Mukla
+				)
+						.contains(card.getId()))
 				.filter(card -> "Hero".equals(card.getType()))
 				.collect(Collectors.toList());
 		List<RawAchievement> result = heroCards.stream()
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(49 * 3);
+		assertThat(result.size()).isEqualTo(45 * 3);
 		return result;
 	}
 
