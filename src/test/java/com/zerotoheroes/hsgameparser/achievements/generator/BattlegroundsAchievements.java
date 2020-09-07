@@ -21,9 +21,9 @@ import java.util.stream.Stream;
 
 import static com.zerotoheroes.hsgameparser.achievements.GameType.BATTLEGROUNDS;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.BATTLEGROUNDS_FINISH;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.BATTLEGROUNDS_HERO_SELECTED;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.BATTLEGROUNDS_RANK;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.BATTLEGROUNDS_TRIPLE_PLAY;
-import static com.zerotoheroes.hsgameparser.achievements.Requirement.CARD_PLAYED_OR_CHANGED_ON_BOARD;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_TYPE;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GAME_WON;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.GLOBAL_STAT;
@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(150);
+		assertThat(result.size()).isEqualTo(147);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -145,13 +145,16 @@ public class BattlegroundsAchievements implements WithAssertions {
 	private List<RawAchievement> buildMinionsPlays() throws Exception {
 		CardsList cardsList = CardsList.create();
 		List<List<String>> minionsIds = newArrayList(
+				newArrayList("TB_BaconShop_HP_033t"), // Amalgam
 				newArrayList("CFM_315", "TB_BaconUps_093"), // Alleycat
+				newArrayList("CFM_315t", "TB_BaconUps_093t"), // Tabbycat
 //				newArrayList("EX1_162", "TB_BaconUps_088"), // Dire Wolf ALpha
 				newArrayList("BGS_075", "TB_BaconUps_125"), // Rabid Saurolisk
 				newArrayList("BOT_445", "TB_BaconUps_002"), // Mecharoo
 				newArrayList("GVG_103", "TB_BaconUps_094"), // Micro Machine
 				newArrayList("EX1_509", "TB_BaconUps_011"), // Murloc Tidecaller
 				newArrayList("EX1_506", "TB_BaconUps_003"), // Murloc Tidehunter
+				newArrayList("EX1_506a", "TB_BaconUps_003t"), // Murloc Scout
 				newArrayList("ICC_038"), // Righteous Protector
 				newArrayList("UNG_073", "TB_BaconUps_061"), // Rockpool Hunter
 				newArrayList("OG_221", "TB_BaconUps_014"), // Selfless Hero
@@ -179,7 +182,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("EX1_531", "TB_BaconUps_043"), // Scavenging Hyena
 //                newArrayList("GVG_058"), // Shielded Minibot
 				newArrayList("OG_256", "TB_BaconUps_025"), // Spawn of N'Zoth
-				newArrayList("KAR_095", "TB_BaconUps_063"), // Zoobot
+//				newArrayList("KAR_095", "TB_BaconUps_063"), // Zoobot
 				newArrayList("BGS_014", "TB_BaconUps_113"), // Imprisoner
 				newArrayList("BGS_045", "TB_BaconUps_115"), // Glyph Guardian
 				newArrayList("BGS_037", "TB_BaconUps_107"), // Steward of Time
@@ -189,6 +192,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_077", "TB_BaconUps_128"), // Arcane Cannon
 				newArrayList("BGS_078", "TB_BaconUps_135"), // Monstrous Macaw
 				newArrayList("BGS_049", "TB_BaconUps_127"), // Freedealing Gambler
+				newArrayList("BGS_082", "TB_BaconUps_144"), // Menagerie Mug
 
 //				newArrayList("GVG_062"), // Cobalt Guardian
 				newArrayList("EX1_103", "TB_BaconUps_064"), // Coldlight Seer
@@ -223,7 +227,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 //                newArrayList("GIL_655", "TB_BaconUps_033"), // Festeroot Hulk
 				newArrayList("GVG_027", "TB_BaconUps_044"), // Iron Sensei
 				newArrayList("GVG_106", "TB_BaconUps_046"), // Junkbot
-				newArrayList("KAR_702", "TB_BaconUps_073"), // Menagerie Magician
+//				newArrayList("KAR_702", "TB_BaconUps_073"), // Menagerie Magician
 //                newArrayList("BGS_024", "TB_BaconUps_050"), // Piloted Sky Golem
 				newArrayList("BOT_218", "TB_BaconUps_041"), // Security Rover
 				newArrayList("EX1_185", "TB_BaconUps_053"), // Siegebreaker
@@ -236,6 +240,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_048", "TB_BaconUps_140"), // Southsea Strongarm
 				newArrayList("BGS_066", "TB_BaconUps_130"), // Goldgrubber
 				newArrayList("BGS_056", "TB_BaconUps_139"), // Ripsnarl Captain
+				newArrayList("BGS_083", "TB_BaconUps_145"), // Menagerie Jub
 
 				newArrayList("BGS_010", "TB_BaconUps_083"), // Annihilan Battlemaster
 				newArrayList("FP1_031", "TB_BaconUps_055"), // Baron Rivendare
@@ -259,15 +264,15 @@ public class BattlegroundsAchievements implements WithAssertions {
 
 				newArrayList("BGS_018", "TB_BaconUps_085"), // Goldrinn
 				newArrayList("GVG_113"), // Foe Reaper 4000
-				newArrayList("UNG_089", "TB_BaconUps_084"), // Gentle Megasaur
+//				newArrayList("UNG_089", "TB_BaconUps_084"), // Gentle Megasaur
 				newArrayList("BGS_008", "TB_BaconUps_057"), // Ghastcoiler
 				newArrayList("BGS_012", "TB_BaconUps_087"), // Kangor's Apprentice
 				newArrayList("FP1_010"), // Maexxna
 				newArrayList("BGS_021", "TB_BaconUps_090"), // Mama Bear
-				newArrayList("GVG_114", "TB_BaconUps_080"), // Sneed's Old Shredder
+				newArrayList("BGS_006", "TB_BaconUps_080"), // Sneed's Old Shredder
 				newArrayList("LOOT_368", "TB_BaconUps_059"), // Voidlord
 				newArrayList("BGS_022", "TB_BaconUps_091"), // Zapp Slywick
-				newArrayList("BGS_068"), // Holy Mackerel
+//				newArrayList("BGS_068"), // Holy Mackerel
 				newArrayList("BGS_044", "TB_BaconUps_116"), // Imp Mama
 				newArrayList("BGS_041", "TB_BaconUps_109", "0"), // Kalecgos - Since it was published withotu the golden first, we force the app to use the non-premium version for achievement
 				newArrayList("BGS_040"), // Nadina the Red
@@ -319,7 +324,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(111);
+		assertThat(result.size()).isEqualTo(112);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -345,8 +350,10 @@ public class BattlegroundsAchievements implements WithAssertions {
 						"TB_BaconShop_HERO_11", // Ragnaros
 						"TB_BaconShop_HERO_44", // Sylvanas
 						"TB_BaconShop_HERO_47", // Old Brann
-						"TB_BaconShop_HERO_10" // Gallywix
-//						"TB_BaconShop_HERO_38" // Mukla
+						"TB_BaconShop_HERO_10", // Gallywix
+//						"TB_BaconShop_HERO_38", // Mukla
+						"TB_BaconShop_HERO_61", // Lady Vashj
+						"TB_BaconShop_HERO_19" // Giantfin
 				)
 						.contains(card.getId()))
 				.filter(card -> "Hero".equals(card.getType()))
@@ -355,7 +362,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(45 * 3);
+		assertThat(result.size()).isEqualTo(44 * 3);
 		return result;
 	}
 
@@ -372,7 +379,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.difficulty("common")
 				.points(1)
 				.requirements(newArrayList(
-						Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId()))
+						Requirement.builder().type(BATTLEGROUNDS_HERO_SELECTED).values(newArrayList(card.getId()))
                                 .build(),
 						Requirement.builder().type(GAME_TYPE).values(newArrayList(BATTLEGROUNDS)).build()
 				))
@@ -386,7 +393,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.difficulty("rare")
 				.points(10)
 				.requirements(newArrayList(
-						Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId()))
+						Requirement.builder().type(BATTLEGROUNDS_HERO_SELECTED).values(newArrayList(card.getId()))
                                 .build(),
 						Requirement.builder().type(BATTLEGROUNDS_FINISH).values(newArrayList("4", "AT_LEAST")).build(),
 						Requirement.builder().type(GAME_TYPE).values(newArrayList(BATTLEGROUNDS)).build()
@@ -401,7 +408,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.difficulty("epic")
 				.points(20)
 				.requirements(newArrayList(
-						Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList(card.getId()))
+						Requirement.builder().type(BATTLEGROUNDS_HERO_SELECTED).values(newArrayList(card.getId()))
                                 .build(),
 						Requirement.builder().type(GAME_WON).build(),
 						Requirement.builder().type(GAME_TYPE).values(newArrayList(BATTLEGROUNDS)).build()
@@ -451,7 +458,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(99);
+		assertThat(result.size()).isEqualTo(105);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -470,6 +477,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						buildDemonPlayed(value, value == 50),
 						buildMechPlayed(value, value == 50),
 						buildBeastPlayed(value, value == 50),
+						buildPiratePlayed(value, value == 50),
 						buildDragonPlayed(value, value == 50)
 				))
 				.flatMap(List::stream)
@@ -481,6 +489,14 @@ public class BattlegroundsAchievements implements WithAssertions {
 		String displayTribe = tribe;
 		String title = "Murloc Invasion";
 		String cardId = "TB_BaconUps_011";
+		return buildTribePlayed(value, isRoot, tribe, displayTribe, title, cardId);
+	}
+
+	private RawAchievement buildPiratePlayed(int value, boolean isRoot) {
+		String tribe = "pirate";
+		String displayTribe = tribe;
+		String title = "Pirate Invasion";
+		String cardId = "TB_BaconUps_141";
 		return buildTribePlayed(value, isRoot, tribe, displayTribe, title, cardId);
 	}
 
