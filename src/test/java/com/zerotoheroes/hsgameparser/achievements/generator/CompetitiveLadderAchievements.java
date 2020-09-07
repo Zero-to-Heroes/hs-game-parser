@@ -81,7 +81,8 @@ public class CompetitiveLadderAchievements implements WithAssertions {
     }
 
     private List<RawAchievement> nemsises() {
-        List<String> classNames = newArrayList("druid", "hunter", "mage", "paladin", "priest", "rogue", "shaman", "warlock", "warrior");
+        List<String> classNames = newArrayList("demonhunter", "druid", "hunter", "mage", "paladin", "priest", "rogue",
+                "shaman", "warlock", "warrior");
         List<Integer> winStreakLength = newArrayList(3, 4, 5, 6, 7, 8);
         List<RawAchievement> result = classNames.stream()
                 .flatMap(className ->  winStreakLength.stream().map(length -> nemsis(className, length, length == 3)))
@@ -116,6 +117,8 @@ public class CompetitiveLadderAchievements implements WithAssertions {
             icon = "CRED_29";
         } else if (className.equals("warrior")) {
             icon = "CRED_09";
+        } else if (className.equals("demonhunter")) {
+            icon = "CRED_10";
         }
         return RawAchievement.builder()
                 .id("competitive_ladder_nemesis_" + className + "_" + numberOfVictories)
