@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(147);
+		assertThat(result.size()).isEqualTo(156);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -150,7 +150,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("CFM_315t", "TB_BaconUps_093t"), // Tabbycat
 //				newArrayList("EX1_162", "TB_BaconUps_088"), // Dire Wolf ALpha
 				newArrayList("BGS_075", "TB_BaconUps_125"), // Rabid Saurolisk
-				newArrayList("BOT_445", "TB_BaconUps_002"), // Mecharoo
+//				newArrayList("BOT_445", "TB_BaconUps_002"), // Mecharoo
 				newArrayList("GVG_103", "TB_BaconUps_094"), // Micro Machine
 				newArrayList("EX1_509", "TB_BaconUps_011"), // Murloc Tidecaller
 				newArrayList("EX1_506", "TB_BaconUps_003"), // Murloc Tidehunter
@@ -166,6 +166,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_019", "TB_BaconUps_102"), // Red Whelp
 				newArrayList("BGS_055", "TB_BaconUps_126"), // Deck Swabbie
 				newArrayList("BGS_061", "TB_BaconUps_141"), // Scallywag
+				newArrayList("ULD_217"), // Micro Mummy
 
 //                newArrayList("GVG_085"), // Annoy-o-Tron
 				newArrayList("EX1_556", "TB_BaconUps_006"), // Harvest Golem
@@ -189,7 +190,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_035", "TB_BaconUps_105"), // Waxrider Togwaggle
 				newArrayList("FP1_024", "TB_BaconUps_118"), // Unstable Ghoul
 				newArrayList("NEW1_027", "TB_BaconUps_136"), // Southsea Captain
-				newArrayList("BGS_077", "TB_BaconUps_128"), // Arcane Cannon
+//				newArrayList("BGS_077", "TB_BaconUps_128"), // Arcane Cannon
 				newArrayList("BGS_078", "TB_BaconUps_135"), // Monstrous Macaw
 				newArrayList("BGS_049", "TB_BaconUps_127"), // Freedealing Gambler
 				newArrayList("BGS_082", "TB_BaconUps_144"), // Menagerie Mug
@@ -324,7 +325,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(112);
+		assertThat(result.size()).isEqualTo(111);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -362,7 +363,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(44 * 3);
+		assertThat(result.size()).isEqualTo(47 * 3);
 		return result;
 	}
 
