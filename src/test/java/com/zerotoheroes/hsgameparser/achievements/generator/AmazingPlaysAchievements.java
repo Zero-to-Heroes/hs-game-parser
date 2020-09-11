@@ -34,6 +34,7 @@ import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_DAMAG
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_DAMAGE_TAKEN;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_DISCARD;
 import static com.zerotoheroes.hsgameparser.achievements.Requirement.TOTAL_HERO_HEAL;
+import static com.zerotoheroes.hsgameparser.achievements.Requirement.FATIGUE_DAMAGE;
 import static org.assertj.core.util.Lists.newArrayList;
 
 public class AmazingPlaysAchievements implements WithAssertions {
@@ -59,6 +60,7 @@ public class AmazingPlaysAchievements implements WithAssertions {
         List<RawAchievement> totalArmors = totalArmorInGames();
         List<RawAchievement> desertObelisks = desertObelisks();
         List<RawAchievement> recurringVillains = recurringVillains();
+        List<RawAchievement> fatigueCounts = fatigueCounts();
         List<RawAchievement> result =
                 Stream.of(
                         winWithOneHp,
@@ -71,10 +73,11 @@ public class AmazingPlaysAchievements implements WithAssertions {
                         totalDamages,
                         totalArmors,
                         desertObelisks,
-                        recurringVillains)
-                .flatMap(List::stream)
-                .sorted(Comparator.comparing(RawAchievement::getId))
-                .collect(Collectors.toList());
+                        recurringVillains,
+                        fatigueCounts)
+                        .flatMap(List::stream)
+                        .sorted(Comparator.comparing(RawAchievement::getId))
+                        .collect(Collectors.toList());
         List<String> serializedAchievements = result.stream()
                 .map(GeneralHelper::serialize)
                 .collect(Collectors.toList());
@@ -449,6 +452,42 @@ public class AmazingPlaysAchievements implements WithAssertions {
                         Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(RESUMMONED_RECURRING_VILLAIN).values(newArrayList("3", QUALIFIER_AT_LEAST)).build()
+                ))
+                .resetEvents(newArrayList(GameEvents.GAME_START))
+                .build();
+    }
+
+    private List<RawAchievement> fatigueCounts() {
+        List<Integer> minimumRanks = newArrayList(5, 4, 3, 2, 1);
+        return minimumRanks.stream()
+                .map(minimumRank -> fatigueCount(minimumRank, minimumRank == 5))
+                .collect(Collectors.toList());
+    }
+
+    private RawAchievement fatigueCount(int minimumRank, boolean isRoot) {
+        int numberOfFatigue = 5;
+        return RawAchievement.builder()
+                .id("amazing_plays_fatigue_count_" + minimumRank)
+                .type("amazing_plays_fatigue_count")
+                .icon("boss_victory")
+                .root(isRoot)
+                .priority(-minimumRank)
+                .name("The end is comming!")
+                .displayName("Achievement completed: The end is comming! (" + getLeagueText(minimumRank) + ")")
+                .displayCardId("DALA_747")
+                .displayCardType("spell")
+                .emptyText("Take fatigue damage at least " + numberOfFatigue + " times in 1 game of Ranked Standard")
+                .completedText("You took fatigue damage " + numberOfFatigue + " times in " + getLeagueText(minimumRank) + " or better")
+                .difficulty("rare")
+                .maxNumberOfRecords(3)
+                .points(5 + (25 - minimumRank) / 2)
+                .requirements(newArrayList(
+                        Requirement.builder().type(GAME_TYPE).values(newArrayList(RANKED)).build(),
+                        Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
+                        Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
+                        Requirement.builder().type(FATIGUE_DAMAGE).values(newArrayList(
+                                "" + (numberOfFatigue*(1+numberOfFatigue)/2), QUALIFIER_AT_LEAST)).build()
+                        //the total damage you get after N fatigue turns
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))
                 .build();
