@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(156);
+		assertThat(result.size()).isEqualTo(168);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -167,6 +167,10 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_055", "TB_BaconUps_126"), // Deck Swabbie
 				newArrayList("BGS_061", "TB_BaconUps_141"), // Scallywag
 				newArrayList("ULD_217"), // Micro Mummy
+				newArrayList("BGS_115", "TB_BaconUps_156"), // Sellemental
+				newArrayList("BGS_116", "TB_BaconUps_167"), // Refreshing Anomaly
+				newArrayList("BGS_115t"), // Water droplet
+
 
 //                newArrayList("GVG_085"), // Annoy-o-Tron
 				newArrayList("EX1_556", "TB_BaconUps_006"), // Harvest Golem
@@ -194,6 +198,9 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_078", "TB_BaconUps_135"), // Monstrous Macaw
 				newArrayList("BGS_049", "TB_BaconUps_127"), // Freedealing Gambler
 				newArrayList("BGS_082", "TB_BaconUps_144"), // Menagerie Mug
+				newArrayList("BGS_120", "TB_BaconUps_160"), // Party Elemental
+				newArrayList("BGS_127", "TB_Baconups_202"), // Molten Rock
+
 
 //				newArrayList("GVG_062"), // Cobalt Guardian
 				newArrayList("EX1_103", "TB_BaconUps_064"), // Coldlight Seer
@@ -220,6 +227,10 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_060"), // Yo-Ho-Ogre
 				newArrayList("BGS_081", "TB_BaconUps_143"), // Salty Looter
 				newArrayList("BGS_053", "TB_BaconUps_138"), // Bloodsail Cannoneer
+				newArrayList("BGS_122", "TB_BaconUps_161"), // Stasis Elemental
+				newArrayList("BGS_128", "TB_Baconups_203"), // Arcane Assistant
+				newArrayList("BGS_119", "TB_BaconUps_159"), // Crackling Cyclone
+
 
 				newArrayList("BOT_911", "TB_BaconUps_099"), // Annoy-o-Module
 				newArrayList("ICC_858", "TB_BaconUps_047"), // Bolvar
@@ -242,6 +253,11 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_066", "TB_BaconUps_130"), // Goldgrubber
 				newArrayList("BGS_056", "TB_BaconUps_139"), // Ripsnarl Captain
 				newArrayList("BGS_083", "TB_BaconUps_145"), // Menagerie Jub
+				newArrayList("DAL_742", "TB_BaconUps_206"), // Whirlwind Tempest
+				newArrayList("BGS_126", "TB_BaconUps_166"), // Wildfire Elemental
+				newArrayList("BGS_131", "TB_BaconUps_251"), // Deadly Spore
+				newArrayList("BGS_105", "TB_BaconUps_207"), // Majordomo Executus
+
 
 				newArrayList("BGS_010", "TB_BaconUps_083"), // Annihilan Battlemaster
 				newArrayList("FP1_031", "TB_BaconUps_055"), // Baron Rivendare
@@ -262,6 +278,10 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_080", "TB_BaconUps_142"), // Seabreaker Goliath
 				newArrayList("BGS_046", "TB_BaconUps_132"), // Nat Pagle, Extreme Angler
 				newArrayList("BGS_072", "TB_BaconUps_133"), // Cap'n Hoggarr
+				newArrayList("BGS_104", "TB_BaconUps_201"), // Nomi, Kitchen Nightmare
+				newArrayList("BGS_100", "TB_BaconUps_200"), // Lil' Rag
+				newArrayList("BGS_123", "TB_BaconUps_162"), // Tavern Tempest
+
 
 				newArrayList("BGS_018", "TB_BaconUps_085"), // Goldrinn
 				newArrayList("GVG_113"), // Foe Reaper 4000
@@ -279,7 +299,9 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_040"), // Nadina the Red
 				newArrayList("BGS_047", "TB_BaconUps_134"), // Dread Admiral Eliza
 				newArrayList("BGS_069", "TB_BaconUps_121"), // Amalgadon
-				newArrayList("BGS_079", "TB_BaconUps_137") // The Tide Razor
+				newArrayList("BGS_079", "TB_BaconUps_137"), // The Tide Razor
+				newArrayList("BGS_124", "TB_BaconUps_163"), // Lieutenant Garr
+				newArrayList("BGS_121", "TB_BaconUps_165") // Gentle Djinni
 		);
 		List<List<DbCard>> mininionCards = minionsIds.stream()
 				.map(ids -> ids.size() == 1
@@ -325,7 +347,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(111);
+		assertThat(result.size()).isEqualTo(128);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -348,7 +370,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.filter(card -> !Arrays.asList(
 						"TB_BaconShop_HERO_20", // Prof. Putricide
 //						"TB_BaconShop_HERO_43", // Brann
-						"TB_BaconShop_HERO_11", // Ragnaros
+//						"TB_BaconShop_HERO_11", // Ragnaros
 						"TB_BaconShop_HERO_44", // Sylvanas
 						"TB_BaconShop_HERO_47", // Old Brann
 						"TB_BaconShop_HERO_10", // Gallywix
@@ -363,7 +385,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(47 * 3);
+		assertThat(result.size()).isEqualTo(51 * 3);
 		return result;
 	}
 
@@ -459,7 +481,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(105);
+		assertThat(result.size()).isEqualTo(111);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -479,10 +501,19 @@ public class BattlegroundsAchievements implements WithAssertions {
 						buildMechPlayed(value, value == 50),
 						buildBeastPlayed(value, value == 50),
 						buildPiratePlayed(value, value == 50),
-						buildDragonPlayed(value, value == 50)
+						buildDragonPlayed(value, value == 50),
+						buildElementalPlayed(value, value == 50)
 				))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
+	}
+
+	private RawAchievement buildElementalPlayed(int value, boolean isRoot) {
+		String tribe = "elemental";
+		String displayTribe = tribe;
+		String title = "Elemental Invasion";
+		String cardId = "BGS_123";
+		return buildTribePlayed(value, isRoot, tribe, displayTribe, title, cardId);
 	}
 
 	private RawAchievement buildMurlocPlayed(int value, boolean isRoot) {
