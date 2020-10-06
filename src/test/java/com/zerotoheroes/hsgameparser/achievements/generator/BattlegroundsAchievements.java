@@ -155,18 +155,18 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("EX1_509", "TB_BaconUps_011"), // Murloc Tidecaller
 				newArrayList("EX1_506", "TB_BaconUps_003"), // Murloc Tidehunter
 				newArrayList("EX1_506a", "TB_BaconUps_003t"), // Murloc Scout
-				newArrayList("ICC_038"), // Righteous Protector
+				newArrayList("ICC_038", "TB_BaconUps_147", "0"), // Righteous Protector
 				newArrayList("UNG_073", "TB_BaconUps_061"), // Rockpool Hunter
 				newArrayList("OG_221", "TB_BaconUps_014"), // Selfless Hero
 				newArrayList("CS2_065", "TB_BaconUps_059t"), // Voidwalker
-				newArrayList("LOOT_013"), // Vulgar Homonculus
+				newArrayList("LOOT_013", "TB_BaconUps_148", "0"), // Vulgar Homunculus
 				newArrayList("BGS_004", "TB_BaconUps_079"), // Wrath Weaver
 				newArrayList("YOD_026", "TB_BaconUps_112"), // Fiendish Servant
-				newArrayList("BGS_039"), // Dragonspawn Lieutenant
+				newArrayList("BGS_039", "TB_BaconUps_146", "0"), // Dragonspawn Lieutenant
 				newArrayList("BGS_019", "TB_BaconUps_102"), // Red Whelp
 				newArrayList("BGS_055", "TB_BaconUps_126"), // Deck Swabbie
 				newArrayList("BGS_061", "TB_BaconUps_141"), // Scallywag
-				newArrayList("ULD_217"), // Micro Mummy
+				newArrayList("ULD_217", "TB_BaconUps_250", "0"), // Micro Mummy
 				newArrayList("BGS_115", "TB_BaconUps_156"), // Sellemental
 				newArrayList("BGS_116", "TB_BaconUps_167"), // Refreshing Anomaly
 				newArrayList("BGS_115t"), // Water droplet
@@ -220,11 +220,11 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_002", "TB_BaconUps_075"), // Soul Juggler
 //                newArrayList("UNG_037", "TB_BaconUps_031"), // Tortollan Shellraiser
 				newArrayList("GVG_100", "TB_BaconUps_101"), // Floating Watcher
-				newArrayList("BGS_034"), // Bronze Warden
+				newArrayList("BGS_034", "TB_BaconUps_149", "0"), // Bronze Warden
 				newArrayList("BGS_033", "TB_BaconUps_104"), // Hangry Dragon
 				newArrayList("BGS_071", "TB_BaconUps_123"), // Deflect-o-bot
 				newArrayList("BT_010", "TB_BaconUps_124"), // Felfin Navigator
-				newArrayList("BGS_060"), // Yo-Ho-Ogre
+				newArrayList("BGS_060", "TB_BaconUps_150", "0"), // Yo-Ho-Ogre
 				newArrayList("BGS_081", "TB_BaconUps_143"), // Salty Looter
 				newArrayList("BGS_053", "TB_BaconUps_138"), // Bloodsail Cannoneer
 				newArrayList("BGS_122", "TB_BaconUps_161"), // Stasis Elemental
@@ -234,7 +234,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 
 				newArrayList("BOT_911", "TB_BaconUps_099"), // Annoy-o-Module
 				newArrayList("ICC_858", "TB_BaconUps_047"), // Bolvar
-				newArrayList("LOOT_078"), // Cave Hydra
+				newArrayList("LOOT_078", "TB_BaconUps_151", "0"), // Cave Hydra
 				newArrayList("EX1_093", "TB_BaconUps_009"), // Defender of Argus
 //                newArrayList("GIL_655", "TB_BaconUps_033"), // Festeroot Hulk
 				newArrayList("GVG_027", "TB_BaconUps_044"), // Iron Sensei
@@ -244,7 +244,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BOT_218", "TB_BaconUps_041"), // Security Rover
 				newArrayList("EX1_185", "TB_BaconUps_053"), // Siegebreaker
 				newArrayList("EX1_577", "TB_BaconUps_042"), // The Beast
-				newArrayList("DAL_077"), // Toxfin
+				newArrayList("DAL_077", "TB_BaconUps_152", "0"), // Toxfin
 				newArrayList("CFM_816", "TB_BaconUps_074"), // Virmen Sensei
 				newArrayList("BGS_067", "TB_BaconUps_117"), // Drakonid Enforcer
 				newArrayList("BGS_032", "TB_BaconUps_103"), // Herald of Flame
@@ -284,11 +284,11 @@ public class BattlegroundsAchievements implements WithAssertions {
 
 
 				newArrayList("BGS_018", "TB_BaconUps_085"), // Goldrinn
-				newArrayList("GVG_113"), // Foe Reaper 4000
+				newArrayList("GVG_113", "TB_BaconUps_153", "0"), // Foe Reaper 4000
 //				newArrayList("UNG_089", "TB_BaconUps_084"), // Gentle Megasaur
 				newArrayList("BGS_008", "TB_BaconUps_057"), // Ghastcoiler
 				newArrayList("BGS_012", "TB_BaconUps_087"), // Kangor's Apprentice
-				newArrayList("FP1_010"), // Maexxna
+				newArrayList("FP1_010", "TB_BaconUps_155", "0"), // Maexxna
 				newArrayList("BGS_021", "TB_BaconUps_090"), // Mama Bear
 				newArrayList("BGS_006", "TB_BaconUps_080"), // Sneed's Old Shredder
 				newArrayList("LOOT_368", "TB_BaconUps_059"), // Voidlord
@@ -296,7 +296,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 //				newArrayList("BGS_068"), // Holy Mackerel
 				newArrayList("BGS_044", "TB_BaconUps_116"), // Imp Mama
 				newArrayList("BGS_041", "TB_BaconUps_109", "0"), // Kalecgos - Since it was published withotu the golden first, we force the app to use the non-premium version for achievement
-				newArrayList("BGS_040"), // Nadina the Red
+				newArrayList("BGS_040", "TB_BaconUps_154", "0"), // Nadina the Red
 				newArrayList("BGS_047", "TB_BaconUps_134"), // Dread Admiral Eliza
 				newArrayList("BGS_069", "TB_BaconUps_121"), // Amalgadon
 				newArrayList("BGS_079", "TB_BaconUps_137"), // The Tide Razor
