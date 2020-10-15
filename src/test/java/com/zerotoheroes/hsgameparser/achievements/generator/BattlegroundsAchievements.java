@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(168);
+		assertThat(result.size()).isEqualTo(165);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -157,7 +157,6 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("EX1_506a", "TB_BaconUps_003t"), // Murloc Scout
 				newArrayList("ICC_038", "TB_BaconUps_147", "0"), // Righteous Protector
 				newArrayList("UNG_073", "TB_BaconUps_061"), // Rockpool Hunter
-				newArrayList("OG_221", "TB_BaconUps_014"), // Selfless Hero
 				newArrayList("CS2_065", "TB_BaconUps_059t"), // Voidwalker
 				newArrayList("LOOT_013", "TB_BaconUps_148", "0"), // Vulgar Homunculus
 				newArrayList("BGS_004", "TB_BaconUps_079"), // Wrath Weaver
@@ -182,7 +181,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_001", "TB_BaconUps_062"), // Nathrezim Overseer
 //                newArrayList("GIL_681"), // Nightmare Amalgam
 				newArrayList("EX1_062", "TB_BaconUps_036"), // Old Murk-Eye
-				newArrayList("BGS_028", "TB_BaconUps_077"), // Pogo-Hopper
+//				newArrayList("BGS_028", "TB_BaconUps_077"), // Pogo-Hopper
 				newArrayList("CFM_316", "TB_BaconUps_027"), // Rat Pack
 				newArrayList("EX1_531", "TB_BaconUps_043"), // Scavenging Hyena
 //                newArrayList("GVG_058"), // Shielded Minibot
@@ -200,6 +199,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_082", "TB_BaconUps_144"), // Menagerie Mug
 				newArrayList("BGS_120", "TB_BaconUps_160"), // Party Elemental
 				newArrayList("BGS_127", "TB_Baconups_202"), // Molten Rock
+				newArrayList("OG_221", "TB_BaconUps_014"), // Selfless Hero
 
 
 //				newArrayList("GVG_062"), // Cobalt Guardian
@@ -253,9 +253,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_066", "TB_BaconUps_130"), // Goldgrubber
 				newArrayList("BGS_056", "TB_BaconUps_139"), // Ripsnarl Captain
 				newArrayList("BGS_083", "TB_BaconUps_145"), // Menagerie Jub
-				newArrayList("DAL_742", "TB_BaconUps_206"), // Whirlwind Tempest
+//				newArrayList("DAL_742", "TB_BaconUps_206"), // Whirlwind Tempest
 				newArrayList("BGS_126", "TB_BaconUps_166"), // Wildfire Elemental
-				newArrayList("BGS_131", "TB_BaconUps_251"), // Deadly Spore
 				newArrayList("BGS_105", "TB_BaconUps_207"), // Majordomo Executus
 
 
@@ -279,8 +278,9 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_046", "TB_BaconUps_132"), // Nat Pagle, Extreme Angler
 				newArrayList("BGS_072", "TB_BaconUps_133"), // Cap'n Hoggarr
 				newArrayList("BGS_104", "TB_BaconUps_201"), // Nomi, Kitchen Nightmare
-				newArrayList("BGS_100", "TB_BaconUps_200"), // Lil' Rag
 				newArrayList("BGS_123", "TB_BaconUps_162"), // Tavern Tempest
+				newArrayList("BGS_131", "TB_BaconUps_251"), // Deadly Spore
+				newArrayList("BGS_121", "TB_BaconUps_165"), // Gentle Djinni
 
 
 				newArrayList("BGS_018", "TB_BaconUps_085"), // Goldrinn
@@ -301,7 +301,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_069", "TB_BaconUps_121"), // Amalgadon
 				newArrayList("BGS_079", "TB_BaconUps_137"), // The Tide Razor
 				newArrayList("BGS_124", "TB_BaconUps_163"), // Lieutenant Garr
-				newArrayList("BGS_121", "TB_BaconUps_165") // Gentle Djinni
+				newArrayList("BGS_100", "TB_BaconUps_200") // Lil' Rag
 		);
 		List<List<DbCard>> mininionCards = minionsIds.stream()
 				.map(ids -> ids.size() == 1
@@ -347,7 +347,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(128);
+		assertThat(result.size()).isEqualTo(126);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -364,7 +364,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.filter(card -> !Arrays.asList(
 						"TB_BaconShop_HERO_KelThuzad", // Kel'Thuzad
 						"TB_BaconShop_HERO_PH", // BaconPHhero
-						"TB_BaconShop_HERO_59t" // Aranna Unleashed
+						"TB_BaconShop_HERO_59t", // Aranna Unleashed
+						"TB_BaconShop_HERO_31" // Bartendotron
 				)
 						.contains(card.getId()))
 				.filter(card -> !Arrays.asList(
@@ -385,7 +386,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(51 * 3);
+		assertThat(result.size()).isEqualTo(50 * 3);
 		return result;
 	}
 
