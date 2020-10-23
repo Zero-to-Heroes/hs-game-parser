@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(165);
+		assertThat(result.size()).isEqualTo(168);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -386,7 +386,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(50 * 3);
+		assertThat(result.size()).isEqualTo(51 * 3);
 		return result;
 	}
 
@@ -1042,4 +1042,5 @@ public class BattlegroundsAchievements implements WithAssertions {
 //                .displayCardId(card.getId())
 //                .displayCardType(card.getType().toLowerCase());
 //    }
+
 }
