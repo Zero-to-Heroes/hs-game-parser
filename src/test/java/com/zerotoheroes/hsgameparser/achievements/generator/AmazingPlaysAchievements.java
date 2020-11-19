@@ -472,8 +472,8 @@ public class AmazingPlaysAchievements implements WithAssertions {
                 .icon("boss_victory")
                 .root(isRoot)
                 .priority(-minimumRank)
-                .name("The end is comming!")
-                .displayName("Achievement completed: The end is comming! (" + getLeagueText(minimumRank) + ")")
+                .name("Never tired!")
+                .displayName("Achievement completed: Never tired! (" + getLeagueText(minimumRank) + ")")
                 .displayCardId("DALA_747")
                 .displayCardType("spell")
                 .emptyText("Take fatigue damage at least " + numberOfFatigue + " times in 1 game of Ranked Standard")
@@ -486,7 +486,8 @@ public class AmazingPlaysAchievements implements WithAssertions {
                         Requirement.builder().type(RANKED_MIN_LEAGUE).values(newArrayList("" + minimumRank)).build(),
                         Requirement.builder().type(RANKED_FORMAT_TYPE).values(newArrayList(STANDARD)).build(),
                         Requirement.builder().type(FATIGUE_DAMAGE).values(newArrayList(
-                                "" + (numberOfFatigue*(1+numberOfFatigue)/2), QUALIFIER_AT_LEAST)).build()
+                                "" + (numberOfFatigue * (1 + numberOfFatigue) / 2), QUALIFIER_AT_LEAST, "PLAYER"))
+                                .build()
                         //the total damage you get after N fatigue turns
                 ))
                 .resetEvents(newArrayList(GameEvents.GAME_START))

@@ -157,7 +157,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("EX1_506a", "TB_BaconUps_003t"), // Murloc Scout
 				newArrayList("ICC_038", "TB_BaconUps_147", "0"), // Righteous Protector
 				newArrayList("UNG_073", "TB_BaconUps_061"), // Rockpool Hunter
-				newArrayList("CS2_065", "TB_BaconUps_059t"), // Voidwalker
+//				newArrayList("CS2_065", "TB_BaconUps_059t"), // Voidwalker
 				newArrayList("LOOT_013", "TB_BaconUps_148", "0"), // Vulgar Homunculus
 				newArrayList("BGS_004", "TB_BaconUps_079"), // Wrath Weaver
 				newArrayList("YOD_026", "TB_BaconUps_112"), // Fiendish Servant
@@ -347,7 +347,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(126);
+		assertThat(result.size()).isEqualTo(125);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -377,7 +377,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 						"TB_BaconShop_HERO_10", // Gallywix
 //						"TB_BaconShop_HERO_38", // Mukla
 						"TB_BaconShop_HERO_61", // Lady Vashj
-						"TB_BaconShop_HERO_19" // Giantfin
+						"TB_BaconShop_HERO_19", // Giantfin
+						"TB_BaconShop_HERO_30" // Nefarian
 				)
 						.contains(card.getId()))
 				.filter(card -> "Hero".equals(card.getType()))

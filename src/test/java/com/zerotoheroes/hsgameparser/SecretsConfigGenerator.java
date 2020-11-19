@@ -16,8 +16,8 @@ public class SecretsConfigGenerator implements WithAssertions {
 
     public static List<String> STANDARD_SETS = Lists.newArrayList("core", "expert1", "dalaran", "uldum", "dragons",
             "yod", "black_temple", "scholomance");
-    public static List<String> ARENA_SETS = Lists.newArrayList("core", "expert1", "dalaran", "uldum", "dragons",
-            "yod", "black_temple", "scholomance");
+    public static List<String> ARENA_SETS = Lists.newArrayList("core", "expert1", "og", "yod", "black_temple",
+            "demon_hunter_initiate", "scholomance", "darkmoon_faire");
 
     @Test
     public void generate_config() throws Exception {
@@ -27,9 +27,19 @@ public class SecretsConfigGenerator implements WithAssertions {
                 .filter(card -> card.getMechanics().contains("SECRET"))
                 .filter(card -> card.isCollectible())
                 .collect(Collectors.toList());
+        SecretsConfig duelsSecrets = SecretsConfig.builder()
+                .mode("duels")
+                .secrets(allSecrets.stream()
+                        .map(secret -> SecretConfig.builder()
+                                .cardId(secret.getId())
+                                .playerClass(secret.getPlayerClass().toLowerCase())
+                                .build())
+                        .collect(Collectors.toList()))
+                .build();
         SecretsConfig wildSecrets = SecretsConfig.builder()
                 .mode("wild")
                 .secrets(allSecrets.stream()
+                        .filter(secret -> !"Darkmoon_faire".equalsIgnoreCase(secret.getSet()))
                         .map(secret -> SecretConfig.builder()
                                 .cardId(secret.getId())
                                 .playerClass(secret.getPlayerClass().toLowerCase())
@@ -56,7 +66,7 @@ public class SecretsConfigGenerator implements WithAssertions {
                                 .build())
                         .collect(Collectors.toList()))
                 .build();
-        List<SecretsConfig> conf = Lists.newArrayList(wildSecrets, standardSecrets, arenaSecrets);
+        List<SecretsConfig> conf = Lists.newArrayList(wildSecrets, standardSecrets, arenaSecrets, duelsSecrets);
         System.out.println(GeneralHelper.serialize(conf));
     }
 
