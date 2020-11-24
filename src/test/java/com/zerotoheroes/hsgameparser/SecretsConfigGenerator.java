@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class SecretsConfigGenerator implements WithAssertions {
 
     public static List<String> STANDARD_SETS = Lists.newArrayList("core", "expert1", "dalaran", "uldum", "dragons",
-            "yod", "black_temple", "scholomance");
+            "yod", "black_temple", "scholomance", "darkmoon_faire");
     public static List<String> ARENA_SETS = Lists.newArrayList("core", "expert1", "og", "yod", "black_temple",
             "demon_hunter_initiate", "scholomance", "darkmoon_faire");
 
@@ -91,6 +91,8 @@ public class SecretsConfigGenerator implements WithAssertions {
                 .build();
         List<SecretsConfig> conf = Lists.newArrayList(wildSecrets);
         System.out.println(GeneralHelper.serialize(conf));
+
+
     }
 }
 
