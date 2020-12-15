@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(168);
+		assertThat(result.size()).isEqualTo(174);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -169,6 +169,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_115", "TB_BaconUps_156"), // Sellemental
 				newArrayList("BGS_116", "TB_BaconUps_167"), // Refreshing Anomaly
 				newArrayList("BGS_115t"), // Water droplet
+				newArrayList("BGS_106", "TB_BaconUps_255"), // Acolyte of C'Thun
 
 
 //                newArrayList("GVG_085"), // Annoy-o-Tron
@@ -200,6 +201,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_120", "TB_BaconUps_160"), // Party Elemental
 				newArrayList("BGS_127", "TB_Baconups_202"), // Molten Rock
 				newArrayList("OG_221", "TB_BaconUps_014"), // Selfless Hero
+				newArrayList("BGS_201", "TB_BaconUps_257"), // Tormented Ritualist
 
 
 //				newArrayList("GVG_062"), // Cobalt Guardian
@@ -230,6 +232,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_122", "TB_BaconUps_161"), // Stasis Elemental
 				newArrayList("BGS_128", "TB_Baconups_203"), // Arcane Assistant
 				newArrayList("BGS_119", "TB_BaconUps_159"), // Crackling Cyclone
+				newArrayList("BGS_200", "TB_BaconUps_256"), // Warden of Old
+				newArrayList("BGS_110", "TB_BaconUps_302"), // Arm of the Empire
 
 
 				newArrayList("BOT_911", "TB_BaconUps_099"), // Annoy-o-Module
@@ -256,6 +260,9 @@ public class BattlegroundsAchievements implements WithAssertions {
 //				newArrayList("DAL_742", "TB_BaconUps_206"), // Whirlwind Tempest
 				newArrayList("BGS_126", "TB_BaconUps_166"), // Wildfire Elemental
 				newArrayList("BGS_105", "TB_BaconUps_207"), // Majordomo Executus
+				newArrayList("BGS_204", "TB_BaconUps_304"), // Bigfernal
+				newArrayList("BGS_112", "TB_BaconUps_303"), // Qiraji Harbinger
+				newArrayList("BGS_111", "TB_BaconUps_301"), // Champion of Y'Shaarj
 
 
 				newArrayList("BGS_010", "TB_BaconUps_083"), // Annihilan Battlemaster
@@ -281,6 +288,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_123", "TB_BaconUps_162"), // Tavern Tempest
 				newArrayList("BGS_131", "TB_BaconUps_251"), // Deadly Spore
 				newArrayList("BGS_121", "TB_BaconUps_165"), // Gentle Djinni
+				newArrayList("BGS_113", "TB_BaconUps_305"), // Faceless Taverngoer
+				newArrayList("BGS_202", "TB_BaconUps_258"), // Mythrax, the Unraveler
 
 
 				newArrayList("BGS_018", "TB_BaconUps_085"), // Goldrinn
@@ -301,7 +310,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_069", "TB_BaconUps_121"), // Amalgadon
 				newArrayList("BGS_079", "TB_BaconUps_137"), // The Tide Razor
 				newArrayList("BGS_124", "TB_BaconUps_163"), // Lieutenant Garr
-				newArrayList("BGS_100", "TB_BaconUps_200") // Lil' Rag
+				newArrayList("BGS_100", "TB_BaconUps_200"), // Lil' Rag
+				newArrayList("BGS_205", "TB_BaconUps_306") // Elistra the Immortal
 		);
 		List<List<DbCard>> mininionCards = minionsIds.stream()
 				.map(ids -> ids.size() == 1
@@ -347,7 +357,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(125);
+		assertThat(result.size()).isEqualTo(135);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -364,11 +374,11 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.filter(card -> !Arrays.asList(
 						"TB_BaconShop_HERO_KelThuzad", // Kel'Thuzad
 						"TB_BaconShop_HERO_PH", // BaconPHhero
-						"TB_BaconShop_HERO_59t", // Aranna Unleashed
-						"TB_BaconShop_HERO_31" // Bartendotron
+						"TB_BaconShop_HERO_59t" // Aranna Unleashed
 				)
 						.contains(card.getId()))
 				.filter(card -> !Arrays.asList(
+						"TB_BaconShop_HERO_31", // Bartendotron
 						"TB_BaconShop_HERO_20", // Prof. Putricide
 //						"TB_BaconShop_HERO_43", // Brann
 //						"TB_BaconShop_HERO_11", // Ragnaros
@@ -378,6 +388,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 //						"TB_BaconShop_HERO_38", // Mukla
 						"TB_BaconShop_HERO_61", // Lady Vashj
 						"TB_BaconShop_HERO_19", // Giantfin
+						"TB_BaconShop_HERO_02", // Galakrond
 						"TB_BaconShop_HERO_30" // Nefarian
 				)
 						.contains(card.getId()))
@@ -387,7 +398,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(51 * 3);
+		assertThat(result.size()).isEqualTo(53 * 3);
 		return result;
 	}
 

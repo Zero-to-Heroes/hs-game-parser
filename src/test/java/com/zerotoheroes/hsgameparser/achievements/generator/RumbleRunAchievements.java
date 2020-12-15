@@ -97,7 +97,7 @@ public class RumbleRunAchievements implements WithAssertions {
                 .displayCardId(shrine.getId())
                 .displayCardType(shrine.getType().toLowerCase())
                 .text(null)
-                .emptyText("Clear the first round with " + hero.getName() + " (" + hero.getPlayerClass() + ") to get started")
+                .emptyText("Clear the first round with " + hero.getName() + " (" + hero.getPlayerClass() + ")")
                 .completedText("You cleared Rumble Run's round " + (i + 1))
                 .difficulty(i == 7 ? "epic" : "free")
                 .maxNumberOfRecords(i == 7 ? 3 : 1)

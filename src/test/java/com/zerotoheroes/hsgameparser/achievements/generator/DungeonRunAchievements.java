@@ -93,7 +93,7 @@ public class DungeonRunAchievements implements WithAssertions {
                 .displayCardId(card.getId())
                 .displayCardType(card.getType().toLowerCase())
                 .text(null)
-                .emptyText("Clear the first round with " + card.getPlayerClass() + " to get started")
+                .emptyText("Clear the first round with " + card.getPlayerClass())
                 .completedText("You cleared Dungeon Run's round " + (i + 1))
                 .difficulty(i == 7 ? "epic" : "free")
                 .maxNumberOfRecords(i == 7 ? 3 : 1)
