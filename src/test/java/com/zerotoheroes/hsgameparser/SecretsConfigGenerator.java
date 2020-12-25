@@ -39,7 +39,6 @@ public class SecretsConfigGenerator implements WithAssertions {
         SecretsConfig wildSecrets = SecretsConfig.builder()
                 .mode("wild")
                 .secrets(allSecrets.stream()
-                        .filter(secret -> !"Darkmoon_faire".equalsIgnoreCase(secret.getSet()))
                         .map(secret -> SecretConfig.builder()
                                 .cardId(secret.getId())
                                 .playerClass(secret.getPlayerClass().toLowerCase())
