@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(174);
+		assertThat(result.size()).isEqualTo(180);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -221,7 +221,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("OG_123", "TB_BaconUps_095"), // Shifter Zerus
 				newArrayList("BGS_002", "TB_BaconUps_075"), // Soul Juggler
 //                newArrayList("UNG_037", "TB_BaconUps_031"), // Tortollan Shellraiser
-				newArrayList("GVG_100", "TB_BaconUps_101"), // Floating Watcher
+//				newArrayList("GVG_100", "TB_BaconUps_101"), // Floating Watcher
 				newArrayList("BGS_034", "TB_BaconUps_149", "0"), // Bronze Warden
 				newArrayList("BGS_033", "TB_BaconUps_104"), // Hangry Dragon
 				newArrayList("BGS_071", "TB_BaconUps_123"), // Deflect-o-bot
@@ -234,6 +234,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_119", "TB_BaconUps_159"), // Crackling Cyclone
 				newArrayList("BGS_200", "TB_BaconUps_256"), // Warden of Old
 				newArrayList("BGS_110", "TB_BaconUps_302"), // Arm of the Empire
+				newArrayList("BGS_059", "TB_BaconUps_119"), // Soul Devourer
 
 
 				newArrayList("BOT_911", "TB_BaconUps_099"), // Annoy-o-Module
@@ -263,6 +264,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_204", "TB_BaconUps_304"), // Bigfernal
 				newArrayList("BGS_112", "TB_BaconUps_303"), // Qiraji Harbinger
 				newArrayList("BGS_111", "TB_BaconUps_301"), // Champion of Y'Shaarj
+				newArrayList("DMF_533", "TB_BaconUps_309"), // Ring Matron
 
 
 				newArrayList("BGS_010", "TB_BaconUps_083"), // Annihilan Battlemaster
@@ -357,7 +359,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(135);
+		assertThat(result.size()).isEqualTo(136);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -398,7 +400,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(53 * 3);
+		assertThat(result.size()).isEqualTo(55 * 3);
 		return result;
 	}
 
