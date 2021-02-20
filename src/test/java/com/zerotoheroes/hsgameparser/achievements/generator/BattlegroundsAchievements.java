@@ -63,7 +63,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(180);
+		assertThat(result.size()).isEqualTo(177);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -312,8 +312,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_069", "TB_BaconUps_121"), // Amalgadon
 				newArrayList("BGS_079", "TB_BaconUps_137"), // The Tide Razor
 				newArrayList("BGS_124", "TB_BaconUps_163"), // Lieutenant Garr
-				newArrayList("BGS_100", "TB_BaconUps_200"), // Lil' Rag
-				newArrayList("BGS_205", "TB_BaconUps_306") // Elistra the Immortal
+				newArrayList("BGS_100", "TB_BaconUps_200") // Lil' Rag
+//				newArrayList("BGS_205", "TB_BaconUps_306") // Elistra the Immortal
 		);
 		List<List<DbCard>> mininionCards = minionsIds.stream()
 				.map(ids -> ids.size() == 1
@@ -359,7 +359,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(136);
+		assertThat(result.size()).isEqualTo(135);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -391,6 +391,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 						"TB_BaconShop_HERO_61", // Lady Vashj
 						"TB_BaconShop_HERO_19", // Giantfin
 						"TB_BaconShop_HERO_02", // Galakrond
+						"TB_BaconShop_HERO_67", // Hooktusk
 						"TB_BaconShop_HERO_30" // Nefarian
 				)
 						.contains(card.getId()))
@@ -400,7 +401,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.map(hero -> buildHeroFinishes(hero))
 				.flatMap(List::stream)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(55 * 3);
+		assertThat(result.size()).isEqualTo(54 * 3);
 		return result;
 	}
 
