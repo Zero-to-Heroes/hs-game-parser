@@ -51,19 +51,19 @@ public class BattlegroundsAchievements implements WithAssertions {
 	}
 
 	private List<RawAchievement> buildCompetitiveAchievements() throws Exception {
-		List<RawAchievement> heroFinishes = buildHeroFinishes();
+//		List<RawAchievement> heroFinishes = buildHeroFinishes();
 		List<RawAchievement> winStreaks = winStreaks();
 		List<RawAchievement> rankings = rankings();
 		List<RawAchievement> result =
 				Stream.of(
 						rankings,
-						winStreaks,
-						heroFinishes
+						winStreaks
+//						heroFinishes
 				)
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(177);
+		assertThat(result.size()).isEqualTo(15);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -155,7 +155,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("EX1_509", "TB_BaconUps_011"), // Murloc Tidecaller
 				newArrayList("EX1_506", "TB_BaconUps_003"), // Murloc Tidehunter
 				newArrayList("EX1_506a", "TB_BaconUps_003t"), // Murloc Scout
-				newArrayList("ICC_038", "TB_BaconUps_147", "0"), // Righteous Protector
+//				newArrayList("ICC_038", "TB_BaconUps_147", "0"), // Righteous Protector
 				newArrayList("UNG_073", "TB_BaconUps_061"), // Rockpool Hunter
 //				newArrayList("CS2_065", "TB_BaconUps_059t"), // Voidwalker
 				newArrayList("LOOT_013", "TB_BaconUps_148", "0"), // Vulgar Homunculus
@@ -214,7 +214,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("DAL_575", "TB_BaconUps_034"), // Khadgar
 				newArrayList("BGS_017", "TB_BaconUps_086"), // Pack Leader
 //                newArrayList("ULD_179", "TB_BaconUps_038"), // Phalanx Commander
-				newArrayList("BGS_023", "TB_BaconUps_035"), // Piloted Shredder
+//				newArrayList("BGS_023", "TB_BaconUps_035"), // Piloted Shredder
 //                newArrayList("OG_145"), // Psych-o-Tron
 				newArrayList("BOT_312", "TB_BaconUps_032"), // Replicating Menace
 				newArrayList("GVG_055", "TB_BaconUps_069"), // Screwjank Clunker
@@ -235,6 +235,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_200", "TB_BaconUps_256"), // Warden of Old
 				newArrayList("BGS_110", "TB_BaconUps_302"), // Arm of the Empire
 				newArrayList("BGS_059", "TB_BaconUps_119"), // Soul Devourer
+				newArrayList("BAR_073", "TB_BaconUps_320"), // Barrens Blacksmith
 
 
 				newArrayList("BOT_911", "TB_BaconUps_099"), // Annoy-o-Module
@@ -359,7 +360,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(135);
+		assertThat(result.size()).isEqualTo(134);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
