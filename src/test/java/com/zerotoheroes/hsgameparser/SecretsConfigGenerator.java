@@ -14,11 +14,22 @@ import java.util.stream.Collectors;
 
 public class SecretsConfigGenerator implements WithAssertions {
 
-    public static List<String> STANDARD_SETS = Lists.newArrayList("core", "expert1", "dalaran", "uldum", "dragons",
-            "yod", "black_temple", "scholomance", "darkmoon_faire", "darkmoon_races");
+    public static List<String> STANDARD_SETS = Lists.newArrayList(
+            "core",
+            "scholomance",
+            "darkmoon_faire",
+            "darkmoon_races",
+            "the_barrens");
     public static List<String> VANILLA_SETS = Lists.newArrayList("vanilla");
-    public static List<String> ARENA_SETS = Lists.newArrayList("darkmoon_races", "darkmoon_faire", "scholomance",
-            "black_temple", "boomsday", "ungoro", "kara", "core", "expert1");
+    public static List<String> ARENA_SETS = Lists.newArrayList(
+            "the_barrens",
+            "darkmoon_races",
+            "darkmoon_faire",
+            "scholomance",
+            "black_temple",
+            "dalaran",
+            "gangs",
+            "core");
 
     @Test
     public void generate_config() throws Exception {
@@ -31,7 +42,10 @@ public class SecretsConfigGenerator implements WithAssertions {
         SecretsConfig duelsSecrets = SecretsConfig.builder()
                 .mode("duels")
                 .secrets(allSecrets.stream()
-                        .filter(secret -> secret.getSet() != null)
+                        .filter(secret -> secret.getSet() != null
+                                && !secret.getSet().toLowerCase().equals("basic")
+                                && !secret.getSet().toLowerCase().equals("expert1")
+                        )
                         .filter(secret -> !VANILLA_SETS.contains(secret.getSet().toLowerCase()))
                         .map(secret -> SecretConfig.builder()
                                 .cardId(secret.getId())
@@ -42,7 +56,10 @@ public class SecretsConfigGenerator implements WithAssertions {
         SecretsConfig vanillaSecrets = SecretsConfig.builder()
                 .mode("classic")
                 .secrets(allSecrets.stream()
-                        .filter(secret -> secret.getSet() != null)
+                        .filter(secret -> secret.getSet() != null
+                                && !secret.getSet().toLowerCase().equals("basic")
+                                && !secret.getSet().toLowerCase().equals("expert1")
+                        )
                         .filter(secret -> VANILLA_SETS.contains(secret.getSet().toLowerCase()))
                         .map(secret -> SecretConfig.builder()
                                 .cardId(secret.getId())
@@ -53,7 +70,10 @@ public class SecretsConfigGenerator implements WithAssertions {
         SecretsConfig wildSecrets = SecretsConfig.builder()
                 .mode("wild")
                 .secrets(allSecrets.stream()
-                        .filter(secret -> secret.getSet() != null)
+                        .filter(secret -> secret.getSet() != null
+                                && !secret.getSet().toLowerCase().equals("basic")
+                                && !secret.getSet().toLowerCase().equals("expert1")
+                        )
                         .filter(secret -> !VANILLA_SETS.contains(secret.getSet().toLowerCase()))
                         .map(secret -> SecretConfig.builder()
                                 .cardId(secret.getId())
@@ -64,7 +84,10 @@ public class SecretsConfigGenerator implements WithAssertions {
         SecretsConfig standardSecrets = SecretsConfig.builder()
                 .mode("standard")
                 .secrets(allSecrets.stream()
-                        .filter(secret -> secret.getSet() != null)
+                        .filter(secret -> secret.getSet() != null
+                                && !secret.getSet().toLowerCase().equals("basic")
+                                && !secret.getSet().toLowerCase().equals("expert1")
+                        )
                         .filter(secret -> !VANILLA_SETS.contains(secret.getSet().toLowerCase()))
                         .filter(secret -> STANDARD_SETS.contains(secret.getSet().toLowerCase()))
                         .map(secret -> SecretConfig.builder()
@@ -76,7 +99,10 @@ public class SecretsConfigGenerator implements WithAssertions {
         SecretsConfig arenaSecrets = SecretsConfig.builder()
                 .mode("arena")
                 .secrets(allSecrets.stream()
-                        .filter(secret -> secret.getSet() != null)
+                        .filter(secret -> secret.getSet() != null
+                                && !secret.getSet().toLowerCase().equals("basic")
+                                && !secret.getSet().toLowerCase().equals("expert1")
+                        )
                         .filter(secret -> !VANILLA_SETS.contains(secret.getSet().toLowerCase()))
                         .filter(secret -> ARENA_SETS.contains(secret.getSet().toLowerCase()))
                         .map(secret -> SecretConfig.builder()
