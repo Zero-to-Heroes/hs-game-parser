@@ -9,6 +9,7 @@ import org.assertj.core.api.WithAssertions;
 import org.assertj.core.util.Lists;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,15 +43,16 @@ public class SecretsConfigGenerator implements WithAssertions {
                 .collect(Collectors.toList());
         SecretsConfig duelsSecrets = SecretsConfig.builder()
                 .mode("duels")
-                .secrets(allSecrets.stream()
-                        .filter(secret -> secret.getSet() != null && !secret.getSet().equals("Legacy"))
+                .secrets(removeDuplicates(allSecrets.stream()
+                        .filter(secret -> secret.getSet() != null)
                         .filter(secret -> !VANILLA_SETS.contains(secret.getSet().toLowerCase()))
                         .map(secret -> SecretConfig.builder()
                                 .cardId(secret.getId())
                                 .playerClass(secret.getPlayerClass().toLowerCase())
                                 .build())
-                        .collect(Collectors.toList()))
-                .build();
+                        .collect(Collectors.toList())))
+		        // TODO: filter out duplicate secrets, e.g. between Core and Legacy
+		        .build();
         SecretsConfig vanillaSecrets = SecretsConfig.builder()
                 .mode("classic")
                 .secrets(allSecrets.stream()
@@ -64,14 +66,14 @@ public class SecretsConfigGenerator implements WithAssertions {
                 .build();
         SecretsConfig wildSecrets = SecretsConfig.builder()
                 .mode("wild")
-                .secrets(allSecrets.stream()
-                        .filter(secret -> secret.getSet() != null && !secret.getSet().equals("Legacy"))
+                .secrets(removeDuplicates(allSecrets.stream()
+                        .filter(secret -> secret.getSet() != null)
                         .filter(secret -> !VANILLA_SETS.contains(secret.getSet().toLowerCase()))
                         .map(secret -> SecretConfig.builder()
                                 .cardId(secret.getId())
                                 .playerClass(secret.getPlayerClass().toLowerCase())
                                 .build())
-                        .collect(Collectors.toList()))
+                        .collect(Collectors.toList())))
                 .build();
         SecretsConfig standardSecrets = SecretsConfig.builder()
                 .mode("standard")
@@ -101,7 +103,17 @@ public class SecretsConfigGenerator implements WithAssertions {
         System.out.println(GeneralHelper.serialize(conf));
     }
 
-    @Test
+    // Not a real remove duplicates function, but for now the only known dupes are between Core and Legacy
+	// and we can expect that, in the future, only the CORE set will have duplicates from other sets
+	// Let's just hope they keep the card ID nomenclature consistent :)
+	private List<SecretConfig> removeDuplicates(List<SecretConfig> secrets) {
+    	List<String> secretIds = secrets.stream().map(SecretConfig::getCardId).collect(Collectors.toList());
+    	return secrets.stream()
+			    .filter(secret -> !secretIds.contains("CORE_" + secret.getCardId()))
+			    .collect(Collectors.toList());
+	}
+
+	@Test
     public void test() throws Exception {
         CardsList cardsList = CardsList.create();
         List<DbCard> allSecrets = cardsList.getDbCards().stream()
