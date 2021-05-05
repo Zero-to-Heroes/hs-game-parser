@@ -170,6 +170,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_116", "TB_BaconUps_167"), // Refreshing Anomaly
 				newArrayList("BGS_115t"), // Water droplet
 				newArrayList("BGS_106", "TB_BaconUps_255"), // Acolyte of C'Thun
+				newArrayList("BG20_301", "BG20_301_G"), // Sun-Bacon Relaxer
+				newArrayList("BG20_100", "BG20_100_G"), // Razorfen Geomancer
 
 
 //                newArrayList("GVG_085"), // Annoy-o-Tron
@@ -202,6 +204,9 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_127", "TB_Baconups_202"), // Molten Rock
 				newArrayList("OG_221", "TB_BaconUps_014"), // Selfless Hero
 				newArrayList("BGS_201", "TB_BaconUps_257"), // Tormented Ritualist
+				newArrayList("BG20_203", "BG20_203_G"), // Prophet of the Boar
+				newArrayList("BG20_102", "BG20_102_G"), // Tough Tusk
+				newArrayList("BG20_101", "BG20_101_G"), // Roadboar
 
 
 //				newArrayList("GVG_062"), // Cobalt Guardian
@@ -236,6 +241,10 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_110", "TB_BaconUps_302"), // Arm of the Empire
 				newArrayList("BGS_059", "TB_BaconUps_119"), // Soul Devourer
 				newArrayList("BAR_073", "TB_BaconUps_320"), // Barrens Blacksmith
+				newArrayList("BG20_202", "BG20_202_G"), // Necrolyte
+				newArrayList("BG20_105", "BG20_105_G"), // Thorncaller
+				newArrayList("BG20_201", "BG20_201_G"), // Bannerboar
+				newArrayList("BG20_103", "BG20_103_G"), // Bristleback Brute
 
 
 				newArrayList("BOT_911", "TB_BaconUps_099"), // Annoy-o-Module
@@ -266,6 +275,9 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_112", "TB_BaconUps_303"), // Qiraji Harbinger
 				newArrayList("BGS_111", "TB_BaconUps_301"), // Champion of Y'Shaarj
 				newArrayList("DMF_533", "TB_BaconUps_309"), // Ring Matron
+				newArrayList("BG20_106", "BG20_106_G"), // Groundshaker
+				newArrayList("BG20_104", "BG20_104_G"), // Bonker
+				newArrayList("BG20_207", "BG20_207_G"), // Dynamic Duo
 
 
 				newArrayList("BGS_010", "TB_BaconUps_083"), // Annihilan Battlemaster
@@ -293,6 +305,9 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_121", "TB_BaconUps_165"), // Gentle Djinni
 				newArrayList("BGS_113", "TB_BaconUps_305"), // Faceless Taverngoer
 				newArrayList("BGS_202", "TB_BaconUps_258"), // Mythrax, the Unraveler
+				newArrayList("BG20_205", "BG20_205_G"), // Agamaggan, the Great Boar
+				newArrayList("BG20_302", "BG20_302_G"), // Aggem Thorncurse
+				newArrayList("BG20_204", "BG20_204_G"), // Bristleback Knight
 
 
 				newArrayList("BGS_018", "TB_BaconUps_085"), // Goldrinn
@@ -313,6 +328,8 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_069", "TB_BaconUps_121"), // Amalgadon
 				newArrayList("BGS_079", "TB_BaconUps_137"), // The Tide Razor
 				newArrayList("BGS_124", "TB_BaconUps_163"), // Lieutenant Garr
+				newArrayList("BG20_303", "BG20_303_G"), // Charlga
+				newArrayList("BG20_206", "BG20_206_G"), // Captain Flat Tusk
 				newArrayList("BGS_100", "TB_BaconUps_200") // Lil' Rag
 //				newArrayList("BGS_205", "TB_BaconUps_306") // Elistra the Immortal
 		);
@@ -360,7 +377,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(134);
+		assertThat(result.size()).isEqualTo(151);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
