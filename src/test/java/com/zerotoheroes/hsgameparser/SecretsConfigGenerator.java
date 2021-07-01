@@ -51,7 +51,6 @@ public class SecretsConfigGenerator implements WithAssertions {
                                 .playerClass(secret.getPlayerClass().toLowerCase())
                                 .build())
                         .collect(Collectors.toList())))
-		        // TODO: filter out duplicate secrets, e.g. between Core and Legacy
 		        .build();
         SecretsConfig vanillaSecrets = SecretsConfig.builder()
                 .mode("classic")

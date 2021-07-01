@@ -35,8 +35,6 @@ public class BattlegroundsAchievements implements WithAssertions {
 
 	@Test
 	public void generate_achievements() throws Exception {
-//        List<RawAchievement> heroes = buildHeroesAchievements();
-//        List<RawAchievement> minions = buildMinionsAchievements();
 		List<RawAchievement> competitives = buildCompetitiveAchievements();
 		List<RawAchievement> trackings = buildTrackingAchievements();
 		List<RawAchievement> minions = buildMinionsPlays();
@@ -51,15 +49,10 @@ public class BattlegroundsAchievements implements WithAssertions {
 	}
 
 	private List<RawAchievement> buildCompetitiveAchievements() throws Exception {
-//		List<RawAchievement> heroFinishes = buildHeroFinishes();
 		List<RawAchievement> winStreaks = winStreaks();
 		List<RawAchievement> rankings = rankings();
 		List<RawAchievement> result =
-				Stream.of(
-						rankings,
-						winStreaks
-//						heroFinishes
-				)
+				Stream.of(rankings, winStreaks)
 						.flatMap(List::stream)
 						.sorted(Comparator.comparing(RawAchievement::getId))
 						.collect(Collectors.toList());
@@ -257,7 +250,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 //				newArrayList("KAR_702", "TB_BaconUps_073"), // Menagerie Magician
 //                newArrayList("BGS_024", "TB_BaconUps_050"), // Piloted Sky Golem
 				newArrayList("BOT_218", "TB_BaconUps_041"), // Security Rover
-				newArrayList("EX1_185", "TB_BaconUps_053"), // Siegebreaker
+//				newArrayList("EX1_185", "TB_BaconUps_053"), // Siegebreaker
 				newArrayList("EX1_577", "TB_BaconUps_042"), // The Beast
 				newArrayList("DAL_077", "TB_BaconUps_152", "0"), // Toxfin
 				newArrayList("CFM_816", "TB_BaconUps_074"), // Virmen Sensei
@@ -278,6 +271,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BG20_106", "BG20_106_G"), // Groundshaker
 				newArrayList("BG20_104", "BG20_104_G"), // Bonker
 				newArrayList("BG20_207", "BG20_207_G"), // Dynamic Duo
+				newArrayList("BG20_210", "BG20_210_G"), // Hexruin Marauder
 
 
 				newArrayList("BGS_010", "TB_BaconUps_083"), // Annihilan Battlemaster
@@ -330,6 +324,7 @@ public class BattlegroundsAchievements implements WithAssertions {
 				newArrayList("BGS_124", "TB_BaconUps_163"), // Lieutenant Garr
 				newArrayList("BG20_303", "BG20_303_G"), // Charlga
 				newArrayList("BG20_206", "BG20_206_G"), // Captain Flat Tusk
+				newArrayList("BG20_304", "BG20_304_G"), // Archdruid Hamuul
 				newArrayList("BGS_100", "TB_BaconUps_200") // Lil' Rag
 //				newArrayList("BGS_205", "TB_BaconUps_306") // Elistra the Immortal
 		);
@@ -377,7 +372,6 @@ public class BattlegroundsAchievements implements WithAssertions {
 				})
 				.filter(Objects::nonNull)
 				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(151);
 		List<String> types = result.stream()
 				.map(RawAchievement::getType)
 				.map(type -> "'" + type + "'")
@@ -385,107 +379,6 @@ public class BattlegroundsAchievements implements WithAssertions {
 				.collect(Collectors.toList());
 		System.out.println(String.join(",", types));
 		return result;
-	}
-
-	private List<RawAchievement> buildHeroFinishes() throws Exception {
-		CardsList cardsList = CardsList.create();
-		List<DbCard> heroCards = cardsList.getDbCards().stream()
-				.filter(card -> card.getId().startsWith("TB_BaconShop_HERO_"))
-				.filter(card -> !Arrays.asList(
-						"TB_BaconShop_HERO_KelThuzad", // Kel'Thuzad
-						"TB_BaconShop_HERO_PH", // BaconPHhero
-						"TB_BaconShop_HERO_59t" // Aranna Unleashed
-				)
-						.contains(card.getId()))
-				.filter(card -> !Arrays.asList(
-						"TB_BaconShop_HERO_31", // Bartendotron
-						"TB_BaconShop_HERO_20", // Prof. Putricide
-//						"TB_BaconShop_HERO_43", // Brann
-//						"TB_BaconShop_HERO_11", // Ragnaros
-						"TB_BaconShop_HERO_44", // Sylvanas
-						"TB_BaconShop_HERO_47", // Old Brann
-						"TB_BaconShop_HERO_10", // Gallywix
-//						"TB_BaconShop_HERO_38", // Mukla
-						"TB_BaconShop_HERO_61", // Lady Vashj
-						"TB_BaconShop_HERO_19", // Giantfin
-						"TB_BaconShop_HERO_02", // Galakrond
-						"TB_BaconShop_HERO_67", // Hooktusk
-						"TB_BaconShop_HERO_30" // Nefarian
-				)
-						.contains(card.getId()))
-				.filter(card -> "Hero".equals(card.getType()))
-				.collect(Collectors.toList());
-		List<RawAchievement> result = heroCards.stream()
-				.map(hero -> buildHeroFinishes(hero))
-				.flatMap(List::stream)
-				.collect(Collectors.toList());
-		assertThat(result.size()).isEqualTo(54 * 3);
-		return result;
-	}
-
-	private List<RawAchievement> buildHeroFinishes(DbCard card) {
-		// Hero played, finish 4, win
-		// Hero played -> can simply look for CARD_PLAYED with the hero
-		RawAchievement heroPlayed = heroFinishBuilder(card, "play")
-				.root(true)
-				.priority(0)
-				.displayName("Played " + sanitize(card.getName()))
-				.completedText("You played " + sanitize(card.getName()))
-				.emptyText("Take part in a Battlegrounds with " + sanitize(card.getName()))
-				.maxNumberOfRecords(1)
-				.difficulty("common")
-				.points(1)
-				.requirements(newArrayList(
-						Requirement.builder().type(BATTLEGROUNDS_HERO_SELECTED).values(newArrayList(card.getId()))
-                                .build(),
-						Requirement.builder().type(GAME_TYPE).values(newArrayList(BATTLEGROUNDS)).build()
-				))
-				.build();
-		RawAchievement finishTop4 = heroFinishBuilder(card, "finish_4")
-				.priority(1)
-				.displayName("Top 4 with " + sanitize(card.getName()))
-				.completedText("You finished Top 4 with " + sanitize(card.getName()))
-				.emptyText("Finish in the top 4 of a Battlegrounds with " + sanitize(card.getName()))
-				.maxNumberOfRecords(3)
-				.difficulty("rare")
-				.points(10)
-				.requirements(newArrayList(
-						Requirement.builder().type(BATTLEGROUNDS_HERO_SELECTED).values(newArrayList(card.getId()))
-                                .build(),
-						Requirement.builder().type(BATTLEGROUNDS_FINISH).values(newArrayList("4", "AT_LEAST")).build(),
-						Requirement.builder().type(GAME_TYPE).values(newArrayList(BATTLEGROUNDS)).build()
-				))
-				.build();
-		RawAchievement win = heroFinishBuilder(card, "finish_1")
-				.priority(2)
-				.displayName("Battlegrounds won with " + sanitize(card.getName()))
-				.completedText("You won a Battlegrounds with " + sanitize(card.getName()))
-				.emptyText("Win a Battlegrounds with " + sanitize(card.getName()))
-				.maxNumberOfRecords(4)
-				.difficulty("epic")
-				.points(20)
-				.requirements(newArrayList(
-						Requirement.builder().type(BATTLEGROUNDS_HERO_SELECTED).values(newArrayList(card.getId()))
-                                .build(),
-						Requirement.builder().type(GAME_WON).build(),
-						Requirement.builder().type(GAME_TYPE).values(newArrayList(BATTLEGROUNDS)).build()
-				))
-				.build();
-		return newArrayList(heroPlayed, finishTop4, win);
-
-	}
-
-	private RawAchievement.RawAchievementBuilder heroFinishBuilder(DbCard card, String type) {
-		return RawAchievement.builder()
-				.id("battlegrounds_hero_" + type + "_" + card.getId())
-				.type("battlegrounds_hero_" + card.getId())
-				.icon("boss_encounter")
-				.root(false)
-				.name(sanitize(card.getName()))
-				.displayCardId(card.getId())
-				.displayCardType(card.getType().toLowerCase())
-				.emptyText(null)
-				.resetEvents(newArrayList(GameEvents.GAME_START));
 	}
 
 	private List<RawAchievement> buildTrackingAchievements() throws Exception {
@@ -982,98 +875,5 @@ public class BattlegroundsAchievements implements WithAssertions {
 				))
 				.build();
 	}
-//
-//    private List<RawAchievement> buildHeroesAchievements() throws Exception {
-//        CardsList cardsList = CardsList.create();
-//        List<DbCard> heroCards = cardsList.getDbCards().stream()
-//                .filter(card -> card.getId().startsWith("ULDA_BOSS"))
-//                .collect(Collectors.toList());
-//        List<RawAchievement> result = heroCards.stream()
-//                .flatMap(card -> buildHeroEntries(card).stream())
-//                .sorted(Comparator.comparing(RawAchievement::getId))
-//                .collect(Collectors.toList());
-//        assertThat(result.size()).isEqualTo(146);
-//        List<String> types = result.stream()
-//                .map(RawAchievement::getType)
-//                .map(type -> "'" + type + "'")
-//                .distinct()
-//                .collect(Collectors.toList());
-//        System.out.println(String.join(",", types));
-//        return result;
-//    }
-//
-//    private List<RawAchievement> buildHeroEntries(DbCard card) {
-//        return newArrayList(buildHeroEncounterEntry(card));
-//    }
-//
-//    private RawAchievement buildHeroEncounterEntry(DbCard card) {
-//        return buildHeroEntry(card, "battlegrounds_hero_encounter")
-//                .icon("boss_encounter")
-//                .root(true)
-//                .priority(0)
-//                .displayName("Hero met: " + card.getSafeName())
-//                .completedText("You met " + card.getName())
-//                .difficulty("common")
-//                .maxNumberOfRecords(1)
-//                .points(1)
-//                .requirements(newArrayList(
-//                        Requirement.builder().type(CORRECT_OPPONENT).values(newArrayList(card.getId())).build(),
-//                        Requirement.builder().type(SCENE_CHANGED_TO_GAME).build(),
-//                        Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.BATTLEGROUNDS)).build()
-//                ))
-//                .resetEvents(newArrayList(GameEvents.GAME_END))
-//                .build();
-//    }
-//
-//    private List<RawAchievement> buildMinionsAchievements() throws Exception {
-//        CardsList cardsList = CardsList.create();
-//        List<DbCard> minionCards = cardsList.getDbCards().stream()
-//
-//                .collect(Collectors.toList());
-//        List<RawAchievement> result = minionCards.stream()
-//                .map(card -> RawAchievement.builder()
-//                        .id("battlegrounds_minion_play_" + card.getId())
-//                        .type("battlegrounds_minion_play_" + card.getId())
-//                        .icon("boss_victory")
-//                        .root(true)
-//                        .priority(0)
-//                        .name(card.getName())
-//                        .displayName("Minion played: " + card.getName())
-//                        .displayCardId(card.getId())
-//                        .displayCardType(card.getType().toLowerCase())
-//                        .text(sanitize(card.getText()))
-//                        .emptyText(null)
-//                        .completedText("You played " + card.getName())
-//                        .difficulty("common")
-//                        .maxNumberOfRecords(1)
-//                        .points(2)
-//                        .requirements(newArrayList(
-//                                Requirement.builder().type(CARD_PLAYED_OR_CHANGED_ON_BOARD).values(newArrayList
-// (card.getId())).build(),
-//                                Requirement.builder().type(GAME_TYPE).values(newArrayList(GameType.BATTLEGROUNDS))
-// .build()
-//                        ))
-//                        .resetEvents(newArrayList(GameEvents.GAME_START, GameEvents.GAME_END))
-//                        .build())
-//                .collect(Collectors.toList());
-//        assertThat(result.size()).isEqualTo(32);
-//        List<String> treasureTypes = result.stream()
-//                .map(RawAchievement::getType)
-//                .map(type -> "'" + type + "'")
-//                .collect(Collectors.toList());
-//        System.out.println(String.join(",", treasureTypes));
-//        return result;
-//    }
-//
-//    private RawAchievement.RawAchievementBuilder buildHeroEntry(DbCard card, String type) {
-//        return RawAchievement.builder()
-//                .id(type + "_" + card.getId())
-//                .type("battlegrounds_hero_" + card.getId())
-//                .name(sanitize(card.getSafeName()))
-//                .text(sanitize(card.getText()))
-//                .emptyText(null)
-//                .displayCardId(card.getId())
-//                .displayCardType(card.getType().toLowerCase());
-//    }
 
 }
